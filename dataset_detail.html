@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KO-EN Code-Mixed Dataset Viewer</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📑</text></svg>">
+    <link rel="stylesheet" href="./assets/linear-styles.css">
+    <script src="./assets/dataset-embedded.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div>
+                <h1>KO-EN Code-Mixed Dataset</h1>
+                <p class="subtitle" style="margin-bottom: 20px;">Browse 1,500 code-mixed sentence pairs from KLUE-STS dataset</p>
+            </div>
+            <a href="index.html" class="btn btn-secondary">← Back to Leaderboard</a>
+        </div>
+
+        <!-- Dataset Stats -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin-bottom: 32px;">
+            <div class="stat-card">
+                <div class="stat-label">Total Pairs</div>
+                <div class="stat-value" id="totalPairs">1,500</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">k=1 (Light)</div>
+                <div class="stat-value" id="k1Count">825</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">k=2 (Medium)</div>
+                <div class="stat-value" id="k2Count">477</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">k=3 (Heavy)</div>
+                <div class="stat-value" id="k3Count">166</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">k=4 (Very Heavy)</div>
+                <div class="stat-value" id="k4Count">32</div>
+            </div>
+        </div>
+
+        <!-- Filters and Search -->
+        <div style="margin-bottom: 24px;">
+            <div class="filter-buttons" style="margin-bottom: 16px;">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="k=1">k=1</button>
+                <button class="filter-btn" data-filter="k=2">k=2</button>
+                <button class="filter-btn" data-filter="k=3">k=3</button>
+                <button class="filter-btn" data-filter="k=4">k=4</button>
+            </div>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center;">
+                <input type="text" id="searchBox" placeholder="Search sentences..." style="flex: 1; min-width: 250px; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <label style="font-size: 14px; color: var(--text-secondary); white-space: nowrap;">Sort by:</label>
+                    <select id="sortSelect" style="padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px; min-width: 180px;">
+                        <option value="id">ID</option>
+                        <option value="score-desc">Score (High → Low)</option>
+                        <option value="score-asc">Score (Low → High)</option>
+                        <option value="k-asc">k (Low → High)</option>
+                        <option value="k-desc">k (High → Low)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dataset Items -->
+        <div id="datasetContainer"></div>
+
+        <!-- Pagination -->
+        <div id="paginationContainer" style="margin-top: 32px;"></div>
+
+        <!-- Footer -->
+        <footer style="margin-top: 64px; padding-top: 32px; border-top: 1px solid #e5e7eb; text-align: center; color: #6b7280; font-size: 14px;">
+            <p>Based on <strong>KLUE-STS dataset</strong> with Korean-English code-mixing</p>
+        </footer>
+    </div>
+
+    <style>
+        .dataset-item {
+            background: var(--card-bg);
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .dataset-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .dataset-id {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 14px;
+        }
+
+        .dataset-meta {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .score-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .k-badge {
+            background: var(--accent-bg);
+            color: var(--accent-color);
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        .sentence-section {
+            margin-bottom: 12px;
+        }
+
+        .sentence-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .sentence-text {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .mixing-section {
+            background: var(--bg-secondary);
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+
+        .mixing-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .mixing-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+            font-size: 13px;
+        }
+
+        .mixing-from {
+            color: #dc2626;
+            font-weight: 500;
+        }
+
+        .mixing-arrow {
+            color: var(--text-secondary);
+        }
+
+        .mixing-to {
+            color: #16a34a;
+            font-weight: 500;
+        }
+
+        .mixing-pos {
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 6px 16px;
+            border: 1px solid #d1d5db;
+            background: white;
+            color: #6b7280;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.15s;
+            flex-shrink: 0;
+            white-space: nowrap;
+            display: inline-block;
+        }
+
+        .filter-btn:hover {
+            background: var(--bg-secondary);
+            border-color: var(--accent-color);
+        }
+
+        .filter-btn.active {
+            background: white;
+            color: #374151;
+            border: 2px solid #374151;
+            font-weight: 700;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 24px;
+        }
+
+        .page-btn {
+            padding: 6px 12px;
+            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            color: var(--text-primary);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .page-btn:hover:not(:disabled) {
+            background: var(--bg-secondary);
+        }
+
+        .page-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .page-btn.active {
+            background: white;
+            color: #374151;
+            border: 2px solid #374151;
+            font-weight: 700;
+        }
+
+        .page-info {
+            padding: 6px 12px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+    </style>
+
+    <script>
+        let allData = [];
+        let filteredData = [];
+        let currentFilter = 'all';
+        let currentSort = 'id';
+        let itemsPerPage = 20;
+        let currentPage = 1;
+        let totalPages = 1;
+
+        // Load data
+        function loadData() {
+            try {
+                console.log('Loading embedded data...');
+                if (typeof DATASET_DATA === 'undefined') {
+                    throw new Error('Dataset not loaded. Please check dataset-embedded.js');
+                }
+                allData = DATASET_DATA;
+                console.log('Loaded', allData.length, 'items');
+                filteredData = [...allData];
+                updateStats();
+                applyFiltersAndSort();
+            } catch (error) {
+                console.error('Error loading data:', error);
+                document.getElementById('datasetContainer').innerHTML =
+                    '<p style="color: red; padding: 20px; text-align: center;">Error loading dataset: ' + error.message + '</p>';
+            }
+        }
+
+        function updateStats() {
+            const k1 = allData.filter(d => d.mixed_k === 1).length;
+            const k2 = allData.filter(d => d.mixed_k === 2).length;
+            const k3 = allData.filter(d => d.mixed_k === 3).length;
+            const k4 = allData.filter(d => d.mixed_k === 4).length;
+
+            document.getElementById('totalPairs').textContent = allData.length.toLocaleString();
+            document.getElementById('k1Count').textContent = k1.toLocaleString();
+            document.getElementById('k2Count').textContent = k2.toLocaleString();
+            document.getElementById('k3Count').textContent = k3.toLocaleString();
+            document.getElementById('k4Count').textContent = k4.toLocaleString();
+        }
+
+        function applyFiltersAndSort() {
+            const searchTerm = document.getElementById('searchBox').value.toLowerCase();
+
+            filteredData = allData.filter(item => {
+                if (currentFilter !== 'all' && `k=${item.mixed_k}` !== currentFilter) {
+                    return false;
+                }
+
+                if (searchTerm) {
+                    const searchableText = [
+                        item.sentence_a,
+                        item.sentence_b,
+                        item.sentence_b_org,
+                        item.id
+                    ].join(' ').toLowerCase();
+
+                    if (!searchableText.includes(searchTerm)) {
+                        return false;
+                    }
+                }
+
+                return true;
+            });
+
+            // Apply sort
+            switch(currentSort) {
+                case 'score-desc':
+                    filteredData.sort((a, b) => (b.score_org || 0) - (a.score_org || 0));
+                    break;
+                case 'score-asc':
+                    filteredData.sort((a, b) => (a.score_org || 0) - (b.score_org || 0));
+                    break;
+                case 'k-asc':
+                    filteredData.sort((a, b) => a.mixed_k - b.mixed_k);
+                    break;
+                case 'k-desc':
+                    filteredData.sort((a, b) => b.mixed_k - a.mixed_k);
+                    break;
+                default: // 'id'
+                    filteredData.sort((a, b) => a.id.localeCompare(b.id));
+            }
+
+            totalPages = Math.ceil(filteredData.length / itemsPerPage);
+            currentPage = 1;
+            renderItems();
+            renderPagination();
+        }
+
+        function renderItems() {
+            const container = document.getElementById('datasetContainer');
+            const startIdx = (currentPage - 1) * itemsPerPage;
+            const endIdx = startIdx + itemsPerPage;
+            const itemsToShow = filteredData.slice(startIdx, endIdx);
+
+            if (itemsToShow.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: var(--text-secondary); padding: 40px;">No items found</p>';
+                return;
+            }
+
+            container.innerHTML = itemsToShow.map(item => `
+                <div class="dataset-item">
+                    <div class="dataset-header">
+                        <span class="dataset-id">${item.id}</span>
+                        <div class="dataset-meta">
+                            <span class="score-badge">Score: ${item.score_org?.toFixed(1) || '0.0'}</span>
+                            <span class="k-badge">k=${item.mixed_k}</span>
+                        </div>
+                    </div>
+
+                    <div class="sentence-section">
+                        <div class="sentence-label">Sentence A (Original)</div>
+                        <div class="sentence-text">${item.sentence_a}</div>
+                    </div>
+
+                    <div class="sentence-section">
+                        <div class="sentence-label">Sentence B (Original)</div>
+                        <div class="sentence-text">${item.sentence_b_org}</div>
+                    </div>
+
+                    <div class="sentence-section">
+                        <div class="sentence-label">Sentence B (Code-Mixed)</div>
+                        <div class="sentence-text">${item.sentence_b}</div>
+                    </div>
+
+                    ${item.mixed_list && item.mixed_list.length > 0 ? `
+                        <div class="mixing-section">
+                            <div class="mixing-title">Mixing Details (${item.mixed_list.length} replacement${item.mixed_list.length > 1 ? 's' : ''})</div>
+                            ${item.mixed_list.map(mix => `
+                                <div class="mixing-item">
+                                    <span class="mixing-from">${mix.from}</span>
+                                    <span class="mixing-arrow">→</span>
+                                    <span class="mixing-to">${mix.to}</span>
+                                    <span class="mixing-pos">${mix.pos}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    ` : ''}
+                </div>
+            `).join('');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function renderPagination() {
+            const container = document.getElementById('paginationContainer');
+
+            if (totalPages <= 1) {
+                container.innerHTML = '';
+                return;
+            }
+
+            let pages = [];
+            const maxVisible = 7;
+
+            if (totalPages <= maxVisible) {
+                for (let i = 1; i <= totalPages; i++) {
+                    pages.push(i);
+                }
+            } else {
+                if (currentPage <= 3) {
+                    pages = [1, 2, 3, 4, 5, '...', totalPages];
+                } else if (currentPage >= totalPages - 2) {
+                    pages = [1, '...', totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages];
+                } else {
+                    pages = [1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages];
+                }
+            }
+
+            container.innerHTML = `
+                <div class="pagination">
+                    <button class="page-btn" ${currentPage === 1 ? 'disabled' : ''} onclick="goToPage(${currentPage - 1})">Previous</button>
+                    ${pages.map(page => {
+                        if (page === '...') {
+                            return '<span class="page-info">...</span>';
+                        }
+                        return `<button class="page-btn ${page === currentPage ? 'active' : ''}" onclick="goToPage(${page})">${page}</button>`;
+                    }).join('')}
+                    <button class="page-btn" ${currentPage === totalPages ? 'disabled' : ''} onclick="goToPage(${currentPage + 1})">Next</button>
+                    <span class="page-info">Showing ${(currentPage - 1) * itemsPerPage + 1}-${Math.min(currentPage * itemsPerPage, filteredData.length)} of ${filteredData.length.toLocaleString()}</span>
+                </div>
+            `;
+        }
+
+        function goToPage(page) {
+            if (page < 1 || page > totalPages) return;
+            currentPage = page;
+            renderItems();
+            renderPagination();
+        }
+
+        // Event listeners
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                currentFilter = e.target.dataset.filter;
+                applyFiltersAndSort();
+            });
+        });
+
+        document.getElementById('searchBox').addEventListener('input', () => {
+            applyFiltersAndSort();
+        });
+
+        document.getElementById('sortSelect').addEventListener('change', (e) => {
+            currentSort = e.target.value;
+            applyFiltersAndSort();
+        });
+
+        // Initialize
+        loadData();
+    </script>
+</body>
+</html>

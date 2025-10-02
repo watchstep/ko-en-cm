@@ -1,0 +1,33027 @@
+const DATASET_DATA = [
+  {
+    "id": "pair_00000",
+    "sentence_a": "무주택자 자녀가 1주택자 부모와 10년 이상 같이 살다가 상속을 받았을 때 공제한도가 기존 5억 원에서 6억 원으로 확대된다.",
+    "sentence_b": "또 10인 이상 enterprise는 4만원을 추가 지원함에 따라 9만원에서 13만원으로 오른다.",
+    "sentence_b_org": "또 10인 이상 기업은 4만원을 추가 지원함에 따라 9만원에서 13만원으로 오른다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "기업",
+        "to": "enterprise",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.1
+  },
+  {
+    "id": "pair_00001",
+    "sentence_a": "신축 매입약정은 대기 사업자도 많고, 비주택 공실 리모델링은 기존 상가·오피스 외에도 다양한 비주택 공실을 매입함으로써 물량 확보가 가능할 것으로 판단",
+    "sentence_b": "신규 건설 contract을 위한 대기 사업자가 많으며, 기존 점포와 office 외에 다양한 비주택 공실 구매로 비주택 공실 개조가 가능합니다.",
+    "sentence_b_org": "신규 건설 계약을 위한 대기 사업자가 많으며, 기존 점포와 사무실 외에 다양한 비주택 공실 구매로 비주택 공실 개조가 가능합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "계약",
+        "to": "contract",
+        "pos": "NNG"
+      },
+      {
+        "from": "사무실",
+        "to": "office",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.7
+  },
+  {
+    "id": "pair_00002",
+    "sentence_a": "아쉬웠던 점은 우선 역에서는 조금 멀기 때문에 버스를 타야한다.",
+    "sentence_b": "슬픈 것은 station에서 조금 멀기 때문에 bus를 타야 한다는 것입니다.",
+    "sentence_b_org": "슬픈 것은 역에서 조금 멀기 때문에 버스를 타야 한다는 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "역",
+        "to": "station",
+        "pos": "NNG"
+      },
+      {
+        "from": "버스",
+        "to": "bus",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.6
+  },
+  {
+    "id": "pair_00003",
+    "sentence_a": "이번주와 다음주 중에서 농구를 더 많이 한건 언제일까요?",
+    "sentence_b": "이번주에 더 basketball을 많이 했습니까 다음주에 더 많이 했습니까?",
+    "sentence_b_org": "이번주에 더 농구를 많이 했습니까 다음주에 더 많이 했습니까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "농구",
+        "to": "basketball",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00004",
+    "sentence_a": "옆에 있던 피자집 엄청 많이 갔던 것 같은데 맛있었어요!",
+    "sentence_b": "옆에 있는 pizza place에 많이 간 것 같은데 맛있었어요!",
+    "sentence_b_org": "옆에 있는 피자집에 많이 간 것 같은데 맛있었어요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "피자집",
+        "to": "pizza place",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.1
+  },
+  {
+    "id": "pair_00005",
+    "sentence_a": "예정된 스케쥴이 모레 몇 시에 잡혀있는지요?",
+    "sentence_b": "엄마 schedule이 며칠에 비는지 알려줄 수 있나요?",
+    "sentence_b_org": "엄마 일정이 며칠에 비는지 알려줄 수 있나요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "일정",
+        "to": "schedule",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_00006",
+    "sentence_a": "마치 단독 주택에 사는 느낌이라고나 할까요.",
+    "sentence_b": "오랜만에 만난 relative's house에 가는 느낌이었습니다.",
+    "sentence_b_org": "오랜만에 만난 친척집에 가는 느낌이었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "친척집",
+        "to": "relative's house",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_00007",
+    "sentence_a": "올해 생산한 백신을 대상으로 안정성 시험을 시행한 결과 모든 제품들은 25℃에서 24시간 동안 품질이 유지됨을 확인했다.",
+    "sentence_b": "그 result 강원 산불은 완진까지 13시간이 걸렸다.",
+    "sentence_b_org": "그 결과 강원 산불은 완진까지 13시간이 걸렸다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "결과",
+        "to": "result",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00008",
+    "sentence_a": "불쾌지수가 높은 곳이 대구와 홍천 중 어디야?",
+    "sentence_b": "대구와 홍천 중 discomfort index가 높은 곳을 알려줘.",
+    "sentence_b_org": "대구와 홍천 중 불쾌지수가 높은 곳을 알려줘.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "불쾌지수",
+        "to": "discomfort index",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_00009",
+    "sentence_a": "숙소는 위치 청결 등 여러모로 편리했어요",
+    "sentence_b": "accommodation은 장소와 청결함 등 여러 가지 면에서 편리했습니다.",
+    "sentence_b_org": "숙소는 장소와 청결함 등 여러 가지 면에서 편리했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00010",
+    "sentence_a": "어느 일정이 내일 일정 중에 수정해도 되는 일정인가요?",
+    "sentence_b": "어느 걸 내일 schedule 중 수정해도 되나요?",
+    "sentence_b_org": "어느 걸 내일 일정 중 수정해도 되나요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "일정",
+        "to": "schedule",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.9
+  },
+  {
+    "id": "pair_00011",
+    "sentence_a": "간단한 빵과 과일 커피 정도의 조식이 제공되구요.",
+    "sentence_b": "간단한 bread와 fruit coffee breakfast가 제공됩니다.",
+    "sentence_b_org": "간단한 빵과 과일 커피 아침식사가 제공됩니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "빵",
+        "to": "bread",
+        "pos": "NNG"
+      },
+      {
+        "from": "과일 커피 아침식사",
+        "to": "fruit coffee breakfast",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.5
+  },
+  {
+    "id": "pair_00012",
+    "sentence_a": "방역당국과 의료진의 헌신, 수많은 자원봉사자들의 자발적 참여, 연대와 협력의 정신을 유감없이 발휘해준 국민의 힘입니다.",
+    "sentence_b": "그것은 solidarity, 협력의 spirit, 검역당국과 의료진의 dedication, 수많은 자원봉사자들의 자발적인 참여를 보여준 사람들의 힘입니다.",
+    "sentence_b_org": "그것은 연대, 협력의 정신, 검역당국과 의료진의 헌신, 수많은 자원봉사자들의 자발적인 참여를 보여준 사람들의 힘입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "연대",
+        "to": "solidarity",
+        "pos": "NNG"
+      },
+      {
+        "from": "정신",
+        "to": "spirit",
+        "pos": "NNG"
+      },
+      {
+        "from": "헌신",
+        "to": "dedication",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.4
+  },
+  {
+    "id": "pair_00013",
+    "sentence_a": "현재 민간 의료기관에서 사용 가능한 상용화된 신종 코로나바이러스 검사법이 없어, 질병관리본부와 18개 시·도 보건환경연구원에서만 신고된 환자들을 중심으로 검사 진행 중입니다.",
+    "sentence_b": "현재 민간 의료기관에서는 상용화된 신종 코로나 virus 검사방법이 없으며, 질병관리본부와 18개 시·도 보건환경연구소에서 신고한 patient만을 대상으로 검사가 진행되고 있습니다.",
+    "sentence_b_org": "현재 민간 의료기관에서는 상용화된 신종 코로나 바이러스 검사방법이 없으며, 질병관리본부와 18개 시·도 보건환경연구소에서 신고한 환자만을 대상으로 검사가 진행되고 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "바이러스",
+        "to": "virus",
+        "pos": "NNG"
+      },
+      {
+        "from": "환자",
+        "to": "patient",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.8
+  },
+  {
+    "id": "pair_00014",
+    "sentence_a": "쇼파베드는 키크신 분들 에게는 좀 작을 수 있을 것 같아요",
+    "sentence_b": "제 생각에 sofa bed는 키가 큰 사람들에게는 조금 작을 수 있을 것 같아요.",
+    "sentence_b_org": "제 생각에 소파 침대는 키가 큰 사람들에게는 조금 작을 수 있을 것 같아요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "소파 침대",
+        "to": "sofa bed",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00015",
+    "sentence_a": "옆 집에서 노래 부르는 소리, 같은 층의 다른 집에서 문 여닫는 소리는 들렸어요.",
+    "sentence_b": "사진에서의 모습보다는 약간 작은 size의 스튜디오 였어요.",
+    "sentence_b_org": "사진에서의 모습보다는 약간 작은 규모의 스튜디오 였어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "규모",
+        "to": "size",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00016",
+    "sentence_a": "시간 여유가 더 없으신 주말은 이번주말과 다음 주말 중 언제이십니까?",
+    "sentence_b": "산책 plan이 morning에 있어, afternoon에 있어?",
+    "sentence_b_org": "산책 계획이 아침에 있어, 오후에 있어?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "아침",
+        "to": "morning",
+        "pos": "NNG"
+      },
+      {
+        "from": "오후",
+        "to": "afternoon",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.5
+  },
+  {
+    "id": "pair_00017",
+    "sentence_a": "처음 예약할 때 일부러 숙소를 바티칸 근처로 잡았는데요,",
+    "sentence_b": "제가 처음 booking을 했을 때, 저는 일부러 Vatican 근처에 제 accommodation을 정했습니다.",
+    "sentence_b_org": "제가 처음 예약을 했을 때, 저는 일부러 바티칸 근처에 제 숙소를 정했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "예약",
+        "to": "booking",
+        "pos": "NNG"
+      },
+      {
+        "from": "바티칸",
+        "to": "Vatican",
+        "pos": "NNP"
+      },
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00018",
+    "sentence_a": "한편 12일 0시부터 특별입국절차 적용지역에 홍콩과 마카오가 포함된 이후 이틀간 특별입국절차 인원은 12일 5427명에서 13일 4936명으로 감소했다.",
+    "sentence_b": "한편, 홍콩과 마카오 이후 이틀간 special immigration process은 12일 midnight부터 13일 4,936건까지 special immigration process 대상에 포함됐습니다.",
+    "sentence_b_org": "한편, 홍콩과 마카오 이후 이틀간 특별 출입국 수속은 12일 자정부터 13일 4,936건까지 특별 출입국 수속 대상에 포함됐습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "특별 출입국 수속",
+        "to": "special immigration process",
+        "pos": "NNG"
+      },
+      {
+        "from": "자정",
+        "to": "midnight",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.3
+  },
+  {
+    "id": "pair_00019",
+    "sentence_a": "다른 메일은 그대로 두고 학회 홍보메일만 모두 삭제해줘.",
+    "sentence_b": "모든 mail을 남겨두지 말고 학회 홍보 mail은 지워.",
+    "sentence_b_org": "모든 메일을 남겨두지 말고 학회 홍보메일은 지워.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.2
+  },
+  {
+    "id": "pair_00020",
+    "sentence_a": "나리타 공항에서 오시면 게이세이본선 종점이고요.",
+    "sentence_b": "쇠네펠트 airport에서 10분이면 도착합니다.",
+    "sentence_b_org": "쇠네펠트 공항에서 10분이면 도착합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "공항",
+        "to": "airport",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.1
+  },
+  {
+    "id": "pair_00021",
+    "sentence_a": "집 바로 옆에 슈퍼가 있고 무엇보다 집이 조용해요.",
+    "sentence_b": "우리 house 바로 옆에 supermarket이 있는데, 무엇보다도 조용해요.",
+    "sentence_b_org": "우리 집 바로 옆에 슈퍼마켓이 있는데, 무엇보다도 조용해요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "집",
+        "to": "house",
+        "pos": "NNG"
+      },
+      {
+        "from": "슈퍼마켓",
+        "to": "supermarket",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00022",
+    "sentence_a": "에어컨 바람은 직접 쐬지 마세요",
+    "sentence_b": "bathroom과 현관 중 너가 켜길 원하는 light은 어느 곳이야?",
+    "sentence_b_org": "화장실과 현관 중 너가 켜길 원하는 조명은 어느 곳이야?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "화장실",
+        "to": "bathroom",
+        "pos": "NNG"
+      },
+      {
+        "from": "조명",
+        "to": "light",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00023",
+    "sentence_a": "아울러 고령자 스스로 운전면허를 자진 반납할 유인을 제공하기 위한 지원사업을 계속하면서 ‘원스톱 시스템’ 전국 확산을 함께 추진한다.",
+    "sentence_b": "또한, government는 노인들이 운전면허증을 자발적으로 반납할 수 있도록 incentive를 제공하고 \"one-stop system\"의 전국 확산을 추진하기 위한 지원 사업을 계속할 것입니다.",
+    "sentence_b_org": "또한, 정부는 노인들이 운전면허증을 자발적으로 반납할 수 있도록 인센티브를 제공하고 \"원스톱 시스템\"의 전국 확산을 추진하기 위한 지원 사업을 계속할 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "정부",
+        "to": "government",
+        "pos": "NNG"
+      },
+      {
+        "from": "인센티브",
+        "to": "incentive",
+        "pos": "NNG"
+      },
+      {
+        "from": "원스톱 시스템",
+        "to": "one-stop system",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.4
+  },
+  {
+    "id": "pair_00024",
+    "sentence_a": "컴업 2020의 특별행사로는 ▲인공지능(AI)챔피언십 ▲청소년비즈쿨페스티벌 ▲도전! K-스타트업왕중왕전 등 7개 행사가 진행됐다.",
+    "sentence_b": "▲ AI(인공지능) championship ▲ Youth Biz Cool Festival ▲ 도전! K-startup 킹 오브 킹을 포함한 7개의 행사가 열렸습니다.",
+    "sentence_b_org": "▲ AI(인공지능) 챔피언십 ▲ Youth Biz Cool Festival ▲ 도전! K-스타트업 킹 오브 킹을 포함한 7개의 행사가 열렸습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "챔피언십",
+        "to": "championship",
+        "pos": "NNG"
+      },
+      {
+        "from": "스타트업",
+        "to": "startup",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00025",
+    "sentence_a": "서재말고 안방 조명은 밝게 유지하자",
+    "sentence_b": "summer 중엔 보일러 켜지 말고 fan을 켜.",
+    "sentence_b_org": "여름 중엔 보일러 켜지 말고 선풍기를 켜.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "여름",
+        "to": "summer",
+        "pos": "NNG"
+      },
+      {
+        "from": "선풍기",
+        "to": "fan",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00026",
+    "sentence_a": "언제 네가 야구 보러 간댔지?",
+    "sentence_b": "오늘 울리게 해놓은 alarm 몇 시로 맞춰놨어?",
+    "sentence_b_org": "오늘 울리게 해놓은 알람 몇 시로 맞춰놨어?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "알람",
+        "to": "alarm",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00027",
+    "sentence_a": "늦어도 구월말고 시월 되기 전에 꼭 보일러 점검 해야해",
+    "sentence_b": "boiler 점검은 September 말고 October 전에 하자.",
+    "sentence_b_org": "보일러 점검은 구월말고 시월 전에 하자.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "보일러",
+        "to": "boiler",
+        "pos": "NNG"
+      },
+      {
+        "from": "구월",
+        "to": "September",
+        "pos": "NNG"
+      },
+      {
+        "from": "시월",
+        "to": "October",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.6
+  },
+  {
+    "id": "pair_00028",
+    "sentence_a": "적절한 위치와 깔끔한 숙소가 여행자를 기분 좋게 한다.",
+    "sentence_b": "친절한 host와 깨끗한 accommodation이 너무 좋았어요.",
+    "sentence_b_org": "친절한 호스트와 깨끗한 숙소가 너무 좋았어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      },
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.0
+  },
+  {
+    "id": "pair_00029",
+    "sentence_a": "산타 마리아 노벨라 광장과 매우 가깝고 피렌체 주요 관광지들 모두 도보로 이동 가능합니다.",
+    "sentence_b": "subway station과 가깝고 마레지구도 도보로 가능합니다.",
+    "sentence_b_org": "지하철역과 가깝고 마레지구도 도보로 가능합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지하철역",
+        "to": "subway station",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.4
+  },
+  {
+    "id": "pair_00030",
+    "sentence_a": "캐주얼한 프랑스감성을 느낄수있는 멋진곳이었습니다.",
+    "sentence_b": "그곳은 일상적인 프랑스 sentiment를 느낄 수 있는 멋진 장소였습니다.",
+    "sentence_b_org": "그곳은 일상적인 프랑스 정서를 느낄 수 있는 멋진 장소였습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "정서",
+        "to": "sentiment",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00031",
+    "sentence_a": "공기 청정기 어떻게 쓰면 되는 거야?",
+    "sentence_b": "공기 청정기 올바른 usage은 뭘까?",
+    "sentence_b_org": "공기 청정기 올바른 사용법은 뭘까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "사용법",
+        "to": "usage",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.3
+  },
+  {
+    "id": "pair_00032",
+    "sentence_a": "브뤼셀에선 비슷한 가격대의 개인실도 찾기 힘들었기 때문에 여러모로 아주 만족했다.",
+    "sentence_b": "브뤼셀에서는 비슷한 price range의 private room을 찾기 어려웠기 때문에 여러모로 만족스러웠습니다.",
+    "sentence_b_org": "브뤼셀에서는 비슷한 가격대의 개인 객실을 찾기 어려웠기 때문에 여러모로 만족스러웠습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "가격대",
+        "to": "price range",
+        "pos": "NNG"
+      },
+      {
+        "from": "개인 객실",
+        "to": "private room",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.1
+  },
+  {
+    "id": "pair_00033",
+    "sentence_a": "야 지금 거실 난방 이십오도로 설정되어있는데, 그대로 둘까 아니면 삼십도로 올려줄까?",
+    "sentence_b": "야 living room temperature 이십오도랑 삼십도 중에 몇으로 설정할까?",
+    "sentence_b_org": "야 거실 온도 이십오도랑 삼십도 중에 몇으로 설정할까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "야",
+        "to": "Hey",
+        "pos": "IC"
+      },
+      {
+        "from": "거실",
+        "to": "living room",
+        "pos": "NNG"
+      },
+      {
+        "from": "온도",
+        "to": "temperature",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_00034",
+    "sentence_a": "전라남도는 지역균형 뉴딜 모델로 ‘신안 8.2GW 해상풍력 발전단지 조성을 통한 그린뉴딜 전남형 상생일자리 사업’을 전면에 내세웠다.",
+    "sentence_b": "전라남도는 신안 8.2 창출을 통해 전남형 녹색 New Deal 상생 일자리 사업을 추진했습니다.GW 해상 풍력 발전 단지는 지역 균형잡힌 New Deal 모델로서 선두에 서 있습니다.",
+    "sentence_b_org": "전라남도는 신안 8.2 창출을 통해 전남형 녹색 뉴딜 상생 일자리 사업을 추진했습니다.GW 해상 풍력 발전 단지는 지역 균형잡힌 뉴딜 모델로서 선두에 서 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "뉴딜",
+        "to": "New Deal",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.3
+  },
+  {
+    "id": "pair_00035",
+    "sentence_a": "시가지와 다소멀지만 가격대비 매우훌륭합니다!",
+    "sentence_b": "샤워실 drainage가 좀 약하긴 하지만 가격대비 강추합니다.",
+    "sentence_b_org": "샤워실 배수가 좀 약하긴 하지만 가격대비 강추합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "배수",
+        "to": "drainage",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.6
+  },
+  {
+    "id": "pair_00036",
+    "sentence_a": "집 찾는것도 알려준데로 쉬웠고 만족합니다.",
+    "sentence_b": "host도 친절하고 여러모로 만족합니다.",
+    "sentence_b_org": "호스트도 친절하고 여러모로 만족합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.1
+  },
+  {
+    "id": "pair_00037",
+    "sentence_a": "물 내려가는소리뿐만아니라 소변보는소리, 드라이기 쓰는소리도 다 들려요.",
+    "sentence_b": "room이 좋을 뿐 아니라 host도 최고입니다.",
+    "sentence_b_org": "방이 좋을 뿐 아니라 호스트도 최고입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방",
+        "to": "room",
+        "pos": "NNG"
+      },
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00038",
+    "sentence_a": "와이파이도 빵빵 뜨거운물도 빵빵 히터도 빵빵했어요!",
+    "sentence_b": "저희는 public transportation 한 번도 이용 안 했어요!",
+    "sentence_b_org": "저희는 대중교통 한 번도 이용 안 했어요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "대중교통",
+        "to": "public transportation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00039",
+    "sentence_a": "‘진실·화해를 위한 과거사정리위원회’는 2005~2010년 우리 사회의 과거사 문제에 대한 해결을 시도했다.",
+    "sentence_b": "국가인권위원회·국민권익위원회의 경찰권 남용에 대한 monitoring도 확대하기로 했다.",
+    "sentence_b_org": "국가인권위원회·국민권익위원회의 경찰권 남용에 대한 감시도 확대하기로 했다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "감시",
+        "to": "monitoring",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00040",
+    "sentence_a": "곤돌리노의 노래까지 낭만적인 여행에 덤으로 얻었던 멋진 숙소였습니다",
+    "sentence_b": "곤돌리노의 song까지 낭만적으로 여행한 멋진 숙박시설이었습니다.",
+    "sentence_b_org": "곤돌리노의 노래까지 낭만적으로 여행한 멋진 숙박시설이었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "노래",
+        "to": "song",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.9
+  },
+  {
+    "id": "pair_00041",
+    "sentence_a": "거시금융안정팀장은 고광희 전 기재부 종합정책과장이 맡기로 했다.",
+    "sentence_b": "train과 고속·시외버스, aircraft, 연안여객선은 최대한 증편하기로 했다.",
+    "sentence_b_org": "열차와 고속·시외버스, 항공기, 연안여객선은 최대한 증편하기로 했다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "열차",
+        "to": "train",
+        "pos": "NNG"
+      },
+      {
+        "from": "항공기",
+        "to": "aircraft",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00042",
+    "sentence_a": "점, 근데 이건 리스본 어디든 공통적일거에요.",
+    "sentence_b": "근데 이건 어느 place에서든 다 그럴듯합니다.",
+    "sentence_b_org": "근데 이건 어느곳에서든 다 그럴듯합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "곳",
+        "to": "place",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.8
+  },
+  {
+    "id": "pair_00043",
+    "sentence_a": "스케쥴이 많으실 때가 일월하고 이월 중 언제이신가요?",
+    "sentence_b": "다음 달 date 중에 schedule이 안 잡힌 date 있으면 그게 언제야?",
+    "sentence_b_org": "다음 달 날짜 중에 일정이 안 잡힌 날짜 있으면 그게 언제야?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "날짜",
+        "to": "date",
+        "pos": "NNG"
+      },
+      {
+        "from": "일정",
+        "to": "schedule",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.6
+  },
+  {
+    "id": "pair_00044",
+    "sentence_a": "임상경험과 전문지식을 바탕으로 국민들과 의료 현장에 정확한 정보와 조언을 주고 계신 분들입니다.",
+    "sentence_b": "함께 이룬 만큼 함께 잘사는 것이고, fairness와 freedom, equality를 바탕으로 함께 번영하는 것입니다.",
+    "sentence_b_org": "함께 이룬 만큼 함께 잘사는 것이고, 공정과 자유, 평등을 바탕으로 함께 번영하는 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "공정",
+        "to": "fairness",
+        "pos": "NNG"
+      },
+      {
+        "from": "자유",
+        "to": "freedom",
+        "pos": "NNG"
+      },
+      {
+        "from": "평등",
+        "to": "equality",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00045",
+    "sentence_a": "아저씨, 볼륨 이단계랑 삼단계 중에 원하는 거 말해봐요",
+    "sentence_b": "laundry 계속 해 멈추지 말고",
+    "sentence_b_org": "세탁 계속 해 멈추지 말고",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "세탁",
+        "to": "laundry",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00046",
+    "sentence_a": "아울러 농번기를 앞둔 내년 3월에는 시·군 단위로 농정·환경·산림부서 합동점검단을 운영, 논·밭두렁 태우기를 집중 단속할 예정이다.",
+    "sentence_b": "또한, 농사철을 앞둔 next year 3월에는 시·군 단위 농·환경·산림과 합동 점검반을 운영하여 논과 밭을 태우는 것을 단속할 예정입니다.",
+    "sentence_b_org": "또한, 농사철을 앞둔 내년 3월에는 시·군 단위 농·환경·산림과 합동 점검반을 운영하여 논과 밭을 태우는 것을 단속할 예정입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "내년",
+        "to": "next year",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00047",
+    "sentence_a": "항만·해운분야에서도 선박 저속운항해역 지정·운영 및 외항선박 저유황유 사용 조기 전환을 시행했다.",
+    "sentence_b": "취업성공패키지 참여자도 treatment 및 isolation 기간 동안 취업성공패키지 지원을 유예받을 수 있다.",
+    "sentence_b_org": "취업성공패키지 참여자도 치료 및 격리 기간 동안 취업성공패키지 지원을 유예받을 수 있다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "치료",
+        "to": "treatment",
+        "pos": "NNG"
+      },
+      {
+        "from": "격리",
+        "to": "isolation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00048",
+    "sentence_a": "열대야에 술 마시는 것을 금합니다.",
+    "sentence_b": "알려줘. 내일 반포 UV index.",
+    "sentence_b_org": "알려줘. 내일 반포 고수부지 자외선 지수.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "자외선 지수",
+        "to": "UV index",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00049",
+    "sentence_a": "단지 캐리어로 이동시 오르막길이라 좀 힘들었음",
+    "sentence_b": "여러 people이 accommodation으로만 이용하는 곳이었습니다.",
+    "sentence_b_org": "여러사람이 숙소로만 이용하는 곳이었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "사람",
+        "to": "people",
+        "pos": "NNG"
+      },
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00050",
+    "sentence_a": "아울러 시·도별 환자 접촉자 격리시설도 12일 기준으로 16개 시·도에 19개소 864실로 확대했다.",
+    "sentence_b": "아울러 대상별 특성에 맞춘 health insurance benefit도 더욱 확대했다.",
+    "sentence_b_org": "아울러 대상별 특성에 맞춘 건강보험 혜택도 더욱 확대했다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "건강보험 혜택",
+        "to": "health insurance benefit",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_00051",
+    "sentence_a": "게스트를위한배려가많은 집주인덕분에 불편한점없이 너무 좋은시간보낼수있었습니다.",
+    "sentence_b": "guest를 위한 세심한 배려가 돋보였습니다.",
+    "sentence_b_org": "게스트를 위한 세심한 배려가 돋보였습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "게스트",
+        "to": "guest",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.3
+  },
+  {
+    "id": "pair_00052",
+    "sentence_a": "카카오엔터프라이즈는 특허청으로부터 특허 빅데이터와 관련 노하우를 함께 제공받아 인공지능 기계번역의 품질을 높인다.",
+    "sentence_b": "오늘 meeting에는 특별히 감염병 관련 학계 전문가들을 모셨습니다.",
+    "sentence_b_org": "오늘 회의에는 특별히 감염병 관련 학계 전문가들을 모셨습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "회의",
+        "to": "meeting",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00053",
+    "sentence_a": "이번 년도에는 몇 개의 태풍이 한국에 올 것으로 예상됩니까?",
+    "sentence_b": "올해 한국에는 몇 개의 typhoon이 올 예정인가?",
+    "sentence_b_org": "올해 한국에는 몇 개의 태풍이 올 예정인가?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "태풍",
+        "to": "typhoon",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00054",
+    "sentence_a": "요리에 쓸 기름이나 여러 음식은 없지만 두 사람이 묵기에는 적당했던 숙소입니다.",
+    "sentence_b": "dish에는 oil이나 다른 food은 없지만, 두 사람에게 좋은 숙박시설이었습니다.",
+    "sentence_b_org": "요리에는 기름이나 다른 음식은 없지만, 두 사람에게 좋은 숙박시설이었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "요리",
+        "to": "dish",
+        "pos": "NNG"
+      },
+      {
+        "from": "기름",
+        "to": "oil",
+        "pos": "NNG"
+      },
+      {
+        "from": "음식",
+        "to": "food",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00055",
+    "sentence_a": "도쿄에서 이만한 가격에 집 한채를 빌리는 것 자체가 만족스러웠습니다.",
+    "sentence_b": "이 price에 이정도의 quality는 너무 만족스러웠습니다.",
+    "sentence_b_org": "이 가격에 이정도의 퀄리티는 너무 만족스러웠습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "가격",
+        "to": "price",
+        "pos": "NNG"
+      },
+      {
+        "from": "퀄리티",
+        "to": "quality",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.8
+  },
+  {
+    "id": "pair_00056",
+    "sentence_a": "전 인류가 싸우고 있는 코로나19 전선에서 국제 협력과 연대는 전쟁의 승패를 가르는 무기입니다.",
+    "sentence_b": "국제 협력과 solidarity는 모든 humanity가 싸우고 있는 코로나 19 front에서 war의 결과를 결정하는 weapon입니다.",
+    "sentence_b_org": "국제 협력과 연대는 모든 인류가 싸우고 있는 코로나 19 전선에서 전쟁의 결과를 결정하는 무기입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "연대",
+        "to": "solidarity",
+        "pos": "NNG"
+      },
+      {
+        "from": "인류",
+        "to": "humanity",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.6
+  },
+  {
+    "id": "pair_00057",
+    "sentence_a": "운전자금은 업체당 최대 10억 원 한도 내에서 원재료 구입비, 인건비, 연료비 등의 용도로 재활용업체가 활용할 수 있다.",
+    "sentence_b": "벤처기업 투자신탁 수익증권에 투자한 금액은 3000만원 한도에서10%의 tax deduction을 받을 수 있다.",
+    "sentence_b_org": "벤처기업 투자신탁 수익증권에 투자한 금액은 3000만원 한도에서10%의 소득공제를 받을 수 있다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "소득공제",
+        "to": "tax deduction",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00058",
+    "sentence_a": "이와 함께 의무휴업일 적용 대상을 현행 대형마트와 준대규모 점포에서 복합쇼핑몰까지 넓히는 등 골목상권 보호제도를 확대할 계획이다.",
+    "sentence_b": "또한, government는 현행 대형 할인점과 준대형 쇼핑몰에서 복합쇼핑몰까지 의무휴일의 범위를 확대하여 골목상권에 대한 보호체계를 확대할 계획입니다.",
+    "sentence_b_org": "또한, 정부는 현행 대형 할인점과 준대형 쇼핑몰에서 복합쇼핑몰까지 의무휴일의 범위를 확대하여 골목상권에 대한 보호체계를 확대할 계획입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "정부",
+        "to": "government",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.4
+  },
+  {
+    "id": "pair_00059",
+    "sentence_a": "저기요, 독서등이 얼마나 밝아야 눈을 보호할 수 있죠?",
+    "sentence_b": "눈 보호하고 싶으면 reading등이 얼마나 밝아야하는 지 좀 알려줘",
+    "sentence_b_org": "눈 보호하고 싶으면 독서등이 얼마나 밝아야하는 지 좀 알려줘",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "독서",
+        "to": "reading",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00060",
+    "sentence_a": "별보이는 침실 옥상 테라스는 좋았습니다",
+    "sentence_b": "난방, bathroom, bedroom condition 모두 좋았습니다.",
+    "sentence_b_org": "난방 화장실 침실컨디션 모두 좋았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "화장실",
+        "to": "bathroom",
+        "pos": "NNG"
+      },
+      {
+        "from": "침실컨디션",
+        "to": "bedroom condition",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.8
+  },
+  {
+    "id": "pair_00061",
+    "sentence_a": "친절한 호스트, 접근성 좋은 위치, 안전함 등 이 가격에 생각하지 못할 좋은곳!",
+    "sentence_b": "젊은이들이 저렴한 price에 지내기 좋은곳이에요",
+    "sentence_b_org": "젊은이들이 저렴한 가격에 지내기 좋은곳이에요",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "가격",
+        "to": "price",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.3
+  },
+  {
+    "id": "pair_00062",
+    "sentence_a": "주변에 편의점과 마트가 많아서 편리합니다.",
+    "sentence_b": "근처에 convenience store와 mart가 많아서 편리해요.",
+    "sentence_b_org": "근처에 편의점과 마트가 많아서 편리해요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "편의점",
+        "to": "convenience store",
+        "pos": "NNG"
+      },
+      {
+        "from": "마트",
+        "to": "mart",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.7
+  },
+  {
+    "id": "pair_00063",
+    "sentence_a": "내일 모레 중 약속 있는 날이 언제인지 알려줘.",
+    "sentence_b": "weekend 중에서 강원도 여행 갈 요일 정해볼래?",
+    "sentence_b_org": "주말 중에서 강원도 여행 갈 요일 정해볼래?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "주말",
+        "to": "weekend",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_00064",
+    "sentence_a": "지난 2월 이후 실직, 무급휴직, 일감상실 등으로 소득 감소를 겪은 이들이 대상이다.",
+    "sentence_b": "대상은 2월부터 unemployment, 무급휴가, 일터 등으로 소득이 줄어든 사람들입니다.",
+    "sentence_b_org": "대상은 2월부터 실업, 무급휴가, 일터 등으로 소득이 줄어든 사람들입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "실업",
+        "to": "unemployment",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00065",
+    "sentence_a": "우리나라는 올해 1월 국제투명성기구가 발표한 부패인식지수에서 180개국 중 39위를 기록, 10년만에 30위권에 재진입했습니다.",
+    "sentence_b": "추석 연휴 기간에 발표된 세계 digital 경쟁력 순위에서 우리가 조사 대상국 63개국 중 8위를 차지했다는 좋은 news도 있었습니다.",
+    "sentence_b_org": "추석 연휴 기간에 발표된 세계 디지털 경쟁력 순위에서 우리가 조사 대상국 63개국 중 8위를 차지했다는 좋은 소식도 있었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "디지털",
+        "to": "digital",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.4
+  },
+  {
+    "id": "pair_00066",
+    "sentence_a": "다시 파리오면 이 숙소로 예약할 거에요.",
+    "sentence_b": "다음번에 또 도쿄 가면 이 accommodation 이용할거에요.",
+    "sentence_b_org": "다음번에 또 도쿄 가면 이 숙소 이용할거에요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.2
+  },
+  {
+    "id": "pair_00067",
+    "sentence_a": "숙소는 일단 시내 완전 중심지에 있습니다.",
+    "sentence_b": "그 accommodation은 city의 center에 있습니다.",
+    "sentence_b_org": "그 숙소는 도시의 중심부에 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      },
+      {
+        "from": "도시",
+        "to": "city",
+        "pos": "NNG"
+      },
+      {
+        "from": "중심부",
+        "to": "center",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00068",
+    "sentence_a": "또 유럽에서 우리나라로 입국하는 내·외국인 자가격리자 모니터링에도 ‘자가격리자 안전보호 앱’을 활용할 계획이다.",
+    "sentence_b": "또한, '자체 격리 안전 보호 app'을 사용하여 Europe에서 한국으로 들어오는 국내외의 자가 격리된 사람들을 감시할 계획입니다.",
+    "sentence_b_org": "또한, '자체 격리 안전 보호 앱'을 사용하여 유럽에서 한국으로 들어오는 국내외의 자가 격리된 사람들을 감시할 계획입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "앱",
+        "to": "app",
+        "pos": "NNG"
+      },
+      {
+        "from": "유럽",
+        "to": "Europe",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.8
+  },
+  {
+    "id": "pair_00069",
+    "sentence_a": "오늘 오후에 제가 해야할 일이 뭔가요?",
+    "sentence_b": "클럽 가는 thing은 광복절에는 좀 삼가십시오.",
+    "sentence_b_org": "클럽 가는 일은 광복절에는 좀 삼가십시오.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "일",
+        "to": "thing",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00070",
+    "sentence_a": "전남해안 장마 시작일 알려줘.",
+    "sentence_b": "전남 coast 장마 언제 시작해?",
+    "sentence_b_org": "전남해안 장마 언제 시작해?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "해안",
+        "to": "coast",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00071",
+    "sentence_a": "베니스 숙소 중에 굉장히 깨끗한 곳입니다",
+    "sentence_b": "베니스 accommodation이 이번 trip중에 최고였어요",
+    "sentence_b_org": "베니스 숙소가 이번 여행중에 최고였어요",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      },
+      {
+        "from": "여행",
+        "to": "trip",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.2
+  },
+  {
+    "id": "pair_00072",
+    "sentence_a": "가을철말고 겨울철에는 집 난방 온도가 어느 정도 되어야하니?",
+    "sentence_b": "이 요리 recipe 좀 알려줘",
+    "sentence_b_org": "이 요리 레시피 좀 알려줘",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "레시피",
+        "to": "recipe",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00073",
+    "sentence_a": "쿠팡 말고 티몬에서 특가메일이 오면 알려줘",
+    "sentence_b": "티몬 special deal을 놓치지 않도록 mail 자주 확인하고 mail 오면 알려줘.",
+    "sentence_b_org": "티몬 특가를 놓치지 않도록 메일 자주 확인하고 메일 오면 알려줘.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "특가",
+        "to": "special deal",
+        "pos": "NNG"
+      },
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.6
+  },
+  {
+    "id": "pair_00074",
+    "sentence_a": "같이 간 사람들 모두 너무 만족했던 숙소였어요",
+    "sentence_b": "그래도 여러모로 만족스러웠던 accommodation이었다.",
+    "sentence_b_org": "그래도 여러모로 만족스러웠던 숙소였다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.4
+  },
+  {
+    "id": "pair_00075",
+    "sentence_a": "모든분들의 후기처럼 너무나 훌륭했던 조식과 따뜻한 가족들의 모습은 너무 인상깊었어요",
+    "sentence_b": "다른 분들이 review에 적은 것처럼 박물관 같은 집이었습니다.",
+    "sentence_b_org": "다른 분들이 후기에 적은 것처럼 박물관 같은 집이었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "후기",
+        "to": "review",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.5
+  },
+  {
+    "id": "pair_00076",
+    "sentence_a": "근사한 정원에서 식사 및 차를 마실 수 있었다.",
+    "sentence_b": "간단한 tea를 마실 수 있지만 cooking은 불가합니다.",
+    "sentence_b_org": "간단한 차를 마실 수 있지만 조리는 불가합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "차",
+        "to": "tea",
+        "pos": "NNG"
+      },
+      {
+        "from": "조리",
+        "to": "cooking",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.3
+  },
+  {
+    "id": "pair_00077",
+    "sentence_a": "지진과 해일 중 뭘 무서워해?",
+    "sentence_b": "원하는 것은 raincoat와 umbrella 중 무엇인가요?",
+    "sentence_b_org": "원하는 것은 비옷과 우산 중 무엇인가요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "비옷",
+        "to": "raincoat",
+        "pos": "NNG"
+      },
+      {
+        "from": "우산",
+        "to": "umbrella",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00078",
+    "sentence_a": "비싼 로마의 숙박 시설들에 비하면 가격대비 좋은편의 숙소입니다.",
+    "sentence_b": "비싼 Roman style 숙박시설과 비교했을 때, 가격 대비 편안한 숙박시설입니다.",
+    "sentence_b_org": "비싼 로마식 숙박시설과 비교했을 때, 가격 대비 편안한 숙박시설입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "로마식",
+        "to": "Roman style",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00079",
+    "sentence_a": "다음에 또 베를린을 간다면 역시 번잡한 시내보다는 조용한 이곳을 선택할 것입니다!",
+    "sentence_b": "다음에 Berlin에 가면, 바쁜 city보다는 조용한 place를 선택할 거예요!",
+    "sentence_b_org": "다음에 베를린에 가면, 바쁜 도시보다는 조용한 장소를 선택할 거예요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "베를린",
+        "to": "Berlin",
+        "pos": "NNP"
+      },
+      {
+        "from": "도시",
+        "to": "city",
+        "pos": "NNG"
+      },
+      {
+        "from": "장소",
+        "to": "place",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00080",
+    "sentence_a": "제일 마음에 드는건 집의 오너와 집. 내가 첫 손님인듯 했다",
+    "sentence_b": "그래서 shower할 때마다 마음의 준비가 필요하다.",
+    "sentence_b_org": "그래서 샤워할 때마다 마음의 준비가 필요하다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "샤워",
+        "to": "shower",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00081",
+    "sentence_a": "연구실 메일을 사용할 땐 반드시 기수 선배를 참조하고, 다른 사람은 참조하지 마.",
+    "sentence_b": "lab mail을 사용할 땐 바로 mail 보내지 마. 기수 선배를 참조하도록 해.",
+    "sentence_b_org": "연구실 메일을 사용할 땐 바로 메일 보내지 마. 기수 선배를 참조하도록 해.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "연구실 메일",
+        "to": "lab mail",
+        "pos": "NNG"
+      },
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.3
+  },
+  {
+    "id": "pair_00082",
+    "sentence_a": "제가 사는 지역은 어떤 형태로 지급하나요?",
+    "sentence_b": "제가 살고 있는 region에 대해 어떤 형태로 지불하나요?",
+    "sentence_b_org": "제가 살고 있는 지역에 대해 어떤 형태로 지불하나요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지역",
+        "to": "region",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00083",
+    "sentence_a": "숙소에 비치된 지도로 근처 찾아다니기도 괜찮았어요.",
+    "sentence_b": "근처에 호피거리에서 beer 한잔 하기도 좋았어요!",
+    "sentence_b_org": "근처에 호피거리에서 맥주한잔 하기도 좋았어요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "맥주",
+        "to": "beer",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00084",
+    "sentence_a": "하지만 초행길에 밤이라면 무서울듯 합니다.",
+    "sentence_b": "이 price에 이 condition의 숙소라면 추천합니다!",
+    "sentence_b_org": "이 가격에 이 컨디션의 숙소라면 추천합니다!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "가격",
+        "to": "price",
+        "pos": "NNG"
+      },
+      {
+        "from": "컨디션",
+        "to": "condition",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00085",
+    "sentence_a": "마스크는 경기 평택시와 강원 횡성군, 경북 구미시, 경남 밀양시, 광주시 등 5개 물류센터를 통해 전국에 신속히 배송된다.",
+    "sentence_b": "제2차 strategy meeting에서 대전, 경기, 강원, 전남, 제주, 경남 등 6개 시·도지사는 지역에서 추진중인 New Deal 관련 사례를 소개했다.",
+    "sentence_b_org": "제2차 전략회의에서 대전, 경기, 강원, 전남, 제주, 경남 등 6개 시·도지사는 지역에서 추진중인 뉴딜 관련 사례를 소개했다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "전략회의",
+        "to": "strategy meeting",
+        "pos": "NNG"
+      },
+      {
+        "from": "뉴딜",
+        "to": "New Deal",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_00086",
+    "sentence_a": "카페 바우처 주는건 신의 한 수 였어요.",
+    "sentence_b": "이탈리아에서 있는 동안 best 숙소였어요.",
+    "sentence_b_org": "이탈리아에서 있는 동안 최고의 숙소였어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "최고",
+        "to": "best",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00087",
+    "sentence_a": "5명의 내가족과 함께 상하이 여행을 했습니다",
+    "sentence_b": "저는 5명의 family와 함께 상하이로 trip을 갔습니다.",
+    "sentence_b_org": "저는 5명의 가족과 함께 상하이로 여행을 갔습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "가족",
+        "to": "family",
+        "pos": "NNG"
+      },
+      {
+        "from": "여행",
+        "to": "trip",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00088",
+    "sentence_a": "블루투스 스피커 설치 방법은?",
+    "sentence_b": "너 아까 laundry할 때 detergent 얼마나 썼어?",
+    "sentence_b_org": "너 아까 세탁할 때 세제 얼마나 썼어?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "세탁",
+        "to": "laundry",
+        "pos": "NNG"
+      },
+      {
+        "from": "세제",
+        "to": "detergent",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00089",
+    "sentence_a": "또한 코로나19 유행에 따라 발생한 의료기관의 손실을 보상한다.",
+    "sentence_b": "코로나19 발생으로 피해를 입은 medical institution의 손실보상 budget도 책정됐다.",
+    "sentence_b_org": "코로나19 발생으로 피해를 입은 의료기관의 손실보상 예산도 책정됐다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "의료기관",
+        "to": "medical institution",
+        "pos": "NNG"
+      },
+      {
+        "from": "예산",
+        "to": "budget",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.0
+  },
+  {
+    "id": "pair_00090",
+    "sentence_a": "질병관리본부 국립보건연구원이 코로나19 진단제·치료제 및 백신 등 개발을 위해 긴급 연구 과제를 공모한다.",
+    "sentence_b": "이와 함께 video 및 음성 분석을 위해 kiosk 내 camera, microphone, speaker module 등을 탑재한다.",
+    "sentence_b_org": "이와 함께 영상 및 음성 분석을 위해 키오스크 내 카메라, 마이크, 스피커 모듈 등을 탑재한다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "영상",
+        "to": "video",
+        "pos": "NNG"
+      },
+      {
+        "from": "키오스크",
+        "to": "kiosk",
+        "pos": "NNG"
+      },
+      {
+        "from": "카메라",
+        "to": "camera",
+        "pos": "NNG"
+      },
+      {
+        "from": "마이크",
+        "to": "microphone",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 4,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00091",
+    "sentence_a": "수건과 칫솔, 면도기 등은 본인이 준비해야합니다.",
+    "sentence_b": "여러분은 towel, toothbrush, shaver를 직접 준비해야 합니다.",
+    "sentence_b_org": "여러분은 수건, 칫솔, 면도기를 직접 준비해야 합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "수건",
+        "to": "towel",
+        "pos": "NNG"
+      },
+      {
+        "from": "칫솔",
+        "to": "toothbrush",
+        "pos": "NNG"
+      },
+      {
+        "from": "면도기",
+        "to": "shaver",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00092",
+    "sentence_a": "선풍기하고 에어컨을 통합해서 조절하려면 어떻게 해야될까?",
+    "sentence_b": "에어컨하고 fan을 같이 어떻게 조절하는 지 알려줘",
+    "sentence_b_org": "에어컨하고 선풍기를 같이 어떻게 조절하는 지 알려줘",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "선풍기",
+        "to": "fan",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.1
+  },
+  {
+    "id": "pair_00093",
+    "sentence_a": "추석 올해 며칠부터 며칠까지인지 날짜 알아?",
+    "sentence_b": "올해 추석 연휴 date가 며칠부터 며칠까지에요?",
+    "sentence_b_org": "올해 추석 연휴 날짜가 며칠부터 며칠까지에요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "날짜",
+        "to": "date",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00094",
+    "sentence_a": "다만, 청결함을 1순위로 생각하는 여행객들은 차라리 호텔을 이용하는게 더 나을수도 있을 것 같다는 생각이 들어요!",
+    "sentence_b": "다만 public transportation을 이용하는 여행객들은 accommodation에 접근하기 어려울것 같다.",
+    "sentence_b_org": "다만 대중교통을 이용하는 여행객들은 숙소에 접근하기 어려울것 같다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "대중교통",
+        "to": "public transportation",
+        "pos": "NNG"
+      },
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.6
+  },
+  {
+    "id": "pair_00095",
+    "sentence_a": "가격은 저렴하지만 차가 없을 시 이동하기가 불편합니다.",
+    "sentence_b": "location은 좋으나 생활하기 좀 불편합니다.",
+    "sentence_b_org": "위치는 좋으나 생활하기 좀 불편합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.3
+  },
+  {
+    "id": "pair_00096",
+    "sentence_a": "운동을 잘 하고 싶으면 운동 스케줄 미루지 마.",
+    "sentence_b": "이번 주 vendor가 schedule로 잡았던 time이 언제인가요?",
+    "sentence_b_org": "이번 주 업체가 일정으로 잡았던 시간이 언제인가요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "업체",
+        "to": "vendor",
+        "pos": "NNG"
+      },
+      {
+        "from": "일정",
+        "to": "schedule",
+        "pos": "NNG"
+      },
+      {
+        "from": "시간",
+        "to": "time",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.1
+  },
+  {
+    "id": "pair_00097",
+    "sentence_a": "이탈리아의 여느 집 처럼 방음은 안 되는 편입니다",
+    "sentence_b": "다만 일본집들 특유의 문제지만 soundproofing은 그리 잘 되는편이 아닙니다.",
+    "sentence_b_org": "다만 일본집들 특유의 문제지만 방음은 그리 잘 되는편이 아닙니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방음",
+        "to": "soundproofing",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.8
+  },
+  {
+    "id": "pair_00098",
+    "sentence_a": "가격대비 숙소 디자인이나 청결도 모두 너무 만족스러웠습니다.",
+    "sentence_b": "가격에 맞는 accommodation의 design과 청결함 또한 very 만족스러웠습니다.",
+    "sentence_b_org": "가격에 맞는 숙박시설의 디자인과 청결함 또한 매우 만족스러웠습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙박시설",
+        "to": "accommodation",
+        "pos": "NNG"
+      },
+      {
+        "from": "디자인",
+        "to": "design",
+        "pos": "NNG"
+      },
+      {
+        "from": "매우",
+        "to": "very",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.4
+  },
+  {
+    "id": "pair_00099",
+    "sentence_a": "한 집에 방은 3개 있고 화장실과 샤워실은 공동 사용입니다.",
+    "sentence_b": "한 house에는 room이 세 개 있고, bathroom과 shower room은 함께 있습니다.",
+    "sentence_b_org": "한 집에는 방이 세 개 있고, 욕실과 샤워실은 함께 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "집",
+        "to": "house",
+        "pos": "NNG"
+      },
+      {
+        "from": "방",
+        "to": "room",
+        "pos": "NNG"
+      },
+      {
+        "from": "욕실",
+        "to": "bathroom",
+        "pos": "NNG"
+      },
+      {
+        "from": "샤워실",
+        "to": "shower room",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 4,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.6
+  },
+  {
+    "id": "pair_00100",
+    "sentence_a": "청강생의 점수 회신을 메일로 할 때 어떻게 할까?",
+    "sentence_b": "청강생의 score 회신을 mail로 어떻게 보낼까?",
+    "sentence_b_org": "청강생의 점수 회신을 메일로 어떻게 보낼까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "점수",
+        "to": "score",
+        "pos": "NNG"
+      },
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00101",
+    "sentence_a": "자세한 내용은 중기부와 팁스 홈페이지(www.jointips.or.kr) 등에서 확인할 수 있다.",
+    "sentence_b": "자세한 내용은 MSS(www.jointips.or.kr)를 참조하십시오.",
+    "sentence_b_org": "자세한 내용은 중소벤처기업부(www.jointips.or.kr를 참조하십시오.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "중소벤처기업부",
+        "to": "MSS",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_00102",
+    "sentence_a": "한류의 영향으로 콘텐츠산업 수출액은 지난 5년간(2014∼18) 연평균 16.2%의 높은 성장률을 유지했다.",
+    "sentence_b": "세계적 신용평가사인 Standard & Poor's(SP) 역시 우리나라의 실질 GDP 성장률이 2021년 3.6%, 2022년 3.4% 수준을 나타낼 것으로 전망했다.",
+    "sentence_b_org": "세계적 신용평가사인 스탠더드앤푸어스(SP) 역시 우리나라의 실질 GDP 성장률이 2021년 3.6%, 2022년 3.4% 수준을 나타낼 것으로 전망했다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "GDP",
+        "to": "GDP",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.3
+  },
+  {
+    "id": "pair_00103",
+    "sentence_a": "주변 시체스, 지로나, 몬세라트에 가기에도 적당한 곳이었습니다.",
+    "sentence_b": "그곳은 주변의 체세, 지로나, 몬세라로 가기 좋은 place였습니다.",
+    "sentence_b_org": "그곳은 주변의 체세, 지로나, 몬세라로 가기 좋은 장소였습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "장소",
+        "to": "place",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.6
+  },
+  {
+    "id": "pair_00104",
+    "sentence_a": "원하는 것이 비옷과 우산 중 어느 것입니까?",
+    "sentence_b": "몇 도 standard로 열대야라고 해?",
+    "sentence_b_org": "몇 도 기준으로 열대야라고 해?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "기준",
+        "to": "standard",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00105",
+    "sentence_a": "복지부·여가부가 제공하는 육아나눔터, 다함께 돌봄센터, 방과후 아카데미 등의 돌봄 서비스도 이용할 수 있음",
+    "sentence_b": "사용하는 card의 고객센터 등에서 언제든지 남은 돌봄 point를 확인하실 수 있습니다.",
+    "sentence_b_org": "사용하는 카드의 고객센터 등에서 언제든지 남은 돌봄포인트를 확인하실 수 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "카드",
+        "to": "card",
+        "pos": "NNG"
+      },
+      {
+        "from": "포인트",
+        "to": "point",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.3
+  },
+  {
+    "id": "pair_00106",
+    "sentence_a": "오전에 아시아인같이보이는 카운터 직원이 너무 불친절했어요.",
+    "sentence_b": "아침에 accommodation에서 보이는 sunrise도 환상적이였어요.",
+    "sentence_b_org": "아침에 숙소에서 보이는 일출도 환상적이였어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      },
+      {
+        "from": "일출",
+        "to": "sunrise",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00107",
+    "sentence_a": "호스트가 살고 있는 집의 분리된 방 한개를 이용하는 형태입니다.",
+    "sentence_b": "그것은 owner가 사는 house의 별도 room을 사용합니다.",
+    "sentence_b_org": "그것은 주인이 사는 집의 별도 방을 사용합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "주인",
+        "to": "owner",
+        "pos": "NNG"
+      },
+      {
+        "from": "집",
+        "to": "house",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.8
+  },
+  {
+    "id": "pair_00108",
+    "sentence_a": "숙소 위치가 접근성도 좋고 안전합니다.",
+    "sentence_b": "accommodation에 접근하여 안전하게 이용할 수 있습니다.",
+    "sentence_b_org": "숙박시설에 접근하여 안전하게 이용할 수 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙박시설",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.3
+  },
+  {
+    "id": "pair_00109",
+    "sentence_a": "우수기업연구소 중 대표적으로 이번 지정서 수여식이 개최된 에이텍티앤은 RFID 기반의 대중교통요금 결제기술로 국내외 교통카드 시장에서 높은 기술력을 인정받는 기업이다.",
+    "sentence_b": "K-EV 100 캠페인이란 enterprise가 자발적으로 2030년까지 보유·임차 vehicle 100%를 미래차로 전환할 것을 선언하는 campaign이다.",
+    "sentence_b_org": "K-EV 100 캠페인이란 기업이 자발적으로 2030년까지 보유·임차 차량 100%를 미래차로 전환할 것을 선언하는 캠페인이다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "기업",
+        "to": "enterprise",
+        "pos": "NNG"
+      },
+      {
+        "from": "임차 차량",
+        "to": "vehicle",
+        "pos": "NNG"
+      },
+      {
+        "from": "캠페인",
+        "to": "campaign",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00110",
+    "sentence_a": "이날 하루동안은 대구 경북지역에 17만 장을 공급했다.",
+    "sentence_b": "낮 동안, 17만 unit가 대구와 경상북도에 공급되었습니다.",
+    "sentence_b_org": "낮 동안, 17만 부가 대구와 경상북도에 공급되었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "부가",
+        "to": "unit",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.0
+  },
+  {
+    "id": "pair_00111",
+    "sentence_a": "2019.12~2020.1월에는 특고였는데 신청일 기준으로는 고용보험 가입을 한 경우에는 지원 받을 수 있는 것인지?",
+    "sentence_b": "2019년 12월부터 1월 사이에 특별통지였는데, 신청일 현재 employment insurance에 가입하면 지원을 받을 수 있나요?",
+    "sentence_b_org": "2019년 12월부터 1월 사이에 특별통지였는데, 신청일 현재 고용보험에 가입하면 지원을 받을 수 있나요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "고용보험",
+        "to": "employment insurance",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.9
+  },
+  {
+    "id": "pair_00112",
+    "sentence_a": "위치가 정말 말할것도 없이 최고였어요!",
+    "sentence_b": "말할 필요도 없이, location이 가장 좋았습니다!",
+    "sentence_b_org": "말할 필요도 없이, 위치가 가장 좋았습니다!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.4
+  },
+  {
+    "id": "pair_00113",
+    "sentence_a": "무상원조와 차관에 의존했던 경제에서 시작하여",
+    "sentence_b": "그것은 무상 aid와 loan에 의존하는 economy에서 시작되었습니다.",
+    "sentence_b_org": "그것은 무상 원조와 대출에 의존하는 경제에서 시작되었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "원조",
+        "to": "aid",
+        "pos": "NNG"
+      },
+      {
+        "from": "대출",
+        "to": "loan",
+        "pos": "NNG"
+      },
+      {
+        "from": "경제",
+        "to": "economy",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.6
+  },
+  {
+    "id": "pair_00114",
+    "sentence_a": "주말 날씨가 어때? 돌아오는 연휴에는.",
+    "sentence_b": "미세먼지 지수가 높을 때에는 외출을 삼가고 indoor에서 생활합시다.",
+    "sentence_b_org": "미세먼지 지수가 높을 때에는 외출을 삼가고 실내에서 생활합시다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "실내",
+        "to": "indoor",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00115",
+    "sentence_a": "이번달이랑 지난달이랑 비교해보니까 언제 더 많이 가스 썼니?",
+    "sentence_b": "이번달이랑 지난달이랑 비교해보았을 때 언제가 더 gas 많이 사용했어?",
+    "sentence_b_org": "이번달이랑 지난달이랑 비교해보았을 때 언제가 더 가스 많이 사용했어?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "가스",
+        "to": "gas",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.7
+  },
+  {
+    "id": "pair_00116",
+    "sentence_a": "메일 쓰는거랑 손편지 써서 군대 밖으로 보내는 거 둘 중에 뭐가 더 쉬워요?",
+    "sentence_b": "군대 밖으로 mail이랑 손편지 중에 뭐가 더 보내기 편하지?",
+    "sentence_b_org": "군대 밖으로 메일이랑 손편지 중에 뭐가 더 보내기 편하지?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_00117",
+    "sentence_a": "친절한 주인고 모든 것을 잘 갖춘 곳입니다.",
+    "sentence_b": "하지만 그걸 감안하더라도 photo보다 더 넓은 space, 깨끗한 house, 모든 것을 갖춘 house입니다.",
+    "sentence_b_org": "하지만 그걸 감안하더라도 사진보다 더 넓은 공간, 깨끗한 집, 모든 것을 갖춘 집입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "하지만",
+        "to": "But",
+        "pos": "MAJ"
+      },
+      {
+        "from": "사진",
+        "to": "photo",
+        "pos": "NNG"
+      },
+      {
+        "from": "공간",
+        "to": "space",
+        "pos": "NNG"
+      },
+      {
+        "from": "집",
+        "to": "house",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 4,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.7
+  },
+  {
+    "id": "pair_00118",
+    "sentence_a": "모든 학회 메일을 지울 필요는 없고 이번 달에 온 메일만 삭제하면 돼.",
+    "sentence_b": "다른 mail 말고 이번 달에 받은 conference mail은 삭제해.",
+    "sentence_b_org": "다른 메일 말고 이번 달에 받은 학회 메일은 삭제해.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      },
+      {
+        "from": "학회",
+        "to": "conference",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.7
+  },
+  {
+    "id": "pair_00119",
+    "sentence_a": "우리는 경제에 미치는 어려움을 반드시 이겨낼 것입니다.",
+    "sentence_b": "우리는 economy에 영향을 미치는 어려움들을 반드시 극복할 것입니다.",
+    "sentence_b_org": "우리는 경제에 영향을 미치는 어려움들을 반드시 극복할 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "경제",
+        "to": "economy",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00120",
+    "sentence_a": "위치는 이보다 더 좋을 수 없으며 엘레베이터, 찾아오는 방법을 안내하는 동영상, 청결도, 친절까지 너무 완벽한 숙소입니다.",
+    "sentence_b": "다른 무엇보다 location이 이보다 좋을 수 없다",
+    "sentence_b_org": "다른 무엇보다 위치가 이보다 좋을 수 없다",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.7
+  },
+  {
+    "id": "pair_00121",
+    "sentence_a": "추운 겨울에도 엄청 따듯한 집이었습니다.",
+    "sentence_b": "추운 winter에도 very 따뜻한 집이었습니다.",
+    "sentence_b_org": "추운 겨울에도 매우 따뜻한 집이었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "겨울",
+        "to": "winter",
+        "pos": "NNG"
+      },
+      {
+        "from": "매우",
+        "to": "very",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.8
+  },
+  {
+    "id": "pair_00122",
+    "sentence_a": "개인적인 기준으로 화장실의 청결도는 약간의 개선이 필요해 보입니다.",
+    "sentence_b": "개인적인 근거로 볼 때, bathroom의 청결은 약간의 improvement가 필요한 것 같습니다.",
+    "sentence_b_org": "개인적인 근거로 볼 때, 욕실의 청결은 약간의 개선이 필요한 것 같습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "욕실",
+        "to": "bathroom",
+        "pos": "NNG"
+      },
+      {
+        "from": "개선",
+        "to": "improvement",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_00123",
+    "sentence_a": "한국은 메콩 국가들과 함께 방역물품 협력과 보건의료 역량 강화에 더욱 힘을 기울여 나갈 것입니다.",
+    "sentence_b": "4·19 Revolution과 함께한 우리의 선대들을영원히 democracy의 symbol로 기억하게 될 것입니다.",
+    "sentence_b_org": "4·19혁명과 함께한 우리의 선대들을영원히 민주주의의 상징으로 기억하게 될 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "혁명",
+        "to": "Revolution",
+        "pos": "NNG"
+      },
+      {
+        "from": "민주주의",
+        "to": "democracy",
+        "pos": "NNG"
+      },
+      {
+        "from": "상징",
+        "to": "symbol",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00124",
+    "sentence_a": "최근 방송한 국악 프로그램 검색하는 방법을 알려줄래?",
+    "sentence_b": "main bedroom temperature로 네가 원하는 걸로 알려줘 이십오도와 삼십도 중에서.",
+    "sentence_b_org": "안방 온도로 네가 원하는 걸로 알려줘 이십오도와 삼십도 중에서.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "안방 온도",
+        "to": "main bedroom temperature",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.1
+  },
+  {
+    "id": "pair_00125",
+    "sentence_a": "오늘 알람 몇 시에 울리게 해놨어?",
+    "sentence_b": "March에 태어났다는 그 친구 이름이 뭐죠?",
+    "sentence_b_org": "삼월에 태어났다는 그 친구 이름이 뭐죠?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "삼월",
+        "to": "March",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00126",
+    "sentence_a": "아울러 전국 20개 공영 동물원은 방역지침 이행을 전제로 야외시설을 개방하고, 국립생태원과 생물자원관도 야외 전시 구역부터 단계적으로 개방한다.",
+    "sentence_b": "기업은행은 next month 1일부터 loan application을 받고, 6일부터 본격적인 review를 개시한다.",
+    "sentence_b_org": "기업은행은 내달 1일부터 대출신청을 받고, 6일부터 본격적인 심사를 개시한다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "내달",
+        "to": "next month",
+        "pos": "NNG"
+      },
+      {
+        "from": "대출신청",
+        "to": "loan application",
+        "pos": "NNG"
+      },
+      {
+        "from": "심사",
+        "to": "review",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00127",
+    "sentence_a": "지하철역과 버스정류장이 완전 바로앞이라 교통이 최고.",
+    "sentence_b": "subway station과 bus stop이 바로 코앞에 있기 때문에 transportation이 가장 좋습니다.",
+    "sentence_b_org": "지하철역과 버스정류장이 바로 코앞에 있기 때문에 교통이 가장 좋습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지하철역",
+        "to": "subway station",
+        "pos": "NNG"
+      },
+      {
+        "from": "버스정류장",
+        "to": "bus stop",
+        "pos": "NNG"
+      },
+      {
+        "from": "교통",
+        "to": "transportation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_00128",
+    "sentence_a": "밤하늘을 배경으로 ‘비대면 드론쇼’도 펼쳐진다.",
+    "sentence_b": "‘비대면 실감형 문화 performance platform’ concept도.",
+    "sentence_b_org": "‘비대면 실감형 문화공연 플랫폼’ 개념도.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "공연 플랫폼",
+        "to": "performance platform",
+        "pos": "NNG"
+      },
+      {
+        "from": "개념",
+        "to": "concept",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.3
+  },
+  {
+    "id": "pair_00129",
+    "sentence_a": "신한카드 청구서를 메일로 오게 하고 싶은데, 뭘 해야하나요?",
+    "sentence_b": "주소록 말고 mail만 삭제금지 설정해줘",
+    "sentence_b_org": "주소록 말고 메일만 삭제금지 설정해줘",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.3
+  },
+  {
+    "id": "pair_00130",
+    "sentence_a": "테라스만을 보고 예약하시는 분은 없기를 바랍니다.",
+    "sentence_b": "terrace를 기준으로 예약하는 사람이 없기를 바랍니다.",
+    "sentence_b_org": "테라스를 기준으로 예약하는 사람이 없기를 바랍니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "테라스",
+        "to": "terrace",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00131",
+    "sentence_a": "대신 마트나 식당가는 조금 걸어가야합니다.",
+    "sentence_b": "대신, 여러분은 mart나 restaurant까지 조금 걸어야 합니다.",
+    "sentence_b_org": "대신, 여러분은 마트나 식당까지 조금 걸어야 합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "마트",
+        "to": "mart",
+        "pos": "NNG"
+      },
+      {
+        "from": "식당",
+        "to": "restaurant",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00132",
+    "sentence_a": "무엇보다 역과 너무 가깝다는 점이 제일 좋았습니다.",
+    "sentence_b": "무엇보다도, 저는 station과 너무 가까워서 좋았습니다.",
+    "sentence_b_org": "무엇보다도, 저는 역과 너무 가까워서 좋았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "역",
+        "to": "station",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.6
+  },
+  {
+    "id": "pair_00133",
+    "sentence_a": "팔레르모에 머무신다면 이만큼 좋은 위치는 없을 거에요.",
+    "sentence_b": "팔레르모에 머무르면 이보다 더 좋은 place는 없을 거예요.",
+    "sentence_b_org": "팔레르모에 머무르면 이보다 더 좋은 곳은 없을 거예요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "곳",
+        "to": "place",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00134",
+    "sentence_a": "위기를 기회로 만들고, 더 큰 도약을 이루기 위한 예산입니다.",
+    "sentence_b": "위기를 오히려 opportunity로 반전시킨 좋은 case가 되었습니다.",
+    "sentence_b_org": "위기를 오히려 기회로 반전시킨 좋은 사례가 되었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "기회",
+        "to": "opportunity",
+        "pos": "NNG"
+      },
+      {
+        "from": "사례",
+        "to": "case",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.3
+  },
+  {
+    "id": "pair_00135",
+    "sentence_a": "수건, 그릇, 요리도구 등은 넘쳐납니다.",
+    "sentence_b": "towel, dish, 그리고 요리 도구들이 많이 있습니다.",
+    "sentence_b_org": "수건, 그릇, 그리고 요리 도구들이 많이 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "수건",
+        "to": "towel",
+        "pos": "NNG"
+      },
+      {
+        "from": "그릇",
+        "to": "dish",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00136",
+    "sentence_a": "이거 빼고는 진짜 모든 면에서 추천드립니다.",
+    "sentence_b": "타고 accommodation으로 돌아오시는거 추천드립니다.",
+    "sentence_b_org": "타고 숙소로 돌아오시는거 추천드립니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.2
+  },
+  {
+    "id": "pair_00137",
+    "sentence_a": "우선 런던에서 싼 가격에 깔끔하고 좋은 방입니다.",
+    "sentence_b": "우선, 런던에서는 price가 저렴하고 깔끔하고 좋은 방입니다.",
+    "sentence_b_org": "우선, 런던에서는 가격이 저렴하고 깔끔하고 좋은 방입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "가격",
+        "to": "price",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.5
+  },
+  {
+    "id": "pair_00138",
+    "sentence_a": "집은 좀 낡은편이지만 그럭저럭 지낼만합니다.",
+    "sentence_b": "house가 좀 낡긴 했지만 묵어도 괜찮아요.",
+    "sentence_b_org": "집이 좀 낡긴 했지만 묵어도 괜찮아요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "집",
+        "to": "house",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_00139",
+    "sentence_a": "실내온도를 너무 높게 설정하는 것은 하지 마세요. 겨울철에는.",
+    "sentence_b": "겨울철 indoor temperature 너무 높게 설정하면 안돼.",
+    "sentence_b_org": "겨울철 실내온도 너무 높게 설정하면 안돼.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "실내온도",
+        "to": "indoor temperature",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_00140",
+    "sentence_a": "1층이라는데 우리나라로 따지면 2층입니다.",
+    "sentence_b": "0층부터 시작하여 1st floor이라는 안내는 실질적으로 2nd floor입니다.",
+    "sentence_b_org": "0층부터 시작하여 1층이라는 안내는 실질적으로 2층입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "1층",
+        "to": "1st floor",
+        "pos": "NNG"
+      },
+      {
+        "from": "2층",
+        "to": "2nd floor",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.7
+  },
+  {
+    "id": "pair_00141",
+    "sentence_a": "체크인이나 체크아웃과정이 매우 수월했습니다.",
+    "sentence_b": "check-in이나 check-out은 매우 쉬웠습니다.",
+    "sentence_b_org": "체크인이나 체크아웃은 매우 쉬웠습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "체크인",
+        "to": "check-in",
+        "pos": "NNG"
+      },
+      {
+        "from": "체크아웃",
+        "to": "check-out",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.6
+  },
+  {
+    "id": "pair_00142",
+    "sentence_a": "위치, 시설, 조용함, 청결 등 모든면에서 나에게는  대단히 좋았었습니다.",
+    "sentence_b": "station과 가까운 location, restaurant과 market 정보 제공, 숙소의 cleanliness 등 모든 면에서 좋았습니다",
+    "sentence_b_org": "역과 가까운 위치, 식당과 마켓 정보 제공, 숙소의 청결 등 모든 면에서 좋았습니다",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "역",
+        "to": "station",
+        "pos": "NNG"
+      },
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      },
+      {
+        "from": "식당",
+        "to": "restaurant",
+        "pos": "NNG"
+      },
+      {
+        "from": "마켓",
+        "to": "market",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 4,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.3
+  },
+  {
+    "id": "pair_00143",
+    "sentence_a": "유은혜 부총리 겸 교육부 장관은 31일 정부세종청사에서 이런 내용을 담은 2021학년도 대학 입시 일정 조정안을 발표했다.",
+    "sentence_b": "유은혜 Deputy Prime Minister 겸 Minister of Education은 31일 정부세종청사에서 2021학년도 college entrance reform plan을 발표했습니다.",
+    "sentence_b_org": "유은혜 부총리 겸 교육부 장관은 31일 정부세종청사에서 2021학년도 대입 개편안을 발표했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "부총리",
+        "to": "Deputy Prime Minister",
+        "pos": "NNG"
+      },
+      {
+        "from": "교육부 장관",
+        "to": "Minister of Education",
+        "pos": "NNG"
+      },
+      {
+        "from": "대입 개편안",
+        "to": "college entrance reform plan",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.6
+  },
+  {
+    "id": "pair_00144",
+    "sentence_a": "집에 있는 수영장에서 다이빙 한 것도 즐거운 추억이었어요",
+    "sentence_b": "집에 있는 swimming pool에서 diving을 하는 것도 좋은 추억이었어요.",
+    "sentence_b_org": "집에 있는 수영장에서 다이빙을 하는 것도 좋은 추억이었어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "수영장",
+        "to": "swimming pool",
+        "pos": "NNG"
+      },
+      {
+        "from": "다이빙",
+        "to": "diving",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.5
+  },
+  {
+    "id": "pair_00145",
+    "sentence_a": "이를 화물차 연료비로 환산하면 996억원으로 투자 대비 8배에 달한다.",
+    "sentence_b": "6대 시중은행으로 channel을 통일하면 loan 신청과 접수, 보증심사 등 procedure가 모두 one-stop으로 처리된다.",
+    "sentence_b_org": "6대 시중은행으로 창구를 통일하면 대출 신청과 접수, 보증심사 등 절차가 모두 원스톱으로 처리된다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "창구",
+        "to": "channel",
+        "pos": "NNG"
+      },
+      {
+        "from": "절차",
+        "to": "procedure",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00146",
+    "sentence_a": "지하철역은 14분 거리내에 있습니다 .",
+    "sentence_b": "subway station은 14분 이내에 있습니다.",
+    "sentence_b_org": "지하철역은 14분 이내에 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지하철역",
+        "to": "subway station",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 5.0
+  },
+  {
+    "id": "pair_00147",
+    "sentence_a": "티몬 뉴스레터 말고 특가 메일 오면 알려주세요.",
+    "sentence_b": "다른 쇼핑몰 말고 티몬에서 special deal mail이 오면 알려줘.",
+    "sentence_b_org": "다른 쇼핑몰 말고 티몬에서 특가 메일이 오면 알려줘.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "특가 메일",
+        "to": "special deal mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.3
+  },
+  {
+    "id": "pair_00148",
+    "sentence_a": "또 하루 300~400여명에 달하는 외부 방문객 출입을 전면 금지하는 한편, 직원과의 대면 업무도 금지하는 등 사회적 거리두기를 적극 실천중이다.",
+    "sentence_b": "MOFA는 주한 외교단과 함께 코로나19의 확산 억제를 위해 실시하는 범정부적인 ‘사회적 거리두기’를 적극 실천한다.",
+    "sentence_b_org": "외교부는 주한 외교단과 함께 코로나19의 확산 억제를 위해 실시하는 범정부적인 ‘사회적 거리두기’를 적극 실천한다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "외교부",
+        "to": "MOFA",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.3
+  },
+  {
+    "id": "pair_00149",
+    "sentence_a": "새해에는 강릉에 몇 시에 해가 뜨나요?",
+    "sentence_b": "winter season에는 식중독 말고 감기 주의하렴.",
+    "sentence_b_org": "겨울 시기에는 식중독 말고 감기 주의하렴.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "겨울 시기",
+        "to": "winter season",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00150",
+    "sentence_a": "오히려 저보다 메시지를 자주 보내고 빨리 답을 한 덕에 한국과 스페인의 시차도 못느꼈을 정도니까요.",
+    "sentence_b": "반대로, 그들은 저보다 더 자주 message를 보내고, 더 일찍 대답해서 한국과 스페인의 time difference를 느낄 수 없었습니다.",
+    "sentence_b_org": "반대로, 그들은 저보다 더 자주 메시지를 보내고, 더 일찍 대답해서 한국과 스페인의 시차를 느낄 수 없었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메시지",
+        "to": "message",
+        "pos": "NNG"
+      },
+      {
+        "from": "시차",
+        "to": "time difference",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00151",
+    "sentence_a": "베스트 셀링카 TOP5는 모두 국산차가 차지했다.",
+    "sentence_b": "업종별로는 sports 시설업의 성장세가 뚜렷했다.",
+    "sentence_b_org": "업종별로는 스포츠 시설업의 성장세가 뚜렷했다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "스포츠",
+        "to": "sports",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00152",
+    "sentence_a": "너는 오른쪽하고 왼쪽 중 어느 방향으로 에어컨 바람이 나오는게 나을 것 같아?",
+    "sentence_b": "국내 방송 monitoring이 먼저야 해외 말고",
+    "sentence_b_org": "국내 방송 모니터링이 먼저야 해외 말고",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "모니터링",
+        "to": "monitoring",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00153",
+    "sentence_a": "WP는 바이러스와의 싸움에서 한국이 가진 가장 효과적인 무기로 ‘빠른 진단검사 확대’를 꼽았다.",
+    "sentence_b": "WP는 한국이 이 virus와 싸우는 데 가장 효과적인 무기로 '신속히 확장되는 진단 test'를 꼽았습니다.",
+    "sentence_b_org": "WP는 한국이 이 바이러스와 싸우는 데 가장 효과적인 무기로 '신속히 확장되는 진단 테스트'를 꼽았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "바이러스",
+        "to": "virus",
+        "pos": "NNG"
+      },
+      {
+        "from": "테스트",
+        "to": "test",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.4
+  },
+  {
+    "id": "pair_00154",
+    "sentence_a": "터널 영향으로 미세먼지 농도가 높은 지하철 차량과 역사에 대해 공기질 개선사업을 추진하기 위한 정부 예산을 지속적으로 투입한다.",
+    "sentence_b": "tunnel의 영향으로, 정부는 고농도 미세먼지와 함께 지하철 차량 및 역사에 대한 대기질 개선 사업을 추진하기 위해 정부 예산을 계속 투자할 예정입니다.",
+    "sentence_b_org": "터널의 영향으로, 정부는 고농도 미세먼지와 함께 지하철 차량 및 역사에 대한 대기질 개선 사업을 추진하기 위해 정부 예산을 계속 투자할 예정입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "터널",
+        "to": "tunnel",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00155",
+    "sentence_a": "해수면 온도는 몇 도 상승 할 예정이야? 엘니뇨 현상 때.",
+    "sentence_b": "El Niño가 일어나면 sea surface의 temperature는 몇 도 상승합니까?",
+    "sentence_b_org": "엘니뇨가 일어나면 해수면은 온도는 몇 도 상승합니까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "해수면",
+        "to": "sea surface",
+        "pos": "NNG"
+      },
+      {
+        "from": "온도",
+        "to": "temperature",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00156",
+    "sentence_a": "이와 관련 한국산업기술진흥원(KIAT)과 헝가리 국가연구개발혁신청(NRDI)은 ‘산업기술 협력에 관한 양해각서(MOU)’를 체결했다.",
+    "sentence_b": "이와 함께 방대본은 ‘집단시설·다중이용시설 disinfection 안내(제3-2판)’도 개정·배포했다.",
+    "sentence_b_org": "이와 함께 방대본은 ‘집단시설·다중이용시설 소독 안내(제3-2판)’도 개정·배포했다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "소독",
+        "to": "disinfection",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00157",
+    "sentence_a": "보낸메일함이랑 임시보관함의 용도가 어떻게 다르지?",
+    "sentence_b": "보낸메일함이랑 draft에 비교했을 때 어떤 difference가 있어?",
+    "sentence_b_org": "보낸메일함이랑 임시보관함이랑 비교했을 때 어떤 차이가 있어?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "임시보관함",
+        "to": "draft",
+        "pos": "NNG"
+      },
+      {
+        "from": "차이",
+        "to": "difference",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.2
+  },
+  {
+    "id": "pair_00158",
+    "sentence_a": "위치도 여기저기 가기 굉장히 가까웠습니다.",
+    "sentence_b": "그 location은 이곳 저곳으로 가는 데 매우 가까웠습니다.",
+    "sentence_b_org": "그 위치는 이곳 저곳으로 가는 데 매우 가까웠습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.1
+  },
+  {
+    "id": "pair_00159",
+    "sentence_a": "전자레인지 한 달 사용 시간 알려줘",
+    "sentence_b": "삼촌, pop이랑 classic 중에 좋아하는 genre 알려줄래요?",
+    "sentence_b_org": "삼촌, 팝이랑 클래식 중에 좋아하는 장르 알려줄래요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "팝",
+        "to": "pop",
+        "pos": "NNG"
+      },
+      {
+        "from": "클래식",
+        "to": "classic",
+        "pos": "NNG"
+      },
+      {
+        "from": "장르",
+        "to": "genre",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_00160",
+    "sentence_a": "노동부는 올해 부처협업을 토대로 한 산업계가 필요로 하는 신산업·신기술 분야 인력양성으로 지역·산업 중심의 일자리 창출을 뒷받침할 계획이다.",
+    "sentence_b": "정부는 코로나19 긴급재난지원금을 시급한 지원이 필요한 취약계층 약 270만 household에는 cash로 지급할 계획이다.",
+    "sentence_b_org": "정부는 코로나19 긴급재난지원금을 시급한 지원이 필요한 취약계층 약 270만 가구에는 현금으로 지급할 계획이다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "가구",
+        "to": "household",
+        "pos": "NNG"
+      },
+      {
+        "from": "현금",
+        "to": "cash",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00161",
+    "sentence_a": "연휴기간 기차역·고속도로 휴게소 등에서는 14개의 은행 이동점포를 열고 고객에게 입·출금 및 신권 교환 등의 서비스를 제공한다.",
+    "sentence_b": "비전세미콘에서 기존에 운영한 smart 무인카페는 무인 자동화 시스템을 구축해 order 및 payment부터 음료 제조, serving까지 일련의 service를 제공한다.",
+    "sentence_b_org": "비전세미콘에서 기존에 운영한 스마트 무인카페는 무인 자동화 시스템을 구축해 주문 및 결제부터 음료 제조, 서빙까지 일련의 서비스를 제공한다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "주문",
+        "to": "order",
+        "pos": "NNG"
+      },
+      {
+        "from": "결제",
+        "to": "payment",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.0
+  },
+  {
+    "id": "pair_00162",
+    "sentence_a": "메일들 중 어제 학교에서 온거 제목이 어떻게 돼?",
+    "sentence_b": "거래처 email이 용량이 더 큰가요 부장님 email이 더 큰가요?",
+    "sentence_b_org": "거래처 메일이 용량이 더 큰가요 부장님 메일이 더 큰가요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "email",
+        "pos": "NNG"
+      },
+      {
+        "from": "메일",
+        "to": "email",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.6
+  },
+  {
+    "id": "pair_00163",
+    "sentence_a": "다만 아쉬웠던 점은 방이 조금 춥다는 점입니다",
+    "sentence_b": "단 한 가지 불행한 것은 room이 약간 추웠다는 것입니다.",
+    "sentence_b_org": "단 한 가지 불행한 것은 방이 약간 추웠다는 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방",
+        "to": "room",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.9
+  },
+  {
+    "id": "pair_00164",
+    "sentence_a": "청강생에게 어떻게 메일로 점수 회신을 할까?",
+    "sentence_b": "청강생에게 어떤 method로 점수 회신 mail을 보낼까?",
+    "sentence_b_org": "청강생에게 어떤 방법으로 점수 회신 메일을 보낼까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방법",
+        "to": "method",
+        "pos": "NNG"
+      },
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_00165",
+    "sentence_a": "지진 시엔 건물 엘리베이터 사용은 하면 안됩니다.",
+    "sentence_b": "열대야에는 저온 말고 미온에 shower하렴.",
+    "sentence_b_org": "열대야에는 저온 말고 미온에 사워하렴.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "사워",
+        "to": "shower",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00166",
+    "sentence_a": "가격을 알려주세요. 어린이 장화.",
+    "sentence_b": "떙볕 아래 일할 땐 충분한 rest를 취하도록 해. 잊지 말고.",
+    "sentence_b_org": "떙볕 아래 일할 땐 충분한 휴식을 취하도록 해. 잊지 말고.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "휴식",
+        "to": "rest",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00167",
+    "sentence_a": "눈 보호도 되는 조명 방식이었으면 좋겠으니 어떤게 필요한게 알려줘",
+    "sentence_b": "눈 보호되는 걸로 lighting system 좀 알고 싶구나",
+    "sentence_b_org": "눈 보호되는 걸로 조명 방식 좀 알고 싶구나",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "조명 방식",
+        "to": "lighting system",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.2
+  },
+  {
+    "id": "pair_00168",
+    "sentence_a": "다시한번 추천드리며 아버님께 감사드립니다.",
+    "sentence_b": "다시 한 번 권해 드리고 father께 감사 드립니다.",
+    "sentence_b_org": "다시 한 번 권해 드리고 아버지께 감사 드립니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "아버지",
+        "to": "father",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.4
+  },
+  {
+    "id": "pair_00169",
+    "sentence_a": "다만 혼자 여행하시는 분들은 밤에 귀가하실 때 조금 무서우실 수도 있어요.",
+    "sentence_b": "보니 예민하신분들은 night에 noise가 좀 거슬릴수도 있을듯합니다.",
+    "sentence_b_org": "보니 예민하신분들은 밤에 소음이 좀 거슬릴수도 있을듯합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "밤",
+        "to": "night",
+        "pos": "NNG"
+      },
+      {
+        "from": "소음",
+        "to": "noise",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_00170",
+    "sentence_a": "여덟시에 보기엔 좀 이르니까 뉴스는 밥 먹고 아홉시에 보는게 어때",
+    "sentence_b": "boiler 상태 확인은 어떻게 하지?",
+    "sentence_b_org": "보일러 상태 확인은 어떻게 하지?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "보일러",
+        "to": "boiler",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00171",
+    "sentence_a": "매일 아침 토스트와 친절한 주인분, 분리된 개인공간, 조용한 동네에서 7일간 잘 쉬다가 갑니다.",
+    "sentence_b": "저렴한 price, 시내와 접근성면에서 뛰어 납니다.",
+    "sentence_b_org": "저렴한 가격, 시내와 접근성면에서 뛰어 납니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "가격",
+        "to": "price",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00172",
+    "sentence_a": "저 개인의 다짐이 아니라 우리 국민 모두의 염원을 이루기 위한 정부의 목표와 의지를 말씀드린 것입니다.",
+    "sentence_b": "‘우리 모두는 서로의 social safety net’이라는 사실을 명심해야 할 것입니다.",
+    "sentence_b_org": "‘우리 모두는 서로의 사회안전망’이라는 사실을 명심해야 할 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "사회안전망",
+        "to": "social safety net",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.5
+  },
+  {
+    "id": "pair_00173",
+    "sentence_a": "베니스의 좋은 기억으로 많이 남을것같다",
+    "sentence_b": "Venice에 대한 좋은 memory로 남을 것 같아요.",
+    "sentence_b_org": "베니스에 대한 좋은 추억으로 남을 것 같아요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "베니스",
+        "to": "Venice",
+        "pos": "NNP"
+      },
+      {
+        "from": "추억",
+        "to": "memory",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00174",
+    "sentence_a": "회사에서 온 메일 지금 로그인된 지메일 말고 다른 내 지메일 계정으로 전달 해줘",
+    "sentence_b": "Gmail과 같이 쓸 수 있는 mail이 Naver야 Nate야?",
+    "sentence_b_org": "지메일과 같이 쓸 수 있는 메일이 네이버야 네이트야?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지메일",
+        "to": "Gmail",
+        "pos": "NNP"
+      },
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      },
+      {
+        "from": "네이버",
+        "to": "Naver",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.8
+  },
+  {
+    "id": "pair_00175",
+    "sentence_a": "바로 앞에 슈퍼마켓과 다른가게들이 가까워서 여러가지로 편합니다.",
+    "sentence_b": "주변 commercial area나 지하철역 가까워서 도보로 다니기 편합니다.",
+    "sentence_b_org": "주변 상권이나 지하철역 가까워서 도보로 다니기 편합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "상권",
+        "to": "commercial area",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.3
+  },
+  {
+    "id": "pair_00176",
+    "sentence_a": "전세난 해결을 위한 3조 2000억원의 부동산 예산도 추가 반영했다.",
+    "sentence_b": "전세난 해소를 위한 3조 2천억 원의 real estate 예산도 반영되었습니다.",
+    "sentence_b_org": "전세난 해소를 위한 3조 2천억 원의 부동산 예산도 반영되었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "부동산 예산",
+        "to": "real estate",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.1
+  },
+  {
+    "id": "pair_00177",
+    "sentence_a": "다시 대만여행을 간다면 다시 이집을 선택할 생각입니다.",
+    "sentence_b": "만약 내가 다시 대만에 간다면, 나는 이 house를 다시 선택할 것입니다.",
+    "sentence_b_org": "만약 내가 다시 대만에 간다면, 나는 이 집을 다시 선택할 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "집",
+        "to": "house",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00178",
+    "sentence_a": "여러분이 좋아하는 팝송 이름 대보세요",
+    "sentence_b": "선풍기 time 조절하는 방법 좀 알려줘",
+    "sentence_b_org": "선풍기 시간 조절하는 방법 좀 알려줘",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "시간",
+        "to": "time",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00179",
+    "sentence_a": "교통, 위치, 청결 다 정말 좋았습니다.",
+    "sentence_b": "price, location, cleanliness, interior, kitchen 다 좋았습니다.",
+    "sentence_b_org": "가격, 위치, 청결도, 인테리어, 주방 다 좋았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "가격",
+        "to": "price",
+        "pos": "NNG"
+      },
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      },
+      {
+        "from": "청결도",
+        "to": "cleanliness",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.0
+  },
+  {
+    "id": "pair_00180",
+    "sentence_a": "지금 한라산에 눈이 오는지 그쳤는지 알려줘.",
+    "sentence_b": "알려줘. 지금 한라산에 snow가 오는지 그쳤는지.",
+    "sentence_b_org": "알려줘. 지금 한라산에 눈이 오는지 그쳤는지.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "눈",
+        "to": "snow",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00181",
+    "sentence_a": "호스트도 매우 친절하고 무엇보다 방이 매우 깨끗해요.",
+    "sentence_b": "host는 매우 친절하고 무엇보다도 room이 매우 깨끗합니다.",
+    "sentence_b_org": "주인은 매우 친절하고 무엇보다도 방이 매우 깨끗합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "주인",
+        "to": "host",
+        "pos": "NNG"
+      },
+      {
+        "from": "방",
+        "to": "room",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.7
+  },
+  {
+    "id": "pair_00182",
+    "sentence_a": "내년에 어떤 것이 생길까요? 라니냐와 엘니뇨 중에서.",
+    "sentence_b": "찾아줘. next year에 La Niña가 생길지 El Niño가 생길지.",
+    "sentence_b_org": "찾아줘. 내년에 라니냐가 생길지 엘니뇨가 생길지.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "내년",
+        "to": "next year",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_00183",
+    "sentence_a": "집 옆 슈퍼마켓 아저씨도 엄청 친절하심",
+    "sentence_b": "집도 엄청 깔끔하고 room도 매우 깔끔해요.",
+    "sentence_b_org": "집도 엄청 깔끔하고 방도 매우 깔끔해요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방",
+        "to": "room",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.1
+  },
+  {
+    "id": "pair_00184",
+    "sentence_a": "또한 인증 기업은 항만시설 사용료 감면과 해양진흥공사 보증 한도 확대 세제 혜택 등 다양한 혜택도 받는다.",
+    "sentence_b": "또한, 인증업체는 항만시설 사용료 인하, 한국해양진흥공사 증설 등 tax benefit 등 다양한 benefit을 받게 됩니다.",
+    "sentence_b_org": "또한, 인증업체는 항만시설 사용료 인하, 한국해양진흥공사 증설 등 세제혜택 등 다양한 혜택을 받게 됩니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "인증업체",
+        "to": "certified company",
+        "pos": "NNG"
+      },
+      {
+        "from": "세제혜택",
+        "to": "tax benefit",
+        "pos": "NNG"
+      },
+      {
+        "from": "혜택",
+        "to": "benefit",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00185",
+    "sentence_a": "취사나 세탁기사용은 안되지만 아침식사를 할 수 있는 쿠폰을 줍니다.",
+    "sentence_b": "shared kitchen은 식재료 보관공간이나 요리할 수 있는 worktop이 충분했습니다.",
+    "sentence_b_org": "공용주방은 식재료 보관공간이나 요리할 수 있는 작업대가 충분했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "공용주방",
+        "to": "shared kitchen",
+        "pos": "NNG"
+      },
+      {
+        "from": "작업대",
+        "to": "worktop",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00186",
+    "sentence_a": "눈이 얼마나 올 것 같아? 인천공항에.",
+    "sentence_b": "snow이 얼마나 올 것으로 예상됩니까? 인천공항에는.",
+    "sentence_b_org": "눈이 얼마나 올 것으로 예상됩니까? 인천공항에는.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "눈",
+        "to": "snow",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.5
+  },
+  {
+    "id": "pair_00187",
+    "sentence_a": "과거 외환위기로 어렵던 시기에 IT 인프라를 구축하는 과감한 투자로 IT 강국의 초석을 깔았던 경험을 되살려 주기 바랍니다.",
+    "sentence_b": "중소기업과 소상공인들에 대한 special finance 지원과 세 부담 완화를 위한 과감한 조치들도 검토해 주기 바랍니다.",
+    "sentence_b_org": "중소기업과 소상공인들에 대한 특별금융 지원과 세 부담 완화를 위한 과감한 조치들도 검토해 주기 바랍니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "특별금융",
+        "to": "special finance",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.3
+  },
+  {
+    "id": "pair_00188",
+    "sentence_a": "우리는 덕분에 영국의 전통가옥을 체험할 수 있었습니다.",
+    "sentence_b": "덕분에 아무런 problem없이 house를 사용할 수 있었습니다.",
+    "sentence_b_org": "덕분에 아무런 문제없이 집을 사용할 수 있었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "문제",
+        "to": "problem",
+        "pos": "NNG"
+      },
+      {
+        "from": "집",
+        "to": "house",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.9
+  },
+  {
+    "id": "pair_00189",
+    "sentence_a": "어떤 방식으로 하면 조교님 메일만 분류가 될까?",
+    "sentence_b": "수강생 mail은 늦게 확인하면 안되니 star를 해주시기 바랍니다.",
+    "sentence_b_org": "수강생 메일은 늦게 확인하면 안되니 별표를 해주시기 바랍니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      },
+      {
+        "from": "별표",
+        "to": "star",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.4
+  },
+  {
+    "id": "pair_00190",
+    "sentence_a": "호스트의 초코릿 선물에 저희아기들이 행복했답니다.",
+    "sentence_b": "And 일단 host분들이 친절했습니다.",
+    "sentence_b_org": "그리고 일단 호스트분들이 친절했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "그리고",
+        "to": "And",
+        "pos": "MAJ"
+      },
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.8
+  },
+  {
+    "id": "pair_00191",
+    "sentence_a": "혹시 오늘이랑 내일 중에서 약속이 더 적은 날은 언제야?",
+    "sentence_b": "앞으로는 여러개 잡지 말고 하루에 schedule은 하나만 잡아라.",
+    "sentence_b_org": "앞으로는 여러개 잡지 말고 하루에 일정은 하나만 잡아라.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "일정",
+        "to": "schedule",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.5
+  },
+  {
+    "id": "pair_00192",
+    "sentence_a": "다만, 소속회사의 회원관리 협조가 필수적인 퇴직연금과 적립형 공제는 기존대로 협약을 기반으로 가입을 받는다.",
+    "sentence_b": "market 점검 결과, 투기과열지구 등에서의 국지적인 집값 불안과 real estate market 자금쏠림이 지속되고 있는 것으로 점검되었음",
+    "sentence_b_org": "시장 점검 결과, 투기과열지구 등에서의 국지적인 집값 불안과 부동산시장 자금쏠림이 지속되고 있는 것으로 점검되었음",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "시장",
+        "to": "market",
+        "pos": "NNG"
+      },
+      {
+        "from": "부동산시장",
+        "to": "real estate market",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00193",
+    "sentence_a": "강아지들도 루아랑 세바스찬 너무 귀여워요",
+    "sentence_b": "host분들도 매우 친절하십니다. 고양이들도 귀여워요",
+    "sentence_b_org": "호스트분들도 매우 친절하십니다. 고양이들도 귀여워요",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.4
+  },
+  {
+    "id": "pair_00194",
+    "sentence_a": "조용히  혼자 쓰는  기분이  들어  더 만족",
+    "sentence_b": "제가 review 잘안쓰는 편인데 이 집은 really 만족스러우실겁니다.",
+    "sentence_b_org": "제가 리뷰 잘안쓰는 편인데 이 집은 진짜 만족스러우실겁니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "리뷰",
+        "to": "review",
+        "pos": "NNG"
+      },
+      {
+        "from": "진짜",
+        "to": "really",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.0
+  },
+  {
+    "id": "pair_00195",
+    "sentence_a": "또한 7일부터 신종코로나 진단 검사기관을 질병관리본부의 평가 인증을 받은 50여개 민간 기관(수탁검사기관 포함)으로 확대 시행할 예정이다.",
+    "sentence_b": "또한 질병관리본부로부터 evaluation 및 certification을 받은 50여 개 private institution(위탁시험기관 포함)으로 7일부터 새로운 코로나 diagnosis test institution을 확대합니다.",
+    "sentence_b_org": "또한 질병관리본부로부터 평가 및 인증을 받은 50여 개 민간기관(위탁시험기관 포함)으로 7일부터 새로운 코로나 진단검사기관을 확대합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "평가",
+        "to": "evaluation",
+        "pos": "NNG"
+      },
+      {
+        "from": "인증",
+        "to": "certification",
+        "pos": "NNG"
+      },
+      {
+        "from": "민간기관",
+        "to": "private institution",
+        "pos": "NNG"
+      },
+      {
+        "from": "진단검사기관",
+        "to": "diagnosis test institution",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 4,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.9
+  },
+  {
+    "id": "pair_00196",
+    "sentence_a": "올해와 내년 중에 조수미의 스케쥴은 언제가 더 적을까?",
+    "sentence_b": "조수미씨는 this year가 더 바쁘신가요, next year가 더 바쁘신가요?",
+    "sentence_b_org": "조수미씨는 올해가 더 바쁘신가요, 내년이 더 바쁘신가요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "올해",
+        "to": "this year",
+        "pos": "NNG"
+      },
+      {
+        "from": "내년",
+        "to": "next year",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_00197",
+    "sentence_a": "걸어서 와이키키 해변과 맛집들, 로얄 하와이안 센터를 이용하기에 편리합니다.",
+    "sentence_b": "와이키키 beach, restaurant, 로열 하와이 center까지 걸어가는 것이 편리합니다.",
+    "sentence_b_org": "와이키키 해변, 레스토랑, 로열 하와이 센터까지 걸어가는 것이 편리합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "해변",
+        "to": "beach",
+        "pos": "NNG"
+      },
+      {
+        "from": "레스토랑",
+        "to": "restaurant",
+        "pos": "NNG"
+      },
+      {
+        "from": "센터",
+        "to": "center",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.9
+  },
+  {
+    "id": "pair_00198",
+    "sentence_a": "그린 스마트스쿨, 스마트그린 산단, 그린 리모델링 등 한국판 뉴딜의 대표 사업들은 삶의 공간과 일터를 혁신하고 생활을 변화시킬 것입니다.",
+    "sentence_b": "smart city, 그린 스마트 스쿨, 그린 리모델링, 스마트 그린 산단 등 ‘한국판 New Deal’의 대표 사업들이 코로나 이후 시대, 삶의 공간과 일터를 크게 혁신할 것입니다.",
+    "sentence_b_org": "스마트시티, 그린 스마트 스쿨, 그린 리모델링, 스마트 그린 산단 등 ‘한국판 뉴딜’의 대표 사업들이 코로나 이후 시대, 삶의 공간과 일터를 크게 혁신할 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "스마트시티",
+        "to": "smart city",
+        "pos": "NNG"
+      },
+      {
+        "from": "뉴딜",
+        "to": "New Deal",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.6
+  },
+  {
+    "id": "pair_00199",
+    "sentence_a": "또 생애 최초로 주택을 구입하는 신혼부부에 제공되는 전용 대출상품의 금리가 낮아진다.",
+    "sentence_b": "게다가, 생애 처음으로 home을 구입하는 신혼부부에게 제공되는 독점 대출 금리는 낮아질 것입니다.",
+    "sentence_b_org": "게다가, 생애 처음으로 집을 구입하는 신혼부부에게 제공되는 독점 대출 금리는 낮아질 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "집",
+        "to": "home",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.9
+  },
+  {
+    "id": "pair_00200",
+    "sentence_a": "상설조사팀에는 특사경으로 구성된 국토부 전담 조사인력을 배치하여 부동산 관련 불법행위를 집중 단속할 예정",
+    "sentence_b": "국토부는 우수사례로 선정된 총 6개 지자체에 2020년 지역개발 공모사업 신청 시 가점을 부여하는 등 incentive를 제공할 방침이다.",
+    "sentence_b_org": "국토부는 우수사례로 선정된 총 6개 지자체에 2020년 지역개발 공모사업 신청 시 가점을 부여하는 등 인센티브를 제공할 방침이다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "인센티브",
+        "to": "incentive",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.1
+  },
+  {
+    "id": "pair_00201",
+    "sentence_a": "모든 방문객과 집주인의 행복한 가정 행복한 나날 항상 기원합니다",
+    "sentence_b": "집주인님이 inquiry 잘 대답하고 친철합니다.",
+    "sentence_b_org": "집주인님이 문의 잘 대답하고 친철합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "문의",
+        "to": "inquiry",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.9
+  },
+  {
+    "id": "pair_00202",
+    "sentence_a": "공원에서 열리는 시장도 구경할 수 있었어요.",
+    "sentence_b": "park에서 market을 볼 수 있었어요.",
+    "sentence_b_org": "공원에서 시장을 볼 수 있었어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "공원",
+        "to": "park",
+        "pos": "NNG"
+      },
+      {
+        "from": "시장",
+        "to": "market",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00203",
+    "sentence_a": "특히, 청년정책 컨트롤타워인 청년정책조정위원회에도 청년위원을 위촉할 방침이다.",
+    "sentence_b": "우선 연구소기업 startup을 활성화할 방침이다.",
+    "sentence_b_org": "우선 연구소기업 창업을 활성화할 방침이다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "창업",
+        "to": "startup",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.3
+  },
+  {
+    "id": "pair_00204",
+    "sentence_a": "세탁기가 있어 장기간 머무는 사람에게 좋을듯 합니다.",
+    "sentence_b": "washing machine을 가지고 있기 때문에 오래 머무르는 사람들에게 좋을 것입니다.",
+    "sentence_b_org": "세탁기를 가지고 있기 때문에 오래 머무르는 사람들에게 좋을 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "세탁기",
+        "to": "washing machine",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_00205",
+    "sentence_a": "아쉬운 점은 샤워가 조금 불편하다는 것입니다",
+    "sentence_b": "불행히도 shower는 조금 불편합니다.",
+    "sentence_b_org": "불행히도 샤워는 조금 불편합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "샤워",
+        "to": "shower",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.6
+  },
+  {
+    "id": "pair_00206",
+    "sentence_a": "수상버스 타기도 매우 가깝고 이동하기 편리합니다 .",
+    "sentence_b": "water bus를 타는것은 very 가깝고 여행하기에 편리합니다.",
+    "sentence_b_org": "수상버스를 타는것은 매우 가깝고 여행하기에 편리합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "수상버스",
+        "to": "water bus",
+        "pos": "NNG"
+      },
+      {
+        "from": "매우",
+        "to": "very",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.5
+  },
+  {
+    "id": "pair_00207",
+    "sentence_a": "네가 편하게 잘 수 있는 곳 중에 안방이랑 작은방이 어디가 좋니?",
+    "sentence_b": "air conditioner 작동 예약 time이 언제야?",
+    "sentence_b_org": "에어컨 작동 예약 시간이 언제야?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "에어컨",
+        "to": "air conditioner",
+        "pos": "NNG"
+      },
+      {
+        "from": "시간",
+        "to": "time",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00208",
+    "sentence_a": "덕분에 프라하에서의 좋은 추억을 만들수있었어요.",
+    "sentence_b": "당신 덕분에 Prague에서 좋은 memory를 만들 수 있었어요.",
+    "sentence_b_org": "당신 덕분에 프라하에서 좋은 추억을 만들 수 있었어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "프라하",
+        "to": "Prague",
+        "pos": "NNP"
+      },
+      {
+        "from": "추억",
+        "to": "memory",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.6
+  },
+  {
+    "id": "pair_00209",
+    "sentence_a": "숙소는 나름 깨끗하고 주방도 나름 깨끗해요.",
+    "sentence_b": "accommodation은 깨끗하고 kitchen은 깨끗합니다.",
+    "sentence_b_org": "숙소는 깨끗하고 부엌은 깨끗합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      },
+      {
+        "from": "부엌",
+        "to": "kitchen",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.6
+  },
+  {
+    "id": "pair_00210",
+    "sentence_a": "리눅스에 어떻게 아웃룩을 설치해?",
+    "sentence_b": "Linux에서 Outlook을 깔려면 어떻게 해야해?",
+    "sentence_b_org": "리눅스에서 아웃룩을 깔려면 어떻게 해야해?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "리눅스",
+        "to": "Linux",
+        "pos": "NNG"
+      },
+      {
+        "from": "아웃룩",
+        "to": "Outlook",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00211",
+    "sentence_a": "다양한 보드게임과 넷플릭스가 있습니다.",
+    "sentence_b": "근처 Tsim Sha Tsui 맛집과 shopping center가 있습니다.",
+    "sentence_b_org": "근처 침사추이 맛집과 쇼핑센터가 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "침사추이",
+        "to": "Tsim Sha Tsui",
+        "pos": "NNP"
+      },
+      {
+        "from": "쇼핑센터",
+        "to": "shopping center",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00212",
+    "sentence_a": "봄철은 제습기말고 공기 청정기를 사용할 때야.",
+    "sentence_b": "낭만적으로 lighting을 두고 싶은데 뭐가 필요할지 알 수 있을까요?",
+    "sentence_b_org": "낭만적으로 조명을 두고 싶은데 뭐가 필요할지 알 수 있을까요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "조명",
+        "to": "lighting",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00213",
+    "sentence_a": "여행이 다음 달 언제로 예정되어 있는지 알고 싶어요.",
+    "sentence_b": "다음 달 travel 일정은 어떻게 되나 궁금해요.",
+    "sentence_b_org": "다음 달 여행 일정이 어떻게 되나 궁금해요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "여행",
+        "to": "travel",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00214",
+    "sentence_a": "제 다음 메일 주소는 사용하시면 안됩니다.",
+    "sentence_b": "수강생 mail에 늦게 답장하지 않도록 mail에 star를 해주세요.",
+    "sentence_b_org": "수강생 메일에 늦게 답장하지 않도록 메일에 별표를 해주세요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      },
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      },
+      {
+        "from": "별표",
+        "to": "star",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.5
+  },
+  {
+    "id": "pair_00215",
+    "sentence_a": "이와 함께 정부는 신종 코로나 하루 진단검사 물량을 이달 말까지 1만건으로 늘리기로 했다.",
+    "sentence_b": "이와 관련 질병관리본부는 이날 중국 신종코로나바이러스 감염증 해외유입 확진환자 발생을 확인, 감염병 위기 경보 level을 ‘관심’에서 ‘주의’ 단계로 상향 조정했다.",
+    "sentence_b_org": "이와 관련 질병관리본부는 이날 중국 신종코로나바이러스 감염증 해외유입 확진환자 발생을 확인, 감염병 위기 경보 수준을 ‘관심’에서 ‘주의’ 단계로 상향 조정했다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "수준",
+        "to": "level",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.5
+  },
+  {
+    "id": "pair_00216",
+    "sentence_a": "유니버셜스튜디오나 그리피스 천문대 모두 차로 10분 이내 거리에 있고요!",
+    "sentence_b": "Universal Studios와 그리피스 천문대는 둘 다 car로 10분 distance에 있습니다!",
+    "sentence_b_org": "유니버설 스튜디오와 그리피스 천문대는 둘 다 차로 10분 거리에 있습니다!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "유니버설 스튜디오",
+        "to": "Universal Studios",
+        "pos": "NNP"
+      },
+      {
+        "from": "차",
+        "to": "car",
+        "pos": "NNG"
+      },
+      {
+        "from": "거리",
+        "to": "distance",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.5
+  },
+  {
+    "id": "pair_00217",
+    "sentence_a": "숙소 밑에 있는 편의점에서 24시간 물건 살 수 있구요",
+    "sentence_b": "hotel 아래 편의점에서 24시간 내내 물건을 살 수 있습니다.",
+    "sentence_b_org": "호텔 아래 편의점에서 24시간 내내 물건을 살 수 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호텔",
+        "to": "hotel",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_00218",
+    "sentence_a": "약속 일정은 그냥 만들지 말고 회사 출장을 고려해서 잡아봐.",
+    "sentence_b": "약속을 잡을 때는 생각 없이 잡지 말고 company trip을 고려해줘.",
+    "sentence_b_org": "약속을 잡을 때는 생각 없이 잡지 말고 회사 출장을 고려해줘.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "회사 출장",
+        "to": "company trip",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00219",
+    "sentence_a": "골목은 어둡지만 늦은 시각까지 유동인구가 많은 편입니다.",
+    "sentence_b": "골목은 어둡지만 밤늦게까지 floating population이 많습니다.",
+    "sentence_b_org": "골목은 어둡지만 밤늦게까지 유동인구가 많습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "유동인구",
+        "to": "floating population",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.1
+  },
+  {
+    "id": "pair_00220",
+    "sentence_a": "다른 리뷰처럼 샴푸 린스 등 없는 건 아쉬워요.",
+    "sentence_b": "toothpaste나 body wash shampoo 등이 없습니다.",
+    "sentence_b_org": "치약이나 바디워시 샴푸 등이 없습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "치약",
+        "to": "toothpaste",
+        "pos": "NNG"
+      },
+      {
+        "from": "바디워시 샴푸",
+        "to": "body wash shampoo",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.0
+  },
+  {
+    "id": "pair_00221",
+    "sentence_a": "숙소가 지하철역에서 도보로 10분정도 거리에 있었기 때문에 매우 편했습니다.",
+    "sentence_b": "accommodation은 subway station에서 도보로 약 3분 정도 걸리는 distance로 다른 곳으로 이동하기에도 좋았습니다.",
+    "sentence_b_org": "숙소는 지하철역에서 도보로 약 3분 정도 걸리는 거리로 다른 곳으로 이동하기에도 좋았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      },
+      {
+        "from": "지하철역",
+        "to": "subway station",
+        "pos": "NNG"
+      },
+      {
+        "from": "거리",
+        "to": "distance",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.3
+  },
+  {
+    "id": "pair_00222",
+    "sentence_a": "결제 메일은 정크 메일함으로 가지 않도록 설정해줘",
+    "sentence_b": "어제 학교에서 보낸 group email subject이 뭐야?",
+    "sentence_b_org": "어제 학교에서 보낸 단체 메일 제목이 뭐야?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "단체 메일 제목",
+        "to": "group email subject",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.6
+  },
+  {
+    "id": "pair_00223",
+    "sentence_a": "보다 구체적인 보험 적용 대상과 의료비 경감 효과는 의료계와 협의하고 관련 법적 절차가 진행 후 마련된다.",
+    "sentence_b": "의료계와 보다 구체적인 insurance coverage와 medical cost saving effect에 대해 논의하고 진행 후 관련 법적 절차를 준비합니다.",
+    "sentence_b_org": "의료계와 보다 구체적인 보험 적용 범위와 의료비 절감 효과에 대해 논의하고 진행 후 관련 법적 절차를 준비합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "보험 적용 범위",
+        "to": "insurance coverage",
+        "pos": "NNG"
+      },
+      {
+        "from": "의료비 절감 효과",
+        "to": "medical cost saving effect",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.0
+  },
+  {
+    "id": "pair_00224",
+    "sentence_a": "주요 관광지 한가운데에 집이 있더군요.",
+    "sentence_b": "세비야의 주요 tourist spot 중심에 있습니다.",
+    "sentence_b_org": "세비야의 주요 관광지 중심에 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "관광지",
+        "to": "tourist spot",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.0
+  },
+  {
+    "id": "pair_00225",
+    "sentence_a": "트위치 계정에 등록할 수 있는 메일 수가 어떻게 되니?",
+    "sentence_b": "교수님은 보통 mail보다 phone을 더 먼저 받으셔서 mail보다는 phone으로 연락드리는게 좋아",
+    "sentence_b_org": "교수님은 보통 메일보다 전화를 더 먼저 받으셔서 메일보다는 전화로 연락드리는게 좋아",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      },
+      {
+        "from": "전화",
+        "to": "phone",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.6
+  },
+  {
+    "id": "pair_00226",
+    "sentence_a": "인구 2천만 명 이상의 나라 가운데서는 미국에 이어 2위입니다.",
+    "sentence_b": "이 country는 미국 다음으로 인구가 2천만 명이 넘는 두 번째로 큰 country입니다.",
+    "sentence_b_org": "이 나라는 미국 다음으로 인구가 2천만 명이 넘는 두 번째로 큰 나라입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "나라",
+        "to": "country",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.3
+  },
+  {
+    "id": "pair_00227",
+    "sentence_a": "다음 메일은 사용자의 메일을 최대 몇 기가까지 저장하죠?",
+    "sentence_b": "다음 mail을 사용할 때 mail이 저장되는 최대 capacity는 얼마죠?",
+    "sentence_b_org": "다음 메일을 사용할 때 메일이 저장되는 최대 용량은 얼마죠?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_00228",
+    "sentence_a": "화장실, 복도, 방 모두 퀄리티가 좋았습니다.",
+    "sentence_b": "bathroom, hallway, room 모두 quality가 좋았습니다.",
+    "sentence_b_org": "욕실, 복도, 방 모두 질이 좋았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "욕실",
+        "to": "bathroom",
+        "pos": "NNG"
+      },
+      {
+        "from": "복도",
+        "to": "hallway",
+        "pos": "NNG"
+      },
+      {
+        "from": "방",
+        "to": "room",
+        "pos": "NNG"
+      },
+      {
+        "from": "질",
+        "to": "quality",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 4,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00229",
+    "sentence_a": "현관문 잠그지 말아 줘",
+    "sentence_b": "현관문 잠그기 is prohibited.",
+    "sentence_b_org": "현관문 잠그기 금지.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "금지",
+        "to": "prohibited",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00230",
+    "sentence_a": "아, 대문이 굉장히 낮으니 처음에 들어갈 때 조심하세요!",
+    "sentence_b": "다만, 다소 건조한 vibe가 있으니 그 부분은 유의하세요.",
+    "sentence_b_org": "다만, 다소 건조한 감이 있으니 그 부분은 유의하세요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "감",
+        "to": "vibe",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00231",
+    "sentence_a": "특별교통대책기간 중 고속버스 운행횟수는 평상시보다 1일 평균 1221회 늘려 수송능력을 23.1% 확대한다.",
+    "sentence_b": "특별 교통 period 동안 고속버스의 수는 하루 평균 1,221회 증가할 것이고, 이것은 수송 capacity를 23.1퍼센트 증가시킬 것입니다.",
+    "sentence_b_org": "특별 교통 기간 동안 고속버스의 수는 하루 평균 1,221회 증가할 것이고, 이것은 수송 능력을 23.1퍼센트 증가시킬 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "기간",
+        "to": "period",
+        "pos": "NNG"
+      },
+      {
+        "from": "능력",
+        "to": "capacity",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00232",
+    "sentence_a": "오늘 최고기온이 삼십도 이상일지 이하일지 알려주겠나?",
+    "sentence_b": "과음하지마세요. tropical night일 때.",
+    "sentence_b_org": "과음하지마세요. 열대야 일 때.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "열대야",
+        "to": "tropical night",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00233",
+    "sentence_a": "집에서 가까운 거리에 마트랑 대중교통을 이용할 수 있어요.",
+    "sentence_b": "집에서 가까운 거리에 있는 mart와 public transportation을 이용하실 수 있습니다.",
+    "sentence_b_org": "집에서 가까운 거리에 있는 마트와 대중교통을 이용하실 수 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "마트",
+        "to": "mart",
+        "pos": "NNG"
+      },
+      {
+        "from": "대중교통",
+        "to": "public transportation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00234",
+    "sentence_a": "농협카드랑 신한카드 중 청구서를 메일로 보내도록 해둔 카드사는?",
+    "sentence_b": "농협이랑 신한 중 bill을 달마다 mail로 보내게 해둔 곳이 어디지?",
+    "sentence_b_org": "농협이랑 신한 중 청구서를 달마다 메일로 보내게 해둔 곳이 어디지?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "청구서",
+        "to": "bill",
+        "pos": "NNG"
+      },
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00235",
+    "sentence_a": "여기에 있는동안 아주 즐거운 시간을 보냈습니다.",
+    "sentence_b": "여기 있는 동안 really 즐거웠어요.",
+    "sentence_b_org": "여기 있는 동안 정말 즐거웠어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "정말",
+        "to": "really",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.9
+  },
+  {
+    "id": "pair_00236",
+    "sentence_a": "로봇 청소기 사용하지 마.",
+    "sentence_b": "일반 vacuum cleaner로 청소하자.",
+    "sentence_b_org": "일반 청소기로 청소하자.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "청소기",
+        "to": "vacuum cleaner",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.3
+  },
+  {
+    "id": "pair_00237",
+    "sentence_a": "분리된 4개의 침실과 거실 쇼파 역시 편안했습니다.",
+    "sentence_b": "bedroom과 living room, kitchen도 모두 깨끗하고 안락합니다.",
+    "sentence_b_org": "침실과 거실, 부엌도 모두 깨끗하고 안락합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "침실",
+        "to": "bedroom",
+        "pos": "NNG"
+      },
+      {
+        "from": "거실",
+        "to": "living room",
+        "pos": "NNG"
+      },
+      {
+        "from": "부엌",
+        "to": "kitchen",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.7
+  },
+  {
+    "id": "pair_00238",
+    "sentence_a": "우선 대표적인 상업 장편 영화 꽃잎, 박하사탕, 화려한 휴가는 언제 보아도 가슴을 울린다.",
+    "sentence_b": "우선, flower petals, peppermint candy, 그리고 화려한 holiday와 같은 대표적인 상업 영화들은 항상 감동적입니다.",
+    "sentence_b_org": "우선, 꽃잎, 페퍼민트 사탕, 그리고 화려한 휴가와 같은 대표적인 상업 영화들은 항상 감동적입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "꽃잎",
+        "to": "flower petals",
+        "pos": "NNG"
+      },
+      {
+        "from": "페퍼민트 사탕",
+        "to": "peppermint candy",
+        "pos": "NNG"
+      },
+      {
+        "from": "휴가",
+        "to": "holiday",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.4
+  },
+  {
+    "id": "pair_00239",
+    "sentence_a": "지하철역도 가까워서 부족함이 없는 숙소에요!",
+    "sentence_b": "프라하에서의 memory가 이 accommodation때문에 좋아질 정도에요!",
+    "sentence_b_org": "프라하에서의 기억이 이 숙소때문에 좋아질 정도에요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "기억",
+        "to": "memory",
+        "pos": "NNG"
+      },
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.0
+  },
+  {
+    "id": "pair_00240",
+    "sentence_a": "호스트도 매우 친절했고 시간 약속을 잘 지킵니다.",
+    "sentence_b": "host는 very 친절했고 time을 잘 지켰습니다.",
+    "sentence_b_org": "주인은 매우 친절했고 시간을 잘 지켰습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "주인",
+        "to": "host",
+        "pos": "NNG"
+      },
+      {
+        "from": "매우",
+        "to": "very",
+        "pos": "MAG"
+      },
+      {
+        "from": "시간",
+        "to": "time",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00241",
+    "sentence_a": "베개와 이불도 말할 것도 없이 최고였습니다.",
+    "sentence_b": "washing machine이나 기타 용품들도 고장난 것 없이 모두 잘 작동되었다.",
+    "sentence_b_org": "세탁기나 기타 용품들도 고장난 것 없이 모두 잘 작동되었다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "세탁기",
+        "to": "washing machine",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00242",
+    "sentence_a": "나이드신 부모님께서도 완전 만족하셨습니다.",
+    "sentence_b": "무엇보다도 host 분이 굉장히 친절하셨습니다.",
+    "sentence_b_org": "무엇보다도 호스트 분이 굉장히 친절하셨습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00243",
+    "sentence_a": "그리고 여기 아파트들 외관이 다 똑같이 생겨 집 찾아가기 어려웠어요",
+    "sentence_b": "여기 apartment는 다 똑같아 보여서 home에 가기가 어려웠어요.",
+    "sentence_b_org": "여기 아파트는 다 똑같아 보여서 집에 가기가 어려웠어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "아파트",
+        "to": "apartment",
+        "pos": "NNG"
+      },
+      {
+        "from": "집",
+        "to": "home",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.1
+  },
+  {
+    "id": "pair_00244",
+    "sentence_a": "제가 지메일을 이용해 사용하고 있는 페이스북 게정의 비밀번호가 뭘까요?",
+    "sentence_b": "거래처가 최근 작성한 mail 중 가장 많이 쓴 단어는?",
+    "sentence_b_org": "거래처가 최근 작성한 메일 중 가장 많이 쓴 단어는?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.5
+  },
+  {
+    "id": "pair_00245",
+    "sentence_a": "지메일에서 보낼 수 있는 최대 첨부파일 용량이 어떻게 되나요?",
+    "sentence_b": "Gmail을 사용하면서 password를 자주 바꾸지마",
+    "sentence_b_org": "지메일을 사용하면서 비밀번호를 자주 바꾸지마",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지메일",
+        "to": "Gmail",
+        "pos": "NNP"
+      },
+      {
+        "from": "비밀번호",
+        "to": "password",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.0
+  },
+  {
+    "id": "pair_00246",
+    "sentence_a": "공지 메일이 수신거부되도록 하려면 어떻게 해야하나요?",
+    "sentence_b": "교수님 mail 답장이랑 조교님 답장 중 뭐가 더 잘 와?",
+    "sentence_b_org": "교수님 메일 답장이랑 조교님 답장 중 뭐가 더 잘 와?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.4
+  },
+  {
+    "id": "pair_00247",
+    "sentence_a": "호스트가 너무 친절하고 응답도 빠릅니다",
+    "sentence_b": "host가 너무 친절하고 응답성이 높습니다.",
+    "sentence_b_org": "호스트가 너무 친절하고 응답성이 높습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00248",
+    "sentence_a": "더구나 샤워시 몸을 양 팔꿈치를 올리기 힘들정도의 좁은 공간이 나에게 고문 이었어요!",
+    "sentence_b": "저렴한 price에 믿기 힘들정도로 훌륭한 공간이었어요",
+    "sentence_b_org": "저렴한 가격에 믿기 힘들정도로 훌륭한 공간이었어요",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "가격",
+        "to": "price",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_00249",
+    "sentence_a": "창가 바로 옆에서 좋은 낮잠 잤습니다!",
+    "sentence_b": "바로 옆 downtown에 위치 정말 좋습니다.",
+    "sentence_b_org": "바로 옆 중심가에 위치 정말 좋습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "중심가",
+        "to": "downtown",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.3
+  },
+  {
+    "id": "pair_00250",
+    "sentence_a": "집은 가구랑 주방 기기 등이 다 고급이었습니다.",
+    "sentence_b": "그 house는 가구와 주방 기구들로 호화스러웠습니다.",
+    "sentence_b_org": "그 집은 가구와 주방 기구들로 호화스러웠습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "집",
+        "to": "house",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.6
+  },
+  {
+    "id": "pair_00251",
+    "sentence_a": "소를 사전 예방하기 위해 유해물질 사용제한 대상제품과 대상물질을 확대한다.",
+    "sentence_b": "손실을 사전에 예방하기 위해 유해물질의 사용이 제한되는 product와 자재를 확충합니다.",
+    "sentence_b_org": "소를 사전에 예방하기 위해 유해물질의 사용이 제한되는 제품과 자재를 확충합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "제품",
+        "to": "product",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00252",
+    "sentence_a": "29일 ‘문화가 있는 날’ 당일에는 전국 주요 영화관에서 오후 5시부터 9시 사이에 상영되는 영화를 5000원에 관람할 수 있다.",
+    "sentence_b": "29일 Culture의 날은 오후 5시부터 9시 사이에 전국 주요 극장에서 상영되는 movie를 5000원에 관람할 수 있습니다.",
+    "sentence_b_org": "29일 문화의 날은 오후 5시부터 9시 사이에 전국 주요 극장에서 상영되는 영화를 5000원에 관람할 수 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "문화",
+        "to": "Culture",
+        "pos": "NNG"
+      },
+      {
+        "from": "영화",
+        "to": "movie",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.4
+  },
+  {
+    "id": "pair_00253",
+    "sentence_a": "다음은 문 대통령 고용노동부·환경부·농림축산식품부 업무보고 모두발언 전문.",
+    "sentence_b": "‘100문 100답으로 풀어보는 housing tax’ 바로가기",
+    "sentence_b_org": "‘100문 100답으로 풀어보는 주택세금’ 바로가기",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "주택세금",
+        "to": "housing tax",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00254",
+    "sentence_a": "로봇 청소기 사용은 금지되어있어",
+    "sentence_b": "robot 청소기 쓰지말고 일반 청소기로 청소 해.",
+    "sentence_b_org": "로봇 청소기 쓰지말고 일반 청소기로 청소 해.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "로봇",
+        "to": "robot",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.4
+  },
+  {
+    "id": "pair_00255",
+    "sentence_a": "매입약정 경험이 있는 사업자를 대상으로 1차 설명회를 경기 10일, 서울 11일, 인천 14일 잠정 진행하고 신규사업자를 대상으로 12월 중 2차 설명회를 진행한다.",
+    "sentence_b": "2.5 level에는 무관중 game, 3 level이 되면 game을 중단한다.",
+    "sentence_b_org": "2.5단계에는 무관중 경기, 3단계가 되면 경기를 중단한다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "단계",
+        "to": "level",
+        "pos": "NNG"
+      },
+      {
+        "from": "경기",
+        "to": "game",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00256",
+    "sentence_a": "베니스에 가시면 무조건 이 곳에 머무르세요 !",
+    "sentence_b": "다음에 Hong Kong 가게되면 무조건 이집입니다.",
+    "sentence_b_org": "다음에 홍콩 가게되면 무조건 이집입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "홍콩",
+        "to": "Hong Kong",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.6
+  },
+  {
+    "id": "pair_00257",
+    "sentence_a": "도보로 시내까지 충분히 다닐 수 있구요",
+    "sentence_b": "downtown까지 걸어갈 수 있어요.",
+    "sentence_b_org": "시내까지 걸어갈 수 있어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "시내",
+        "to": "downtown",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.6
+  },
+  {
+    "id": "pair_00258",
+    "sentence_a": "트립닷컴한테 예약 후 어떤 내용의 메일을 받아?",
+    "sentence_b": "Gmail password를 풀기 쉽게 만들면 안돼. 어려운 것으로 정하도록 해.",
+    "sentence_b_org": "지메일 비밀번호를 풀기 쉽게 만들면 안돼. 어려운 것으로 정하도록 해.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지메일",
+        "to": "Gmail",
+        "pos": "NNP"
+      },
+      {
+        "from": "비밀번호",
+        "to": "password",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.3
+  },
+  {
+    "id": "pair_00259",
+    "sentence_a": "민간분야에서는 IT 활용 직무에 청년들이 일할 수 있는 디지털 일자리 5만개를 만들어 제공한다.",
+    "sentence_b": "민간 부문에서는 50,000개의 digital 일자리가 만들어지고 젊은이들이 IT 지원 일자리에서 일할 수 있도록 제공됩니다.",
+    "sentence_b_org": "민간 부문에서는 50,000개의 디지털 일자리가 만들어지고 젊은이들이 IT 지원 일자리에서 일할 수 있도록 제공됩니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "디지털",
+        "to": "digital",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_00260",
+    "sentence_a": "위치가 정말 좋은 메리트와 친절한 호스트가 인상 깊어요.",
+    "sentence_b": "근데 location이 엄청 좋은편은 아닙니다",
+    "sentence_b_org": "근데 숙소위치가 엄청 좋은편은 아닙니다",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소위치",
+        "to": "location",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.4
+  },
+  {
+    "id": "pair_00261",
+    "sentence_a": "정부가 전년도 동월 건강보험 급여를 우선 지급하고 사후 정산하는 ‘건강보험 선(先)지급’ 제도를 전국적으로 확대한다.",
+    "sentence_b": "또한 그동안 quarantine 없이 active monitoring만 실시했던 short-term stayers도 일부 예외적 사유를 제외하고 원칙적으로 quarantine을 실시한다.",
+    "sentence_b_org": "또한 그동안 격리 없이 능동감시만 실시했던 단기체류자도 일부 예외적 사유를 제외하고 원칙적으로 격리를 실시한다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "격리",
+        "to": "quarantine",
+        "pos": "NNG"
+      },
+      {
+        "from": "능동감시",
+        "to": "active monitoring",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00262",
+    "sentence_a": "다만 서브침대에는 덮는 이불이 없어요.",
+    "sentence_b": "유럽은 bathroom 바닥에 물 내려가는 곳이 없어요",
+    "sentence_b_org": "유럽은 화장실 바닥에 물 내려가는 곳이 없어요",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "화장실",
+        "to": "bathroom",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.4
+  },
+  {
+    "id": "pair_00263",
+    "sentence_a": "그래도 숙소는 비용대비 이용할만 하고 주인분도 친절하세요.",
+    "sentence_b": "accommodation이 really 깨끗하고 host분께서 very 친절하세요!",
+    "sentence_b_org": "숙소가 정말 깨끗하고 주인분께서 굉장히 친절하세요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      },
+      {
+        "from": "정말",
+        "to": "really",
+        "pos": "MAG"
+      },
+      {
+        "from": "주인",
+        "to": "host",
+        "pos": "NNG"
+      },
+      {
+        "from": "굉장히",
+        "to": "very",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 4,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.8
+  },
+  {
+    "id": "pair_00264",
+    "sentence_a": "영유아전문몰과 연계해 ‘안전·안심 한국 유아식품 판촉전’도 개최한다.",
+    "sentence_b": "또한 유아몰과 연계하여 '안전한 한국 infant food 홍보 exhibition'도 개최합니다.",
+    "sentence_b_org": "또한 유아몰과 연계하여 '안전한 한국 유아 식품 홍보 전시회'도 개최합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "유아 식품",
+        "to": "infant food",
+        "pos": "NNG"
+      },
+      {
+        "from": "전시회",
+        "to": "exhibition",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00265",
+    "sentence_a": "약속장소는 자꾸 변경하기 보다는 분명하게 공지해줘.",
+    "sentence_b": "deadline을 넘어서 제출하지 말고 report는 하루 전에 제출해 두도록 하거라.",
+    "sentence_b_org": "기한을 넘어서 제출하지 말고 레포트는 하루 전에 제출해 두도록 하거라.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "기한",
+        "to": "deadline",
+        "pos": "NNG"
+      },
+      {
+        "from": "레포트",
+        "to": "report",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00266",
+    "sentence_a": "제습기 기능 조작을 어떻게 하는 거야?",
+    "sentence_b": "제습기 조정하는 method를 알려줘",
+    "sentence_b_org": "제습기 조정하는 방법을 알려줘",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방법",
+        "to": "method",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00267",
+    "sentence_a": "이 행사는 과학기술정보통신부가 주최하고 대한무역투자진흥공사와 정보통신산업진흥원이 주관한다.",
+    "sentence_b": "과학기술정보통신부와 함께 AI 기반의 완전 자동화 smart farm 개발 연구개발도 추진할 계획이다.",
+    "sentence_b_org": "과학기술정보통신부와 함께 인공지능 기반의 완전 자동화 스마트팜 개발 연구개발도 추진할 계획이다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "인공지능",
+        "to": "AI",
+        "pos": "NNG"
+      },
+      {
+        "from": "스마트팜",
+        "to": "smart farm",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.4
+  },
+  {
+    "id": "pair_00268",
+    "sentence_a": "‘교육’ 영역에서는 실감형 교육을 위한 가상·혼합현실 기술, 온라인수업을 위한 대용량 통신기술 등 3개 기술이 도출됐다.",
+    "sentence_b": "교육 분야에서는 3가지 technology, 즉 현실적인 교육을 위한 virtual 및 mixed reality technology와 online 강의를 위한 대용량 통신 technology가 도출되었습니다.",
+    "sentence_b_org": "교육 분야에서는 3가지 기술, 즉 현실적인 교육을 위한 가상 및 혼합 현실 기술과 온라인 강의를 위한 대용량 통신 기술이 도출되었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "기술",
+        "to": "technology",
+        "pos": "NNG"
+      },
+      {
+        "from": "가상",
+        "to": "virtual",
+        "pos": "NNG"
+      },
+      {
+        "from": "혼합 현실 기술",
+        "to": "mixed reality technology",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00269",
+    "sentence_a": "12월 고용은 지난해 8월부터 시작된 취업자 수·고용률·실업 등 3대 고용지표의 뚜렷한 개선세가 한층 강화된 모습을 보였습니다.",
+    "sentence_b": "12월의 employment는 last year 8월에 시작된 취업자 수, 고용률, 실업률 등 3대 employment 지표에서 더 강한 improvement를 보였습니다.",
+    "sentence_b_org": "12월의 고용은 작년 8월에 시작된 취업자 수, 고용률, 실업률 등 3대 고용 지표에서 더 강한 향상을 보였습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "고용",
+        "to": "employment",
+        "pos": "NNG"
+      },
+      {
+        "from": "작년",
+        "to": "last year",
+        "pos": "NNG"
+      },
+      {
+        "from": "향상",
+        "to": "improvement",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00270",
+    "sentence_a": "이탈리아는 11월 초까지 모기가 있더라고요 .",
+    "sentence_b": "집청소는 host가 아닌 청소부가 별도로 있습니다.",
+    "sentence_b_org": "집청소는 호스트가 아닌 청소부가 별도로 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00271",
+    "sentence_a": "실시간 쌍방향 화상 수업 확인은 교사가 학생의 수업 참여 모습을 보면서 출석을 체크한다.",
+    "sentence_b": "정부가 그리는 BIG3 산업의 미래 모습을 보면 future car 분야에선 세계 최고 수준의 전기·수소차 생산국가로의 도약을 목표로 한다.",
+    "sentence_b_org": "정부가 그리는 BIG3 산업의 미래 모습을 보면 미래차 분야에선 세계 최고 수준의 전기·수소차 생산국가로의 도약을 목표로 한다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "미래차",
+        "to": "future car",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00272",
+    "sentence_a": "창 밖으로 몸을 빼면 에펠탑이 보이긴 하나 더 정확한 에펠뷰를 원하시는 분들은 다른 숙소가 더 나을 듯해요.",
+    "sentence_b": "작은 garden도 있어서 summer에 여행하시는 분들은 더 좋을듯요.",
+    "sentence_b_org": "작은 정원도 있어서 여름에 여행하시는 분들은 더 좋을듯요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "정원",
+        "to": "garden",
+        "pos": "NNG"
+      },
+      {
+        "from": "여름",
+        "to": "summer",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00273",
+    "sentence_a": "엘레베이터가 있어서 짐 옮기기도 편합니다.",
+    "sentence_b": "elevator가 있어서 캐리어옮기기 편합니다",
+    "sentence_b_org": "엘레베이터가 있어서 캐리어옮기기 편합니다",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "엘레베이터",
+        "to": "elevator",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.7
+  },
+  {
+    "id": "pair_00274",
+    "sentence_a": "국수는 5세아이도 먹을수 있을정도로 한국인입맛에 괜찮은 편이었습니다.",
+    "sentence_b": "구시가지 square에서 걸어갈수있을 정도의 location에 있습니다!",
+    "sentence_b_org": "구시가지 광장에서 걸어갈수있을 정도의 위치에 있습니다!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "광장",
+        "to": "square",
+        "pos": "NNG"
+      },
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00275",
+    "sentence_a": "축산차량은 철새도래지 통제구간 진입이, 축산 관련 종사자는 철새도래지 출입이 금지됐다.",
+    "sentence_b": "가축 차량이 migratory bird control zone으로 진입하는 것이 금지되었고, 가축 관련 노동자들은 migratory bird habitat에 진입하는 것이 금지되었습니다.",
+    "sentence_b_org": "가축 차량이 철새 통제 구역으로 진입하는 것이 금지되었고, 가축 관련 노동자들은 철새 서식지에 진입하는 것이 금지되었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "철새 통제 구역",
+        "to": "migratory bird control zone",
+        "pos": "NNG"
+      },
+      {
+        "from": "철새 서식지",
+        "to": "migratory bird habitat",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_00276",
+    "sentence_a": "이거 이외에는 깔끔했고 인테리어 신경 많이 쓴 흔적이 보여요.",
+    "sentence_b": "이것 말고도 깔끔하고 interior에 신경을 많이 쓰셨네요.",
+    "sentence_b_org": "이것 말고도 깔끔하고 인테리어에 신경을 많이 쓰셨네요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "인테리어",
+        "to": "interior",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.2
+  },
+  {
+    "id": "pair_00277",
+    "sentence_a": "우리나라 방구조 이런건 민박느낌이라고 생각하심 됩니다.",
+    "sentence_b": "이 price에 찾기 어려운 방이라고 생각합니다.",
+    "sentence_b_org": "이 가격에 찾기 어려운 방이라고 생각합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "가격",
+        "to": "price",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.8
+  },
+  {
+    "id": "pair_00278",
+    "sentence_a": "아울러 정부는 특단의 조치 차원에서 행정명령도 발령했다.",
+    "sentence_b": "아울러 농식품부는 2020년도의 food service 소비행태 조사 결과도 발표했다.",
+    "sentence_b_org": "아울러 농식품부는 2020년도의 외식 소비행태 조사 결과도 발표했다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "외식",
+        "to": "food service",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_00279",
+    "sentence_a": "정부는 지난 2017년 9월 신산업 규제혁신의 새로운 접근방식으로 ‘포괄적 네거티브 규제’를 도입, 법령과 자치법규에 이어서 공공기관 규정도 네거티브 규제로 전환한다.",
+    "sentence_b": "먼저 그린뉴딜형 특구로 광주는 국내 최초의 solar energy 집적 및 전력직거래 모델로 자급자족형 지역 전력생태계를 만들고 energy 자립도시로 나아간다.",
+    "sentence_b_org": "먼저 그린뉴딜형 특구로 광주는 국내 최초의 태양광에너지 집적 및 전력직거래 모델로 자급자족형 지역 전력생태계를 만들고 에너지 자립도시로 나아간다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "태양광에너지",
+        "to": "solar energy",
+        "pos": "NNG"
+      },
+      {
+        "from": "에너지",
+        "to": "energy",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00280",
+    "sentence_a": "여행을 마치고 나서도 호스트와 체코가 생각이 납니다.",
+    "sentence_b": "dust 한 톨 없고 bathroom도 광이 납니다.",
+    "sentence_b_org": "먼지 한 톨 없고 화장실도 광이 납니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "먼지",
+        "to": "dust",
+        "pos": "NNG"
+      },
+      {
+        "from": "화장실",
+        "to": "bathroom",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00281",
+    "sentence_a": "태풍 오면 배 타면 안된다고 했잖아.",
+    "sentence_b": "오늘 weather는 비가 올까? 아니면 맑을까?",
+    "sentence_b_org": "오늘 날씨는 비가 올까? 아니면 맑을까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "날씨",
+        "to": "weather",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.3
+  },
+  {
+    "id": "pair_00282",
+    "sentence_a": "발달장애학생은 장애정도·특성에 따라 원격학습이 가능한 학생부터 어려운 학생까지 수준이 다양합니다.",
+    "sentence_b": "발달 disability가 있는 student들은 disability의 정도와 특성에 따라 remote으로 학습할 수 있는 student부터 어려움을 겪는 student까지 수준이 다양합니다.",
+    "sentence_b_org": "발달 장애가 있는 학생들은 장애의 정도와 특성에 따라 원격으로 학습할 수 있는 학생부터 어려움을 겪는 학생까지 수준이 다양합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "학생",
+        "to": "student",
+        "pos": "NNG"
+      },
+      {
+        "from": "장애",
+        "to": "disability",
+        "pos": "NNG"
+      },
+      {
+        "from": "원격",
+        "to": "remote",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.7
+  },
+  {
+    "id": "pair_00283",
+    "sentence_a": "다음에 하와이에 방문하면 또 묵을 예정입니다.",
+    "sentence_b": "다음에 Hawaii를 방문할 때 다시 머무를 계획입니다.",
+    "sentence_b_org": "다음에 하와이를 방문할 때 다시 머무를 계획입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "하와이",
+        "to": "Hawaii",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00284",
+    "sentence_a": "위축된 지역경제를 회복시키기 위한 대책도 나왔다.",
+    "sentence_b": "오늘 meeting에서 코로나 극복과 경제회복을 위한 공동 대책이 논의되고, 전략적 동반자 관계가 한층 강화되길 기대합니다.",
+    "sentence_b_org": "오늘 회의에서 코로나 극복과 경제회복을 위한 공동 대책이 논의되고, 전략적 동반자 관계가 한층 강화되길 기대합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "회의",
+        "to": "meeting",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.6
+  },
+  {
+    "id": "pair_00285",
+    "sentence_a": "흥미로운 대화들을 계속 이어나갈 수 있을거에요.",
+    "sentence_b": "이곳에서 머문다면 최고의 Paris trip을 즐길 수 있을거에요",
+    "sentence_b_org": "이곳에서 머문다면 최고의 파리 여행을 즐길 수 있을거에요",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "파리 여행",
+        "to": "Paris trip",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00286",
+    "sentence_a": "전날 세계보건기구(WHO)가 신종코로나의 정식 명칭을 ‘COVID-19’로 결정한 데 따른 것이다.",
+    "sentence_b": "이러한 move는 세계보건기구가 전날 새로운 코로나의 official name을 \"COVID-19\"로 결정한 이후 나왔습니다.",
+    "sentence_b_org": "이러한 움직임은 세계보건기구가 전날 새로운 코로나의 공식 명칭을 \"COVID-19\"로 결정한 이후 나왔습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "움직임",
+        "to": "move",
+        "pos": "NNG"
+      },
+      {
+        "from": "공식 명칭",
+        "to": "official name",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.4
+  },
+  {
+    "id": "pair_00287",
+    "sentence_a": "비오는 주말 낮에 동네 이탈리아 사람들 외식하는 장소였습니다.",
+    "sentence_b": "무엇보다 host는 가장 친절하였습니다.",
+    "sentence_b_org": "무엇보다 호스트는 가장 친절하였습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00288",
+    "sentence_a": "내일 저녁약속이 있는거니 모레에 있는거니?",
+    "sentence_b": "내일과 모레 중에서 저녁 schedule이 있는 day가 언제이신지요?",
+    "sentence_b_org": "내일과 모레 중에서 저녁 일정이 있는날이 언제이신지요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "날",
+        "to": "day",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.6
+  },
+  {
+    "id": "pair_00289",
+    "sentence_a": "조용한 분위기의 방을 구하시면 이 곳이 최고입니다!",
+    "sentence_b": "조용한 room을 찾는다면, 이곳이 최고예요!",
+    "sentence_b_org": "조용한 방을 찾는다면, 이곳이 최고예요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방",
+        "to": "room",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00290",
+    "sentence_a": "시내까지 바로 나가는 버스 두 대가 있고요,",
+    "sentence_b": "주요시내까지 나가는 bus stop이 5분정도 거리에있어요.",
+    "sentence_b_org": "주요시내까지 나가는 버스정류장이 5분정도 거리에있어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "버스정류장",
+        "to": "bus stop",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.7
+  },
+  {
+    "id": "pair_00291",
+    "sentence_a": "유럽여행중 최고의 에어비앤비 숙소였어요!",
+    "sentence_b": "100일간의 Europe 여행 중 단연 best 숙소였습니다!",
+    "sentence_b_org": "100일간의 유럽 여행 중 단연 최고의 숙소였습니다!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "유럽",
+        "to": "Europe",
+        "pos": "NNP"
+      },
+      {
+        "from": "최고",
+        "to": "best",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.9
+  },
+  {
+    "id": "pair_00292",
+    "sentence_a": "지금 에어컨 희망온도가 몇도야?",
+    "sentence_b": "AC 바람은 직접 쐬면 안 됩니다.",
+    "sentence_b_org": "에어컨 바람은 직접 쐬면 안 됩니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "에어컨",
+        "to": "AC",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.9
+  },
+  {
+    "id": "pair_00293",
+    "sentence_a": "다음 주에 언제 비가 올 예정이야?",
+    "sentence_b": "겨울에 snow가 많은 곳은 대관령과 진부령 중 둘 중 어느 곳인가요?",
+    "sentence_b_org": "겨울에 눈이 많은 곳은 대관령과 진부령 중 둘 중 어느 곳인가요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "눈",
+        "to": "snow",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00294",
+    "sentence_a": "여름이니까 보일러는 쓰지 말고 에어컨을 써봐",
+    "sentence_b": "여덟시 말고 아홉시에 되도록이면 news를 봐바",
+    "sentence_b_org": "여덟시 말고 아홉시에 되도록이면 뉴스를 봐바",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "뉴스",
+        "to": "news",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00295",
+    "sentence_a": "태풍 경로에는 여행하지 말자.",
+    "sentence_b": "typhoon이 지나가는 path는 여행가지 맙시다.",
+    "sentence_b_org": "태풍이 지나가는 경로는 여행가지 맙시다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "태풍",
+        "to": "typhoon",
+        "pos": "NNG"
+      },
+      {
+        "from": "경로",
+        "to": "path",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00296",
+    "sentence_a": "할머니 생신잔치에 먼 친척들도 오시니 늦지 마렴.",
+    "sentence_b": "따로 선물 전달하셔야 하니 grandmother's birthday party에 늦으시면 안돼요.",
+    "sentence_b_org": "따로 선물 전달하셔야 하니 할머니 생신잔치에 늦으시면 안돼요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "할머니 생신잔치",
+        "to": "grandmother's birthday party",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.9
+  },
+  {
+    "id": "pair_00297",
+    "sentence_a": "사람이 타는 드론택시도 한번 충전으로 600㎞ 이상을 날 수 있는데, 이는 강원도에서 부산까지 대한민국 전역을 갈 수 있는 거리다.",
+    "sentence_b": "단, 개인의 physical condition이나 의료상 휴대가 필요한 item(보청기, 혈당측정기 등)은 교육청의 사전 확인을 거친 후 휴대할 수 있다.",
+    "sentence_b_org": "단, 개인의 신체조건이나 의료상 휴대가 필요한 물품(보청기, 혈당측정기 등)은 교육청의 사전 확인을 거친 후 휴대할 수 있다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "단",
+        "to": "However",
+        "pos": "MAJ"
+      },
+      {
+        "from": "신체조건",
+        "to": "physical condition",
+        "pos": "NNG"
+      },
+      {
+        "from": "물품",
+        "to": "item",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00298",
+    "sentence_a": "폭염주의보와 호우주의보 중 어떤 것이 올지 알고싶습니다.",
+    "sentence_b": "heat wave warning이 올지 heavy rain warning이 올지 궁금해.",
+    "sentence_b_org": "폭염주의보가 올지 호우주의보가 올지 궁금해.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "폭염주의보",
+        "to": "heat wave warning",
+        "pos": "NNG"
+      },
+      {
+        "from": "호우주의보",
+        "to": "heavy rain warning",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.1
+  },
+  {
+    "id": "pair_00299",
+    "sentence_a": "음악은 라디오 말고 헤드폰으로 듣지 그래",
+    "sentence_b": "Excuse me, TV 조정할 수 있는 command 좀 알려주세요",
+    "sentence_b_org": "저기요 티비 조정할 수 있는 명령어 좀 알려주세요",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "저기요",
+        "to": "Excuse me",
+        "pos": "IC"
+      },
+      {
+        "from": "명령어",
+        "to": "command",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00300",
+    "sentence_a": "해외규격인증획득 지원대상 확대, 해외환경통합정보망을 통한 현지 정보제공, 중기부 수출지원사업 우대 등 세계시장 진출 지원 프로그램도 더욱 강화할 계획이다.",
+    "sentence_b": "history·culture·environment·생태 실태조사와 기초연구, 시범사업 등 비무장지대 평화적 이용을 위한 준비를 충실히 이행할 계획이다.",
+    "sentence_b_org": "역사·문화·환경·생태 실태조사와 기초연구, 시범사업 등 비무장지대 평화적 이용을 위한 준비를 충실히 이행할 계획이다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "역사",
+        "to": "history",
+        "pos": "NNG"
+      },
+      {
+        "from": "문화",
+        "to": "culture",
+        "pos": "NNG"
+      },
+      {
+        "from": "환경",
+        "to": "environment",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00301",
+    "sentence_a": "3D VR 콘텐츠 스타트업 C사는 통신사와 함께 해외에 진출하는 등 5G 상용화로 매출액이 2018년 대비 178% 증가한 50억 원을 기록했다.",
+    "sentence_b": "이와함께 hydrogen charging station 구축에 걸림돌이 되는 입지제한 및 이격거리 완화와 운전자 self-charging 규제 완화 등 방안을 마련했다.",
+    "sentence_b_org": "이와함께 수소 충전소 구축에 걸림돌이 되는 입지제한 및 이격거리 완화와 운전자 셀프충전 규제 완화 등 방안을 마련했다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "수소 충전소",
+        "to": "hydrogen charging station",
+        "pos": "NNG"
+      },
+      {
+        "from": "셀프충전",
+        "to": "self-charging",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00302",
+    "sentence_a": "자외선이 강할 때 피부를 노출하지 마십시오.",
+    "sentence_b": "UV가 강할 때 피부노출을 금합니다.",
+    "sentence_b_org": "자외선이 강할 때 피부노출을 금합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "자외선",
+        "to": "UV",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.6
+  },
+  {
+    "id": "pair_00303",
+    "sentence_a": "테라스의 장미와 새소리가 아직도 기억에 남네요.",
+    "sentence_b": "아늑한 느낌의 space로 기억에 남습니다.",
+    "sentence_b_org": "아늑한 느낌의 공간으로 기억에 남습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "공간",
+        "to": "space",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.8
+  },
+  {
+    "id": "pair_00304",
+    "sentence_a": "보낸메일함과 임시보관함의 다른 점이 뭐야?",
+    "sentence_b": "보낸메일함과 임시보관함은 어떤 difference가 있어?",
+    "sentence_b_org": "보낸메일함과 임시보관함은 어떤 차이점이 있어?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "차이점",
+        "to": "difference",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00305",
+    "sentence_a": "‘집콘’은 카카오톡 샵(#)탭과 다음(Daum) 응용프로그램(애플리케이션)을 통해 생중계된다.",
+    "sentence_b": "'홈콘'은 KakaoTalk (#) 탭과 Daum application을 통해 생방송될 예정입니다.",
+    "sentence_b_org": "'홈콘'은 카카오톡 (#) 탭과 다음 어플리케이션을 통해 생방송될 예정입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "카카오톡",
+        "to": "KakaoTalk",
+        "pos": "NNP"
+      },
+      {
+        "from": "다음 어플리케이션",
+        "to": "Daum application",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_00306",
+    "sentence_a": "발생지역인 전북 정읍시의 모든 가금류 사육농장과 종사자는 전날부터 7일간 이동과 출입이 통제됐다.",
+    "sentence_b": "현재 47만장 수준의 contract이 완료됐다.",
+    "sentence_b_org": "현재 47만장 수준의 계약이 완료됐다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "계약",
+        "to": "contract",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00307",
+    "sentence_a": "신속한 응답, 청결한 실내청소 일본숙소 치고는 비교적 넓은 공간이  제공 됩니다.",
+    "sentence_b": "넉넉한 bed와 넓은 space가 매력적 입니다",
+    "sentence_b_org": "넉넉한 침대와 넓은 공간이 매력적 입니다",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "침대",
+        "to": "bed",
+        "pos": "NNG"
+      },
+      {
+        "from": "공간",
+        "to": "space",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.9
+  },
+  {
+    "id": "pair_00308",
+    "sentence_a": "지방공항 출·도착, 항공노선을 확충(베트남, 필리핀, 인도네시아)하고 한국으로 오는 기내에서부터 ‘지역관광’ 소개 및 안내 등 원하는 관광정보를 제공한다.",
+    "sentence_b": "중소제조업을 위한 AI platform을 구축하고 2022년까지 5G와 AI를 활용하는 smart factory 300개를 구축한다.",
+    "sentence_b_org": "중소제조업을 위한 인공지능(AI) 플랫폼을 구축하고 2022년까지 5G와 AI를 활용하는 스마트공장 300개를 구축한다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "인공지능",
+        "to": "AI",
+        "pos": "NNG"
+      },
+      {
+        "from": "플랫폼",
+        "to": "platform",
+        "pos": "NNG"
+      },
+      {
+        "from": "스마트공장",
+        "to": "smart factory",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00309",
+    "sentence_a": "가스 말이야 이번달이랑 지난달 중에 언제 더 많이 사용했니?",
+    "sentence_b": "이번달이랑 저번달이랑 보면 언제 더 gas 많이 사용하셨나요?",
+    "sentence_b_org": "이번달이랑 저번달이랑 보면 언제 더 가스 많이 사용하셨나요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "가스",
+        "to": "gas",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00310",
+    "sentence_a": "옆방  게스트와  교류때문에 불편할수있지만  숙소위치나 편의시설 만족함.",
+    "sentence_b": "한 여름에 stay하기에는 다소 불편할 수 있으나 전반적으로 만족합니다.",
+    "sentence_b_org": "한 여름에 지내기에는 다소 불편할 수 있으나 전반적으로 만족합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지내기",
+        "to": "stay",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.0
+  },
+  {
+    "id": "pair_00311",
+    "sentence_a": "상담을 원하는 이들은 종전과 같이 콜센터 대표전화(1588-0800)으로 전화하면 된다.",
+    "sentence_b": "consultation을 원하시는 분은 예전처럼 call center장(1588-0800)으로 전화하시면 됩니다.",
+    "sentence_b_org": "상담을 원하시는 분은 예전처럼 콜센터장(1588-0800)으로 전화하시면 됩니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "상담",
+        "to": "consultation",
+        "pos": "NNG"
+      },
+      {
+        "from": "콜센터장",
+        "to": "call center",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00312",
+    "sentence_a": "숙소를 비밀번호로 체크인 하는것도 굉장히 편리한 서비스였다!",
+    "sentence_b": "숙박업소에 비밀번호로 check-in을 하는 것 또한 매우 편리한 service였습니다.",
+    "sentence_b_org": "숙박업소에 비밀번호로 체크인을 하는 것 또한 매우 편리한 서비스였습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "체크인",
+        "to": "check-in",
+        "pos": "NNG"
+      },
+      {
+        "from": "서비스",
+        "to": "service",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.6
+  },
+  {
+    "id": "pair_00313",
+    "sentence_a": "집근처 바로 베니스본섬 들어가는 버스 탈수잇어서 편해요.",
+    "sentence_b": "hostel 가까이 Venice 본섬으로 들어가는 bus가 있습니다.",
+    "sentence_b_org": "숙소 가까이 베니스본섬으로 들어가는 버스가 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "hostel",
+        "pos": "NNG"
+      },
+      {
+        "from": "베니스",
+        "to": "Venice",
+        "pos": "NNP"
+      },
+      {
+        "from": "섬",
+        "to": "island",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.6
+  },
+  {
+    "id": "pair_00314",
+    "sentence_a": "관광진흥법에 따르면 여행업은 자본금 기준으로 내외국인 대상 일반여행업(1억원)과 내국인 대상 국외여행업(3000만원), 내국인 대상 국내여행업(1500만원)으로 구분된다.",
+    "sentence_b": "2교시 수학영역은 type(가형/나형)과 문형(홀수형/짝수형)이 구분되고 1교시 국어영역, 3교시 영어영역, 4교시 한국사영역은 문형(홀수형/짝수형)만 구분된다.",
+    "sentence_b_org": "2교시 수학영역은 유형(가형/나형)과 문형(홀수형/짝수형)이 구분되고 1교시 국어영역, 3교시 영어영역, 4교시 한국사영역은 문형(홀수형/짝수형)만 구분된다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "유형",
+        "to": "type",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.3
+  },
+  {
+    "id": "pair_00315",
+    "sentence_a": "건강보험 급여비 선 지급 특례는 일정 수준의 급여비를 우선 지급하고, 실제 급여비와의 차액은 사후 정산하는 방식으로, 2015년 메르스 유행 당시에도 시행한 제도다.",
+    "sentence_b": "건강보험급여비용 선지급특례는 일정 수준의 benefit을 먼저 지급하고 이후 실제 benefit과 차액을 산정하는 system으로 2015년 메르스 사태 때도 시행되었습니다.",
+    "sentence_b_org": "건강보험급여비용 선지급특례는 일정 수준의 급여를 먼저 지급하고 이후 실제 급여와 차액을 산정하는 제도로 2015년 메르스 사태 때도 시행되었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "급여",
+        "to": "benefit",
+        "pos": "NNG"
+      },
+      {
+        "from": "제도",
+        "to": "system",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00316",
+    "sentence_a": "뜨거운물 말고 미지근한 물로 좀 목욕해봐",
+    "sentence_b": "더운물 말고 미지근한 water로 목욕해주길 바라",
+    "sentence_b_org": "더운물 말고 미지근한 물로 목욕해주길 바라",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "물",
+        "to": "water",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.9
+  },
+  {
+    "id": "pair_00317",
+    "sentence_a": "더운물로 목욕하는 건 좀 자제해",
+    "sentence_b": "지금 TV volume 얼마나 큰지 좀 보여줘",
+    "sentence_b_org": "지금 티비 소리 얼마나 큰지 좀 보여줘",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "티비 소리",
+        "to": "TV volume",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00318",
+    "sentence_a": "호놀룰루에 오신다면 절대적으로 추천할 숙소입니다.",
+    "sentence_b": "말라가에 가신다면 really 추천드리는 accommodation입니다.",
+    "sentence_b_org": "말라가에 가신다면 정말 추천드리는 숙소입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "정말",
+        "to": "really",
+        "pos": "MAG"
+      },
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.3
+  },
+  {
+    "id": "pair_00319",
+    "sentence_a": "예전처럼 무작정 찾아가지 마시고 할아버지 병문안은 제 시간에 해주세요.",
+    "sentence_b": "앞으로는 할아버지 병문안을 놓치지 말고 제 time에 하자.",
+    "sentence_b_org": "앞으로는 할아버지 병문안을 놓치지 말고 제 시간에 하자.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "시간",
+        "to": "time",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.2
+  },
+  {
+    "id": "pair_00320",
+    "sentence_a": "집밖 말고 집 안은 실내 온도 어떻게 재니?",
+    "sentence_b": "봄되면 제습기말고 air purifier를 틀자",
+    "sentence_b_org": "봄되면 제습기말고 공기 청정기를 틀자",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "공기 청정기",
+        "to": "air purifier",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00321",
+    "sentence_a": "숙소 건너편에 큰 슈퍼가 있어 이용하기도 편리합니다.",
+    "sentence_b": "방 건너편에 큰 supermarket이 있어서 사용하기 편리해요.",
+    "sentence_b_org": "방 건너편에 큰 슈퍼마켓이 있어서 사용하기 편리해요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "슈퍼마켓",
+        "to": "supermarket",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00322",
+    "sentence_a": "지메일 비밀번호를 자주 재설정하지마",
+    "sentence_b": "내 mail에는 전체공지 보내지 말고 list에서 지워줘",
+    "sentence_b_org": "내 메일에는 전체공지 보내지 말고 목록에서 지워줘",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      },
+      {
+        "from": "목록",
+        "to": "list",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.3
+  },
+  {
+    "id": "pair_00323",
+    "sentence_a": "문재인 대통령은 31일 오전 청와대에서 정세균 국무총리와 추미애 법무부 장관, 진영 행정안전부 장관에게 권력기관 개혁 보고를 받았다.",
+    "sentence_b": "정세균 Prime Minister와 박양우 문체부 Minister는 지난 3일 삼청동 총리서울Residence에서 종교계 주요 지도자들과의 meeting을 가졌다.",
+    "sentence_b_org": "정세균 국무총리와 박양우 문체부 장관은 지난 3일 삼청동 총리서울공관에서 종교계 주요 지도자들과의 간담회를 가졌다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "국무총리",
+        "to": "Prime Minister",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_00324",
+    "sentence_a": "비대면 서비스 활용 촉진을 위한 클라우드 및 사이버안전망도 강화된다.",
+    "sentence_b": "또한 cloud 및 cyber 안전망이 강화되어 비대면 service 사용을 촉진할 것입니다.",
+    "sentence_b_org": "또한 클라우드 및 사이버 안전망이 강화되어 비대면 서비스 사용을 촉진할 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "클라우드",
+        "to": "cloud",
+        "pos": "NNG"
+      },
+      {
+        "from": "사이버",
+        "to": "cyber",
+        "pos": "NNG"
+      },
+      {
+        "from": "서비스",
+        "to": "service",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.6
+  },
+  {
+    "id": "pair_00325",
+    "sentence_a": "빠른 연락, 너무 깨끗하고 아름다운 집과 정원 그리고 무엇보다 너무 친절했던 두분은 제 평생 잊을 수 없을겁니다.",
+    "sentence_b": "비엔나에서 맞이했던 Christmas market을 잊을 수 없습니다.",
+    "sentence_b_org": "비엔나에서 맞이했던 크리스마스 마켓을 잊을 수 없습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "크리스마스 마켓",
+        "to": "Christmas market",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.5
+  },
+  {
+    "id": "pair_00326",
+    "sentence_a": "그러나 주번 분위기는 여성들만 자기에는 무섭울 수도 있을거같았습니다.",
+    "sentence_b": "다만 bathroom size가 남자들에게는 비좁을 것 같습니다.",
+    "sentence_b_org": "다만 욕실 크기가 남자들에게는 비좁을 것 같습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "욕실 크기",
+        "to": "bathroom size",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.1
+  },
+  {
+    "id": "pair_00327",
+    "sentence_a": "난방을 회사 말고 가정집에서 틀고싶은데 어떻게 효율적으로 할 수 있지?",
+    "sentence_b": "효율적으로 home에서 난방 키려면 어떻게 해야해?",
+    "sentence_b_org": "효율적으로 가정집에서 난방 키려면 어떻게 해야해?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "가정집",
+        "to": "home",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.1
+  },
+  {
+    "id": "pair_00328",
+    "sentence_a": "정말 아쉬운 게 있다면, 체크인 시스템입니다.",
+    "sentence_b": "정말 불행한 일이 있다면 check-in system입니다.",
+    "sentence_b_org": "정말 불행한 일이 있다면 체크인 시스템입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "체크인 시스템",
+        "to": "check-in system",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.6
+  },
+  {
+    "id": "pair_00329",
+    "sentence_a": "메일을 다 비울까 아니면 안읽은 것만 지울까?",
+    "sentence_b": "더 이상 mail 수신을 원치 않으니 list에서 제 mail을 삭제해주시기 바랍니다.",
+    "sentence_b_org": "더 이상 메일 수신을 원치 않으니 목록에서 제 메일을 삭제해주시기 바랍니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      },
+      {
+        "from": "목록",
+        "to": "list",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.6
+  },
+  {
+    "id": "pair_00330",
+    "sentence_a": "우천 시 다른 것 말고 음식 부패 주의하십시오.",
+    "sentence_b": "여름철에는 indoor temperature 너무 낮게 두면 안돼.",
+    "sentence_b_org": "여름철에는 실내온도 너무 낮게 두면 안돼.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "실내온도",
+        "to": "indoor temperature",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00331",
+    "sentence_a": "개정된 감염병예방법에 따라 과태료 부과나 영업정지 처분, 구상권 청구 등 방역수칙 위반 시의 책임은 더욱 강화될 것입니다.",
+    "sentence_b": "오랜 기다림 끝에 통과된 data 3법은 DNA industry를 발전시켜 나갈 법적 기반이 될 것입니다.",
+    "sentence_b_org": "오랜 기다림 끝에 통과된 데이터 3법은 DNA 산업을 발전시켜 나갈 법적 기반이 될 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "데이터",
+        "to": "data",
+        "pos": "NNG"
+      },
+      {
+        "from": "산업",
+        "to": "industry",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00332",
+    "sentence_a": "위치, 청결, 소음 그 모든 것이 완벽했기 때문이다.",
+    "sentence_b": "location,cleanliness 그 외의 모든 것들이 완벽했습니다.",
+    "sentence_b_org": "위치,청결 그 외의 모든 것들이 완벽했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      },
+      {
+        "from": "청결",
+        "to": "cleanliness",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.3
+  },
+  {
+    "id": "pair_00333",
+    "sentence_a": "너무나 친절하고 세심한 배려에 감사드립니다.",
+    "sentence_b": "당신의 친절하고 세심한 consideration에 감사드립니다.",
+    "sentence_b_org": "당신의 친절하고 세심한 배려에 감사드립니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "배려",
+        "to": "consideration",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00334",
+    "sentence_a": "토플 스터디 모임 예정 시간이 언제야?",
+    "sentence_b": "몇 시에 모레 예정된 schedule이 있나요?",
+    "sentence_b_org": "몇 시에 모레 예정된 스케쥴이 있나요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "스케쥴",
+        "to": "schedule",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.0
+  },
+  {
+    "id": "pair_00335",
+    "sentence_a": "아테네 시내 웬만한 호텔보다 가성비 좋은 숙소였습니다.",
+    "sentence_b": "아테네 시내의 대부분의 hotel보다 더 저렴한 숙박 시설이었습니다.",
+    "sentence_b_org": "아테네 시내의 대부분의 호텔보다 더 저렴한 숙박 시설이었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호텔",
+        "to": "hotel",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.1
+  },
+  {
+    "id": "pair_00336",
+    "sentence_a": "지하철 4호선 2번 출구 길 건너에 바로 있습니다!",
+    "sentence_b": "4호선은 시테 island까지 바로 갈 수 있다.",
+    "sentence_b_org": "4호선은 시테섬까지 바로 갈 수 있다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "섬",
+        "to": "island",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.0
+  },
+  {
+    "id": "pair_00337",
+    "sentence_a": "스팸메일함에서 학회 메일 말고 쇼핑몰 메일을 저장해줘.",
+    "sentence_b": "spam 분류를 다시 하지는 말고 spam mail함에서 shopping mall mail만 저장해놔.",
+    "sentence_b_org": "스팸 분류를 다시 하지는 말고 스팸메일함에서 쇼핑몰 메일만 저장해놔.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "스팸",
+        "to": "spam",
+        "pos": "NNG"
+      },
+      {
+        "from": "쇼핑몰 메일",
+        "to": "shopping mall mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.0
+  },
+  {
+    "id": "pair_00338",
+    "sentence_a": "오후에 여가시간 있으면 뭐 하는게 좋아?",
+    "sentence_b": "afternoon에 여가 때 뭐 할 거 없나요?",
+    "sentence_b_org": "오후에 여가 때 뭐 할 거 없나요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "오후",
+        "to": "afternoon",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.4
+  },
+  {
+    "id": "pair_00339",
+    "sentence_a": "샤워부스가 조금 작긴 한데 걱정 할 만큼은 아닙니다.",
+    "sentence_b": "저희가 묵었던 3번 room은 생각보다 조금 작은 편이었어요",
+    "sentence_b_org": "저희가 묵었던 3번방은 생각보다 조금 작은 편이었어요",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방",
+        "to": "room",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.2
+  },
+  {
+    "id": "pair_00340",
+    "sentence_a": "특히, 외출하거나 의료기관 방문 시 착용",
+    "sentence_b": "또 aircraft 및 railway crew, driver, quarantine officer 등 다수 국민과 접촉하는 종사자들에게는 mask 착용 guideline도 내렸다.",
+    "sentence_b_org": "또 항공기 및 철도 승무원, 운전기사, 검역원 등 다수 국민과 접촉하는 종사자들에게는 마스크 착용 지침도 내렸다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "항공기",
+        "to": "aircraft",
+        "pos": "NNG"
+      },
+      {
+        "from": "철도 승무원",
+        "to": "railway crew",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.5
+  },
+  {
+    "id": "pair_00341",
+    "sentence_a": "물론 호스트가 눈치 준 것은 아니지만요.",
+    "sentence_b": "물론 우리 father보다 나이가 많을테지만요.",
+    "sentence_b_org": "물론 우리 아버지보다 나이가 많을테지만요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "아버지",
+        "to": "father",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_00342",
+    "sentence_a": "제일 좋은 점은 빨래가 무료라는 점이에요!",
+    "sentence_b": "가장 좋은 point는 laundry가 무료라는 거예요!",
+    "sentence_b_org": "가장 좋은 점은 세탁물이 무료라는 거예요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "점",
+        "to": "point",
+        "pos": "NNG"
+      },
+      {
+        "from": "세탁물",
+        "to": "laundry",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.9
+  },
+  {
+    "id": "pair_00343",
+    "sentence_a": "경제 파급영향 최소화를 위해 마스크 등에 대한 확실한 시장불안 해소와 세정·통관 지원, 신규자금 공급 등 금융지원도 추진한다.",
+    "sentence_b": "정부는 소부장 RD 성과 창출 가속화를 위해 신속·유연한 research environment 조성, 소부장 전주기 RD, 공급기업 RD 지원을 보다 확대한다.",
+    "sentence_b_org": "정부는 소부장 RD 성과 창출 가속화를 위해 신속·유연한 연구 환경 조성, 소부장 전주기 RD, 공급기업 RD 지원을 보다 확대한다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "연구 환경",
+        "to": "research environment",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00344",
+    "sentence_a": "위치, 청결, 가격, 호스트 모두 좋아요.",
+    "sentence_b": "location, 청결도, price, host 모두 좋습니다.",
+    "sentence_b_org": "위치, 청결도, 가격, 호스트 모두 좋습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      },
+      {
+        "from": "가격",
+        "to": "price",
+        "pos": "NNG"
+      },
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.8
+  },
+  {
+    "id": "pair_00345",
+    "sentence_a": "지금 사용중인 네이트 메일 계정에 설정해둔 이름 알려줘",
+    "sentence_b": "학교랑 거래처 중 내가 mail을 더 많이 보낸 곳이 어딜까?",
+    "sentence_b_org": "학교랑 거래처 중 내가 메일을 더 많이 보낸 곳이 어딜까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_00346",
+    "sentence_a": "다른분들 후기처럼 계단올라가는게 힘들어요",
+    "sentence_b": "하지만 shower할때 따뜻한 물 기다리는게 힘들었어요",
+    "sentence_b_org": "하지만 샤워할때 따뜻한 물 기다리는게 힘들었어요",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "샤워",
+        "to": "shower",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.8
+  },
+  {
+    "id": "pair_00347",
+    "sentence_a": "다운타운에서 머물면 교통비가 절약될 것입니다.",
+    "sentence_b": "아마 downtown transportation cost가 거의 들지 않을 것입니다.",
+    "sentence_b_org": "아마 시내 교통비가 거의 들지 않을 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "시내 교통비",
+        "to": "downtown transportation cost",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.0
+  },
+  {
+    "id": "pair_00348",
+    "sentence_a": "신주쿠시내와 가깝다는것만으로 만족했어요",
+    "sentence_b": "room에서 에펠탑을 볼 수 있다는 것 만으로 너무 만족스러웠습니다.",
+    "sentence_b_org": "방에서 에펠탑을 볼 수 있다는 것 만으로 너무 만족스러웠습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방",
+        "to": "room",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_00349",
+    "sentence_a": "또한 관광지나 음식점 설명도 친절히 해주신다.",
+    "sentence_b": "근처에 restaurant도 가르쳐주심 근데맛있음!",
+    "sentence_b_org": "근처에 음식점도 가르쳐주심 근데맛있음!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "음식점",
+        "to": "restaurant",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.0
+  },
+  {
+    "id": "pair_00350",
+    "sentence_a": "매우 깔끔하고 현대적인 시설 치안도 좋음",
+    "sentence_b": "매우 깨끗하고, modern한 facility, 훌륭한 security입니다.",
+    "sentence_b_org": "매우 깨끗하고, 현대적인 시설, 훌륭한 보안입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "현대적인",
+        "to": "modern",
+        "pos": "NNG"
+      },
+      {
+        "from": "시설",
+        "to": "facility",
+        "pos": "NNG"
+      },
+      {
+        "from": "보안",
+        "to": "security",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00351",
+    "sentence_a": "삼월 한달동안 온 메일은 모두 지우지마",
+    "sentence_b": "너는 무슨 일을 하다가 mail 소통을 선호하게 되었어?",
+    "sentence_b_org": "너는 무슨 일을 하다가 메일 소통을 선호하게 되었어?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.5
+  },
+  {
+    "id": "pair_00352",
+    "sentence_a": "욕실은 수압이 좋고 온수가 잘 나옵니다.",
+    "sentence_b": "bathroom은 water pressure와 hot water가 좋습니다.",
+    "sentence_b_org": "욕실은 수압과 온수가 좋습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "욕실",
+        "to": "bathroom",
+        "pos": "NNG"
+      },
+      {
+        "from": "수압",
+        "to": "water pressure",
+        "pos": "NNG"
+      },
+      {
+        "from": "온수",
+        "to": "hot water",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.1
+  },
+  {
+    "id": "pair_00353",
+    "sentence_a": "그런데 아무래도 가장 유명한 관광지앞이다",
+    "sentence_b": "host는 런던에서 가장 친절한 사람일 것이다.",
+    "sentence_b_org": "호스트는 런던에서 가장 친절한 사람일 것이다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00354",
+    "sentence_a": "금융채무, 건강보험료, 세금 등 다중채무 연체의 신속한 해결을 위해 금융위, 법무부, 복지부, 국세청 등 소관 기관 간 협업으로 신속 처리절차를 구축한다.",
+    "sentence_b": "금융부채, 건강보험료, 세금 등 다중 채무 불이행의 신속한 해결을 위해 Financial Services Commission, 법무부, 보건복지부, 국세청 등 관계기관 간의 협력을 통해 신속한 처리절차를 수립하기로 했습니다.",
+    "sentence_b_org": "금융부채, 건강보험료, 세금 등 다중 채무 불이행의 신속한 해결을 위해 금융위원회, 법무부, 보건복지부, 국세청 등 관계기관 간의 협력을 통해 신속한 처리절차를 수립하기로 했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "금융위원회",
+        "to": "Financial Services Commission",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.6
+  },
+  {
+    "id": "pair_00355",
+    "sentence_a": "언제 토플 스터디 모임을 하기로 했었더라?",
+    "sentence_b": "walk은 morning과 afternoon 중에 언제 가실 계획인가요?",
+    "sentence_b_org": "산책은 아침과 오후 중에 언제 가실 계획인가요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "산책",
+        "to": "walk",
+        "pos": "NNG"
+      },
+      {
+        "from": "아침",
+        "to": "morning",
+        "pos": "NNG"
+      },
+      {
+        "from": "오후",
+        "to": "afternoon",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.3
+  },
+  {
+    "id": "pair_00356",
+    "sentence_a": "빔프로젝트 켜면 안돼",
+    "sentence_b": "형광등은 어떤 method로 remote control하는 거야?",
+    "sentence_b_org": "형광등은 어떤 방법으로 리모트 콘트롤하는 거야?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방법",
+        "to": "method",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00357",
+    "sentence_a": "세제 조금만 사용해서 세탁해주세요",
+    "sentence_b": "취침 시 fan time 조절하는 방법이 뭐였더라?",
+    "sentence_b_org": "취침 시 선풍기 시간 조절하는 방법이 뭐였더라?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "선풍기",
+        "to": "fan",
+        "pos": "NNG"
+      },
+      {
+        "from": "시간",
+        "to": "time",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00358",
+    "sentence_a": "위치나 주변 건물들, 내부 시설들 모두 괜찮았습니다.",
+    "sentence_b": "location, 주변 건물, 내부 시설 모두 괜찮았습니다.",
+    "sentence_b_org": "위치, 주변 건물, 내부 시설 모두 괜찮았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 5.0
+  },
+  {
+    "id": "pair_00359",
+    "sentence_a": "화물차 심야 할인은 화물 교통량 분산과 업계의 물류비용 절감을 위해 지난 2000년 도입한 제도다.",
+    "sentence_b": "주한 외교단은 한국의 선제적인 출국 검역 및 IT 첨단기술을 활용한 효율적인 입국 검역 system에 많은 interest를 보였다.",
+    "sentence_b_org": "주한 외교단은 한국의 선제적인 출국 검역 및 IT 첨단기술을 활용한 효율적인 입국 검역 체계에 많은 관심을 보였다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "관심",
+        "to": "interest",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00360",
+    "sentence_a": "광고 메일 자동 분류는 어떤 이유로 되고 있었던 거죠?",
+    "sentence_b": "쿠팡이 보낸 mail 중 delivery order confirmation 건이 몇 통이지?",
+    "sentence_b_org": "쿠팡이 보낸 메일 중 배송 주문 확인 건이 몇 통이지?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      },
+      {
+        "from": "배송 주문 확인 건",
+        "to": "delivery order confirmation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.3
+  },
+  {
+    "id": "pair_00361",
+    "sentence_a": "또한 저렴한 약국으로 유명한 시티파르마와 마트가 한 블럭 위치 내에 있습니다.",
+    "sentence_b": "어떤 tourist attraction도 접근하기 용이한 location에 있습니다.",
+    "sentence_b_org": "어떤 관광명소도 접근하기 용이한 위치에 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "관광명소",
+        "to": "tourist attraction",
+        "pos": "NNG"
+      },
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_00362",
+    "sentence_a": "선풍기 시간 조절하려면 어떻게 해야돼?",
+    "sentence_b": "volume 이단계랑 삼단계 중에 삼촌이 원하는게 뭔가요?",
+    "sentence_b_org": "볼륨 이단계랑 삼단계 중에 삼촌이 원하는게 뭔가요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "볼륨",
+        "to": "volume",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00363",
+    "sentence_a": "시내에서 조금 떨어진거 말고 집 자체는 완벽합니다.",
+    "sentence_b": "elevator가 없다는점 말고는 완벽합니다.",
+    "sentence_b_org": "엘리베이터가 없다는점 말고는 완벽합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "엘리베이터",
+        "to": "elevator",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.0
+  },
+  {
+    "id": "pair_00364",
+    "sentence_a": "일단 위치가 좋고 주인 아주머니와 아들분이 매우 친절합니다.",
+    "sentence_b": "우선, location이 좋고 host와 son이 매우 친절합니다.",
+    "sentence_b_org": "우선, 위치가 좋고 주인과 아들이 매우 친절합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      },
+      {
+        "from": "주인",
+        "to": "host",
+        "pos": "NNG"
+      },
+      {
+        "from": "아들",
+        "to": "son",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00365",
+    "sentence_a": "정말 잠만 잔다면 가격대비 만족스러우실거에요.",
+    "sentence_b": "가격대비 really 만족 스럽고 지리적으로 excellent합니다.",
+    "sentence_b_org": "가격대비  매우 만족 스럽고 지리적으로 훌륭합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "매우",
+        "to": "really",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.0
+  },
+  {
+    "id": "pair_00366",
+    "sentence_a": "학교 메일이 많이 와? 광고 메일이 많이 와?",
+    "sentence_b": "학교 mail 수랑 광고 mail 수 중 뭐가 더 크지?",
+    "sentence_b_org": "학교 메일 수랑 광고 메일 수 중 뭐가 더 크지?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      },
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.3
+  },
+  {
+    "id": "pair_00367",
+    "sentence_a": "삼십분 말고 한시간 이상이라도 라디오 방송 들어보세요",
+    "sentence_b": "새벽말고 낮에 lighting brightness 안 낮추면 큰일나",
+    "sentence_b_org": "새벽말고 낮에 조명등 밝기 안 낮추면 큰일나",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "조명등 밝기",
+        "to": "lighting brightness",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00368",
+    "sentence_a": "내일 마지막 수업이 열리는데 그게 몇 시인지 아시나요?",
+    "sentence_b": "아들 며칠부터 며칠까지가 internship 기간이래?",
+    "sentence_b_org": "아들 며칠부터 며칠까지가 인턴쉽 기간이래?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "인턴쉽",
+        "to": "internship",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00369",
+    "sentence_a": "약속을 잡을 때는 회사 출장을 잊지말고 고려해서 잡아주세요.",
+    "sentence_b": "앞으로는 개인 schedule을 우선시하지 말고 회사 business trip을 고려해서 appointment를 잡도록 하세요.",
+    "sentence_b_org": "앞으로는 개인 일정을 우선시하지 말고 회사 출장을 고려해서 약속을 잡도록 하세요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "약속",
+        "to": "appointment",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.3
+  },
+  {
+    "id": "pair_00370",
+    "sentence_a": "고양이가 귀엽고 호스트분이 다정하세요!",
+    "sentence_b": "사진의 room 모습 그대로이고 host분이 really 친절하세요.",
+    "sentence_b_org": "사진의 방 모습 그대로이고 호스트분이 정말 친절하세요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방",
+        "to": "room",
+        "pos": "NNG"
+      },
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      },
+      {
+        "from": "정말",
+        "to": "really",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.0
+  },
+  {
+    "id": "pair_00371",
+    "sentence_a": "지금 에어컨 희망온도가 몇도로 설정되어있어?",
+    "sentence_b": "이 요리 만드는 method 좀 설명해줘",
+    "sentence_b_org": "이 요리 만드는 방법 좀 설명해줘",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방법",
+        "to": "method",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00372",
+    "sentence_a": "따뜻한 날에 다시 머물고 싶은 곳입니다.",
+    "sentence_b": "따뜻한 day에 다시 머물고 싶은 곳이에요.",
+    "sentence_b_org": "따뜻한 날에 다시 머물고 싶은 곳이에요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "날",
+        "to": "day",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 5.0
+  },
+  {
+    "id": "pair_00373",
+    "sentence_a": "좋은 파도 들어오는 시간에는 다른 거 말고 서핑해.",
+    "sentence_b": "subzero의 추운 weather엔 얇게 입고 나가지 마라.",
+    "sentence_b_org": "영하의 추운 날씨엔 얇게 입고 나가지 마라.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "영하",
+        "to": "subzero",
+        "pos": "NNG"
+      },
+      {
+        "from": "날씨",
+        "to": "weather",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00374",
+    "sentence_a": "앞으로는 여러 일정을 잡지 말고 하루에 하나만 하세요.",
+    "sentence_b": "아드님의 birthday가 어떻게 되나요?",
+    "sentence_b_org": "아드님의 생일날짜가 어떻게 되나요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "생일날짜",
+        "to": "birthday",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00375",
+    "sentence_a": "회의는 오전에 있으십니까, 오후에 있으십니까?",
+    "sentence_b": "모레 schedule이 언제에요?",
+    "sentence_b_org": "모레 스케쥴이 언제에요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "스케쥴",
+        "to": "schedule",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.4
+  },
+  {
+    "id": "pair_00376",
+    "sentence_a": "다시 파리에 온다면 다시 이 집으로 갈 것입니다.",
+    "sentence_b": "만약 내가 Paris에 다시 온다면, 나는 이 house에 다시 갈 것입니다.",
+    "sentence_b_org": "만약 내가 파리에 다시 온다면, 나는 이 집에 다시 갈 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "파리",
+        "to": "Paris",
+        "pos": "NNP"
+      },
+      {
+        "from": "집",
+        "to": "house",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00377",
+    "sentence_a": "너 지금 뭐 키려고 하는건데? 공기청정기? 아니면 환풍기?",
+    "sentence_b": "air purifier하고 환풍기 중에 어느걸 틀고 싶어?",
+    "sentence_b_org": "공기청정기하고 환풍기 중에 어느걸 틀고 싶어?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "공기청정기",
+        "to": "air purifier",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00378",
+    "sentence_a": "4박머물렀던 포르투 즐거운 추억이 될거같습니다",
+    "sentence_b": "Porto는 4박을 하면 좋은 memory가 될 것 같아요.",
+    "sentence_b_org": "포르토는 4박을 하면 좋은 추억이 될 것 같아요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "포르토",
+        "to": "Porto",
+        "pos": "NNP"
+      },
+      {
+        "from": "추억",
+        "to": "memory",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.6
+  },
+  {
+    "id": "pair_00379",
+    "sentence_a": "메일 중에 학교에서 온 건 지우지마",
+    "sentence_b": "농협카드 bill을 받을 때 수단으로 mail을 사용하지 마세요.",
+    "sentence_b_org": "농협카드 청구서를 받을 때 수단으로 메일을 사용하지 마세요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "카드 청구서",
+        "to": "bill",
+        "pos": "NNG"
+      },
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_00380",
+    "sentence_a": "그리고 사진보다 집이 크고 복층에 있는 침대방이 굉장히 아늑해요!",
+    "sentence_b": "그리고 host는 사진에 있는 사람이 아니더라구요",
+    "sentence_b_org": "그리고 호스트는 사진에 있는 사람이 아니더라구요",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.1
+  },
+  {
+    "id": "pair_00381",
+    "sentence_a": "또한 호스트의 빠른 응답과, 샤워제품,메트로카드 주방용품등등 너무 만족스러웠습니다!",
+    "sentence_b": "그리고 host의 빠른응답도 very 좋았습니다.",
+    "sentence_b_org": "그리고 호스트의 빠른응답도 매우 좋았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      },
+      {
+        "from": "매우",
+        "to": "very",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.0
+  },
+  {
+    "id": "pair_00382",
+    "sentence_a": "다만, 공용 거실이 없어 2명이 지내기에는 좁은 듯 합니다.",
+    "sentence_b": "하지만, public living room이 없어서 두 사람이 머물기에는 너무 작은 것 같아요.",
+    "sentence_b_org": "하지만, 공공 거실이 없어서 두 사람이 머물기에는 너무 작은 것 같아요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "하지만",
+        "to": "However",
+        "pos": "MAJ"
+      },
+      {
+        "from": "공공 거실",
+        "to": "public living room",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00383",
+    "sentence_a": "지메일의 첨부파일 개수는 최대 몇개인지 알 수 있나요?",
+    "sentence_b": "수강하는 사람들이 더 question email을 많이 보내나, 청강생이 더 보내나?",
+    "sentence_b_org": "수강하는 사람들이 더 질문 메일을 많이 보내나, 청강생이 더 보내나?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "질문 메일",
+        "to": "question email",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.8
+  },
+  {
+    "id": "pair_00384",
+    "sentence_a": "사진보다 더 귀여운 집 중요지역에 가깝습니다.",
+    "sentence_b": "솔직히 photo보다 더 좋은 environment에 놀랐습니다.",
+    "sentence_b_org": "솔직히 사진보다 더 좋은 환경에 놀랐습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "사진",
+        "to": "photo",
+        "pos": "NNG"
+      },
+      {
+        "from": "환경",
+        "to": "environment",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.7
+  },
+  {
+    "id": "pair_00385",
+    "sentence_a": "숙소 인근 로컬들을 구경하는 재미가 훨씬 좋았습니다.",
+    "sentence_b": "조식 coupon을 제공하는 점도 really 좋았습니다.",
+    "sentence_b_org": "조식쿠폰을 제공하는 점도 정말 좋았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "쿠폰",
+        "to": "coupon",
+        "pos": "NNG"
+      },
+      {
+        "from": "정말",
+        "to": "really",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.3
+  },
+  {
+    "id": "pair_00386",
+    "sentence_a": "사랑스러운 강아지 미니가 반겨주는 파리의 하우스입니다!",
+    "sentence_b": "파리에 있는 사랑스러운 dog Minnie가 환영하는 집이에요!",
+    "sentence_b_org": "파리에 있는 사랑스러운 강아지 Minnie가 환영하는 집이에요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "강아지",
+        "to": "dog",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00387",
+    "sentence_a": "좋은 환전소도 근처에 있고 중앙역 바로 근처입니다.",
+    "sentence_b": "T-bone steak으로 유명한 자자 restaurant도 바로 앞에 있고, 가죽시장 또한 바로 앞 입니다.",
+    "sentence_b_org": "티본스테이크로 유명한 자자레스토랑도 바로 앞에 있고, 가죽시장 또한 바로 앞 입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "스테이크",
+        "to": "steak",
+        "pos": "NNG"
+      },
+      {
+        "from": "레스토랑",
+        "to": "restaurant",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00388",
+    "sentence_a": "위치 친절함 신속한답변 등 매우 완벽한 곳이었어요",
+    "sentence_b": "location, 친절함, 신속한 response, 완벽한 장소입니다.",
+    "sentence_b_org": "위치, 친절함, 신속한 대응, 완벽한 장소입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      },
+      {
+        "from": "대응",
+        "to": "response",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.5
+  },
+  {
+    "id": "pair_00389",
+    "sentence_a": "진급 심사 다음 달 언제로 하기로 했나요?",
+    "sentence_b": "TOEFL study group time이 언제인가?",
+    "sentence_b_org": "토플 스터디 모임 시간이 언제인가?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "토플",
+        "to": "TOEFL",
+        "pos": "NNP"
+      },
+      {
+        "from": "스터디 모임 시간",
+        "to": "study group time",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00390",
+    "sentence_a": "앞으로 운동 스케쥴은 까먹지 말고 꼭 지켜주세요.",
+    "sentence_b": "말도 없이 workout schedule을 바꾸기 보단 꼭 지키렴.",
+    "sentence_b_org": "말도 없이 운동 스케쥴을 바꾸기 보단 꼭 지키렴.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "운동 스케쥴",
+        "to": "workout schedule",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.6
+  },
+  {
+    "id": "pair_00391",
+    "sentence_a": "정부는 지난달 2일 열린 제4차 미세먼지특별대책위원회에서 지난해에 이어 두 번째로 시행하는 ‘제2차 미세먼지 계절관리제 시행계획’을 발표한 바 있다.",
+    "sentence_b": "정부는 지난달 2일 열린 제4차 미세먼지 특별대책위원회에서 지난해에 이어 두 번째 실시 plan을 발표했습니다.",
+    "sentence_b_org": "정부는 지난달 2일 열린 제4차 미세먼지 특별대책위원회에서 지난해에 이어 두 번째 실시계획을 발표했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "계획",
+        "to": "plan",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.6
+  },
+  {
+    "id": "pair_00392",
+    "sentence_a": "전자렌지가 없어서 편리성이 좀 떨어진다.",
+    "sentence_b": "microwave가 없어서 좀 덜 편해요.",
+    "sentence_b_org": "전자레인지가 없어서 좀 덜 편해요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "전자레인지",
+        "to": "microwave",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.3
+  },
+  {
+    "id": "pair_00393",
+    "sentence_a": "가격이 얼마야? 꽃무늬 양산.",
+    "sentence_b": "어느 site에서 서울 대기질 확인할 수 있지?",
+    "sentence_b_org": "어느 사이트에서 서울 대기질 확인할 수 있지?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "사이트",
+        "to": "site",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00394",
+    "sentence_a": "감염병 백신과 치료제 개발은 오랜 시간과 막대한 비용이 소요되기 때문에 민간 차원의 노력만으로는 단기간에 성과를 내기가 어렵습니다.",
+    "sentence_b": "정부는 community로 감염병이 확산되는 것을 막기 위한 지자체들의 노력에 힘을 보태겠습니다.",
+    "sentence_b_org": "정부는 지역사회로 감염병이 확산되는 것을 막기 위한 지자체들의 노력에 힘을 보태겠습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지역사회",
+        "to": "community",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_00395",
+    "sentence_a": "특히 국적원양선사 HMM은 지난 8월부터 10월까지 4척의 임시선박을 미주항로에 투입, 우리 수출화물 총 1만 5944TEU를 추가 운송했다.",
+    "sentence_b": "특히, 국내 해운회사인 HMM은 8월부터 10월까지 4척의 temporary vessel을 미국에 파견하여 총 15,944TEU의 우리 수출 화물을 선적하였습니다.",
+    "sentence_b_org": "특히, 국내 해운회사인 HMM은 8월부터 10월까지 4척의 임시 선박을 미국에 파견하여 총 15,944TEU의 우리 수출 화물을 선적하였습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "임시 선박",
+        "to": "temporary vessel",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_00396",
+    "sentence_a": "그녀는 다른 나라 사람의 문화를 전혀 이해하지 못한다.",
+    "sentence_b": "한국과 다른 프랑스 local의 주거문화를 체험하고 싶으신 분들께 적극 추천합니다!",
+    "sentence_b_org": "한국과 다른 프랑스 현지의 주거문화를 체험하고 싶으신 분들께 적극 추천합니다!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "현지",
+        "to": "local",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_00397",
+    "sentence_a": "빈 중앙역에서 트램으로 근방 올수 있구요.",
+    "sentence_b": "프라하 중앙역에서 tram으로 한번에 이동할 수 있어요!",
+    "sentence_b_org": "프라하 중앙역에서 트램으로 한번에 이동할 수 있어요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "트램",
+        "to": "tram",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.5
+  },
+  {
+    "id": "pair_00398",
+    "sentence_a": "알려줘. 손선풍기 판매하는 사이트.",
+    "sentence_b": "어느 site에서 손선풍기 판매하고 있어?",
+    "sentence_b_org": "어느 사이트에서 손선풍기 판매하고 있어?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "사이트",
+        "to": "site",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_00399",
+    "sentence_a": "저번처럼 다들 먼저 가지 말고 회사 회식은 끝까지 남아주십시오.",
+    "sentence_b": "이번주하고 다음주 중에서 더 time이 많이 나는 주는 언제야?",
+    "sentence_b_org": "이번주하고 다음주 중에서 더 시간이 많이 나는 주는 언제야?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "시간",
+        "to": "time",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.1
+  },
+  {
+    "id": "pair_00400",
+    "sentence_a": "연수가 종료된 이후에는 연수생들이 제안한 공공문화사업 기획안 중 우수 기획안을 선정해 사업 실행에 필요한 상담과 예산을 지원한다.",
+    "sentence_b": "‘분야별 교육’에서는 modern performance, publication, film industry, cultural products, popular music 등 관련 분야 사업을 실제로 기획하고 추진할 때 필요한 practical training과 case 등을 제공한다.",
+    "sentence_b_org": "‘분야별 교육’에서는 현대공연, 출판, 영화산업, 문화상품, 대중음악 등 관련 분야 사업을 실제로 기획하고 추진할 때 필요한 실무 실습과 사례 등을 제공한다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "현대공연",
+        "to": "modern performance",
+        "pos": "NNG"
+      },
+      {
+        "from": "출판",
+        "to": "publication",
+        "pos": "NNG"
+      },
+      {
+        "from": "영화산업",
+        "to": "film industry",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.4
+  },
+  {
+    "id": "pair_00401",
+    "sentence_a": "숙소 위치가 좋은편이었던 것 같습니다.",
+    "sentence_b": "숙소의 location이 좋았던 것 같아요.",
+    "sentence_b_org": "숙소의 위치가 좋았던 것 같아요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00402",
+    "sentence_a": "이에 공단은 주민들에게 아이스팩 분리배출을 독려했다.",
+    "sentence_b": "이에 대응하여, 그 company는 주민들에게 ice pack을 분리하도록 장려했습니다.",
+    "sentence_b_org": "이에 대응하여, 그 회사는 주민들에게 아이스 팩을 분리하도록 장려했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "회사",
+        "to": "company",
+        "pos": "NNG"
+      },
+      {
+        "from": "아이스 팩",
+        "to": "ice pack",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.6
+  },
+  {
+    "id": "pair_00403",
+    "sentence_a": "일단 다른분들 후기처럼 위치 너무 좋아요",
+    "sentence_b": "무엇보다도, location은 다른 모든 사람들의 review처럼 멋집니다.",
+    "sentence_b_org": "무엇보다도, 위치는 다른 모든 사람들의 리뷰처럼 멋집니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      },
+      {
+        "from": "리뷰",
+        "to": "review",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.1
+  },
+  {
+    "id": "pair_00404",
+    "sentence_a": "여기 안에 불 안 꺼진 곳 있는지 확인해봐",
+    "sentence_b": "Excuse me, 외출하고싶은데 security mode로 어떻게 바꿔요?",
+    "sentence_b_org": "저기요, 외출하고싶은데 방범 모드로 어떻게 바꿔요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "저기요",
+        "to": "Excuse me",
+        "pos": "IC"
+      },
+      {
+        "from": "방범 모드",
+        "to": "security mode",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00405",
+    "sentence_a": "내일 일출 시간 알려줘.",
+    "sentence_b": "highest temperature이 삼십도 이상인가요? 아니면 이하인가요? 오늘은.",
+    "sentence_b_org": "최고기온이 삼십도 이상인가요? 아니면 이하인가요? 오늘은.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "최고기온",
+        "to": "highest temperature",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00406",
+    "sentence_a": "아름다운 인테리어와 책으로 둘러싸인 분위기가 아직도 기억에 남습니다.",
+    "sentence_b": "저는 여전히 아름다운 interior와 책들로 둘러싸인 atmosphere를 기억합니다.",
+    "sentence_b_org": "저는 여전히 아름다운 인테리어와 책들로 둘러싸인 분위기를 기억합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "인테리어",
+        "to": "interior",
+        "pos": "NNG"
+      },
+      {
+        "from": "분위기",
+        "to": "atmosphere",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00407",
+    "sentence_a": "간단한 어매니티와 헤어드라이어가 있어 편리합니다.",
+    "sentence_b": "간단한 아밀리와 hair dryer를 가지고 있어서 편리합니다.",
+    "sentence_b_org": "간단한 아밀리와 헤어 드라이어를 가지고 있어서 편리합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "헤어 드라이어",
+        "to": "hair dryer",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00408",
+    "sentence_a": "영국가면 저는 백퍼센트 다시 갈 곳 입니다.",
+    "sentence_b": "만약 내가 UK에 간다면, 나는 100% 돌아갈 것입니다.",
+    "sentence_b_org": "만약 내가 영국에 간다면, 나는 100% 돌아갈 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "영국",
+        "to": "UK",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.0
+  },
+  {
+    "id": "pair_00409",
+    "sentence_a": "전철역도보3분 기차역도보8분정도 교통 좋았어요",
+    "sentence_b": "subway station 도보 3분, train station 도보 8분이 좋았습니다.",
+    "sentence_b_org": "지하철역 도보 3분, 기차역 도보 8분이 좋았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지하철역",
+        "to": "subway station",
+        "pos": "NNG"
+      },
+      {
+        "from": "기차역",
+        "to": "train station",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00410",
+    "sentence_a": "시내 주요지점에 모두 갈 수 있는 지하철 4호선역과 가까워서 교통이 편리합니다.",
+    "sentence_b": "city의 모든 주요 지점으로 갈 수 있는 subway 4호선 station과 가깝기 때문에 traffic이 편리합니다.",
+    "sentence_b_org": "도시의 모든 주요 지점으로 갈 수 있는 지하철 4호선 역과 가깝기 때문에 교통이 편리합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "도시",
+        "to": "city",
+        "pos": "NNG"
+      },
+      {
+        "from": "지하철",
+        "to": "subway",
+        "pos": "NNG"
+      },
+      {
+        "from": "역",
+        "to": "station",
+        "pos": "NNG"
+      },
+      {
+        "from": "교통",
+        "to": "traffic",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 4,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00411",
+    "sentence_a": "아침이 더 여유로워 아니면 저녁이 더 여유로워?",
+    "sentence_b": "더 여유있으신 time이 아침이십니까, 저녁이십니까?",
+    "sentence_b_org": "더 여유있으신 시간이 아침이십니까, 저녁이십니까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "시간",
+        "to": "time",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00412",
+    "sentence_a": "지하철역 바로앞이라 이동할때 엄청 편해요!",
+    "sentence_b": "subway station 바로 앞에 있기 때문에 이동하기가 very 편리해요!",
+    "sentence_b_org": "지하철역 바로 앞에 있기 때문에 이동하기가 매우 편리해요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지하철역",
+        "to": "subway station",
+        "pos": "NNG"
+      },
+      {
+        "from": "매우",
+        "to": "very",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_00413",
+    "sentence_a": "차단하지 말고 항상 텀블벅 광고메일을 허용하도록 해.",
+    "sentence_b": "텀블벅 ad mail을 차단하지 말고 허용해보는게 어때?",
+    "sentence_b_org": "텀블벅 광고메일을 차단하지 말고 허용해보는게 어때?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "광고메일",
+        "to": "ad mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_00414",
+    "sentence_a": "그 기차 타서 아토차역 한방에 갑니다!",
+    "sentence_b": "room은 2명이서 쓰기에 조금 좁지만 house가 너무 예뻐요!",
+    "sentence_b_org": "방은 2명이서 쓰기에 조금 좁지만 집이 너무 예뻐요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방",
+        "to": "room",
+        "pos": "NNG"
+      },
+      {
+        "from": "집",
+        "to": "house",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00415",
+    "sentence_a": "문 대통령은 마스크 생산 현장 점검에도 나섰다.",
+    "sentence_b": "문 President은 mask 생산 현장도 시찰하기 시작했습니다.",
+    "sentence_b_org": "문 대통령은 마스크 생산 현장도 시찰하기 시작했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "대통령",
+        "to": "President",
+        "pos": "NNG"
+      },
+      {
+        "from": "마스크",
+        "to": "mask",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_00416",
+    "sentence_a": "관광지 대부분을 한 호선으로 갈수 있습니다.",
+    "sentence_b": "웬만한 tourist spot은 subway나 tram으로 충분히 바로 갈 수 있어요.",
+    "sentence_b_org": "웬만한 관광지는 지하철이나 트램으로 충분히 바로 갈 수 있어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "관광지",
+        "to": "tourist spot",
+        "pos": "NNG"
+      },
+      {
+        "from": "지하철",
+        "to": "subway",
+        "pos": "NNG"
+      },
+      {
+        "from": "트램",
+        "to": "tram",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.6
+  },
+  {
+    "id": "pair_00417",
+    "sentence_a": "주위에 편의점 커피숍 상가들도 많아 돌아다니기에 괜찮은 동네예요.",
+    "sentence_b": "젊은 분들이 stay하기에 좋은 동네였어요.",
+    "sentence_b_org": "젊은 분들이 머물기에 좋은 동네였어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "머물기",
+        "to": "stay",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_00418",
+    "sentence_a": "아침이랑 오후 중에 내일 미용실에 갈 때 언제 가기로 했니?",
+    "sentence_b": "좋은 impression으로 남고 싶으시면 거래처 사람들 만나실 때는 늦지 마십시오.",
+    "sentence_b_org": "좋은 인상으로 남고 싶으시면 거래처 사람들 만나실 때는 늦지 마십시오.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "인상",
+        "to": "impression",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00419",
+    "sentence_a": "이번 년도 장마는 언제 끝날 예정이야?",
+    "sentence_b": "monsoon이 끝나는 date를 알려주세요. 이번 년도 기준으로.",
+    "sentence_b_org": "장마가 끝나는 날짜를 알려주세요. 이번 년도 기준으로.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "장마",
+        "to": "monsoon",
+        "pos": "NNG"
+      },
+      {
+        "from": "날짜",
+        "to": "date",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_00420",
+    "sentence_a": "아 한가지 중요한건, 호스트가 있을때 문 여는 법을 한번 배우는것이 편리할 것 같습니다.",
+    "sentence_b": "host가 직접 청소상태를 확인하는 것이 필요할거 같습니다.",
+    "sentence_b_org": "호스트가 직접 청소상태를 확인하는 것이 필요할거 같습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.3
+  },
+  {
+    "id": "pair_00421",
+    "sentence_a": "이번 달에 출장 가면 얼마나 있다가 와?",
+    "sentence_b": "이번 달 business trip은 어느 정도 지내다 오지?",
+    "sentence_b_org": "이번 달 출장은 어느 정도 지내다 오지?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "출장",
+        "to": "business trip",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.6
+  },
+  {
+    "id": "pair_00422",
+    "sentence_a": "에어비앤비랑 트립닷컴 중 어디가 더 메일링 광고를 집행하는 것 같아?",
+    "sentence_b": "광고메일함 비중이 Airbnb가 더 높니 Trip.com이 더 많니?",
+    "sentence_b_org": "광고메일함 비중이 에어비앤비가 더 높니 트립닷컴이 더 많니?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "에어비앤비",
+        "to": "Airbnb",
+        "pos": "NNP"
+      },
+      {
+        "from": "트립닷컴",
+        "to": "Trip.com",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.9
+  },
+  {
+    "id": "pair_00423",
+    "sentence_a": "난방 보일러 켜는 방법을 알려줄래?",
+    "sentence_b": "boiler로 난방하려면 어떻게 조작해야돼?",
+    "sentence_b_org": "보일러로 난방하려면 어떻게 조작해야돼?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "보일러",
+        "to": "boiler",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.9
+  },
+  {
+    "id": "pair_00424",
+    "sentence_a": "친한 친구와 또는 사랑하는 사람과 행복한 여행을 위해 정말 좋은 숙소로 추천합니다.",
+    "sentence_b": "가까운 friend나 사랑하는 사람들과 함께 즐거운 trip을 할 수 있는 좋은 accommodation을 추천해 드립니다.",
+    "sentence_b_org": "가까운 친구나 사랑하는 사람들과 함께 즐거운 여행을 할 수 있는 좋은 숙소를 추천해 드립니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "친구",
+        "to": "friend",
+        "pos": "NNG"
+      },
+      {
+        "from": "여행",
+        "to": "trip",
+        "pos": "NNG"
+      },
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00425",
+    "sentence_a": "집 주변에 구경할 거리는 없고 그냥 일반적인 주택가입니다.",
+    "sentence_b": "주변 person이 체코에 간다면 적극 추천할 것입니다.",
+    "sentence_b_org": "주변 사람이 체코에 간다면 적극 추천할 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "사람",
+        "to": "person",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.5
+  },
+  {
+    "id": "pair_00426",
+    "sentence_a": "하룻밤 공항 근처에서 간단히 머물긴 좋습니다!",
+    "sentence_b": "balcony에서 바라보는 동네 풍경이 really 좋습니다.",
+    "sentence_b_org": "발코니에서 바라보는 동네 풍경이 정말 좋습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "발코니",
+        "to": "balcony",
+        "pos": "NNG"
+      },
+      {
+        "from": "정말",
+        "to": "really",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_00427",
+    "sentence_a": "촉박한 시간에 다 하려 하기 보단 논문발표 날은 미리미리 준비하는게 좋겠다.",
+    "sentence_b": "우선순위에서 workout이 위에 있어야 workout이 습관화될 수 있으니까 workout schedule 미루는 일은 하지 마.",
+    "sentence_b_org": "우선 순위에서 운동이 위에 있어야 운동이 습관화될 수 있으니까 운동 스케쥴 미루는 일은 하지 마.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "운동",
+        "to": "workout",
+        "pos": "NNG"
+      },
+      {
+        "from": "스케쥴",
+        "to": "schedule",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00428",
+    "sentence_a": "오늘 GS건설과 포항시, 경북도가 함께 ‘포항 규제자유특구 GS건설 투자협약식’을 갖습니다.",
+    "sentence_b": "오늘 도시·농촌 상생 agreement을 맺었습니다.",
+    "sentence_b_org": "오늘 도시·농촌 상생 협약식을 맺었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "협약식",
+        "to": "agreement",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_00429",
+    "sentence_a": "포항 지진의 규모 알려주세요.",
+    "sentence_b": "snowfall은 어느 region이 가장 많습니까? annual.",
+    "sentence_b_org": "강설량은 어느 지역이 가장 많습니까? 연간.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "강설량",
+        "to": "snowfall",
+        "pos": "NNG"
+      },
+      {
+        "from": "지역",
+        "to": "region",
+        "pos": "NNG"
+      },
+      {
+        "from": "연간",
+        "to": "annual",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00430",
+    "sentence_a": "호스트는 굉장히 친절하고 메시지 응답도 빠르세요.",
+    "sentence_b": "host는 very 친절하고 message에 빠르게 응답합니다.",
+    "sentence_b_org": "호스트는 매우 친절하고 메시지에 빠르게 응답합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      },
+      {
+        "from": "매우",
+        "to": "very",
+        "pos": "MAG"
+      },
+      {
+        "from": "메시지",
+        "to": "message",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00431",
+    "sentence_a": "이번 여름 말고 겨울에 선생님께서는 보일러 가스 얼마나 사용하셨나요?",
+    "sentence_b": "자네, 이번 winter에 말이야 house에 있는 heating boiler gas 얼마나 사용했는가?",
+    "sentence_b_org": "자네, 이번 겨울에 말이야 집에 있는 난방 보일러 가스 얼마나 사용했는가?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "집",
+        "to": "house",
+        "pos": "NNG"
+      },
+      {
+        "from": "난방 보일러 가스",
+        "to": "heating boiler gas",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.6
+  },
+  {
+    "id": "pair_00432",
+    "sentence_a": "언제가 부모님 결혼기념일이시죠?",
+    "sentence_b": "백일 anniversary 날짜가 며칠인지 알려다오.",
+    "sentence_b_org": "백일 기념일 날짜가 며칠인지 알려다오.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "기념일",
+        "to": "anniversary",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.5
+  },
+  {
+    "id": "pair_00433",
+    "sentence_a": "위치, 편의시설, 체크인 절차 모두 좋았습니다.",
+    "sentence_b": "location, amenities, 체크인 절차 모두 좋았습니다.",
+    "sentence_b_org": "위치, 편의시설, 체크인 절차 모두 좋았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      },
+      {
+        "from": "편의시설",
+        "to": "amenities",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 5.0
+  },
+  {
+    "id": "pair_00434",
+    "sentence_a": "네이버 메일은 어떻게 한국어 자동완성을 시키는 거야?",
+    "sentence_b": "Naver Mail 사용할 때 한국어 autocomplete이 어떻게 되는거야?",
+    "sentence_b_org": "네이버 메일 사용할 때 한국어 자동완성이 어떻게 되는거야?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "네이버 메일",
+        "to": "Naver Mail",
+        "pos": "NNP"
+      },
+      {
+        "from": "자동완성",
+        "to": "autocomplete",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00435",
+    "sentence_a": "세탁기,냉장고 모두 구비되어 있기때문에 마치 내집에 있는것 같이 편안합니다.",
+    "sentence_b": "parasol, chair, snorkeling 모두가 준비되어있는 세심한 care에 감사합니다.",
+    "sentence_b_org": "파라솔 의자 스노우쿨링 모두가 준비되어있는 세심한 배려에  감사합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "배려",
+        "to": "care",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.1
+  },
+  {
+    "id": "pair_00436",
+    "sentence_a": "멋진 집에서 좋은 시간을 잘 보내다가 갑니다!",
+    "sentence_b": "정말 완벽한 accommodation에서 좋은 memory를 만들고 갑니다.",
+    "sentence_b_org": "정말 완변한 숙소에서 좋은추억을 만들고 갑니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      },
+      {
+        "from": "추억",
+        "to": "memory",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.7
+  },
+  {
+    "id": "pair_00437",
+    "sentence_a": "호스트는 매우 친절하며 메신저 응답도 빠릅니다.",
+    "sentence_b": "host도 너무 친절하고 문제 해결 아주 빠릅니다.",
+    "sentence_b_org": "호스트도 너무 친절하고 문제 해결 아주 빠릅니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.4
+  },
+  {
+    "id": "pair_00438",
+    "sentence_a": "프라하 자체가 안전한 도시이긴 하지만요.",
+    "sentence_b": "물론 저희가 cold를 많이 타긴 하지만요!",
+    "sentence_b_org": "물론 저희가 추위를 많이 타긴 하지만요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "추위",
+        "to": "cold",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00439",
+    "sentence_a": "집앞에 돌아다니는 길고양이도 귀엽습니다",
+    "sentence_b": "집 앞에서 걸어다니는 street cat도 귀엽습니다.",
+    "sentence_b_org": "집 앞에서 걸어다니는 길고양이도 귀엽습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "길고양이",
+        "to": "street cat",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.7
+  },
+  {
+    "id": "pair_00440",
+    "sentence_a": "세숫물말고 목욕물은 어떻게 설정하니?",
+    "sentence_b": "living room light 어느정도 밝아?",
+    "sentence_b_org": "거실 조명등 어느정도 밝아?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "거실 조명등",
+        "to": "living room light",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00441",
+    "sentence_a": "가계대출 중 담보·보증대출을 제외한 신용대출과 햇살론 등 보증부 정책서민금융대출에 대한 상환 유예를 신청할 수 있다.",
+    "sentence_b": "개인사업자가 개인 명의로 받은 가계 신용대출과 근로자햇살론, 햇살론, 바꿔드림론, 안전망대출 등 보증부 정책서민금융대출 및 사잇돌대출 등이 special exception된다.",
+    "sentence_b_org": "개인사업자가 개인 명의로 받은 가계 신용대출과 근로자햇살론, 햇살론, 바꿔드림론, 안전망대출 등 보증부 정책서민금융대출 및 사잇돌대출 등이 특례적용된다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "특례적용",
+        "to": "special exception",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.7
+  },
+  {
+    "id": "pair_00442",
+    "sentence_a": "특히 이번 첫 번째 토론회에서는 백신과 디지털 의료 등 감염병과 관련한 과학기술의 현황과 사회·문화적 문제를 인문적 관점에서 성찰할 계획이다.",
+    "sentence_b": "농식품부는 해당 지자체가 제출한 지원대상자를 사회보장정보시스템의 임신·출산 data 등 관련 행정정보를 활용해 적격정을 검증한 뒤 최종 선정할 계획이다.",
+    "sentence_b_org": "농식품부는 해당 지자체가 제출한 지원대상자를 사회보장정보시스템의 임신·출산 데이터 등 관련 행정정보를 활용해 적격정을 검증한 뒤 최종 선정할 계획이다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "출산 데이터",
+        "to": "data",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.4
+  },
+  {
+    "id": "pair_00443",
+    "sentence_a": "시가 9억원을 초과하는 주택의 전세대출 보증도 제한하고 차주가 전세대출을 받은 뒤 2주택 이상 보유할 경우 전세대출이 회수된다.",
+    "sentence_b": "시가 9억 원 이상 주택의 전세자금 loan 보증도 제한하고, 차주가 전세자금 loan을 받은 뒤 2주택 이상 보유하면 전세자금 loan도 회수됩니다.",
+    "sentence_b_org": "시가 9억 원 이상 주택의 전세자금 대출 보증도 제한하고, 차주가 전세자금 대출을 받은 뒤 2주택 이상 보유하면 전세자금 대출도 회수됩니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "대출",
+        "to": "loan",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00444",
+    "sentence_a": "아침 침대 위에서의 창 밖 뷰가 넘 멋져요",
+    "sentence_b": "아침 침대 창 밖의 view가 really 멋져요.",
+    "sentence_b_org": "아침 침대 창 밖의 경치가 정말 멋져요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "경치",
+        "to": "view",
+        "pos": "NNG"
+      },
+      {
+        "from": "정말",
+        "to": "really",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.6
+  },
+  {
+    "id": "pair_00445",
+    "sentence_a": "다만 에어컨 소리와 도로변에 있어 외부소리가 잘 들립니다.",
+    "sentence_b": "다만 window가 이중이 아니어서 바깥 오토바이 소리가 다 들립니다.",
+    "sentence_b_org": "다만 창이 이중이 아니어서 바깥 오토바이 소리가 다 들립니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "창",
+        "to": "window",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.2
+  },
+  {
+    "id": "pair_00446",
+    "sentence_a": "언어 소통이 조금 불편했던 점 제외하면 호스트 분도 최고예요.",
+    "sentence_b": "언어 소통의 불편함을 제외하고, host 또한 최고입니다.",
+    "sentence_b_org": "언어 소통의 불편함을 제외하고, 호스트 또한 최고입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00447",
+    "sentence_a": "위치 상벤투역근처라 모든 동선이 도보로 이동 가능합니다.",
+    "sentence_b": "accommodation 위치가 좋아 도보로 이동 가능합니다.",
+    "sentence_b_org": "숙소 위치가 좋아 도보로 이동 가능합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.0
+  },
+  {
+    "id": "pair_00448",
+    "sentence_a": "저희에게 모든 부분에서 완벽했던 숙소였어요.",
+    "sentence_b": "그것은 모든 aspect에서 우리에게 완벽한 숙소였습니다.",
+    "sentence_b_org": "그것은 모든 면에서 우리에게 완벽한 숙소였습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "면",
+        "to": "aspect",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00449",
+    "sentence_a": "이에 따라 직불금 신청 시 신청자의 보조사업 이력을 비교, 신청자와 경작자의 일치 여부를 시스템상에서 확인한다.",
+    "sentence_b": "이에 따라 direct payment 신청시 지원사업 history를 비교하고, 신청자와 경운기 등을 통해 일관성 여부를 확인하였습니다.",
+    "sentence_b_org": "이에 따라 직불금 신청시 지원사업 이력을 비교하고, 신청자와 경운기 등을 통해 일관성 여부를 확인하였습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "직불금 신청",
+        "to": "direct payment",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.9
+  },
+  {
+    "id": "pair_00450",
+    "sentence_a": "대학생과 미취업 청년들이 실질적인 혜택을 받을 수 있도록 ‘청년 버팀목 전세대출’의 조건을 개선한다.",
+    "sentence_b": "피해 기업이 경영 애로나 법률 상담을 받을 수 있도록 예술경영지원센터 안에 ‘COVID-19 전담창구’도 운영한다.",
+    "sentence_b_org": "피해 기업이 경영 애로나 법률 상담을 받을 수 있도록 예술경영지원센터 안에 ‘코로나19 전담창구’도 운영한다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "코로나19",
+        "to": "COVID-19",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00451",
+    "sentence_a": "이중 유학생이 48명, 한국 학생이 56명, 교직원이 13명이다.",
+    "sentence_b": "코로나 prevention 3법은 감염병 예방 및 관리법, 검역법, 의료법 개정안이다.",
+    "sentence_b_org": "코로나 방역 3법은 감염병 예방 및 관리법, 검역법, 의료법 개정안이다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방역",
+        "to": "prevention",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00452",
+    "sentence_a": "또 최근 1주일 간 해외 유입 확진자는 140명, 일평균 20명으로 전 주 대비 일평균 2명 늘었다.",
+    "sentence_b": "게다가, overseas로의 확인된 inflow의 수는 전주에 비해 하루 평균 2개 증가하여 140개 and 하루 평균 20개가 되었습니다.",
+    "sentence_b_org": "게다가, 해외로의 확인된 유입의 수는 전주에 비해 하루 평균 2개 증가하여 140개 그리고 하루 평균 20개가 되었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "해외",
+        "to": "overseas",
+        "pos": "NNG"
+      },
+      {
+        "from": "유입",
+        "to": "inflow",
+        "pos": "NNG"
+      },
+      {
+        "from": "그리고",
+        "to": "and",
+        "pos": "MAJ"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.9
+  },
+  {
+    "id": "pair_00453",
+    "sentence_a": "대부분의 관광지를 도보로 이용할 수 있습니다",
+    "sentence_b": "대부분의 tourist spot은 걸어서 이용할 수 있습니다.",
+    "sentence_b_org": "대부분의 관광지는 걸어서 이용할 수 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "관광지",
+        "to": "tourist spot",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.8
+  },
+  {
+    "id": "pair_00454",
+    "sentence_a": "다만 오래된 집이라 창문이 방음이 안돼요!",
+    "sentence_b": "오래된 feeling이 정말 매력적인 집이었습니다.",
+    "sentence_b_org": "오래된 느낌이 정말 매력적인 집이었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "느낌",
+        "to": "feeling",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.1
+  },
+  {
+    "id": "pair_00455",
+    "sentence_a": "여름철 수영 전에는 다치지 않도록 준비운동을 해주세요.",
+    "sentence_b": "시작되는 region이 어디지? 올해 fall foliage는.",
+    "sentence_b_org": "시작되는 지역이 어디지? 올해 단풍은.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지역",
+        "to": "region",
+        "pos": "NNG"
+      },
+      {
+        "from": "단풍",
+        "to": "fall foliage",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00456",
+    "sentence_a": "부양가족의 간소화 자료 제공동의 신청서 제출 시 국세청 전산망으로 가족관계가 확인되는 경우에는 가족 관계를 입증하는 서류를 따로 제출할 필요가 없다.",
+    "sentence_b": "다만 government는 연말 통합모집 시 신청자가 물량보다 많을 경우에는 소득 기준으로 선정할 방침이다.",
+    "sentence_b_org": "다만 정부는 연말 통합모집 시 신청자가 물량보다 많을 경우에는 소득 기준으로 선정할 방침이다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "정부",
+        "to": "government",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.5
+  },
+  {
+    "id": "pair_00457",
+    "sentence_a": "회복세는 자동차, 반도체를 중심으로 한 수출이 주도했다.",
+    "sentence_b": "자동차와 semiconductor를 중심으로 한 export가 회복세를 이끌었습니다.",
+    "sentence_b_org": "자동차와 반도체를 중심으로 한 수출이 회복세를 이끌었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "반도체",
+        "to": "semiconductor",
+        "pos": "NNG"
+      },
+      {
+        "from": "수출",
+        "to": "export",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00458",
+    "sentence_a": "호주에서 제일 좋았던 추억은 어느 관광지도 아닌 이 집이였습니다",
+    "sentence_b": "Australia의 best memory는 tourist spot이 아닌 이 집이었습니다.",
+    "sentence_b_org": "호주의 최고의 기억은 관광지가 아닌 이 집이었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호주",
+        "to": "Australia",
+        "pos": "NNP"
+      },
+      {
+        "from": "최고",
+        "to": "best",
+        "pos": "NNG"
+      },
+      {
+        "from": "기억",
+        "to": "memory",
+        "pos": "NNG"
+      },
+      {
+        "from": "관광지",
+        "to": "tourist spot",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 4,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00459",
+    "sentence_a": "가정집에서 난방은 어떻게 효율적으로 해?",
+    "sentence_b": "난방을 home에서 틀고싶은데 어떻게 효율적으로 해야할까?",
+    "sentence_b_org": "난방을 가정집에서 틀고싶은데 어떻게 효율적으로 해야할까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "가정집",
+        "to": "home",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00460",
+    "sentence_a": "수입선 다변화, 소재·부품·장비 산업 육성, 신시장 개척 등에 더욱 박차를 가해 주기 바랍니다.",
+    "sentence_b": "수입 vessel의 다양화, material, part 및 equipment industry의 발전, 새로운 market의 발전을 가속화해 주십시오.",
+    "sentence_b_org": "수입 선박의 다양화, 자재, 부품 및 장비 산업의 발전, 새로운 시장의 발전을 가속화해 주십시오.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "선박",
+        "to": "vessel",
+        "pos": "NNG"
+      },
+      {
+        "from": "자재",
+        "to": "material",
+        "pos": "NNG"
+      },
+      {
+        "from": "부품",
+        "to": "part",
+        "pos": "NNG"
+      },
+      {
+        "from": "장비 산업",
+        "to": "equipment industry",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 4,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00461",
+    "sentence_a": "이 두 요인 때문에 전반적으로 찝찝했어요.",
+    "sentence_b": "피렌체라는 city가 이 place 때문에 좋은 memory로 남았어요.",
+    "sentence_b_org": "피렌체라는 도시가 이 곳 때문에 좋은 기억으로 남았어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "도시",
+        "to": "city",
+        "pos": "NNG"
+      },
+      {
+        "from": "곳",
+        "to": "place",
+        "pos": "NNG"
+      },
+      {
+        "from": "기억",
+        "to": "memory",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00462",
+    "sentence_a": "비 올 때는 잘 젖는 옷 안입으면 안돼?",
+    "sentence_b": "당신은 earthquake와 tsunami 중 어느 것을 무서워하십니까?",
+    "sentence_b_org": "당신은 지진과 해일 중 어느 것을 무서워하십니까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지진",
+        "to": "earthquake",
+        "pos": "NNG"
+      },
+      {
+        "from": "해일",
+        "to": "tsunami",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00463",
+    "sentence_a": "주말에 가기로 예정했던 계곡이 어디에 위치하여 있는지 알고 싶어요.",
+    "sentence_b": "어느 location에 weekend에 가기로 말했던 valley가 있나 알려줘.",
+    "sentence_b_org": "어느 위치에 주말에 가기로 말했던 계곡이 있나 알려줘.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      },
+      {
+        "from": "주말",
+        "to": "weekend",
+        "pos": "NNG"
+      },
+      {
+        "from": "계곡",
+        "to": "valley",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.6
+  },
+  {
+    "id": "pair_00464",
+    "sentence_a": "또 저소득층이 전기차 보조금 혜택을 보다 많이 받을 수 있도록 보조금액도 상향 조정된다.",
+    "sentence_b": "또 해외 입양 가능성이 있는 ‘장기실종아동’을 해외에서도 찾을 수 있도록 method를 확대했다는 측면에서도 큰 meaning이 있는 것으로 평가된다.",
+    "sentence_b_org": "또 해외 입양 가능성이 있는 ‘장기실종아동’을 해외에서도 찾을 수 있도록 방법을 확대했다는 측면에서도 큰 의미가 있는 것으로 평가된다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방법",
+        "to": "method",
+        "pos": "NNG"
+      },
+      {
+        "from": "의미",
+        "to": "meaning",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00465",
+    "sentence_a": "또 제약기업 등을 대상으로 AI 신약개발 선도 프로젝트를 지원하고, 전문가 양성을 위한 교육도 확대한다.",
+    "sentence_b": "또 제약사 AI 신약개발을 선도하는 business를 지원하고 전문가 양성을 위한 education도 확대하기로 했습니다.",
+    "sentence_b_org": "또 제약사 AI 신약개발을 선도하는 사업을 지원하고 전문가 양성을 위한 교육도 확대하기로 했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "사업",
+        "to": "business",
+        "pos": "NNG"
+      },
+      {
+        "from": "교육",
+        "to": "education",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00466",
+    "sentence_a": "모금 첫날인 2월 26일 들어온 돈 100만 원을 시작으로 모금액은 이후 급격히 늘었다.",
+    "sentence_b": "지급 amount는 1인 가구 40만원, 2인 가구 60만원, 3인 가구 80만원, 4인 이상 가구 100만원이다.",
+    "sentence_b_org": "지급 액수는 1인 가구 40만원, 2인 가구 60만원, 3인 가구 80만원, 4인 이상 가구 100만원이다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "액수",
+        "to": "amount",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_00467",
+    "sentence_a": "샤워기 수압은 오히려 강한 편이였습니다.",
+    "sentence_b": "그리고 shower pressure이 아주아주아주 낮습니다",
+    "sentence_b_org": "그리고 샤워기 수압이 아주아주아주 낮습니다",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "샤워기 수압",
+        "to": "shower pressure",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.4
+  },
+  {
+    "id": "pair_00468",
+    "sentence_a": "하물며 이 곳 앞의 가게 주인들도 친절했어요",
+    "sentence_b": "house가 너무 이쁘고 house owner도 친절하십니다.",
+    "sentence_b_org": "집이 너무 이쁘고 집 주인도 친절하십니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "집",
+        "to": "house",
+        "pos": "NNG"
+      },
+      {
+        "from": "집 주인",
+        "to": "house owner",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.3
+  },
+  {
+    "id": "pair_00469",
+    "sentence_a": "그것 보다는 냉장고가 없는게 가장 아쉬웠습니다.",
+    "sentence_b": "다만 refrigerator가 없는게 조금 아쉬었습니다.",
+    "sentence_b_org": "다만 냉장고가 없는게 조금 아쉬었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "냉장고",
+        "to": "refrigerator",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00470",
+    "sentence_a": "국토부는 향후 교육수요를 감안, 지정교육기관의 규모를 적정수준으로 확대할 계획이다.",
+    "sentence_b": "문체부와 국어원은 공공 용어의 foreign language 번역과 international exchange 업무를 추진하는 정부 부처와 지자체, 공공기관 등의 담당자들에게 guide를 배포할 계획이다.",
+    "sentence_b_org": "문체부와 국어원은 공공 용어의 외국어 번역과 국제 교류 업무를 추진하는 정부 부처와 지자체, 공공기관 등의 담당자들에게 안내서를 배포할 계획이다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "외국어 번역",
+        "to": "foreign language",
+        "pos": "NNG"
+      },
+      {
+        "from": "국제 교류 업무",
+        "to": "international exchange",
+        "pos": "NNG"
+      },
+      {
+        "from": "안내서",
+        "to": "guide",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.1
+  },
+  {
+    "id": "pair_00471",
+    "sentence_a": "어촌뉴딜 300사업을 중심으로 어촌에 활력을 불어넣고, 그간 소외되었던 내륙어촌의 기반 확충도 추진한다.",
+    "sentence_b": "여기에 마을 숙원사업이었던 마을 pension 사업도 진행중이다.",
+    "sentence_b_org": "여기에 마을 숙원사업이었던 마을 펜션 사업도 진행중이다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "펜션",
+        "to": "pension",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00472",
+    "sentence_a": "참가자들은 ‘추천 웰니스관광지’에서 제공하는 다양한 치유 프로그램을 1박 2일간 체험할 수 있다.",
+    "sentence_b": "참가자들은 1박 2일 동안 \"Recommended Wellness Tourist Site\"에서 제공하는 다양한 healing program을 경험할 수 있습니다.",
+    "sentence_b_org": "참가자들은 1박 2일 동안 \"Recommended Wellness Tourist Site\"에서 제공하는 다양한 힐링 프로그램을 경험할 수 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "힐링",
+        "to": "healing",
+        "pos": "NNG"
+      },
+      {
+        "from": "프로그램",
+        "to": "program",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00473",
+    "sentence_a": "집주인분 엄청 착하시고 연락도 잘 돼요.",
+    "sentence_b": "주인분이 very 친절하시고 답변도 빨라요.",
+    "sentence_b_org": "주인분이 매우 친절하시고 답변도 빨라요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "매우",
+        "to": "very",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00474",
+    "sentence_a": "하지만 조금 추운 것과 시끄러운 것 두가지를 모두 감수할 수 있을만큼 숙소의 위치가 좋았다.",
+    "sentence_b": "하지만, 그 accommodation의 location은 추위와 시끄러운 sound를 모두 수용할 수 있을 만큼 좋았습니다.",
+    "sentence_b_org": "하지만, 그 숙소의 위치는 추위와 시끄러운 소리를 모두 수용할 수 있을 만큼 좋았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "하지만",
+        "to": "However",
+        "pos": "MAJ"
+      },
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      },
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_00475",
+    "sentence_a": "묵는 동안 개미 몇마리와 바퀴벌레 조그만한거 하나 발견했습니다.",
+    "sentence_b": "우리는 night에 ant와 작은 cockroach를 발견했습니다.",
+    "sentence_b_org": "우리는 밤에 개미와 작은 바퀴벌레를 발견했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "밤",
+        "to": "night",
+        "pos": "NNG"
+      },
+      {
+        "from": "개미",
+        "to": "ant",
+        "pos": "NNG"
+      },
+      {
+        "from": "바퀴벌레",
+        "to": "cockroach",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_00476",
+    "sentence_a": "호스트가 이 집에 신경을 많이 쓴다는게 보였습니다.",
+    "sentence_b": "landlord가 이 house에 신경을 많이 쓰는 걸 봤어요.",
+    "sentence_b_org": "집주인이 이 집에 신경을 많이 쓰는 걸 봤어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "집주인",
+        "to": "landlord",
+        "pos": "NNG"
+      },
+      {
+        "from": "집",
+        "to": "house",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00477",
+    "sentence_a": "너희 부모님 집 가스레인지 한달 비용이 얼마이니?",
+    "sentence_b": "아침 shower는 더운물로 할 수 있게 협조 바랍니다.",
+    "sentence_b_org": "아침 샤워는 더운물로 할 수 있게 협조 바랍니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "샤워",
+        "to": "shower",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00478",
+    "sentence_a": "또 ‘K-유니콘 프로젝트’를 통해 벤처기업을 기업가치 1조원 이상인 유니콘기업으로 육성하기 위한 지원체계를 구축한다.",
+    "sentence_b": "또한, 'K-유니콘 project'를 통해 venture기업을 기업가치 1조원 이상의 유니콘 기업으로 육성하기 위한 지원 system을 구축할 예정입니다.",
+    "sentence_b_org": "또한, 'K-유니콘 프로젝트'를 통해 벤처기업을 기업가치 1조원 이상의 유니콘 기업으로 육성하기 위한 지원 시스템을 구축할 예정입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "프로젝트",
+        "to": "project",
+        "pos": "NNG"
+      },
+      {
+        "from": "벤처기업",
+        "to": "venture",
+        "pos": "NNG"
+      },
+      {
+        "from": "지원 시스템",
+        "to": "system",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00479",
+    "sentence_a": "우선 신천지 대구교회 신도를 대상으로 코로나19 전수검사와 격리 해제 전까지 전수 확진검사를 시행할 계획으로, 민간 의료기관 4개소를  추가 지정했다.",
+    "sentence_b": "우선 신천지 대구교회 신도들을 대상으로 코로나 19호 검진과 격리 해제 전 전면 확인 검사를 실시할 plan으로 민간 의료기관 4곳이 추가로 지정됐습니다.",
+    "sentence_b_org": "우선 신천지 대구교회 신도들을 대상으로 코로나 19호 검진과 격리 해제 전 전면 확인 검사를 실시할 계획으로 민간 의료기관 4곳이 추가로 지정됐습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "계획",
+        "to": "plan",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00480",
+    "sentence_a": "또한 청소년 활동 개념과 범위를 재정의하고, 시설 유형 개편 등 환경 변화에 대응한 ‘청소년활동진흥법’ 전부를 개정한다.",
+    "sentence_b": "또한 green economy를 선도하는 혁신 venture·startup을 집중 육성하고 지역산업 개편 및 규제자유특구 확대 등 기반을 조성한다.",
+    "sentence_b_org": "또한 그린 경제를 선도하는 혁신 벤처·스타트업을 집중 육성하고 지역산업 개편 및 규제자유특구 확대 등 기반을 조성한다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "그린 경제",
+        "to": "green economy",
+        "pos": "NNG"
+      },
+      {
+        "from": "벤처",
+        "to": "venture",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.1
+  },
+  {
+    "id": "pair_00481",
+    "sentence_a": "보일러 모드 설정 어떻게 해?",
+    "sentence_b": "저 detergent 오늘 laundry 한번 할때 얼마나 썼니?",
+    "sentence_b_org": "저 세제 오늘 세탁 한번 할때 얼마나 썼니?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "세제",
+        "to": "detergent",
+        "pos": "NNG"
+      },
+      {
+        "from": "세탁",
+        "to": "laundry",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00482",
+    "sentence_a": "전국에서 파견된 250여 명의 공중보건의뿐 아니라",
+    "sentence_b": "그러나 다른 region에서 대구로 파견된 public health doctor 중 격리자는 7명으로 확인됐습니다.",
+    "sentence_b_org": "그러나 타 지역에서 대구로 파견된 공중보건의 중 격리자는 7명으로 확인됐습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지역",
+        "to": "region",
+        "pos": "NNG"
+      },
+      {
+        "from": "공중보건의",
+        "to": "public health doctor",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.8
+  },
+  {
+    "id": "pair_00483",
+    "sentence_a": "대문말고 현관문 잠금장치 점검해야 되니까 업체 불러.",
+    "sentence_b": "house에 있는 조명 개수 늘리면 큰일나",
+    "sentence_b_org": "집안에 있는 조명 개수 늘리면 큰일나",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "집안",
+        "to": "house",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00484",
+    "sentence_a": "먼저, 1부에서는 코로나19 지원대책으로 두 개의 안건을 논의했다.",
+    "sentence_b": "먼저, 첫 번째 part에서는 Corona 19 지원 조치로서 두 가지 issue에 대해 논의했습니다.",
+    "sentence_b_org": "먼저, 첫 번째 파트에서는 Corona 19 지원 조치로서 두 가지 문제에 대해 논의했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "파트",
+        "to": "part",
+        "pos": "NNG"
+      },
+      {
+        "from": "문제",
+        "to": "issue",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00485",
+    "sentence_a": "전철역과 숙소 사이에 세인즈버리 같은 마트도 있습니다",
+    "sentence_b": "accommodation 주변에 숨은 맛집들도 많이 있고요.",
+    "sentence_b_org": "숙소 주변에 숨은 맛집들도 많이 있고요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.2
+  },
+  {
+    "id": "pair_00486",
+    "sentence_a": "보낸 메일함에서 메일에 별표를 하고 싶은데 어떻게 하는거야?",
+    "sentence_b": "보낸 mail함의 mail을 별표하려면 어떻게 해야해?",
+    "sentence_b_org": "보낸 메일함의 메일을 별표하려면 어떻게 해야해?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00487",
+    "sentence_a": "전반적으로 가격대비 나쁘지 않은 선택입니다.",
+    "sentence_b": "전반적으로, price에 대한 나쁜 choice는 아닙니다.",
+    "sentence_b_org": "전반적으로, 가격에 대한 나쁜 선택은 아닙니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "가격",
+        "to": "price",
+        "pos": "NNG"
+      },
+      {
+        "from": "선택",
+        "to": "choice",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00488",
+    "sentence_a": "엄마한테 혼나기 싫으면 티비 그만 봐",
+    "sentence_b": "Excuse me, 지금 AC 희망온도가 몇도로 설정되어있어요?",
+    "sentence_b_org": "저기요, 지금 에어컨 희망온도가 몇도로 설정되어있어요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "저기요",
+        "to": "Excuse me",
+        "pos": "IC"
+      },
+      {
+        "from": "에어컨",
+        "to": "AC",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00489",
+    "sentence_a": "그리고  구글에 주소 치면 약간 떨어진 곳이 나와요.",
+    "sentence_b": "그리고 Google에 address를 입력하면, 조금 멀리 떨어져 있는 것을 볼 수 있습니다.",
+    "sentence_b_org": "그리고 구글에 주소를 입력하면, 조금 멀리 떨어져 있는 것을 볼 수 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "구글",
+        "to": "Google",
+        "pos": "NNP"
+      },
+      {
+        "from": "주소",
+        "to": "address",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_00490",
+    "sentence_a": "가족단위 또한 직접 음식을 만들어 먹을 사람에겐 다소 불편한 위치입니다.",
+    "sentence_b": "조식은 주인할머니가 직접 bread를 만들어 주십니다.",
+    "sentence_b_org": "조식은 주인할머니가 직접 빵을 만들어 주십니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "빵",
+        "to": "bread",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00491",
+    "sentence_a": "멜번 여행자에는 이 숙소 위치가 좋았습니다.",
+    "sentence_b": "이 accommodation의 location은 멜버른 traveler에게 좋았습니다.",
+    "sentence_b_org": "이 숙소의 위치는 멜버른 여행자에게 좋았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      },
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      },
+      {
+        "from": "여행자",
+        "to": "traveler",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00492",
+    "sentence_a": "지난해 혁신도시로 이전한 공공기관의 지역인재 채용률은 25.9%로 목표를 초과 달성했다.",
+    "sentence_b": "여성과 고령층의 employment rate도 각각 51.6%와 32.9%로 역대 최고치를 기록했다.",
+    "sentence_b_org": "여성과 고령층의 고용률도 각각 51.6%와 32.9%로 역대 최고치를 기록했다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "고용률",
+        "to": "employment rate",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_00493",
+    "sentence_a": "도내 신선농산물을 담은 농산물 꾸러미를 도청 및 도 교육청 소속 공무원에게 판매해 지역농가의 판로를 지원한다.",
+    "sentence_b": "120개 companies를 선정해 전년 average 지원금 2000만 원 대비 2배 수준의 지원금인 average 4500만 원을 지원한다.",
+    "sentence_b_org": "120개 기업을 선정해 전년 평균 지원금 2000만 원 대비 2배 수준의 지원금인 평균 4500만 원을 지원한다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "기업",
+        "to": "companies",
+        "pos": "NNG"
+      },
+      {
+        "from": "평균",
+        "to": "average",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.5
+  },
+  {
+    "id": "pair_00494",
+    "sentence_a": "화이트 에펠을 볼 수 있는 저녁이 너무 행복했어요.",
+    "sentence_b": "씻을 수 있는 bathroom이 하나 restroom이 두개였어요.",
+    "sentence_b_org": "씻을 수 있는 욕실이 하나 화장실이 두개였어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "욕실",
+        "to": "bathroom",
+        "pos": "NNG"
+      },
+      {
+        "from": "화장실",
+        "to": "restroom",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00495",
+    "sentence_a": "다른 업무 말고 메일 관리는 윈도우 설치 후 하시기 바랍니다.",
+    "sentence_b": "Windows 설치한 다음에 다른 person한테 시키지 말고 직접 mail 관리해",
+    "sentence_b_org": "윈도우 설치한 다음에 다른 사람한테 시키지 말고 직접 메일 관리해",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "윈도우",
+        "to": "Windows",
+        "pos": "NNP"
+      },
+      {
+        "from": "사람",
+        "to": "person",
+        "pos": "NNG"
+      },
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.7
+  },
+  {
+    "id": "pair_00496",
+    "sentence_a": "‘백년가게 구역(Zone)’은 행복한 백화점 5층 식당가의 공실을 활용, 100평 규모로 조성되며 입점을 희망하는 백년가게 3곳이 오는 11월 말까지 입점한다.",
+    "sentence_b": "100년 된 shop 구역은 department store 5층에 있는 행복한 restaurant의 빈자리를 이용하여 100평 규모의 규모로 조성될 것이며, 3개의 100년 된 shop들이 11월 말까지 입점을 희망하고 있습니다.",
+    "sentence_b_org": "100년 된 상점 구역은 백화점 5층에 있는 행복한 레스토랑의 빈자리를 이용하여 100평 규모의 규모로 조성될 것이며, 3개의 100년 된 상점들이 11월 말까지 입점을 희망하고 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "상점",
+        "to": "shop",
+        "pos": "NNG"
+      },
+      {
+        "from": "백화점",
+        "to": "department store",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.0
+  },
+  {
+    "id": "pair_00497",
+    "sentence_a": "저녁이니까 바쁘게 여러 약속을 하지 말고 하나만 잡아.",
+    "sentence_b": "저번처럼 evening에 약속을 여러개 잡지 말고 하나만 잡아주세요.",
+    "sentence_b_org": "저번처럼 저녁에 약속을 여러개 잡지 말고 하나만 잡아주세요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "저녁",
+        "to": "evening",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00498",
+    "sentence_a": "겨울에 더 추운 곳은 인제와 원통 중 어디인가요?",
+    "sentence_b": "겨울에 더 추운 place는 인제입니까? 원통입니까?",
+    "sentence_b_org": "겨울에 더 추운 곳은 인제입니까? 원통입니까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "곳",
+        "to": "place",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_00499",
+    "sentence_a": "호스트의 친절함과 빠른 응답에 감사드립니다",
+    "sentence_b": "host의 친절함과 배려에 감사했습니다.",
+    "sentence_b_org": "호스트의 친절함과 배려에 감사했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_00500",
+    "sentence_a": "셋째, 정부가 일자리 창출에 직접 나서겠습니다.",
+    "sentence_b": "셋째, government가 직접 일자리 창출을 시작할 것입니다.",
+    "sentence_b_org": "셋째, 정부가 직접 일자리 창출을 시작할 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "정부",
+        "to": "government",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00501",
+    "sentence_a": "주변에 있는 식당들이 대체로 맛이나 가격이 괜찮았습니다.",
+    "sentence_b": "제 주변의 restaurant들은 대체로 taste가 좋았고 price도 좋았습니다.",
+    "sentence_b_org": "제 주변의 식당들은 대체로 맛이 좋았고 가격도 좋았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "주변",
+        "to": "restaurant",
+        "pos": "NNG"
+      },
+      {
+        "from": "맛",
+        "to": "taste",
+        "pos": "NNG"
+      },
+      {
+        "from": "가격",
+        "to": "price",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00502",
+    "sentence_a": "그들이 당신을 데리러 지하철역으로 올 것입니다.",
+    "sentence_b": "그들의 advice와 도움이 없었다면, 이렇게까지 좋은 travel을 할수없었을것입니다.",
+    "sentence_b_org": "그들의 조언과 도움이 없었다면,  이렇게까지 좋은 여행을 할수없었을것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "조언",
+        "to": "advice",
+        "pos": "NNG"
+      },
+      {
+        "from": "여행",
+        "to": "travel",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.1
+  },
+  {
+    "id": "pair_00503",
+    "sentence_a": "불필요한 학회메일이 용량을 차지하지 않도록 이번 달에 받은 학회메일은 모두 삭제해줘.",
+    "sentence_b": "메일함을 다 비우지 말고 이번 달에 받은 conference mail만 삭제해.",
+    "sentence_b_org": "메일함을 다 비우지 말고 이번 달에 받은 학회메일만 삭제해.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "학회메일",
+        "to": "conference mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.4
+  },
+  {
+    "id": "pair_00504",
+    "sentence_a": "우선 렌트하시지 않는 분들은 이 숙소가 굉장히 불편하실 거예요.",
+    "sentence_b": "고민하시는 분들 바로 예약 하셔도 regret 안하실거에요",
+    "sentence_b_org": "고민하시는 분들 바로 예약 하셔도 후회안하실거에요",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "후회",
+        "to": "regret",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00505",
+    "sentence_a": "너는 베란다가 불이 켜진건지, 아니면 거실이 불이 켜진 건지 알아?",
+    "sentence_b": "모니터말고 Bluetooth speaker를 사야되지 않을까?",
+    "sentence_b_org": "모니터말고 블루투스 스피커를 사야되지 않을까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "블루투스 스피커",
+        "to": "Bluetooth speaker",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00506",
+    "sentence_a": "남자친구가 언제 태어났는지 알아?",
+    "sentence_b": "앞으로는 늦지 말고 appointment를 미리 확인하렴.",
+    "sentence_b_org": "앞으로는 늦지 말고 약속을 미리 확인하렴.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "약속",
+        "to": "appointment",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00507",
+    "sentence_a": "자꾸 티비 보려고 하지마",
+    "sentence_b": "어떻게 이 dish를 만드는지 알려줘",
+    "sentence_b_org": "어떻게 이 요리를 만드는지 알려줘",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "요리",
+        "to": "dish",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00508",
+    "sentence_a": "자동차는 1년 만에 3개월 연속 증가와 올해 두 번째 높은 실적(39억 9000만 달러)을 달성했다.",
+    "sentence_b": "자동차 수는 1년 만에 3개월 연속 증가했고 this year에는 39억 9천만 달러로 두 번째로 높은 performance을 올렸습니다.",
+    "sentence_b_org": "자동차 수는 1년 만에 3개월 연속 증가했고 올해에는 39억 9천만 달러로 두 번째로 높은 실적을 올렸습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "올해",
+        "to": "this year",
+        "pos": "NNG"
+      },
+      {
+        "from": "실적",
+        "to": "performance",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_00509",
+    "sentence_a": "계곡 주말에 가기로 한 데 어디에 있는지 아니?",
+    "sentence_b": "weekend에 가자고 했던 valley location이 어디야?",
+    "sentence_b_org": "주말에 가자고 했던 계곡 위치가 어디야?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "주말",
+        "to": "weekend",
+        "pos": "NNG"
+      },
+      {
+        "from": "계곡 위치",
+        "to": "valley location",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.4
+  },
+  {
+    "id": "pair_00510",
+    "sentence_a": "선풍기 바람세기 바꾸고 싶을 때는 뭐라고 해야하니?",
+    "sentence_b": "fan speed control command는 뭐가 있을까?",
+    "sentence_b_org": "선풍기 바람세기 조정 명령어가 뭐가 있을까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "선풍기 바람세기 조정",
+        "to": "fan speed control",
+        "pos": "NNG"
+      },
+      {
+        "from": "명령어",
+        "to": "command",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.0
+  },
+  {
+    "id": "pair_00511",
+    "sentence_a": "미세먼지 농도가 높을지 낮을지 확인해주세요.",
+    "sentence_b": "건물 elevator는 이용하지마. earthquake 시에는.",
+    "sentence_b_org": "건물 엘리베이터는 이용하지마. 지진 시에는.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "엘리베이터",
+        "to": "elevator",
+        "pos": "NNG"
+      },
+      {
+        "from": "지진",
+        "to": "earthquake",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00512",
+    "sentence_a": "대통령 도시락이 아산·진천시설 외에 지급된 사례는 없습니다.",
+    "sentence_b": "아직 vaccine이나 완치 치료제는 없습니다.",
+    "sentence_b_org": "아직 백신이나 완치 치료제는 없습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "백신",
+        "to": "vaccine",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_00513",
+    "sentence_a": "요리하기에 가스레인지가 더 편해 아님 전자레인지가 더 편해?",
+    "sentence_b": "microwave랑 gas range 중에 뭐로 요리할 건지 골라줘",
+    "sentence_b_org": "전자레인지랑 가스레인지 중에 뭐로 요리할 건지 골라줘",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "전자레인지",
+        "to": "microwave",
+        "pos": "NNG"
+      },
+      {
+        "from": "가스레인지",
+        "to": "gas range",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.0
+  },
+  {
+    "id": "pair_00514",
+    "sentence_a": "교토와 도쿄 중 지진 위험이 더 큰 곳은 어디인가?",
+    "sentence_b": "교토와 도쿄 중 earthquake risk가 더 큰 곳을 말씀해주십시오.",
+    "sentence_b_org": "교토와 도쿄 중 지진 위험이 더 큰 곳을 말씀해주십시오.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지진 위험",
+        "to": "earthquake risk",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.6
+  },
+  {
+    "id": "pair_00515",
+    "sentence_a": "주중 낮에 약속 만들지 마.",
+    "sentence_b": "appointment을 잡으실 거면 weekday 낮에는 잡지 말아 주십시오.",
+    "sentence_b_org": "약속을 잡으실 거면 주중 낮에는 잡지 말아 주십시오.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "약속",
+        "to": "appointment",
+        "pos": "NNG"
+      },
+      {
+        "from": "주중",
+        "to": "weekday",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.2
+  },
+  {
+    "id": "pair_00516",
+    "sentence_a": "예전처럼 까먹지 말고 회사 출장을 고려한 다음에 약속을 잡길 바랍니다.",
+    "sentence_b": "마음대로 appointment를 잡기 보다는 company trip을 고려하자.",
+    "sentence_b_org": "마음대로 약속을 잡기 보다는 회사 출장을 고려하자.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "약속",
+        "to": "appointment",
+        "pos": "NNG"
+      },
+      {
+        "from": "회사 출장",
+        "to": "company trip",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.6
+  },
+  {
+    "id": "pair_00517",
+    "sentence_a": "광복절에는 밖에 돌아다니지 말고 집에서 쉬거라.",
+    "sentence_b": "TEPS study는 일 주일에 얼마나 자주 하시나요?",
+    "sentence_b_org": "텝스 스터디는 일 주일에 얼마나 자주 하시나요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "텝스 스터디",
+        "to": "TEPS study",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00518",
+    "sentence_a": "사진에서보다 훨씬 더 아름다운 뷰를 감상하실 수 있어요.",
+    "sentence_b": "accommodation은 사진에서 보는것보다 훨씬더 좋았어요!",
+    "sentence_b_org": "숙소는 사진에서 보는것보다 훨씬더 좋았어요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.3
+  },
+  {
+    "id": "pair_00519",
+    "sentence_a": "이번 달하고 다음 달 중에 시간이 언제 날 거 같아?",
+    "sentence_b": "좋다고 했던 time이 이번 달이야, 다음 달이야?",
+    "sentence_b_org": "좋다고 했던 시간이 이번 달이야, 다음 달이야?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "시간",
+        "to": "time",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.8
+  },
+  {
+    "id": "pair_00520",
+    "sentence_a": "등교가 금지되는 입국 후 14일 동안은 대학내 전담팀을 구성해 지역 보건소와 비상연락체계를 구축, 모니터링을 실시한다.",
+    "sentence_b": "이상 저온 및 이른 강설 등에 따른 작황 급변에 대비해 지역별 중점 관리기간을 설정, 현장 monitoring 등을 강화한다.",
+    "sentence_b_org": "이상 저온 및 이른 강설 등에 따른 작황 급변에 대비해 지역별 중점 관리기간을 설정, 현장 모니터링 등을 강화한다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "모니터링",
+        "to": "monitoring",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.4
+  },
+  {
+    "id": "pair_00521",
+    "sentence_a": "위치도 두오모나 우피치 미술관이나에서 가까웠어요.",
+    "sentence_b": "place는 두오모 museum과 우피치 museum과도 가까웠습니다.",
+    "sentence_b_org": "장소는 두오모 미술관과 우피치 미술관과도 가까웠습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "장소",
+        "to": "place",
+        "pos": "NNG"
+      },
+      {
+        "from": "미술관",
+        "to": "museum",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.3
+  },
+  {
+    "id": "pair_00522",
+    "sentence_a": "또 격리 시설 이용 시 비용 징수 등을 도입하는 방안을 마련했다.",
+    "sentence_b": "슈피겔 online은 한국에서 코로나19 확진자 동선 등을 제공하는 누리집도 소개했다.",
+    "sentence_b_org": "슈피겔 온라인은 한국에서 코로나19 확진자 동선 등을 제공하는 누리집도 소개했다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "온라인",
+        "to": "online",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00523",
+    "sentence_a": "호스트는 볼때마다 웃음 가득한 얼굴로 우리를 맞이하였고, 엄청 친절합니다.",
+    "sentence_b": "host는 친절하였고 전반적으로 만족합니다.",
+    "sentence_b_org": "호스트는 친절하였고 전반적으로 만족합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.4
+  },
+  {
+    "id": "pair_00524",
+    "sentence_a": "어머니께서 언제 가능하신지 시간을 말해다오.",
+    "sentence_b": "아무리 피곤하더라도 morning workout은 거르지 말아 줘.",
+    "sentence_b_org": "아무리 피곤하더라도 아침 운동은 거르지 말아 줘.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "아침 운동",
+        "to": "morning workout",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00525",
+    "sentence_a": "화장실도 깔끔하고 가격대비 아주 좋은 방입니다!",
+    "sentence_b": "bathroom은 깨끗하고 very 비싸요!",
+    "sentence_b_org": "화장실은 깨끗하고 매우 비싸요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "화장실",
+        "to": "bathroom",
+        "pos": "NNG"
+      },
+      {
+        "from": "매우",
+        "to": "very",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.9
+  },
+  {
+    "id": "pair_00526",
+    "sentence_a": "지금 에어컨 희망온도 어떻게 설정되어있어?",
+    "sentence_b": "house에 불 켜져 있는 곳 알려줘",
+    "sentence_b_org": "집안에 불 켜져 있는 곳 알려줘",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "집안",
+        "to": "house",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00527",
+    "sentence_a": "까먹지 말고 선글라스 써. 햇빛 강한 낮엔.",
+    "sentence_b": "알려줘. 이번 typhoon의 진행 방향이 어디인지.",
+    "sentence_b_org": "알려줘. 이번 태풍 진행 방향이 어디인지.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "태풍",
+        "to": "typhoon",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.1
+  },
+  {
+    "id": "pair_00528",
+    "sentence_a": "아파트는 새로 지은 건물이고 인테리어도 멋집니다.",
+    "sentence_b": "apartment는 새 건물이고 interior는 좋습니다.",
+    "sentence_b_org": "아파트는 새 건물이고 인테리어는 좋습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "아파트",
+        "to": "apartment",
+        "pos": "NNG"
+      },
+      {
+        "from": "인테리어",
+        "to": "interior",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00529",
+    "sentence_a": "파도가 심한 시기에는 서핑하지 않도록 합니다.",
+    "sentence_b": "파도가 심할 때 surfing하지마.",
+    "sentence_b_org": "파도가 심할 때 서핑하지마.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "서핑",
+        "to": "surfing",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_00530",
+    "sentence_a": "한국인 후기가 없는것 같아서 한국어로 남깁니다.",
+    "sentence_b": "한국어 review가 없는 것 같아서 한국어로 남겨 둘 거예요.",
+    "sentence_b_org": "한국어 리뷰가 없는 것 같아서 한국어로 남겨 둘 거예요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "리뷰",
+        "to": "review",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00531",
+    "sentence_a": "가급적이면 에어컨보단 선풍기를 쓰자",
+    "sentence_b": "가습기말고 air conditioner를 꼭 필요할때만 켜자",
+    "sentence_b_org": "가습기말고 에어컨을 꼭 필요할때만 켜자",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "에어컨",
+        "to": "air conditioner",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.8
+  },
+  {
+    "id": "pair_00532",
+    "sentence_a": "여자친구랑 결혼한게 몇 월 며칠인데?",
+    "sentence_b": "이 역사적 순간을 처음부터 지켜봐야 하니까 baseball game 약속에 늦으면 안돼.",
+    "sentence_b_org": "이 역사적 순간을 처음부터 지켜봐야 하니까 야구경기 약속에 늦으면 안돼.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "야구경기",
+        "to": "baseball game",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00533",
+    "sentence_a": "앞으로 늦지 말고 회사 상사와 약속에는 먼저 나가야해.",
+    "sentence_b": "appointment schedule 변경은 당일이 아니라 미리미리 얘기하도록 하세요.",
+    "sentence_b_org": "약속 일정 변경은 당일이 아니라 미리미리 얘기하도록 하세요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "약속 일정",
+        "to": "appointment schedule",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.3
+  },
+  {
+    "id": "pair_00534",
+    "sentence_a": "추운 날씨에도 집 전체가 다 따뜻했고 온수도 완전 잘나와요.",
+    "sentence_b": "추운 weather에도 house 전체가 따뜻했고 hot water가 really 잘 나왔어요.",
+    "sentence_b_org": "추운 날씨에도 집 전체가 따뜻했고 뜨거운 물이 정말 잘 나왔어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "날씨",
+        "to": "weather",
+        "pos": "NNG"
+      },
+      {
+        "from": "집",
+        "to": "house",
+        "pos": "NNG"
+      },
+      {
+        "from": "물",
+        "to": "water",
+        "pos": "NNG"
+      },
+      {
+        "from": "정말",
+        "to": "really",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 4,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.4
+  },
+  {
+    "id": "pair_00535",
+    "sentence_a": "내일 오후 일정이 총 몇 개쯤 되십니까?",
+    "sentence_b": "예정된 내일 오후 schedule 개수가 몇 개인지 알려주시겠어요?",
+    "sentence_b_org": "예정된 내일 오후 일정 개수가 몇 개인지 알려주시겠어요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "일정",
+        "to": "schedule",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_00536",
+    "sentence_a": "아울러 코로나19로 인한 행사, 출장 취소에 따른 수수료와 행사 참석자에게 지급하는 마스크, 손 소독제 등 감염 예방 용품 구매에 사용된 비용도 RD 사업비로 지원할 수 있다.",
+    "sentence_b": "이번 event는 코로나19 확산 방지를 위해 철저한 방역 대책 속에 수상자만 참석하는 간소한 event로 진행된다.",
+    "sentence_b_org": "이번 행사는 코로나19 확산 방지를 위해 철저한 방역 대책 속에 수상자만 참석하는 간소한 행사로 진행된다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "행사",
+        "to": "event",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.3
+  },
+  {
+    "id": "pair_00537",
+    "sentence_a": "파도가 심할 때 서핑하면 안돼.",
+    "sentence_b": "wave가 심할 때는 surfing하지 맙시다.",
+    "sentence_b_org": "파도가 심할 때는 서핑하지 맙시다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "파도",
+        "to": "wave",
+        "pos": "NNG"
+      },
+      {
+        "from": "서핑",
+        "to": "surfing",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.4
+  },
+  {
+    "id": "pair_00538",
+    "sentence_a": "가장 좋았던 점은 세인트 판크라스 역에서 걸어서 10분거리라는 것입니다.",
+    "sentence_b": "가장 좋은 point는 세인트루이스에서 걸어서 10분 거리에 있다는 것입니다. 판크라스 역입니다.",
+    "sentence_b_org": "가장 좋은 점은 세인트루이스에서 걸어서 10분 거리에 있다는 것입니다. 판크라스 역입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "점",
+        "to": "point",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_00539",
+    "sentence_a": "현관문 도어락 고치는 방법 좀 알려줘",
+    "sentence_b": "고장난 front door lock을 수리하려면 어떻게 해야 될까?",
+    "sentence_b_org": "고장난 현관문 장금장치를 수리하려면 어떻게 해야 될까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "현관문",
+        "to": "front door",
+        "pos": "NNG"
+      },
+      {
+        "from": "장금장치",
+        "to": "lock",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_00540",
+    "sentence_a": "역과 가죽시장 사이에 한국마트 2개있습니다.",
+    "sentence_b": "station과 가죽 시장 사이에는 두 개의 한국 마트가 있습니다.",
+    "sentence_b_org": "역과 가죽 시장 사이에는 두 개의 한국 마트가 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "역",
+        "to": "station",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.7
+  },
+  {
+    "id": "pair_00541",
+    "sentence_a": "국가시범도시에서 성공적으로 실증된 스마트 기술은 앞으로 예정된 신도시 건설에도 적용하게 될 것입니다.",
+    "sentence_b": "국가 시범 도시에서 smart 기술의 성공적인 시범은 future의 신도시 건설에도 적용될 것입니다.",
+    "sentence_b_org": "국가 시범 도시에서 스마트 기술의 성공적인 시범은 미래의 신도시 건설에도 적용될 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "미래",
+        "to": "future",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00542",
+    "sentence_a": "주말에는 오전 약속을 잡기보다는 오후 약속을 잡거라.",
+    "sentence_b": "늦을 때에는 와서 얘기하지 말고 그 전에 reason을 알려주세요.",
+    "sentence_b_org": "늦을 때에는 와서 얘기하지 말고 그 전에 이유를 알려주세요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "이유",
+        "to": "reason",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.3
+  },
+  {
+    "id": "pair_00543",
+    "sentence_a": "숙소 안은 정말 깨끗하고 에어컨도 잘 나옵니다.",
+    "sentence_b": "hotel 내부가 really 깨끗해서 air conditioner가 잘 나옵니다.",
+    "sentence_b_org": "호텔 내부가 정말 깨끗해서 에어컨이 잘 나옵니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호텔",
+        "to": "hotel",
+        "pos": "NNG"
+      },
+      {
+        "from": "정말",
+        "to": "really",
+        "pos": "MAG"
+      },
+      {
+        "from": "에어컨",
+        "to": "air conditioner",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00544",
+    "sentence_a": "주방이나 테라스는 마음대로 사용할 수 있었습니다.",
+    "sentence_b": "그래서 bathroom 사용이나 kitchen 사용을 전혀 부담없이 할 수 있었답니다.",
+    "sentence_b_org": "그래서 욕실 사용이나 키친 사용을 전혀 부담없이 할 수 있었답니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "욕실",
+        "to": "bathroom",
+        "pos": "NNG"
+      },
+      {
+        "from": "키친",
+        "to": "kitchen",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.8
+  },
+  {
+    "id": "pair_00545",
+    "sentence_a": "리스본 자체가 다 그런 오르막이 많더라고요",
+    "sentence_b": "3. front door을 열기가 세상에서 제일 어렵다",
+    "sentence_b_org": "3. 현관문을 열기가 세상에서 제일 어렵다",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "현관문",
+        "to": "front door",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00546",
+    "sentence_a": "짐이 많으시다면 그냥 택시타는 것을 추천드려요.",
+    "sentence_b": "짐이 많으시면 그냥 taxi 타는 것을 추천합니다.",
+    "sentence_b_org": "짐이 많으시면 그냥 택시 타는 것을 추천합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "택시",
+        "to": "taxi",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.9
+  },
+  {
+    "id": "pair_00547",
+    "sentence_a": "가끔말고 매일 저녁마다 베란다에 불 켜두는게 낫지 않을까?",
+    "sentence_b": "낮에 말고 evening에 베란다 조명을 켜자",
+    "sentence_b_org": "낮에 말고 저녁에 베란다 조명을 켜자",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "저녁",
+        "to": "evening",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.2
+  },
+  {
+    "id": "pair_00548",
+    "sentence_a": "혹시 수요일에 과외를 하기로 했는지 목요일에 하기로 했는지 아시나요?",
+    "sentence_b": "과외는 Wednesday에 하기로 했습니까 Thursday에 하기로 했습니까?",
+    "sentence_b_org": "과외는 수요일에 하기로 했습니까 목요일에 하기로 했습니까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "수요일",
+        "to": "Wednesday",
+        "pos": "NNG"
+      },
+      {
+        "from": "목요일",
+        "to": "Thursday",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00549",
+    "sentence_a": "음악 볼륨 바꾸고 싶을 때는 뭐라고 해야하니?",
+    "sentence_b": "그쪽이 생각하는 시간 떼우기용 오락 program이 뭔지 알려줘요",
+    "sentence_b_org": "그쪽이 생각하는 시간 떼우기용 오락 프로그램이 뭔지 알려줘요",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "프로그램",
+        "to": "program",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00550",
+    "sentence_a": "엘에이 숙소들 가격대 생각하면 가격대비 추천합니다!",
+    "sentence_b": "L.A. accommodation의 price range를 고려해서, 가격대비 추천합니다!",
+    "sentence_b_org": "L.A. 숙박시설의 가격범위를 고려해서, 가격대비 추천합니다!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙박시설",
+        "to": "accommodation",
+        "pos": "NNG"
+      },
+      {
+        "from": "가격범위",
+        "to": "price range",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.4
+  },
+  {
+    "id": "pair_00551",
+    "sentence_a": "그것빼곤 2인여행자들에게는 좋은숙소에요!",
+    "sentence_b": "stairs가 많다는거 빼곤 완벽한 숙소에요!",
+    "sentence_b_org": "계단이 많다는거 빼곤 완벽한 숙소에요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "계단",
+        "to": "stairs",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.4
+  },
+  {
+    "id": "pair_00552",
+    "sentence_a": "지금 거실 조명이 켜져있는지 어떻게 확인할 수 있어?",
+    "sentence_b": "지금 living room light 상태를 확인하려면 어떻게 해야 돼?",
+    "sentence_b_org": "지금 거실 조명 상태를 확인하려면 어떻게 해야 돼?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "거실 조명",
+        "to": "living room light",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00553",
+    "sentence_a": "시내로 왔다갔다 하는데에 꽤 많은 시간을 소비하였습니다.",
+    "sentence_b": "downtown을 오가며 꽤 많은 time을 보냈어요.",
+    "sentence_b_org": "시내를 오가며 꽤 많은 시간을 보냈어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "시내",
+        "to": "downtown",
+        "pos": "NNG"
+      },
+      {
+        "from": "시간",
+        "to": "time",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_00554",
+    "sentence_a": "찬물이랑 더운 물 중에 목욕하라고 하면 뭐로 할래?",
+    "sentence_b": "cold shower랑 hot shower 중에 하고 싶은 거 말해봐",
+    "sentence_b_org": "찬물 목욕이랑 더운 목욕 중에 하고 싶은 거 말해봐",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "찬물 목욕",
+        "to": "cold shower",
+        "pos": "NNG"
+      },
+      {
+        "from": "목욕",
+        "to": "shower",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00555",
+    "sentence_a": "2층 화장실은 샤워하기 조금 좁고 1층 화장실이 큽니다.",
+    "sentence_b": "2nd floor bathroom은 shower하기에 조금 좁고 1st floor bathroom은 커요.",
+    "sentence_b_org": "2층 화장실은 샤워하기에 조금 좁고 1층 화장실은 커요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "2층 화장실",
+        "to": "2nd floor bathroom",
+        "pos": "NNG"
+      },
+      {
+        "from": "샤워",
+        "to": "shower",
+        "pos": "NNG"
+      },
+      {
+        "from": "1층 화장실",
+        "to": "1st floor bathroom",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.8
+  },
+  {
+    "id": "pair_00556",
+    "sentence_a": "2월(잠정)부터 특허·실용신안을 출원할 때 제출해야 하는 명세서의 제출 형식이 다양화된다.",
+    "sentence_b": "2월(예비)부터는 patent 및 실용신안 신청 시 제출해야 하는 사양서 제출 형식이 다양해집니다.",
+    "sentence_b_org": "2월(예비)부터는 특허 및 실용신안 신청 시 제출해야 하는 사양서 제출 형식이 다양해집니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "특허",
+        "to": "patent",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00557",
+    "sentence_a": "위치는 우리가 자주가는 관광지에서 대부분 삼사십분정도 걸리는거리 같아요.",
+    "sentence_b": "그 place는 우리가 자주 방문하는 대부분의 tourist spot에서 3분에서 40분 정도 걸리는 것 같습니다.",
+    "sentence_b_org": "그 장소는 우리가 자주 방문하는 대부분의 관광 명소에서 3분에서 40분 정도 걸리는 것 같습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "장소",
+        "to": "place",
+        "pos": "NNG"
+      },
+      {
+        "from": "관광 명소",
+        "to": "tourist spot",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00558",
+    "sentence_a": "벤쿠버 연평균 강설량 알려줘.",
+    "sentence_b": "알려줘. Vancouver 연평균 강설량.",
+    "sentence_b_org": "알려줘. 벤쿠버 연평균 강설량.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "벤쿠버",
+        "to": "Vancouver",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 5.0
+  },
+  {
+    "id": "pair_00559",
+    "sentence_a": "지하철역에서 도보 1분거리이고 때르미니역 도보5분 콜로세움 도보20분 트레비분수 스페인광장도 도보15분 내외입니다.",
+    "sentence_b": "subway station에서 걸어서 1분, 티르미니역에서 도보로 5분, 콜로세움에서 도보로 20분, 트레비 fountain 스페인 plaza에서 도보로 15분 distance에 있습니다.",
+    "sentence_b_org": "지하철역에서 걸어서 1분, 티르미니역에서 도보로 5분, 콜로세움에서 도보로 20분, 트레비 분수 스페인 광장에서 도보로 15분 거리에 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지하철역",
+        "to": "subway station",
+        "pos": "NNG"
+      },
+      {
+        "from": "분수",
+        "to": "fountain",
+        "pos": "NNG"
+      },
+      {
+        "from": "광장",
+        "to": "plaza",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00560",
+    "sentence_a": "호스트들이 마치 옆집오빠 아는오빠 같은 느낌에 편안했다.",
+    "sentence_b": "subway station이랑 7-Eleven이 같은 building에있어요.",
+    "sentence_b_org": "지하철역이랑 세븐일레븐이 같은건물에있어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지하철역",
+        "to": "subway station",
+        "pos": "NNG"
+      },
+      {
+        "from": "세븐일레븐",
+        "to": "7-Eleven",
+        "pos": "NNP"
+      },
+      {
+        "from": "건물",
+        "to": "building",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00561",
+    "sentence_a": "다만 처음 갔을때 주차장이나 건물 입구가 좀 충격적일수 있습니다",
+    "sentence_b": "하지만, 여러분이 처음 갈 때, parking lot이나 building의 entrance는 약간 충격적일 수 있습니다.",
+    "sentence_b_org": "하지만, 여러분이 처음 갈 때, 주차장이나 건물의 입구는 약간 충격적일 수 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "하지만",
+        "to": "However",
+        "pos": "MAJ"
+      },
+      {
+        "from": "주차장",
+        "to": "parking lot",
+        "pos": "NNG"
+      },
+      {
+        "from": "건물",
+        "to": "building",
+        "pos": "NNG"
+      },
+      {
+        "from": "입구",
+        "to": "entrance",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 4,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_00562",
+    "sentence_a": "정부는 1주택 실수요자 보호라는 원칙 하에 서민 주거 안정을 지원하기 위해 1주택자가 보유한 공시가격 6억원 이하 기준 설정",
+    "sentence_b": "정부는 global 비상경제 시국에 대처하기 위해 결연한 의지를 다집니다.",
+    "sentence_b_org": "정부는 세계적인 비상경제 시국에 대처하기 위해 결연한 의지를 다집니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "세계적인",
+        "to": "global",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.8
+  },
+  {
+    "id": "pair_00563",
+    "sentence_a": "와인, 초콜렛, 나따 등 그의 선물도 매우 좋았습니다.",
+    "sentence_b": "wine, chocolate, 그리고 나타와 같은 그의 gift도 매우 좋았습니다.",
+    "sentence_b_org": "와인, 초콜릿, 그리고 나타와 같은 그의 선물도 매우 좋았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "와인",
+        "to": "wine",
+        "pos": "NNG"
+      },
+      {
+        "from": "초콜릿",
+        "to": "chocolate",
+        "pos": "NNG"
+      },
+      {
+        "from": "선물",
+        "to": "gift",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.7
+  },
+  {
+    "id": "pair_00564",
+    "sentence_a": "다만, 침구류의 머리카락은 조금 아쉬웠다.",
+    "sentence_b": "다만, 3일 동안 사용할 towel이 부족한게 아쉬웠다.",
+    "sentence_b_org": "다만, 3일 동안 사용할 수건이 부족한게 아쉬웠다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "수건",
+        "to": "towel",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.0
+  },
+  {
+    "id": "pair_00565",
+    "sentence_a": "아기침대,세탁기 있고 세탁기는 건조도 한번에 됩니다.",
+    "sentence_b": "crib과 washing machine가 있고 washing machine는 한 번에 말릴 수 있습니다.",
+    "sentence_b_org": "크립과 세탁기가 있고 세탁기는 한 번에 말릴 수 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "크립",
+        "to": "crib",
+        "pos": "NNG"
+      },
+      {
+        "from": "세탁기",
+        "to": "washing machine",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_00566",
+    "sentence_a": "몇 시에 내일 과제회의 하기로 했죠?",
+    "sentence_b": "내일 project meeting 몇 시로 정해졌는지 아세요?",
+    "sentence_b_org": "내일 과제회의 몇 시로 정해졌는지 아세요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "과제회의",
+        "to": "project meeting",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.3
+  },
+  {
+    "id": "pair_00567",
+    "sentence_a": "국립청소년수련원(평창)에 디지털 체험관을 시범 운영하는 등 변화하는 디지털 환경에 맞게 청소년활동 시설과 프로그램을 개선한다.",
+    "sentence_b": "조달기업에 burden을 주는 조달제도와 기준은 과감하게 혁신한다.",
+    "sentence_b_org": "조달기업에 부담을 주는 조달제도와 기준은 과감하게 혁신한다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "부담",
+        "to": "burden",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00568",
+    "sentence_a": "맛있는 빵집도 까르푸도 식당들도 꽤 있어요.",
+    "sentence_b": "괜찮은 bakery와 까르푸 restaurant이 꽤 있습니다.",
+    "sentence_b_org": "괜찮은 빵집과 까르푸 레스토랑이 꽤 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "빵집",
+        "to": "bakery",
+        "pos": "NNG"
+      },
+      {
+        "from": "레스토랑",
+        "to": "restaurant",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00569",
+    "sentence_a": "다음에도 파리에 간다면 당연히 여기로 갈것입니다!",
+    "sentence_b": "다음에도 Copenhagen에 온다면 여기로 올거에요!",
+    "sentence_b_org": "다음에도 코펜하겐에 온다면 여기로 올거에요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "코펜하겐",
+        "to": "Copenhagen",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.3
+  },
+  {
+    "id": "pair_00570",
+    "sentence_a": "이곳에 오신다면 따뜻한 환대를 느낄 수 있을겁니다.",
+    "sentence_b": "nature와 한몸이 된다는걸 느낄수 있을겁니다",
+    "sentence_b_org": "자연과 한몸이 된다는걸 느낄수 있을겁니다",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "자연",
+        "to": "nature",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_00571",
+    "sentence_a": "또 코로나19 사태로 피해를 입은 소상공인과 개인채무자들의 연체채권 등을 자산관리공사가 최대 2조원 규모로 매입한 후 상환유예 및 장기에 걸친 분할상환 등을 지원할 방침이다.",
+    "sentence_b": "자산관리공단은 이와 함께 코로나19 사태로 피해를 본 영세 자영업자와 개인 채무자 등으로부터 최대 2조원 규모의 연체채권을 매입해 상환을 연기하고 장기 상환할 수 있도록 지원할 plan입니다.",
+    "sentence_b_org": "자산관리공단은 이와 함께 코로나19 사태로 피해를 본 영세 자영업자와 개인 채무자 등으로부터 최대 2조원 규모의 연체채권을 매입해 상환을 연기하고 장기 상환할 수 있도록 지원할 계획입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "계획",
+        "to": "plan",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_00572",
+    "sentence_a": "국립공원 대피소에서 구입할 수 있는 물품은 건전지, 우의, 아이젠, 스패치, 랜턴, 면장갑, 생수, 화장지 등 10개 품목이다.",
+    "sentence_b": "Haengbokjutaek complex에는 residents와 local residents 모두 이용할 수 있는 국공립 유치원과 library, community cafe 등 amenities도 설치할 계획이다.",
+    "sentence_b_org": "행복주택 단지에는 입주민과 지역주민 모두 이용할 수 있는 국공립 유치원과 도서관, 주민카페 등 편의시설도 설치할 계획이다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "행복주택 단지",
+        "to": "Haengbokjutaek complex",
+        "pos": "NNG"
+      },
+      {
+        "from": "입주민",
+        "to": "residents",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_00573",
+    "sentence_a": "체크아웃 이후 짐을 맡길 수도 있었어요",
+    "sentence_b": "체크아웃 후에 baggage를 맡길 수도 있었어요.",
+    "sentence_b_org": "체크아웃 후에 짐을 맡길 수도 있었어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "짐",
+        "to": "baggage",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 5.0
+  },
+  {
+    "id": "pair_00574",
+    "sentence_a": "여러분 바르셀로나 사람들 특유의 편안한 분위기를 느끼려면 이곳으로 오세요.",
+    "sentence_b": "여러분, 바르셀로나 사람들 특유의 편안한 vibe를 느끼기 위해 여기로 오세요.",
+    "sentence_b_org": "여러분, 바르셀로나 사람들 특유의 편안한 분위기를 느끼기 위해 여기로 오세요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "분위기",
+        "to": "vibe",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00575",
+    "sentence_a": "밤에 야외 테라스에서 별을 볼땐 정말 최고였습니다",
+    "sentence_b": "밤에 terrace에서 star를 봤을 때 최고였어요.",
+    "sentence_b_org": "밤에 테라스에서 별을 봤을 때 최고였어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "테라스",
+        "to": "terrace",
+        "pos": "NNG"
+      },
+      {
+        "from": "별",
+        "to": "star",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_00576",
+    "sentence_a": "‘지역균형 뉴딜’이 우리 정부의 균형발전정책을 새로운 차원으로 발전시켜나가길 기대합니다.",
+    "sentence_b": "우리는 \"지역균형 New Deal 정책\"이 우리 government의 균형발전 정책을 한 단계 발전시키기를 희망합니다.",
+    "sentence_b_org": "우리는 \"지역균형 뉴딜정책\"이 우리 정부의 균형발전 정책을 한 단계 발전시키기를 희망합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "정부",
+        "to": "government",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00577",
+    "sentence_a": "국내 학회가 보낸 메일들 용량을 평균내면 대략 얼마나 하지?",
+    "sentence_b": "그냥 학교 mail은 지우지말고 둬",
+    "sentence_b_org": "그냥 학교 메일은 지우지말고 둬",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_00578",
+    "sentence_a": "그리고 숙소직원분들이 모두 친절했구요.",
+    "sentence_b": "accommodation도 엄청 깨끗하고 host분들도 친절하세요.",
+    "sentence_b_org": "숙소도 엄청 깨끗하고 호스트분들도 친절하세요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      },
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.2
+  },
+  {
+    "id": "pair_00579",
+    "sentence_a": "숙소 사진을 계속 찍게될정도로 멋집니다.",
+    "sentence_b": "그래서 accommodation 근처에서도 photo를 엄청 찍었네요.",
+    "sentence_b_org": "그래서 숙소근처에서도 사진을 엄청 찍었네요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "그래서",
+        "to": "So",
+        "pos": "MAJ"
+      },
+      {
+        "from": "숙소근처",
+        "to": "accommodation",
+        "pos": "NNG"
+      },
+      {
+        "from": "사진",
+        "to": "photo",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.3
+  },
+  {
+    "id": "pair_00580",
+    "sentence_a": "다음번 대만 방문시 꼭 다시 오겠습니다.",
+    "sentence_b": "next에 대만에 가면 꼭 돌아올게요.",
+    "sentence_b_org": "다음에 대만에 가면 꼭 돌아올게요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "다음",
+        "to": "next",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_00581",
+    "sentence_a": "깨끗한 숙소와 적절한 위치에 있습니다.",
+    "sentence_b": "accommodation을 청소하고 적절한 place에 보관하십시오.",
+    "sentence_b_org": "숙소를 청소하고 적절한 장소에 보관하십시오.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      },
+      {
+        "from": "장소",
+        "to": "place",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.2
+  },
+  {
+    "id": "pair_00582",
+    "sentence_a": "약속 시간에 맞춰서 오는 대신에 오분 전에 도착하도록 하자.",
+    "sentence_b": "앞으로는 늦지 말고 appointment 오분 전에 도착해라.",
+    "sentence_b_org": "앞으로는 늦지 말고 약속 오분 전에 도착해라.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "약속",
+        "to": "appointment",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.3
+  },
+  {
+    "id": "pair_00583",
+    "sentence_a": "해외입국자에 대한 진단검사 범위도 확대해 적용한다.",
+    "sentence_b": "또 건강보험 보장성 강화대책에 따라 existing 4대 중증질환 중심이었던 건강보험은 여성생식기와 흉부·심장 초음파검사에도 확대 적용한다.",
+    "sentence_b_org": "또 건강보험 보장성 강화대책에 따라 기존 4대 중증질환 중심이었던 건강보험은 여성생식기와 흉부·심장 초음파검사에도 확대 적용한다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "기존",
+        "to": "existing",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_00584",
+    "sentence_a": "특히 ‘유전자 증폭방식’ 검사결과는 작업 과정의 작은 차이에도 영향을 받을 수 있어 이번 국제표준 제정이 코로나19 등 감염병 진단검사의 정확도 향상에 기여할 것으로 기대된다.",
+    "sentence_b": "'business operation에 막대한 지장' 여부는 vacation 청구자 업무의 성질, 작업의 바쁜정도, 같은 시기에 vacation 청구자 수 등을 고려하여 판단",
+    "sentence_b_org": "‘사업운영에 막대한 지장’ 여부는 휴가 청구자 업무의 성질, 작업의 바쁜정도, 같은 시기에 휴가 청구자 수 등을 고려하여 판단",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "사업운영",
+        "to": "business operation",
+        "pos": "NNG"
+      },
+      {
+        "from": "지장",
+        "to": "hindrance",
+        "pos": "NNG"
+      },
+      {
+        "from": "휴가",
+        "to": "vacation",
+        "pos": "NNG"
+      },
+      {
+        "from": "업무",
+        "to": "work",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 4,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00585",
+    "sentence_a": "아침밥도 무지 맛있었고 위치는 최고입니다!",
+    "sentence_b": "단지 room이 조금 작은거 빼고는 최고 입니다!",
+    "sentence_b_org": "단지 방이 조금 작은거 빼고는 최고 입니다!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방",
+        "to": "room",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_00586",
+    "sentence_a": "상영작은 극영화 8편, 다큐영화 1편으로 코로나로 지친 관객들의 마음을 달래줄 것으로 기대된다.",
+    "sentence_b": "참고로 제18차 덴마크 conference의 최종 등록자수가 1600여명이었던 점을 감안하면 명실상부 ‘역대 최대 규모의 IACC’가 될 것으로 기대된다.",
+    "sentence_b_org": "참고로 제18차 덴마크 회의의 최종 등록자수가 1600여명이었던 점을 감안하면 명실상부 ‘역대 최대 규모의 IACC’가 될 것으로 기대된다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "회의",
+        "to": "conference",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00587",
+    "sentence_a": "혹시 강원도 여행은 토요일에 가시겠어요, 일요일에 가시겠어요?",
+    "sentence_b": "며칠에 mom의 schedule이 비는지?",
+    "sentence_b_org": "며칠에 엄마 일정이 비는지?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "엄마",
+        "to": "mom",
+        "pos": "NNG"
+      },
+      {
+        "from": "일정",
+        "to": "schedule",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.3
+  },
+  {
+    "id": "pair_00588",
+    "sentence_a": "이사한 지역에서 다른 상품권 등을 신청할 수 있나요?",
+    "sentence_b": "이사한 region으로 지역 제한을 바꿀 수 있나요?",
+    "sentence_b_org": "이사한 지역으로 지역 제한을 바꿀 수 있나요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지역",
+        "to": "region",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.0
+  },
+  {
+    "id": "pair_00589",
+    "sentence_a": "농협카드에서 청구서 전달 수단으로 메일을 사용하지마",
+    "sentence_b": "Nate mail로 전체 mail을 보내려면 어떻게 해?",
+    "sentence_b_org": "네이트 메일로 전체 메일을 보내려면 어떻게 해?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "네이트 메일",
+        "to": "Nate mail",
+        "pos": "NNP"
+      },
+      {
+        "from": "전체 메일",
+        "to": "entire mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.8
+  },
+  {
+    "id": "pair_00590",
+    "sentence_a": "세계 최초 5세대 이동통신(5G) 상용화가 1년을 맞았다.",
+    "sentence_b": "세계 최초의 5G 상용화가 출범 1년을 맞았습니다.",
+    "sentence_b_org": "세계 최초의 5세대 이동통신(5G) 상용화가 출범 1년을 맞았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "5세대 이동통신",
+        "to": "5G",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.1
+  },
+  {
+    "id": "pair_00591",
+    "sentence_a": "회사 회식은 몰래 가버리지말고 끝까지 남도록.",
+    "sentence_b": "어른들과 만나는 자리니까 앞으로는 time 맞춰 가기 보단 일찍 나가 있으십시오.",
+    "sentence_b_org": "어른들과 만나는 자리니까 앞으로는 시간 맞춰 가기 보단 일찍 나가 있으십시오.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "시간",
+        "to": "time",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.1
+  },
+  {
+    "id": "pair_00592",
+    "sentence_a": "거실은 필요없고 안방에 있는 불 들어오게 좀 해줘",
+    "sentence_b": "거실은 가지말고 저쪽 master bedroom에 있는 light 좀 켜줄래?",
+    "sentence_b_org": "거실은 가지말고 저쪽 안방에 있는 불 좀 켜줄래?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "안방",
+        "to": "master bedroom",
+        "pos": "NNG"
+      },
+      {
+        "from": "불",
+        "to": "light",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.6
+  },
+  {
+    "id": "pair_00593",
+    "sentence_a": "거래처 메일이랑 부장님 메일 중 뭐가 더 용량이 커?",
+    "sentence_b": "Naver mail엔 어떤 cloud service가 연동되어있지?",
+    "sentence_b_org": "네이버 메일엔 어떤 클라우드 서비스가 연동되어있지?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "네이버",
+        "to": "Naver",
+        "pos": "NNP"
+      },
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      },
+      {
+        "from": "클라우드",
+        "to": "cloud",
+        "pos": "NNG"
+      },
+      {
+        "from": "서비스",
+        "to": "service",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 4,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_00594",
+    "sentence_a": "마치 영화에 나오는 프랑스 장면들 같았어요.",
+    "sentence_b": "마치 movie 속의 France scene 같았어요.",
+    "sentence_b_org": "마치 영화 속의 프랑스 장면 같았어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "영화 속",
+        "to": "movie",
+        "pos": "NNG"
+      },
+      {
+        "from": "프랑스",
+        "to": "France",
+        "pos": "NNP"
+      },
+      {
+        "from": "장면",
+        "to": "scene",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.7
+  },
+  {
+    "id": "pair_00595",
+    "sentence_a": "다음 달 여행 언제 가?",
+    "sentence_b": "다음 달 trip이 며칠에 계획되어 있나요?",
+    "sentence_b_org": "다음 달 여행이 며칠에 계획되어 있나요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "여행",
+        "to": "trip",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00596",
+    "sentence_a": "에어컨 있잖아 온도가 이십오도 이하로 안내려가게 해줘",
+    "sentence_b": "에어컨 temperature 있잖아 이십오도 이하로는 안되게 해야해",
+    "sentence_b_org": "에어컨 온도 있잖아 이십오도 이하로는 안되게 해야해",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "온도",
+        "to": "temperature",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00597",
+    "sentence_a": "이에 운영 차량이 300대 이상인 경우 기여금을 100% 납부해야 한다.",
+    "sentence_b": "그 result, 300대 이상의 운영 차량이 있을 경우, 100%의 contribution을 지불해야 합니다.",
+    "sentence_b_org": "그 결과, 300대 이상의 운영 차량이 있을 경우, 100%의 기여금을 지불해야 합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "결과",
+        "to": "result",
+        "pos": "NNG"
+      },
+      {
+        "from": "기여금",
+        "to": "contribution",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_00598",
+    "sentence_a": "이러한 성과를 바탕으로 올해 행정안전부에서 주관한 ‘2020년 골목경제 회복지원 사업 우수사례’에서 충청북도 청주시와 함께 최우수상으로 선정되는 영예를 안았다.",
+    "sentence_b": "이러한 achievement를 바탕으로, 충청북도 청주시와 함께 Ministry of Interior and Safety가 주관하는 '2020 골목경제회복 지원 best practice'에서 grand prize으로 선정되는 honor를 안았습니다.",
+    "sentence_b_org": "이러한 성과를 바탕으로, 충청북도 청주시와 함께 행정안전부가 주관하는 '2020 골목경제회복 지원 우수사례'에서 최우수상으로 선정되는 영예를 안았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "성과",
+        "to": "achievement",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00599",
+    "sentence_a": "지메일은 쓰지마",
+    "sentence_b": "Gmail은 금지되어 있어",
+    "sentence_b_org": "지메일은 금지되어 있어",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지메일",
+        "to": "Gmail",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00600",
+    "sentence_a": "게다가 정말 또박또박 천천히 이야기해줍니다.",
+    "sentence_b": "가격 대비 really 훌륭하다고 생각합니다.",
+    "sentence_b_org": "가격 대비 정말 훌륭하다고 생각합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "정말",
+        "to": "really",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00601",
+    "sentence_a": "다음날 먹을 간단한 아침도 마련되었습니다.",
+    "sentence_b": "간단한 breakfast 또한 다음날을 위해 준비됩니다.",
+    "sentence_b_org": "간단한 아침식사 또한 다음날을 위해 준비됩니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "아침식사",
+        "to": "breakfast",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.3
+  },
+  {
+    "id": "pair_00602",
+    "sentence_a": "8시 이후엔 추가비용 내라고 요구합니다.",
+    "sentence_b": "저녁 9시이후 15 euro 11시이후 도착시 30 euro 내야해요.",
+    "sentence_b_org": "저녁  9시이후 15유로 11시이후  도착시 30유로  내야해요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "유로",
+        "to": "euro",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.8
+  },
+  {
+    "id": "pair_00603",
+    "sentence_a": "환경부는 수소충전소구축을 위한 자문단을 구성하고 충전소 부지 대상 가능성, 인·허가 문제점 등을 논의하는 첫 회의를 개최한다.",
+    "sentence_b": "이번 자문단 첫 meeting은 수소충전소 입지 가능 부지를 대상으로 입지 가능성, 인·허가 문제점, 갈등 예상 등을 집중적으로 논의한다.",
+    "sentence_b_org": "이번 자문단 첫 회의는 수소충전소 입지 가능 부지를 대상으로 입지 가능성, 인·허가 문제점, 갈등 예상 등을 집중적으로 논의한다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "회의",
+        "to": "meeting",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.0
+  },
+  {
+    "id": "pair_00604",
+    "sentence_a": "반대편 정원에서는 그림도 그릴수 있어요.",
+    "sentence_b": "베란다에서 바라보는 view도 정말 멋졌어요.",
+    "sentence_b_org": "베란다에서 바라보는 뷰도 정말 멋졌어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "뷰",
+        "to": "view",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.3
+  },
+  {
+    "id": "pair_00605",
+    "sentence_a": "천둥과 번개 중 무서워하는 것을 골라주십시오.",
+    "sentence_b": "thunder와 lightning 중 당신이 무서워하는 쪽은 무엇입니까?",
+    "sentence_b_org": "천둥과 번개 중 당신이 무서워하는 쪽은 무엇입니까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "천둥",
+        "to": "thunder",
+        "pos": "NNG"
+      },
+      {
+        "from": "번개",
+        "to": "lightning",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.6
+  },
+  {
+    "id": "pair_00606",
+    "sentence_a": "올해 국가공무원 5급 공채는 행정직군 249명(지역구분모집 28명 포함)과 기술직군 71명(지역구분모집 10명 포함), 외교관후보자 50명 등 370명을 뽑는다.",
+    "sentence_b": "1.5단계 level-up을 선언한 지자체는 5일 천안·아산, 10일 원주, 11일 순천, 13일 광양, 14일 여수, 17일 고양, 19일 광주·철원 등이다.",
+    "sentence_b_org": "1.5단계 격상을 선언한 지자체는 5일 천안·아산, 10일 원주, 11일 순천, 13일 광양, 14일 여수, 17일 고양, 19일 광주·철원 등이다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "격상",
+        "to": "level-up",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00607",
+    "sentence_a": "위치도 우에노에서 한정거장 도쿄에서 두정거장으로 정말 좋아요",
+    "sentence_b": "우에노에 의해 제한된 도쿄의 두 station에서는 그 location이 really 좋습니다.",
+    "sentence_b_org": "우에노에 의해 제한된 도쿄의 두 정거장에서는 그 위치가 정말 좋습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "정거장",
+        "to": "station",
+        "pos": "NNG"
+      },
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      },
+      {
+        "from": "정말",
+        "to": "really",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.4
+  },
+  {
+    "id": "pair_00608",
+    "sentence_a": "저는 동생들과 2주 동안 이 숙소에 머물렀습니다.",
+    "sentence_b": "저는 이 accommodation에서 동생들과 2주동안 머물렀습니다.",
+    "sentence_b_org": "저는 이 숙소에서 동생들과 2주동안 머물렀습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00609",
+    "sentence_a": "드라이기, 다리미, 냉장고 등 공용으로 사용할 수 있는 물품이 많았습니다.",
+    "sentence_b": "식사를 할수 있는 space와 조리도구도 좋았습니다.",
+    "sentence_b_org": "식사를 할수 있는 공간과 조리도구도 좋았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "공간",
+        "to": "space",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.3
+  },
+  {
+    "id": "pair_00610",
+    "sentence_a": "방이넓음 화장실을 같이써야함 변기와 씻는곳이따로있음",
+    "sentence_b": "subway 2호선 5호선이 같이 통과하는 곳입니다",
+    "sentence_b_org": "전철 2호선 5호선이 같이 통과하는 곳입니다",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "전철",
+        "to": "subway",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00611",
+    "sentence_a": "그치만 아주 나쁜건 아니고 대부분의 관광지는 1시간 이내로 도착합니다.",
+    "sentence_b": "그리고 host는 밝고 친절한 미소로 환영합니다.",
+    "sentence_b_org": "그리고 호스트는 밝고 친절한 미소로 환영합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00612",
+    "sentence_a": "낭만적인 테라스와 넒은 침실도 만족스러웠습니다.",
+    "sentence_b": "bedding과 실내 interior, kitchenware, bathroom 등은 아주 만족스러웠습니다.",
+    "sentence_b_org": "침구와 실내 인테리어, 주방기구, 화장실 등은 매우 만족스러웠습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "침구",
+        "to": "bedding",
+        "pos": "NNG"
+      },
+      {
+        "from": "실내 인테리어",
+        "to": "interior",
+        "pos": "NNG"
+      },
+      {
+        "from": "주방기구",
+        "to": "kitchenware",
+        "pos": "NNG"
+      },
+      {
+        "from": "화장실",
+        "to": "bathroom",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 4,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.9
+  },
+  {
+    "id": "pair_00613",
+    "sentence_a": "감기 말고 식중독 조심하지? 여름에는.",
+    "sentence_b": "summer에 식중독 조심하자. 감기 말고.",
+    "sentence_b_org": "여름에 식중독 조심하자. 감기 말고.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "여름",
+        "to": "summer",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00614",
+    "sentence_a": "침대가 사진상으로 2자리인줄 알았는데 3자리입니다.",
+    "sentence_b": "테르미니역 근처가 무서울줄알았으나 무난한 station 주변 모습입니다.",
+    "sentence_b_org": "테르미니역 근처가 무서울줄알았으나 무난한 역주변 모습입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "역",
+        "to": "station",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00615",
+    "sentence_a": "습하거나 건조한 날씨 중 선호하는 것을 골라주세요.",
+    "sentence_b": "습하거나 건조한 weather 중에서 선호하는 것은 무엇입니까?",
+    "sentence_b_org": "습하거나 건조한 날씨 중에서 선호하는 것은 무엇입니까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "날씨",
+        "to": "weather",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00616",
+    "sentence_a": "화장실은 샤워하는데 쓸수있는 따뜻한 물이 일정량 정해져있는 듯 합니다.",
+    "sentence_b": "bathroom에는 샤워용으로 따뜻한 물이 일정량 있는 것 같습니다.",
+    "sentence_b_org": "욕실에는 샤워용으로 따뜻한 물이 일정량 있는 것 같습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "욕실",
+        "to": "bathroom",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00617",
+    "sentence_a": "깨끗한 시설과 조용한 동네가 너무 좋았어요!",
+    "sentence_b": "깨끗한 house와 room 그리고 bed, bathroom 모든게 너무 좋았어요.",
+    "sentence_b_org": "깨끗한 집과 방 그리고 침대, 화장실 모든게 너무 좋았어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "집",
+        "to": "house",
+        "pos": "NNG"
+      },
+      {
+        "from": "방",
+        "to": "room",
+        "pos": "NNG"
+      },
+      {
+        "from": "침대",
+        "to": "bed",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.2
+  },
+  {
+    "id": "pair_00618",
+    "sentence_a": "라인 메신저와 지메일을 연동하는 방법을 알려줘",
+    "sentence_b": "LINE Messenger와 Gmail을 함께 연동해서 사용할 건데 방법을 알 수 있을까?",
+    "sentence_b_org": "라인 메신저와 지메일을 함께 연동해서 사용할 건데 방법을 알 수 있을까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "라인 메신저",
+        "to": "LINE Messenger",
+        "pos": "NNG"
+      },
+      {
+        "from": "지메일",
+        "to": "Gmail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00619",
+    "sentence_a": "5인가족이 1박을 하기에는 충분한 공간과 시설들이 매우 만족스러웠다.",
+    "sentence_b": "5인 family를 위한 충분한 space와 시설은 아주 만족스러웠습니다.",
+    "sentence_b_org": "5인 가족을 위한 충분한 공간과 시설은 매우 만족스러웠습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "가족",
+        "to": "family",
+        "pos": "NNG"
+      },
+      {
+        "from": "공간",
+        "to": "space",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_00620",
+    "sentence_a": "가격도 스톡 중심가에서 이만한 집이 없어요.",
+    "sentence_b": "room도 이만한 price에 이정도 quality 정말 훌륭한 장소였어요!",
+    "sentence_b_org": "방도 이만한 가격에 이정도 퀄리티 정말 훌륭한 장소였어요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방",
+        "to": "room",
+        "pos": "NNG"
+      },
+      {
+        "from": "가격",
+        "to": "price",
+        "pos": "NNG"
+      },
+      {
+        "from": "퀄리티",
+        "to": "quality",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.6
+  },
+  {
+    "id": "pair_00621",
+    "sentence_a": "무거운 짐만 없으면 역에서 가까운 거리에요",
+    "sentence_b": "luggage가 무겁지 않으시면 station에서 가깝습니다.",
+    "sentence_b_org": "짐이 무겁지 않으시면 역에서 가깝습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "짐",
+        "to": "luggage",
+        "pos": "NNG"
+      },
+      {
+        "from": "역",
+        "to": "station",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00622",
+    "sentence_a": "매력적이고 편리한 방한 관광, 1100여개 기업 다양한 혜택 제공",
+    "sentence_b": "이와 함께 treatment에 필요한 다양한 비급여에 건강보험이 적용됐다.",
+    "sentence_b_org": "이와 함께 치료에 필요한 다양한 비급여에 건강보험이 적용됐다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "치료",
+        "to": "treatment",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00623",
+    "sentence_a": "지메일 작성시 문장 자동완성 기능을 꺼야돼",
+    "sentence_b": "Gmail mail의 autocomplete feature이 작동하지 않도록 설정해",
+    "sentence_b_org": "지메일 메일의 자동완성 기능이 작동하지 않도록 설정해",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지메일",
+        "to": "Gmail",
+        "pos": "NNP"
+      },
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      },
+      {
+        "from": "자동완성 기능",
+        "to": "autocomplete feature",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.2
+  },
+  {
+    "id": "pair_00624",
+    "sentence_a": "9시 이후부터 30유로 10시이후는 50유로 이렇게 받아요",
+    "sentence_b": "snack거리로 croissant을 주시는데 맛있다.",
+    "sentence_b_org": "간식거리로 크로아상을 주시는데 맛있다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "간식",
+        "to": "snack",
+        "pos": "NNG"
+      },
+      {
+        "from": "크로아상",
+        "to": "croissant",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00625",
+    "sentence_a": "4. 호스트가 돈 결제이후 연락두절이예요",
+    "sentence_b": "일단, host가 굉장히친절하고 연락이잘됩니다.",
+    "sentence_b_org": "일단, 호스트가 굉장히친절하고 연락이잘됩니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.8
+  },
+  {
+    "id": "pair_00626",
+    "sentence_a": "다만 조금 아쉬웠던 것은 차를 가져가는 사람은 도로 주차 규정에 대한 확실한 체크가 필요하다는 것이다.",
+    "sentence_b": "하지만, 조금 실망스러운 것은 그 car를 타는 사람이 도로 parking 규정에 대한 확실한 확인을 필요로 한다는 것입니다.",
+    "sentence_b_org": "하지만, 조금 실망스러운 것은 그 차를 타는 사람이 도로 주차 규정에 대한 확실한 확인을 필요로 한다는 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "차",
+        "to": "car",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00627",
+    "sentence_a": "지난달 23일부터 3주간 외출금지령 등 각종 봉쇄조치를 시행 중인 영국 정부도 봉쇄시한을 연장할 수 있음을 시사했다.",
+    "sentence_b": "4월 8일부터는 electricity bill 감면 신청을 할 때 납부 유예도 신청할 수 있다.",
+    "sentence_b_org": "4월 8일부터는 전기요금 감면 신청을 할 때 납부 유예도 신청할 수 있다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "전기요금",
+        "to": "electricity bill",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00628",
+    "sentence_a": "그리고 무엇보다도 호스트분이 정말 친절하고 좋으셨어요!",
+    "sentence_b": "무엇보다도 host가 really really 친절하고 reply도 really 빨라요!",
+    "sentence_b_org": "무엇보다도 호스트가 정말 정말 친절하고 답장도 정말 빨라요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      },
+      {
+        "from": "정말",
+        "to": "really",
+        "pos": "MAG"
+      },
+      {
+        "from": "답장",
+        "to": "reply",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.0
+  },
+  {
+    "id": "pair_00629",
+    "sentence_a": "이번 태풍 규모 알려줘.",
+    "sentence_b": "tropical night엔 술 마시면 안되는거 알지?",
+    "sentence_b_org": "열대야엔 술 마시면 안되는거 알지?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "열대야",
+        "to": "tropical night",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00630",
+    "sentence_a": "낡은 경찰버스는 차례로 수소버스로 교체할 예정이다.",
+    "sentence_b": "낡은 police bus는 차례로 hydrogen bus로 대체될 것입니다.",
+    "sentence_b_org": "낡은 경찰 버스는 차례로 수소 버스로 대체될 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "경찰 버스",
+        "to": "police bus",
+        "pos": "NNG"
+      },
+      {
+        "from": "수소 버스",
+        "to": "hydrogen bus",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.7
+  },
+  {
+    "id": "pair_00631",
+    "sentence_a": "문화재청은 문화재 보호를 위한 조치를 취했다.",
+    "sentence_b": "문화재청은 cultural property protection measures를 취했습니다.",
+    "sentence_b_org": "문화재청은 문화재 보호 조치를 취했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "문화재 보호 조치",
+        "to": "cultural property protection measures",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.8
+  },
+  {
+    "id": "pair_00632",
+    "sentence_a": "다시가도 재방문할 의사가 있으며 추천합니다.",
+    "sentence_b": "세재를 다시 한번 확인 할 need가 있습니다.",
+    "sentence_b_org": "세재를 다시 한번 확인 할 필요가 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "필요",
+        "to": "need",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_00633",
+    "sentence_a": "그리고 엘리베이터와 전자키인 점이 상당히 만족스러웠습니다.",
+    "sentence_b": "그리고 elevator와 digital key에 매우 만족했습니다.",
+    "sentence_b_org": "그리고 엘리베이터와 전자키에 매우 만족했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "엘리베이터",
+        "to": "elevator",
+        "pos": "NNG"
+      },
+      {
+        "from": "전자키",
+        "to": "digital key",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00634",
+    "sentence_a": "위치, 전망 모두 다른 호스트들의 평가대로 최고였습니다.",
+    "sentence_b": "location, 접근성, guest의 친절함 모두 최고였다.",
+    "sentence_b_org": "위치, 접근성, 게스트의 친절함 모두 최고였다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      },
+      {
+        "from": "게스트",
+        "to": "guest",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.8
+  },
+  {
+    "id": "pair_00635",
+    "sentence_a": "혹시 약속은 이번 달이 좋으실까요, 다음 달이 좋으실까요?",
+    "sentence_b": "이번 달과 다음 달 중에 괜찮으신 time을 알려주시겠어요?",
+    "sentence_b_org": "이번 달과 다음 달 중에 괜찮으신 시간을 알려주시겠어요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "시간",
+        "to": "time",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.9
+  },
+  {
+    "id": "pair_00636",
+    "sentence_a": "또한 신청자 편의를 위해 반기 근로장려금을 신청하는 경우 해당 소득세 과세기간의 자녀장려금을 신청한 것으로 간주한다.",
+    "sentence_b": "또한, applicant의 편의를 위하여 반기별 근로장려금을 신청할 때에는 해당 소득세 과세기간 중 child benefit을 신청한 것으로 봅니다.",
+    "sentence_b_org": "또한, 신청인의 편의를 위하여 반기별 근로장려금을 신청할 때에는 해당 소득세 과세기간 중 아동보조금을 신청한 것으로 봅니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "신청인",
+        "to": "applicant",
+        "pos": "NNG"
+      },
+      {
+        "from": "아동보조금",
+        "to": "child benefit",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00637",
+    "sentence_a": "역전현상 원인이었던 주택공시비율(80%)이'20년부터 폐지된 상황으로, 주택과 토지가 같은 수준으로 현실화되면 역전현상 해소",
+    "sentence_b": "건강보험 qualification이 변동되면 qualification이 변동된 날의 다음 달부터 변동된 qualification을 기준으로 건강보험료가 부과됩니다.",
+    "sentence_b_org": "건강보험 자격이 변동되면 자격이 변동된 날의 다음 달부터 변동된 자격을 기준으로 건강보험료가 부과됩니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "자격",
+        "to": "qualification",
+        "pos": "NNG"
+      },
+      {
+        "from": "자격",
+        "to": "qualification",
+        "pos": "NNG"
+      },
+      {
+        "from": "자격",
+        "to": "qualification",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00638",
+    "sentence_a": "어머니와 친구분 그리고 저, 셋이서 묵었습니다.",
+    "sentence_b": "어머니, friend, 그리고 저는 함께 지냈습니다.",
+    "sentence_b_org": "어머니, 친구, 그리고 저는 함께 지냈습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "친구",
+        "to": "friend",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_00639",
+    "sentence_a": "나한테 오늘하고 내일 중에 언제 택배가 오려나?",
+    "sentence_b": "오늘 내 delivery가 올까, 내일 올까?",
+    "sentence_b_org": "오늘 내 택배가 올까, 내일 올까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "택배",
+        "to": "delivery",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.9
+  },
+  {
+    "id": "pair_00640",
+    "sentence_a": "연구실 메일 서버가 왜 망가졌을까?",
+    "sentence_b": "Naver mail 사용요금이 궁금해",
+    "sentence_b_org": "네이버 메일 사용요금이 궁금해",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "네이버",
+        "to": "Naver",
+        "pos": "NNP"
+      },
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.4
+  },
+  {
+    "id": "pair_00641",
+    "sentence_a": "위치도 도쿄 중심부와 요코하마의 사이에 있어서 두 도시를 관광하기에는 최적의 장소라 생각됩니다.",
+    "sentence_b": "location은 도쿄 중심가와 요코하마 사이에 위치해 있기 때문에 두 도시를 둘러보기에 가장 좋은 장소라고 생각합니다.",
+    "sentence_b_org": "위치는 도쿄 중심가와 요코하마 사이에 위치해 있기 때문에 두 도시를 둘러보기에 가장 좋은 장소라고 생각합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.9
+  },
+  {
+    "id": "pair_00642",
+    "sentence_a": "일본 소유의 도메인으로는 메일이 전송되어선 안됩니다.",
+    "sentence_b": "질문 보낸 사람 중에 수강생 ratio랑 청강생 ratio 중 뭐가 더 높지?",
+    "sentence_b_org": "질문 보낸 사람 중에 수강생 비율이랑 청강생 비율 중 뭐가 더 높지?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "비율",
+        "to": "ratio",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00643",
+    "sentence_a": "자외선 차단제 어떤게 효과가 좋아?",
+    "sentence_b": "효과가 좋은 sunscreen을 추천해주십시오.",
+    "sentence_b_org": "효과가 좋은 자외선 차단제를 추천해주십시오.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "자외선 차단제",
+        "to": "sunscreen",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.4
+  },
+  {
+    "id": "pair_00644",
+    "sentence_a": "호스트 또한 매우 친절하고 숙소 또한 매우 편안합니다.",
+    "sentence_b": "host는 매우매우 친절하고 상냥합니다.",
+    "sentence_b_org": "호스트는 매우매우 친절하고 상냥합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.0
+  },
+  {
+    "id": "pair_00645",
+    "sentence_a": "사진에 보시는 것처럼 새로 인테리어를 한 깨끗한 집이고요.",
+    "sentence_b": "사진에서 볼 수 있듯이, 그것은 새로운 interior를 가진 깨끗한 집입니다.",
+    "sentence_b_org": "사진에서 볼 수 있듯이, 그것은 새로운 인테리어를 가진 깨끗한 집입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "인테리어",
+        "to": "interior",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.6
+  },
+  {
+    "id": "pair_00646",
+    "sentence_a": "로마의 정취가 물씬 풍겨나는 매력적인 골목길에 위치한 이 멋진 집은, 그 집보다도 더 훌륭한 호스트가 여러분을 반길 것입니다.",
+    "sentence_b": "로마적인 atmosphere를 풍기는 매력적인 alley에 위치한 이 멋진 house는 house보다 owner에게 더 잘 환영 받을 것입니다.",
+    "sentence_b_org": "로마적인 분위기를 풍기는 매력적인 골목길에 위치한 이 멋진 집은 집보다 주인에게 더 잘 환영 받을 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "분위기",
+        "to": "atmosphere",
+        "pos": "NNG"
+      },
+      {
+        "from": "골목길",
+        "to": "alley",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00647",
+    "sentence_a": "호스트는 매세지를 자세히 안 보내줘요.",
+    "sentence_b": "host가 영어를 안해서 대화하는데 힘드실거에요",
+    "sentence_b_org": "호스트가 영어를 안해서 대화하는데 힘드실거에요",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.9
+  },
+  {
+    "id": "pair_00648",
+    "sentence_a": "시부야역에서는 택시타는게 더나을거같아요",
+    "sentence_b": "시부야 station에서 taxi를 타는 것이 좋을 것 같아요.",
+    "sentence_b_org": "시부야역에서 택시를 타는 것이 좋을 것 같아요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "역",
+        "to": "station",
+        "pos": "NNG"
+      },
+      {
+        "from": "택시",
+        "to": "taxi",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00649",
+    "sentence_a": "메일용량이 더 큰 쪽이 거래처인가요 부장님인가요?",
+    "sentence_b": "반드시 Twitch 계정을 연동없이 쓰지말고 Facebook과 연동합시다.",
+    "sentence_b_org": "반드시 트위치 계정을 연동없이 쓰지말고 페이스북과 연동합시다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "트위치",
+        "to": "Twitch",
+        "pos": "NNP"
+      },
+      {
+        "from": "계정",
+        "to": "account",
+        "pos": "NNG"
+      },
+      {
+        "from": "페이스북",
+        "to": "Facebook",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00650",
+    "sentence_a": "저희는 아파트의 개인실을 이용했습니다.",
+    "sentence_b": "우리는 그 apartment의 개인 방을 사용했어요.",
+    "sentence_b_org": "우리는 그 아파트의 개인 방을 사용했어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "아파트",
+        "to": "apartment",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00651",
+    "sentence_a": "지금 어디서 뉴스 해?",
+    "sentence_b": "TV 조정하는 command가 뭐지",
+    "sentence_b_org": "티비 조정하는 명령어가 뭐지",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "티비",
+        "to": "TV",
+        "pos": "NNG"
+      },
+      {
+        "from": "명령어",
+        "to": "command",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00652",
+    "sentence_a": "여름에는 더운 낮에 만나지 말고 선선한 저녁에 보기로 하자.",
+    "sentence_b": "뜨거운 낮 시간 말고 여름이니까 선선한 evening에 appointment를 잡읍시다.",
+    "sentence_b_org": "뜨거운 낮 시간 말고 여름이니까 선선한 저녁에 약속을 잡읍시다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "저녁",
+        "to": "evening",
+        "pos": "NNG"
+      },
+      {
+        "from": "약속",
+        "to": "appointment",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00653",
+    "sentence_a": "부모님이랑 이번 주에 만나기로 한게 언제지?",
+    "sentence_b": "schedule 모레에 예정된거 몇 시에요?",
+    "sentence_b_org": "스케쥴 모레에 예정된거 몇 시에요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "스케쥴",
+        "to": "schedule",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.6
+  },
+  {
+    "id": "pair_00654",
+    "sentence_a": "숙소는 사진에서 보는 것과 똑같습니다.",
+    "sentence_b": "그 accommodation은 picture에서 볼 수 있는 것과 같습니다.",
+    "sentence_b_org": "그 숙소는 사진에서 볼 수 있는 것과 같습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      },
+      {
+        "from": "사진",
+        "to": "picture",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.6
+  },
+  {
+    "id": "pair_00655",
+    "sentence_a": "자주 약속날짜를 바꾸면 헷갈리니까 바꾸지 마.",
+    "sentence_b": "late 좀 하지 않으면 안 되겠니?",
+    "sentence_b_org": "지각 좀 하지 않으면 안 되겠니?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지각",
+        "to": "late",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00656",
+    "sentence_a": "어떤 방법으로 청강생 점수를 메일로 회신해줄까?",
+    "sentence_b": "청강생의 score를 어떻게 mail로 회신할까?",
+    "sentence_b_org": "청강생의 점수를 어떻게 메일로 회신할까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "점수",
+        "to": "score",
+        "pos": "NNG"
+      },
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.9
+  },
+  {
+    "id": "pair_00657",
+    "sentence_a": "그리고 바로 앞에 빌라라는 마트가 있어요",
+    "sentence_b": "그리고 바로 앞에 빌라라는 mart가 있습니다.",
+    "sentence_b_org": "그리고 바로 앞에 빌라라는 마트가 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "마트",
+        "to": "mart",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.9
+  },
+  {
+    "id": "pair_00658",
+    "sentence_a": "한국처럼 가로등이 많지 않기 때문에 더더욱 위험합니다.",
+    "sentence_b": "일단 집에서 shoes를 신지 않기때문에 floor가 전반적으로 깨끗합니다.",
+    "sentence_b_org": "일단 집에서 신발을 신지 않기때문에 바닥이 전반적으로 깨끗합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "신발",
+        "to": "shoes",
+        "pos": "NNG"
+      },
+      {
+        "from": "바닥",
+        "to": "floor",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00659",
+    "sentence_a": "현행 주택 외 부동산의 보유기간 1년 미만인 경우 40%에서 50%로, 2년 미만은 기본세율(6∼42%)에서 40%로 높아진다.",
+    "sentence_b": "diesel car의 경우 등록대수는 996만대로 2013년 38.1%에서 작년 42.1%로 점유율 증가세가 다소 둔화했다.",
+    "sentence_b_org": "경유차의 경우 등록대수는 996만대로 2013년 38.1%에서 작년 42.1%로 점유율 증가세가 다소 둔화했다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "경유차",
+        "to": "diesel car",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_00660",
+    "sentence_a": "하루이틀 정도 묵기에 좋은 숙소이고 사진과 같이 깔끔한 인테리어예요!",
+    "sentence_b": "우선 photo에서 보이는것과 같이 청결하고 깔끔한 숙소입니다.",
+    "sentence_b_org": "우선 사진에서 보이는것과 같이 청결하고 깔끔한 숙소입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "사진",
+        "to": "photo",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.7
+  },
+  {
+    "id": "pair_00661",
+    "sentence_a": "다음달에 볼 생각말고 보일러 점검 업체에 이번달내로 점검 예약 잡아놔",
+    "sentence_b": "air conditioner 바람 방향 오른쪽이랑 왼쪽이 있는데 네가 원하는 방향은 뭐니?",
+    "sentence_b_org": "에어컨 바람 방향 오른쪽이랑 왼쪽이 있는데 네가 원하는 방향은 뭐니?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "에어컨",
+        "to": "air conditioner",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00662",
+    "sentence_a": "다만, 사진에서 보이는 방은 아니었던 것이 아쉽습니다!",
+    "sentence_b": "photo에서 보이는 것보다 훨씬 깨끗하고 예쁩니다!",
+    "sentence_b_org": "사진에서 보이는 것보다 훨씬 깨끗하고 예쁩니다!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "사진",
+        "to": "photo",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.6
+  },
+  {
+    "id": "pair_00663",
+    "sentence_a": "일본 도메인으로 메일을 보내지마세요.",
+    "sentence_b": "Nate mail이랑 Naver mail이랑 둘 중 접속 가능한 거 알려줘",
+    "sentence_b_org": "네이트 메일이랑 네이버 메일이랑 둘 중 접속 가능한 거 알려줘",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "네이트 메일",
+        "to": "Nate mail",
+        "pos": "NNP"
+      },
+      {
+        "from": "네이버 메일",
+        "to": "Naver mail",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.5
+  },
+  {
+    "id": "pair_00664",
+    "sentence_a": "대기업도 연수원 제공, 의료진 파견 등 힘 보태",
+    "sentence_b": "그동안 주민들을 위해 무료급식과 진료 등을 제공한 광야교회, 요셉의원, 토마스의 home 등 돌봄시설도 재정착한다.",
+    "sentence_b_org": "그동안 주민들을 위해 무료급식과 진료 등을 제공한 광야교회, 요셉의원, 토마스의 집 등 돌봄시설도 재정착한다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "집",
+        "to": "home",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00665",
+    "sentence_a": "또 백신 항원 전달체와 불활화 백신 등 다양한 형태의 백신을 개발할 계획이다.",
+    "sentence_b": "그것은 또한 vaccine 항원 수송기와 비활성 vaccine과 같은 다양한 종류의 vaccine을 개발할 계획입니다.",
+    "sentence_b_org": "그것은 또한 백신 항원 수송기와 비활성 백신과 같은 다양한 종류의 백신을 개발할 계획입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "백신",
+        "to": "vaccine",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.0
+  },
+  {
+    "id": "pair_00666",
+    "sentence_a": "주변에 지하철과 시장을 이용하기 편하네요",
+    "sentence_b": "이 근처는 subway와 market을 이용하는 것이 편리합니다.",
+    "sentence_b_org": "이 근처는 지하철과 시장을 이용하는 것이 편리합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지하철",
+        "to": "subway",
+        "pos": "NNG"
+      },
+      {
+        "from": "시장",
+        "to": "market",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00667",
+    "sentence_a": "야생동물 질병관리를 전담할 국가기관인 국립야생동물질병관리원이 올해 광주광역시 광산구 삼거동 일원에 개원 예정이다.",
+    "sentence_b": "추후 인도네시아와도 video conference 및 online seminar를 개최할 예정이다.",
+    "sentence_b_org": "추후 인도네시아와도 화상회의 및 온라인 세미나를 개최할 예정이다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "화상회의",
+        "to": "video conference",
+        "pos": "NNG"
+      },
+      {
+        "from": "온라인 세미나",
+        "to": "online seminar",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.1
+  },
+  {
+    "id": "pair_00668",
+    "sentence_a": "근로자 생활안정자금 융자 대상도 확대했다.",
+    "sentence_b": "정부는 또한 근로자의 livelihood stability fund를 위한 loan의 범위를 확대했습니다.",
+    "sentence_b_org": "정부는 또한 근로자의 생계 안정 기금을 위한 대출의 범위를 확대했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "생계 안정 기금",
+        "to": "livelihood stability fund",
+        "pos": "NNG"
+      },
+      {
+        "from": "대출",
+        "to": "loan",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.0
+  },
+  {
+    "id": "pair_00669",
+    "sentence_a": "미용실 예약하기 좋은 시간이 언제야?",
+    "sentence_b": "hair salon 언제 예약하는게 좋으세요?",
+    "sentence_b_org": "미용실 언제 예약하는게 좋으세요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "미용실",
+        "to": "hair salon",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00670",
+    "sentence_a": "이번주랑 다음주 중에서는 언제가 약속이 더 적으세요?",
+    "sentence_b": "schedule은 어지럽게 여러개 하기 보다는 하루에 하나만 잡는 것이 좋습니다.",
+    "sentence_b_org": "일정은 어지럽게 여러개 하기 보다는 하루에 하나만 잡는 것이 좋습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "일정",
+        "to": "schedule",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.9
+  },
+  {
+    "id": "pair_00671",
+    "sentence_a": "이번 년도는 열대야가 며칠이나 갈까?",
+    "sentence_b": "며칠입니까? this year의 열대야는.",
+    "sentence_b_org": "며칠입니까? 올해의 열대야는.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "올해",
+        "to": "this year",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00672",
+    "sentence_a": "무슨 일이 있어도 겨울에 야외활동 계획을 잡는 일은 하지 마시게.",
+    "sentence_b": "야외활동 계획 같은 거는 winter에 잡지 말고 다른 season에 잡으십시오.",
+    "sentence_b_org": "야외활동 계획 같은 거는 겨울에 잡지 말고 다른 계절에 잡으십시오.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "겨울",
+        "to": "winter",
+        "pos": "NNG"
+      },
+      {
+        "from": "계절",
+        "to": "season",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.8
+  },
+  {
+    "id": "pair_00673",
+    "sentence_a": "다음에 비엔나에 또 방문한다면 이곳에 머무를거에요!",
+    "sentence_b": "다음에 Venice 간다면 무조건 여기 묵을거에요!",
+    "sentence_b_org": "다음에 베니스 간다면 무조건 여기 묵을거에요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "베니스",
+        "to": "Venice",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.3
+  },
+  {
+    "id": "pair_00674",
+    "sentence_a": "여름철 실내온도 너무 낮게 두지마.",
+    "sentence_b": "자네는 earthquake와 tsunami 중 어느 것을 무서워하나?",
+    "sentence_b_org": "자네는 지진과 해일 중 어느 것을 무서워하나?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지진",
+        "to": "earthquake",
+        "pos": "NNG"
+      },
+      {
+        "from": "해일",
+        "to": "tsunami",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00675",
+    "sentence_a": "타임스퀘어나 버스터미널 펜스테이션에 걸어가기 좋은 위치에 있어요",
+    "sentence_b": "베네치아 main island까지 bus타고 다니기 좋은 위치에요.",
+    "sentence_b_org": "베네치아 본섬까지 버스타고 다니기 좋은 위치에요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "본섬",
+        "to": "main island",
+        "pos": "NNG"
+      },
+      {
+        "from": "버스",
+        "to": "bus",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.9
+  },
+  {
+    "id": "pair_00676",
+    "sentence_a": "저의 질문에 항상 친절하고 빠른 답변에 감사해요.",
+    "sentence_b": "제 question에 대한 친절하고 빠른 answer에 감사드립니다.",
+    "sentence_b_org": "제 질문에 대한 친절하고 빠른 답변에 감사드립니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "질문",
+        "to": "question",
+        "pos": "NNG"
+      },
+      {
+        "from": "답변",
+        "to": "answer",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00677",
+    "sentence_a": "2층 건물인데 매일 아침 창문밖으로 꽃과 과일시장이 들어서는 모습이 보입니다.",
+    "sentence_b": "그리고 매일 아침마다 조식으로 sandwich와 과자들이나 fruit이 나오는 데 really 맛있습니다.",
+    "sentence_b_org": "그리고 매일 아침마다 조식으로 샌드위치와 과자들이나 과일이 나오는 데 정말 맛있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "샌드위치",
+        "to": "sandwich",
+        "pos": "NNG"
+      },
+      {
+        "from": "과일",
+        "to": "fruit",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.5
+  },
+  {
+    "id": "pair_00678",
+    "sentence_a": "정크 메일함이랑 받은 메일함 중에 뭐가 더 먼저 찬 메일함이야?",
+    "sentence_b": "Gmail을 쓰면 첨부파일을 몇 GB까지 보낼 수 있어요?",
+    "sentence_b_org": "지메일을 쓰면 첨부파일을 몇 기가까지 보낼 수 있어요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지메일",
+        "to": "Gmail",
+        "pos": "NNP"
+      },
+      {
+        "from": "기가",
+        "to": "GB",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.6
+  },
+  {
+    "id": "pair_00679",
+    "sentence_a": "소피아 레이나 센터도 좀만 가면 있음.",
+    "sentence_b": "location도 번화가에서 골목으로 10분만가면됩니다.",
+    "sentence_b_org": "위치도 번화가에서 골목으로 10분만가면됩니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00680",
+    "sentence_a": "실내용 슬리퍼와 화장실 슬리퍼가 고무재질로 같아요",
+    "sentence_b": "실내 slippers와 화장실 slippers는 rubber로 만들어졌습니다.",
+    "sentence_b_org": "실내 슬리퍼와 화장실 슬리퍼는 고무로 만들어졌습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "실내 슬리퍼",
+        "to": "slippers",
+        "pos": "NNG"
+      },
+      {
+        "from": "화장실 슬리퍼",
+        "to": "slippers",
+        "pos": "NNG"
+      },
+      {
+        "from": "고무",
+        "to": "rubber",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00681",
+    "sentence_a": "둘이 지내기에 충분히 넓은 공간과 깨끗한 침구가 쾌적했습니다.",
+    "sentence_b": "네 명이 지내기에 accommodation이 너무 좁았습니다",
+    "sentence_b_org": "네 명이 지내기에 숙소가 너무 좁았습니다",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_00682",
+    "sentence_a": "특히 올해는 1995년 지방자치단체장 선거의 실시를 기점으로 지방자치가 출범한 지 25년을 맞이하는 해로서 더욱 의미가 깊다.",
+    "sentence_b": "착한 소비자 movement는 소상공인 업체의 item이나 service를 선결제 방식으로 구매하자는 movement이다.",
+    "sentence_b_org": "착한 소비자 운동은 소상공인 업체의 물품이나 서비스를 선결제 방식으로 구매하자는 운동이다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "소비자 운동",
+        "to": "consumer movement",
+        "pos": "NNG"
+      },
+      {
+        "from": "물품",
+        "to": "item",
+        "pos": "NNG"
+      },
+      {
+        "from": "서비스",
+        "to": "service",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00683",
+    "sentence_a": "기다리기 보다는 할아버지 병문안은 제 시간에 하는게 좋습니다.",
+    "sentence_b": "할아버지 병문안을 까먹지 말고 제 time에 하세요.",
+    "sentence_b_org": "할아버지 병문안을 까먹지 말고 제 시간에 하세요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "시간",
+        "to": "time",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.2
+  },
+  {
+    "id": "pair_00684",
+    "sentence_a": "저렴한 가격에 6명 정도의 식구가 이용한다면 추천합니다.",
+    "sentence_b": "4명 정도의 family가 지내기에 적당합니다.",
+    "sentence_b_org": "4명 정도의 가족이 지내기에 적당합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "가족",
+        "to": "family",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_00685",
+    "sentence_a": "자외선 수치는 낮 동안 어떻습니까? 동경 지역의.",
+    "sentence_b": "알려줘. Tokyo 낮 UV index 수치.",
+    "sentence_b_org": "알려줘. 동경 낮 자외선 수치.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "동경",
+        "to": "Tokyo",
+        "pos": "NNP"
+      },
+      {
+        "from": "자외선",
+        "to": "UV index",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.1
+  },
+  {
+    "id": "pair_00686",
+    "sentence_a": "내일 언제쯤 등산 가시나요?",
+    "sentence_b": "몇 시쯤 내일 hiking을 하러 가세요?",
+    "sentence_b_org": "몇 시쯤 내일 등산을 하러 가세요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "등산",
+        "to": "hiking",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00687",
+    "sentence_a": "다른 방은 완전 반대쪽에 있어서 훨씬 나을 거예요.",
+    "sentence_b": "이곳에 머문다면 baggage를 좀 줄일 수 있을 거예요.",
+    "sentence_b_org": "이곳에 머문다면 짐을 좀 줄일 수 있을 거예요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "짐",
+        "to": "baggage",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_00688",
+    "sentence_a": "다음 달의 여행이 며칠인지 여쭙습니다.",
+    "sentence_b": "며칠에 다음 달 trip을 계획하셨나요?",
+    "sentence_b_org": "며칠에 다음 달 여행을 계획하셨나요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "여행",
+        "to": "trip",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.3
+  },
+  {
+    "id": "pair_00689",
+    "sentence_a": "다시 로마에 온다면 꼭 그의 숙소에 머물것입니다.",
+    "sentence_b": "만약 내가 Rome에 다시 온다면, 나는 그의 accommodation에 머무를 것입니다.",
+    "sentence_b_org": "만약 내가 로마에 다시 온다면, 나는 그의 숙소에 머무를 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "로마",
+        "to": "Rome",
+        "pos": "NNP"
+      },
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00690",
+    "sentence_a": "용량이 더 큰 메일을 보낸게 거래처인가요 부장님인가요?",
+    "sentence_b": "거래처 email이 차지하는 capacity랑 부장님꺼 중에 뭐가 더 크지?",
+    "sentence_b_org": "거래처 메일이 차지하는 용량이랑 부장님꺼 중에 뭐가 더 크지?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "거래처 메일",
+        "to": "email",
+        "pos": "NNG"
+      },
+      {
+        "from": "용량",
+        "to": "capacity",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_00691",
+    "sentence_a": "빨래와 샤워, 등등 다른 시설들은 완벽했어요.",
+    "sentence_b": "laundry, shower, 그리고 다른 시설들은 완벽했습니다.",
+    "sentence_b_org": "세탁, 샤워, 그리고 다른 시설들은 완벽했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "세탁",
+        "to": "laundry",
+        "pos": "NNG"
+      },
+      {
+        "from": "샤워",
+        "to": "shower",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00692",
+    "sentence_a": "건물 옆으로 시저파크호텔, 미츠코시백화점 사이에 있어요.",
+    "sentence_b": "hotel이 아닌 condo에 머무르는 매력이 분명히 있어요.",
+    "sentence_b_org": "호텔이 아닌 콘도에 머무르는 매력이 분명히 있어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호텔",
+        "to": "hotel",
+        "pos": "NNG"
+      },
+      {
+        "from": "콘도",
+        "to": "condo",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.1
+  },
+  {
+    "id": "pair_00693",
+    "sentence_a": "올해 장마가 시작하는 날짜는?",
+    "sentence_b": "알려줘. 올해 장마가 시작하는 date를.",
+    "sentence_b_org": "알려줘. 올해 장마가 시작하는 날짜를.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "날짜",
+        "to": "date",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00694",
+    "sentence_a": "근로 유형별로는 일용근로가구 54만 가구(56.2%), 상용근로가구 42만 가구(43.8%)였다.",
+    "sentence_b": "전체 등록대수 중 domestic car는 2126만대(89.8%), imported car는 241만대(10.2%)로 imported car 비중이 처음으로 10%를 넘었다.",
+    "sentence_b_org": "전체 등록대수 중 국산차는 2126만대(89.8%), 수입차는 241만대(10.2%)로 수입차 비중이 처음으로 10%를 넘었다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "국산차",
+        "to": "domestic car",
+        "pos": "NNG"
+      },
+      {
+        "from": "수입차",
+        "to": "imported car",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_00695",
+    "sentence_a": "호스트분도 친절하고 영어도 가능합니다.",
+    "sentence_b": "host는 친절하고 영어를 말할 수 있습니다.",
+    "sentence_b_org": "집주인은 친절하고 영어를 말할 수 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "집주인",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00696",
+    "sentence_a": "최고 수준의 AI 인재를 양성할 AI대학원 프로그램 확대·다양화하고, 내년부터 모든 군 장병 및 공무원 임용자 대상 AI 소양교육을 필수화한다.",
+    "sentence_b": "내년에는 OECD 등 global 규범에 부합하는 AI 윤리기준을 확립하고, 2021년부터는 AI 윤리교육 curriculum을 개발·보급한다.",
+    "sentence_b_org": "내년에는 OECD 등 글로벌 규범에 부합하는 AI 윤리기준을 확립하고, 2021년부터는 AI 윤리교육 커리큘럼을 개발·보급한다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "글로벌",
+        "to": "global",
+        "pos": "NNG"
+      },
+      {
+        "from": "커리큘럼",
+        "to": "curriculum",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.3
+  },
+  {
+    "id": "pair_00697",
+    "sentence_a": "등산 내일 언제쯤 하러 가시는지요?",
+    "sentence_b": "내일 hiking 언제 가?",
+    "sentence_b_org": "내일 등산 언제 가?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "등산",
+        "to": "hiking",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_00698",
+    "sentence_a": "전체적으로 위치나 숙소 공간은 제 여행중 가장 좋았던 것 같습니다",
+    "sentence_b": "개인적으로는 이탈리아 travel에서 묵었던 비슷한 price range의 Airbnb 중 가장 좋았어요.",
+    "sentence_b_org": "개인적으로는 이탈리아 여행에서 묵었던 비슷한 가격대의 에어비앤비 중 가장 좋았어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "여행",
+        "to": "travel",
+        "pos": "NNG"
+      },
+      {
+        "from": "가격대",
+        "to": "price range",
+        "pos": "NNG"
+      },
+      {
+        "from": "에어비앤비",
+        "to": "Airbnb",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.3
+  },
+  {
+    "id": "pair_00699",
+    "sentence_a": "문 대통령은 방역·보건의료 분야 다자협력도 제안했다.",
+    "sentence_b": "문 대통령은 또한 quarantine과 medical 분야에서 multilateral cooperation을 제안했습니다.",
+    "sentence_b_org": "문 대통령은 또한 검역과 의료 분야에서 다자간 협력을 제안했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "검역",
+        "to": "quarantine",
+        "pos": "NNG"
+      },
+      {
+        "from": "의료",
+        "to": "medical",
+        "pos": "NNG"
+      },
+      {
+        "from": "다자",
+        "to": "multilateral",
+        "pos": "NNG"
+      },
+      {
+        "from": "협력",
+        "to": "cooperation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 4,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00700",
+    "sentence_a": "리옹역에서 기차를 타시는 분들에게 정말 추천하고 싶은 숙소입니다.",
+    "sentence_b": "리용역에서 train을 타시는 분들에게 추천해 드리고 싶은 숙소입니다.",
+    "sentence_b_org": "리용역에서 기차를 타시는 분들에게 추천해 드리고 싶은 숙소입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "기차",
+        "to": "train",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.7
+  },
+  {
+    "id": "pair_00701",
+    "sentence_a": "위치는 코벤트가든 언더그라운드 역에서 5분도 안걸리는 곳에 있습니다.",
+    "sentence_b": "ferry terminal이 5분도 안 걸리는 거리에 있습니다.",
+    "sentence_b_org": "페리터미널이 5분도 안 걸리는 거리에 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "페리터미널",
+        "to": "ferry terminal",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.0
+  },
+  {
+    "id": "pair_00702",
+    "sentence_a": "알려줘. 대관령과 진부령 중 겨울에 눈이 더 많이 오는 곳을.",
+    "sentence_b": "강풍이 불 때 window는 열면 안된다.",
+    "sentence_b_org": "강풍이 불 때 창문은 열면 안된다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "창문",
+        "to": "window",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00703",
+    "sentence_a": "베란다 불 그대로 켜 둬",
+    "sentence_b": "balcony light은 계속 켜놔",
+    "sentence_b_org": "베란다 불은 계속 켜놔",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "베란다 불",
+        "to": "balcony light",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00704",
+    "sentence_a": "아울러 1인 가구의 전세 수요가 증가하는 현실에 맞춰 공실 상가·오피스·숙박시설 등을 주거공간으로 적극 전환하는 방법으로 신속한 주택 순증효과를 극대화한다.",
+    "sentence_b": "게다가, government는 증가하는 1인 가구에 대한 demand에 따라, 빈 가게, 사무실, 그리고 숙박 시설을 주거 공간으로 적극적으로 전환함으로써 housing의 순 증가를 극대화 할 것입니다.",
+    "sentence_b_org": "게다가, 정부는 증가하는 1인 가구에 대한 수요에 따라, 빈 가게, 사무실, 그리고 숙박 시설을 주거 공간으로 적극적으로 전환함으로써 주택의 순 증가를 극대화 할 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "정부",
+        "to": "government",
+        "pos": "NNG"
+      },
+      {
+        "from": "수요",
+        "to": "demand",
+        "pos": "NNG"
+      },
+      {
+        "from": "주택",
+        "to": "housing",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_00705",
+    "sentence_a": "스케쥴이 일월 이월 중 언제 더 많아?",
+    "sentence_b": "해외출장 출국하시는 date가 언제신지요?",
+    "sentence_b_org": "해외출장 출국하시는 날짜가 언제신지요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "날짜",
+        "to": "date",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_00706",
+    "sentence_a": "또 4곳의 지역관광거점도시와 5~10개의 문화도시를 선정해 공간·콘텐츠·인력패키지 지원사업을 펼친다.",
+    "sentence_b": "또 가치삽시다 platform 입점 기업, brandK 기업 등 중소·소상공인 700곳 내외의 업체를 선정해 지역별 행사 참여를 지원한다.",
+    "sentence_b_org": "또 가치삽시다 플랫폼 입점 기업, 브랜드K 기업 등 중소·소상공인 700곳 내외의 업체를 선정해 지역별 행사 참여를 지원한다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "플랫폼",
+        "to": "platform",
+        "pos": "NNG"
+      },
+      {
+        "from": "브랜드",
+        "to": "brand",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.1
+  },
+  {
+    "id": "pair_00707",
+    "sentence_a": "영화가 이번달과 다음달 중 언제 개봉한다고 했지?",
+    "sentence_b": "movie가 이번달에 개봉하는지 다음달에 개봉하는지 알고 있습니까?",
+    "sentence_b_org": "영화가 이번달에 개봉하는지 다음달에 개봉하는지 알고 있습니까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "영화",
+        "to": "movie",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_00708",
+    "sentence_a": "선생님, 거실이랑 안방 중에 어디에 조명이 들어왔으면 하는거에요?",
+    "sentence_b": "네가 조명 켜고 싶은 place가 안방이니 거실이니?",
+    "sentence_b_org": "네가 조명 켜고 싶은 곳이 안방이니 거실이니?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "곳",
+        "to": "place",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.8
+  },
+  {
+    "id": "pair_00709",
+    "sentence_a": "호스트가 친절하지만 게스트 편의에 대한 안내보다 집 보안유지에 대한 설명에 신경쓰는 느낌입니다.",
+    "sentence_b": "host 아주머니가 really 너무너무 친절하시고, house에는 성인 아들이 같이 생활합니다.",
+    "sentence_b_org": "호스트 아주머니가 정말 너무너무 친절하시고, 집에는 성인 아들이 같이 생활합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "정말",
+        "to": "really",
+        "pos": "MAG"
+      },
+      {
+        "from": "집",
+        "to": "house",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.2
+  },
+  {
+    "id": "pair_00710",
+    "sentence_a": "아웃룩 최신 버젼을 통해 추가된 기능이 뭐야?",
+    "sentence_b": "이번 Outlook 최신 version update를 통해 제공된 기능들을 설명해주실 수 있나요?",
+    "sentence_b_org": "이번 아웃룩 최신 버젼 업데이트를 통해 제공된 기능들을 설명해주실 수 있나요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "아웃룩",
+        "to": "Outlook",
+        "pos": "NNP"
+      },
+      {
+        "from": "버젼",
+        "to": "version",
+        "pos": "NNG"
+      },
+      {
+        "from": "업데이트",
+        "to": "update",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_00711",
+    "sentence_a": "출장을 이번 달에 가게 되면 어느 정도 있다가 오는가?",
+    "sentence_b": "이번 month에 business trip 며칠이나 다녀오십니까?",
+    "sentence_b_org": "이번 달에 출장 며칠이나 다녀오십니까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "달",
+        "to": "month",
+        "pos": "NNG"
+      },
+      {
+        "from": "출장",
+        "to": "business trip",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_00712",
+    "sentence_a": "거래처에서 온 메일은 지우지 마세요",
+    "sentence_b": "거래하는 곳에서 보낸 mail은 지우지 않도록 해주세요.",
+    "sentence_b_org": "거래하는 곳에서 보낸 메일은 지우지 않도록 해주세요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_00713",
+    "sentence_a": "야 네가 원하는게 보일러 모드 중에 취침이냐 아님 목욕 모드냐",
+    "sentence_b": "boiler mode에서 취침과 bath mode 중 너가 선호하는게 뭐야?",
+    "sentence_b_org": "보일러 모드에서 취침과 목욕모드 중 너가 선호하는게 뭐야?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "보일러 모드",
+        "to": "boiler mode",
+        "pos": "NNG"
+      },
+      {
+        "from": "목욕모드",
+        "to": "bath mode",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00714",
+    "sentence_a": "언제 에어컨 작동하도록 예약해놨어?",
+    "sentence_b": "나한테 bedroom에 mood light 밝기 적당한 정도 좀 알려줄래?",
+    "sentence_b_org": "나한테 침실에 무드등 밝기 적당한 정도 좀 알려줄래?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "침실",
+        "to": "bedroom",
+        "pos": "NNG"
+      },
+      {
+        "from": "무드",
+        "to": "mood",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00715",
+    "sentence_a": "단 한기지  단점은  옆방  소음이  들리는 것입니다.",
+    "sentence_b": "유일한 downside는 옆방에서 나는 소음입니다.",
+    "sentence_b_org": "유일한 단점은 옆방에서 나는 소음입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "단점",
+        "to": "downside",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.9
+  },
+  {
+    "id": "pair_00716",
+    "sentence_a": "거래처에 내가 지난 주 동안 보낸 메일 수 알려줘",
+    "sentence_b": "진에어에서 온 payment mail은 지우면 안 돼. 꼭 저장해야 해.",
+    "sentence_b_org": "진에어에서 온 결제 메일은 지우면 안 돼. 꼭 저장해야 해.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "결제 메일",
+        "to": "payment mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.5
+  },
+  {
+    "id": "pair_00717",
+    "sentence_a": "숙소는 도보로 오페라, 라파예트 등 주요관광지를 다니기에 부족함이 없었어요.",
+    "sentence_b": "다음날아침 도보로 major attractions에 도착할 수 있었습니다.",
+    "sentence_b_org": "다음날아침 도보로 주요관광지에 도착할 수 있었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "주요관광지",
+        "to": "major attractions",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_00718",
+    "sentence_a": "세탁기와 건조기가 있었던 것이 가장 좋았습니다",
+    "sentence_b": "air conditioner와 fan이 모두 있는 것이 좋았습니다.",
+    "sentence_b_org": "에어컨과 선풍기가 모두 있는 것이 좋았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "에어컨",
+        "to": "air conditioner",
+        "pos": "NNG"
+      },
+      {
+        "from": "선풍기",
+        "to": "fan",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.6
+  },
+  {
+    "id": "pair_00719",
+    "sentence_a": "개정안에 따르면 규제지역(투기과열지구·조정대상지역) 내 주택 거래 신고 시 ‘주택 취득자금 조달 및 입주계획서(자금조달계획서)’ 제출이 의무화된다.",
+    "sentence_b": "이에 따라 기존의 rice·밭 직불제 등은 ‘농업·농촌공익증진직불제(공익직불제)’로 통합된다.",
+    "sentence_b_org": "이에 따라 기존의 쌀·밭 직불제 등은 ‘농업·농촌공익증진직불제(공익직불제)’로 통합된다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "쌀",
+        "to": "rice",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00720",
+    "sentence_a": "네이버 메일에 연동된 클라우드 서비스를 나열해줘",
+    "sentence_b": "왜 advertisement mail이 자동으로 분류되고 있었나요?",
+    "sentence_b_org": "왜 광고 메일이 자동으로 분류되고 있었나요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "광고 메일",
+        "to": "advertisement mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.6
+  },
+  {
+    "id": "pair_00721",
+    "sentence_a": "도움을 주려고 노력하는 모습이 인상적입니다.",
+    "sentence_b": "도와주려고 하는 attitude가 인상적이네요.",
+    "sentence_b_org": "도와주려고 하는 모습이 인상적이네요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "모습",
+        "to": "attitude",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00722",
+    "sentence_a": "호스트가 매우 친절했고 숙소위치가 아주 좋았음",
+    "sentence_b": "host는 매우 친절했고 accommodation은 매우 좋았습니다.",
+    "sentence_b_org": "집주인은 매우 친절했고 숙소는 매우 좋았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "집주인",
+        "to": "host",
+        "pos": "NNG"
+      },
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00723",
+    "sentence_a": "위치는 렌트를 한다면 아주 추천합니다!",
+    "sentence_b": "대여할 경우 location을 적극 권장합니다!",
+    "sentence_b_org": "대여할 경우 위치를 적극 권장합니다!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.0
+  },
+  {
+    "id": "pair_00724",
+    "sentence_a": "아주버님, 어두운 거랑 밝은 거 중에 조명으로 더 선호하는 게 무엇인가요?",
+    "sentence_b": "선생님, 어두운 lighting이랑 밝은 lighting 중에 뭘 더 선호하세요?",
+    "sentence_b_org": "선생님, 어두운 조명이랑 밝은 조명 중에 뭘 더 선호하세요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "조명",
+        "to": "lighting",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_00725",
+    "sentence_a": "제가 갔던 에어비앤비 중 가장 별로였어요",
+    "sentence_b": "제가 사용했던 Airbnb 숙소 중 가장 좋았어요!",
+    "sentence_b_org": "제가 사용했던 에어앤비 숙소 중 가장 좋았어요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "에어앤비",
+        "to": "Airbnb",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.6
+  },
+  {
+    "id": "pair_00726",
+    "sentence_a": "아직 코로나19와의 싸움이 끝난 것은 아니지만 이제는 한 숨 돌릴 수 있을 만큼 위기는 지나갔다는 평가다.",
+    "sentence_b": "코로나 19세와의 fight은 아직 끝나지 않았지만, 이제 한숨 돌릴 만큼 crisis는 끝났습니다.",
+    "sentence_b_org": "코로나 19세와의 싸움은 아직 끝나지 않았지만, 이제 한숨 돌릴 만큼 위기는 끝났습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "싸움",
+        "to": "fight",
+        "pos": "NNG"
+      },
+      {
+        "from": "위기",
+        "to": "crisis",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00727",
+    "sentence_a": "여덟시 아니고 아홉시에 뉴스 봐야해",
+    "sentence_b": "여름철말고 winter에는 집 난방 온도가 어느 정도 되어야하니?",
+    "sentence_b_org": "여름철말고 겨울철에는 집 난방 온도가 어느 정도 되어야하니?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "겨울철",
+        "to": "winter",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00728",
+    "sentence_a": "태풍 피해 액수 알려줘. 작년 여름 기준.",
+    "sentence_b": "산과 바다 둘 중 summer에 선호하는 place를 알려줘.",
+    "sentence_b_org": "산과 바다 둘 중 여름에 선호하는 장소를 알려줘.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "여름",
+        "to": "summer",
+        "pos": "NNG"
+      },
+      {
+        "from": "장소",
+        "to": "place",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.3
+  },
+  {
+    "id": "pair_00729",
+    "sentence_a": "열쇠가 필요한 문이 3개가 있어 안전합니다.",
+    "sentence_b": "key가 필요한 door가 세 개 있어서 안전합니다.",
+    "sentence_b_org": "열쇠가 필요한 문이 세 개 있어서 안전합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "열쇠",
+        "to": "key",
+        "pos": "NNG"
+      },
+      {
+        "from": "문",
+        "to": "door",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.8
+  },
+  {
+    "id": "pair_00730",
+    "sentence_a": "마레나 리퍼블릭 등에서 핫한 커피와 브런치 가게들의 분점도 많아요",
+    "sentence_b": "home에서 향기가 가득 깨끗한 bedding과 가구들이 기분 좋게합니다.",
+    "sentence_b_org": "집에서 향기가 가득 깨끗한 침구와 가구들이 기분 좋게합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "집",
+        "to": "home",
+        "pos": "NNG"
+      },
+      {
+        "from": "침구",
+        "to": "bedding",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00731",
+    "sentence_a": "특히 AI 교육 등을 위해 2024년까지 모든 초·중·고 교실에 기가급 무선망(Wi-fi)이 설치된다.",
+    "sentence_b": "또 모든 초중학교에 software 교육이 의무화되고, 2024년까지 전 학교에 기가급 무선 internet망도 보급된다.",
+    "sentence_b_org": "또 모든 초중학교에 소프트웨어 교육이 의무화되고, 2024년까지 전 학교에 기가급 무선 인터넷망도 보급된다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "소프트웨어",
+        "to": "software",
+        "pos": "NNG"
+      },
+      {
+        "from": "인터넷망",
+        "to": "internet",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.6
+  },
+  {
+    "id": "pair_00732",
+    "sentence_a": "기존에는 신기술금융회사의 금융과 보험업 투자가 대부분 금지됐었다.",
+    "sentence_b": "한편 이번에 지정된 cultural tourism festival은 다음과 같다.",
+    "sentence_b_org": "한편 이번에 지정된 문화관광축제는 다음과 같다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "문화관광축제",
+        "to": "cultural tourism festival",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00733",
+    "sentence_a": "열대야에는 과음하지 말아라.",
+    "sentence_b": "tomorrow 반포 고수부지는 UV index가 어떻게 돼?",
+    "sentence_b_org": "내일 반포 고수부지는 자외선 지수가 어떻게 돼?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "내일",
+        "to": "tomorrow",
+        "pos": "NNG"
+      },
+      {
+        "from": "자외선 지수",
+        "to": "UV index",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00734",
+    "sentence_a": "조용한 곳에 위치한 아늑하고 따뜻한 가족 친화적인 집입니다.",
+    "sentence_b": "조용한 place에 위치한 아늑하고 따뜻한 가족 친화적인 집입니다.",
+    "sentence_b_org": "조용한 곳에 위치한 아늑하고 따뜻한 가족 친화적인 집입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "곳",
+        "to": "place",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.6
+  },
+  {
+    "id": "pair_00735",
+    "sentence_a": "삼월에 온 메일들은 삭제하지 말고 영구보존함으로 옮기자.",
+    "sentence_b": "받은 메일함에 다른 것 말고, 삼월에 온 mail들은 permanent archive로 옮기는게 어때?",
+    "sentence_b_org": "받은 메일함에 다른 것 말고, 삼월에 온 메일들은 영구보존함으로 옮기는게 어때?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      },
+      {
+        "from": "영구보존함",
+        "to": "permanent archive",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.0
+  },
+  {
+    "id": "pair_00736",
+    "sentence_a": "집 창문으로 보이는 풍경이 너무 멋졌습니다",
+    "sentence_b": "bathroom window로 보이는 풍경 아름답습니다",
+    "sentence_b_org": "화장실 창문으로 보이는 풍경 아름답습니다",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "화장실 창문",
+        "to": "bathroom window",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.6
+  },
+  {
+    "id": "pair_00737",
+    "sentence_a": "이곳에는 시험장 1곳당 간호사를 포함한 감독관 4명이 배치되며, Level-D 보호구를 착용 한 후 감독을 수행한다.",
+    "sentence_b": "각 test site마다 nurse를 포함한 supervisor 4명이 배치되며, D급 protection gear를 착용한 후 supervision을 실시할 예정입니다.",
+    "sentence_b_org": "각 시험장마다 간호사를 포함한 감독관 4명이 배치되며, D급 보호장비를 착용한 후 감독을 실시할 예정입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "시험장",
+        "to": "test site",
+        "pos": "NNG"
+      },
+      {
+        "from": "간호사",
+        "to": "nurse",
+        "pos": "NNG"
+      },
+      {
+        "from": "감독관",
+        "to": "supervisor",
+        "pos": "NNG"
+      },
+      {
+        "from": "보호장비",
+        "to": "protection gear",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 4,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.4
+  },
+  {
+    "id": "pair_00738",
+    "sentence_a": "독일 지역에서는 주로 70세 이상 고령의 파독 근로자 출신 동포들이 약 2000만 원 상당의 성금 모금에 참여했다.",
+    "sentence_b": "스위스는 최근 자국 출발 flight ticket에 최대 120 스위스프랑(약 14만6000원)의 carbon tax를 부과하기로 했다.",
+    "sentence_b_org": "스위스는 최근 자국 출발 항공권에 최대 120 스위스프랑(약 14만6000원)의 탄소세를 부과하기로 했다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "자국 출발 항공권",
+        "to": "flight ticket",
+        "pos": "NNG"
+      },
+      {
+        "from": "탄소세",
+        "to": "carbon tax",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00739",
+    "sentence_a": "일단 위치가 라스베가스 스트립의 완전 중심에 있어요.",
+    "sentence_b": "먼저, location은 Las Vegas에 있는 Las Vegas Strip의 가운데에 있습니다.",
+    "sentence_b_org": "먼저, 위치는 라스베가스에 있는 라스베가스 스트립의 가운데에 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      },
+      {
+        "from": "라스베가스",
+        "to": "Las Vegas",
+        "pos": "NNP"
+      },
+      {
+        "from": "스트립",
+        "to": "Strip",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.6
+  },
+  {
+    "id": "pair_00740",
+    "sentence_a": "지하철 역과 가깝고, 주요 지역인 신주쿠, 시부야, 도쿄역 등 접근성이 편리합니다.",
+    "sentence_b": "subway station에서 가깝고 신주쿠, 시부야, 도쿄역 등 access가 좋습니다.",
+    "sentence_b_org": "지하철역에서 가깝고 신주쿠, 시부야, 도쿄역 등 접근성이 좋습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지하철역",
+        "to": "subway station",
+        "pos": "NNG"
+      },
+      {
+        "from": "접근성",
+        "to": "access",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00741",
+    "sentence_a": "3분기 명목 국민총소득(GNI)은 전기대비 2.5% 증가한 487조3000억원을 기록했다.",
+    "sentence_b": "3/4분기에 nominal GNI는 2.5% 증가한 487조 3천억 원을 기록했습니다.",
+    "sentence_b_org": "3/4분기에 명목 국민 총소득은 2.5% 증가한 487조 3천억 원을 기록했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "명목 국민 총소득",
+        "to": "nominal GNI",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00742",
+    "sentence_a": "방에 에어컨 냉장고 티비 테이블 생수 2병이 배치되었고 화장실도 깨끗해요.",
+    "sentence_b": "가격대비 room이 넓고 bathroom도 청결합니다.",
+    "sentence_b_org": "가격대비 방이 넓고 화장실도 청결합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방",
+        "to": "room",
+        "pos": "NNG"
+      },
+      {
+        "from": "화장실",
+        "to": "bathroom",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.3
+  },
+  {
+    "id": "pair_00743",
+    "sentence_a": "하지만 위치도, 시설도, 주변안내도, 가격도 괜찮은 편인것 같습니다.",
+    "sentence_b": "host의 응답을 제외한 위치, 시설, 편의성 다 괜찮았습니다.",
+    "sentence_b_org": "호스트의 응답을 제외한 위치, 시설, 편의성 다 괜찮았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.8
+  },
+  {
+    "id": "pair_00744",
+    "sentence_a": "오페라하우스, 차이나타운 등 대부분의 랜드마크가 걸어서 30분 안에 해결이 됩니다.",
+    "sentence_b": "Opera House와 Chinatown과 같은 대부분의 명소들은 걸어서 30분 이내에 해결될 것입니다.",
+    "sentence_b_org": "오페라 하우스와 차이나타운과 같은 대부분의 명소들은 걸어서 30분 이내에 해결될 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "오페라 하우스",
+        "to": "Opera House",
+        "pos": "NNG"
+      },
+      {
+        "from": "차이나타운",
+        "to": "Chinatown",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00745",
+    "sentence_a": "세탁기 멈추지 않게 조심해",
+    "sentence_b": "오른쪽하고 left 중 어느 방향으로 에어컨 바람이 나오는게 좋을 것 같아?",
+    "sentence_b_org": "오른쪽하고 왼쪽 중 어느 방향으로 에어컨 바람이 나오는게 좋을 것 같아?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "왼쪽",
+        "to": "left",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00746",
+    "sentence_a": "저기요 도시가스는 쓰지 말라고 경고했을텐데요",
+    "sentence_b": "winter에 난방 적정 온도가 몇이야?",
+    "sentence_b_org": "겨울철에 난방 적정 온도가 몇이야?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "겨울철",
+        "to": "winter",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00747",
+    "sentence_a": "그래도 서비스 부분에서 정말 실망스러웠습니다.",
+    "sentence_b": "최대 advantage는 두오모에서 really 가깝습니다.",
+    "sentence_b_org": "최대 장점은 두오모에서 정말 가깝습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "정말",
+        "to": "really",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00748",
+    "sentence_a": "친구들과 지내기 정말 좋은 장소였습니다.",
+    "sentence_b": "어린 child가 있는 family보다 친구들끼리나 어른들끼리 지내기에 좋습니다.",
+    "sentence_b_org": "어린 아이가 있는 가족보다 친구들끼리나 어른들끼리 지내기에 좋습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "아이",
+        "to": "child",
+        "pos": "NNG"
+      },
+      {
+        "from": "가족",
+        "to": "family",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.0
+  },
+  {
+    "id": "pair_00749",
+    "sentence_a": "웰컴 드링크로 나오는 포트와인도 맛있었어요!",
+    "sentence_b": "혼자 지내기에도 엄청 space도 넓었어요 !",
+    "sentence_b_org": "혼자 지내기에도 엄청 공간도 넓었어요 !",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "공간",
+        "to": "space",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00750",
+    "sentence_a": "체크인전 호스트의 별도의 안내나 연락은 없다.",
+    "sentence_b": "친절한 host의 안내가 더할나위 없었던 밀라노의 숙박이었다",
+    "sentence_b_org": "친절한 호스트의 안내가 더할나위 없었던  밀라노의 숙박이었다",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.3
+  },
+  {
+    "id": "pair_00751",
+    "sentence_a": "근데 세탁기돌릴려고 호스트한티 연락했는데 회사같은느낌의 에어비엔비더라구요",
+    "sentence_b": "host가 진짜 친근한 동네 아줌마 같았어요.",
+    "sentence_b_org": "호스트가 진짜 친근한 동네 아줌마 같았어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.4
+  },
+  {
+    "id": "pair_00752",
+    "sentence_a": "어떤 일정이 내일 오전에 계획된 일정 중 가장 빨라?",
+    "sentence_b": "회사 boss 저녁 appointment에는 늦지 말아.",
+    "sentence_b_org": "회사 상사 저녁 약속에는 늦지 말아.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "상사",
+        "to": "boss",
+        "pos": "NNG"
+      },
+      {
+        "from": "약속",
+        "to": "appointment",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.5
+  },
+  {
+    "id": "pair_00753",
+    "sentence_a": "형광등을 사용하는 것은 삼가주세요",
+    "sentence_b": "Excuse me, volume 이단계로 해드려요 아님 삼단계로 해드려요?",
+    "sentence_b_org": "저기요, 볼륨 이단계로 해드려요 아님 삼단계로 해드려요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "저기요",
+        "to": "Excuse me",
+        "pos": "IC"
+      },
+      {
+        "from": "볼륨",
+        "to": "volume",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00754",
+    "sentence_a": "이만한 가격에 훌륭한 컨디션과 위치입니다",
+    "sentence_b": "장기간 지내기에도 짧게 지내기에도 very 훌륭한 room입니다!",
+    "sentence_b_org": "장기간 지내기에도 짧게 지내기에도 아주 훌륭한 방입니다!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "아주",
+        "to": "very",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.6
+  },
+  {
+    "id": "pair_00755",
+    "sentence_a": "비 올 때 계곡에 텐트 치면 안돼.",
+    "sentence_b": "비 올 때 valley에 텐트치는 것을 금합니다.",
+    "sentence_b_org": "비 올 때 계곡에 텐트치는 것을 금합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "계곡",
+        "to": "valley",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.1
+  },
+  {
+    "id": "pair_00756",
+    "sentence_a": "더불어 중점관리시설에는 마스크 착용, 출입자 명단 관리, 환기·소독 등이 공통적으로 의무화된다.",
+    "sentence_b": "또한, mask를 착용하고, 출입자 목록 관리, 환기 및 disinfection은 주요 관리 시설의 공통적인 의무입니다.",
+    "sentence_b_org": "또한, 마스크를 착용하고, 출입자 목록 관리, 환기 및 소독은 주요 관리 시설의 공통적인 의무입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "마스크",
+        "to": "mask",
+        "pos": "NNG"
+      },
+      {
+        "from": "소독",
+        "to": "disinfection",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00757",
+    "sentence_a": "호스트인 알도 마리아는 세종3의 한국어 자격증 보유자로 한국문화 이해도가 높아요.",
+    "sentence_b": "주최자인 Aldo Maria는 세종 3세의 Korean 자격증 소지자로서 한국 culture에 대한 높은 understanding을 가지고 있습니다.",
+    "sentence_b_org": "주최자인 알도 마리아는 세종 3세의 한국어 자격증 소지자로서 한국 문화에 대한 높은 이해도를 가지고 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "알도 마리아",
+        "to": "Aldo Maria",
+        "pos": "NNP"
+      },
+      {
+        "from": "한국어",
+        "to": "Korean",
+        "pos": "NNG"
+      },
+      {
+        "from": "문화",
+        "to": "culture",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_00758",
+    "sentence_a": "더운물로하는 목욕은 삼가주시기 바랍니다.",
+    "sentence_b": "집안 lighting은 어둡게 말고 밝게 유지해주길 바라",
+    "sentence_b_org": "집안 조명은 어둡게 말고 밝게 유지해주길 바라",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "조명",
+        "to": "lighting",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.6
+  },
+  {
+    "id": "pair_00759",
+    "sentence_a": "1층에는 다른 주민분이 사시고 2층이 숙소입니다.",
+    "sentence_b": "또 다른 resident는 1st floor에 살고 2nd floor는 숙소입니다.",
+    "sentence_b_org": "또 다른 거주자는 1층에 살고 2층은 숙소입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "거주자",
+        "to": "resident",
+        "pos": "NNG"
+      },
+      {
+        "from": "1층",
+        "to": "1st floor",
+        "pos": "NNG"
+      },
+      {
+        "from": "2층",
+        "to": "2nd floor",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00760",
+    "sentence_a": "서울과 부산 중 올해 기상이변이 큰 지역을 알려주십시오.",
+    "sentence_b": "this year 기상이변이 큰 곳은 서울이야? 아니면 부산이야?",
+    "sentence_b_org": "올해 기상이변이 큰 곳은 서울이야? 아니면 부산이야?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "올해",
+        "to": "this year",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00761",
+    "sentence_a": "동해와 서해 중 해일 위험이 더 큰 곳이 어디인지 찾아줘.",
+    "sentence_b": "tsunami risk은 동해와 서해 중 어느 region에서 더 큽니까?",
+    "sentence_b_org": "해일 위험은 동해와 서해 중 어느 지역에서 더 큽니까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "해일 위험",
+        "to": "tsunami risk",
+        "pos": "NNG"
+      },
+      {
+        "from": "지역",
+        "to": "region",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00762",
+    "sentence_a": "신속한대응 체크인 위치 모두 다 만족합니다",
+    "sentence_b": "친절한 안내와 깨끗한 accommodation, 좋은 location까지 모두 만족합니다",
+    "sentence_b_org": "친절한 안내와 깨끗한 숙소, 좋은 위치까지 모두 만족합니다",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      },
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.8
+  },
+  {
+    "id": "pair_00763",
+    "sentence_a": "내가 학교에 보낸 메일이랑 거래처에 보낸 메일이랑 더 많이 보낸 곳 알려줘",
+    "sentence_b": "Naver mail을 사용할 때 NDrive를 연동해서 쓸 수 있을까요?",
+    "sentence_b_org": "네이버 메일을 사용할 때 엔드라이브를 연동해서 쓸 수 있을까요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "네이버",
+        "to": "Naver",
+        "pos": "NNP"
+      },
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      },
+      {
+        "from": "엔드라이브",
+        "to": "NDrive",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.1
+  },
+  {
+    "id": "pair_00764",
+    "sentence_a": "동해와 서해 중 해일 위험이 더 큰 곳은 어느 곳인지 알려주세요.",
+    "sentence_b": "동해와 서해 중 tsunami 위험은 어느 곳이 더 클까?",
+    "sentence_b_org": "동해와 서해 중 해일 위험은 어느 곳이 더 클까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "해일",
+        "to": "tsunami",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00765",
+    "sentence_a": "다음에 또 마드리드에 갈 일이 생긴다면 반드시 이 곳에 다시 머물 생각입니다.",
+    "sentence_b": "다음에 닛포리 갈 예정이 생기면 꼭 다시 stay할 생각입니다.",
+    "sentence_b_org": "다음에 닛포리 갈 예정이 생기면 꼭 다시 묵을 생각입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "묵을",
+        "to": "stay",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.2
+  },
+  {
+    "id": "pair_00766",
+    "sentence_a": "정부가 코로나19 확산으로 지난 15일 특별재난지역으로 지정된 대구와 경북 일부 지역 주민을 위해 전파사용료·통신요금 감면, 구호물품 무료배송 등 지원 대책을 시행한다.",
+    "sentence_b": "정부가 국내 기업과 머리를 맞대 코로나19 antibody 치료제와 예방 vaccine을 개발한다.",
+    "sentence_b_org": "정부가 국내 기업과 머리를 맞대 코로나19 항체 치료제와 예방 백신을 개발한다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "항체",
+        "to": "antibody",
+        "pos": "NNG"
+      },
+      {
+        "from": "백신",
+        "to": "vaccine",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_00767",
+    "sentence_a": "굳이 다른 어플리케이션을 쓸 필요가 없어. 에어비앤비 자체 어플리케이션을 쓰자.",
+    "sentence_b": "Nate mail에서 attachment가 안되는 file 종류가 뭐야?",
+    "sentence_b_org": "네이트 메일에서 첨부가 안되는 파일 종류가 뭐야?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      },
+      {
+        "from": "첨부",
+        "to": "attachment",
+        "pos": "NNG"
+      },
+      {
+        "from": "파일",
+        "to": "file",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00768",
+    "sentence_a": "네이트 메일이랑 네이버 메일 중 접속 되는 거로 하나 알려줘",
+    "sentence_b": "교수님 mail 답장이랑 조교님 답장 중 뭐가 더 잘 오냐?",
+    "sentence_b_org": "교수님 메일 답장이랑 조교님 답장 중 뭐가 더 잘 오냐?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00769",
+    "sentence_a": "불합리한 조달기준은 합리적으로 조정하며, 기업에 주는 입찰 부담은 최대한 완화한다.",
+    "sentence_b": "불합리한 구매기준은 합리적으로 조정되며, enterprise의 입찰부담은 최대한 완화됩니다.",
+    "sentence_b_org": "불합리한 구매기준은 합리적으로 조정되며, 기업의 입찰부담은 최대한 완화됩니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "기업",
+        "to": "enterprise",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.6
+  },
+  {
+    "id": "pair_00770",
+    "sentence_a": "2020년도 예산이 역대 최대 규모인 512조 3천억 원으로 확정되었습니다.",
+    "sentence_b": "2020년 budget은 사상 최대인 512조 3천억 원으로 책정되었습니다.",
+    "sentence_b_org": "2020년 예산은 사상 최대인 512조 3천억 원으로 책정되었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "예산",
+        "to": "budget",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00771",
+    "sentence_a": "커피숍, 베이커리, 드럭스토어, 슈퍼 다 있습니다.",
+    "sentence_b": "coffee shop, bakery, pharmacy, supermarket이 있습니다.",
+    "sentence_b_org": "커피숍, 빵집, 약국, 슈퍼마켓이 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "커피숍",
+        "to": "coffee shop",
+        "pos": "NNG"
+      },
+      {
+        "from": "빵집",
+        "to": "bakery",
+        "pos": "NNG"
+      },
+      {
+        "from": "약국",
+        "to": "pharmacy",
+        "pos": "NNG"
+      },
+      {
+        "from": "슈퍼마켓",
+        "to": "supermarket",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 4,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_00772",
+    "sentence_a": "주변에 24시간 편의점 등이 있어 편리합니다.",
+    "sentence_b": "24시간 전후로 convenience store이 있어서 편리합니다.",
+    "sentence_b_org": "24시간 전후로 편의점이 있어서 편리합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "편의점",
+        "to": "convenience store",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00773",
+    "sentence_a": "만약에 지각하신다면 말없이 늦게 오기 보다는 지각하기 전에 미리 얘기해주세요.",
+    "sentence_b": "언제쯤이면 friend가 travel을 갈 수 있습니까?",
+    "sentence_b_org": "언제쯤이면 친구가 여행을 갈 수 있습니까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "친구",
+        "to": "friend",
+        "pos": "NNG"
+      },
+      {
+        "from": "여행",
+        "to": "travel",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00774",
+    "sentence_a": "브뤼셀 미디, 센트럴 역의 중간이라 접근성이 뛰어납니다.",
+    "sentence_b": "중앙역인 브뤼셀 미디 중간에 있어서 accessibility가 좋습니다.",
+    "sentence_b_org": "중앙역인 브뤼셀 미디 중간에 있어서 접근성이 좋습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "접근성",
+        "to": "accessibility",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.2
+  },
+  {
+    "id": "pair_00775",
+    "sentence_a": "너는 잠금장치하고 침입 경고장치 중에 어느게 더 중요할 것 같아?",
+    "sentence_b": "air conditioner랑 fan 중에 efficiency가 더 나은게 뭐였지?",
+    "sentence_b_org": "에어컨이랑 선풍기 중에 효율이 더 나은게 뭐였지?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "에어컨",
+        "to": "air conditioner",
+        "pos": "NNG"
+      },
+      {
+        "from": "선풍기",
+        "to": "fan",
+        "pos": "NNG"
+      },
+      {
+        "from": "효율",
+        "to": "efficiency",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_00776",
+    "sentence_a": "피해 업종별·부문별 맞춤형 금융지원도 추가로 확대키로 했다.",
+    "sentence_b": "정부는 각 sector와 해당 sector에 대한 맞춤형 financial 지원을 더욱 확대할 예정입니다.",
+    "sentence_b_org": "정부는 각 부문과 해당 부문에 대한 맞춤형 금융 지원을 더욱 확대할 예정입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "정부",
+        "to": "government",
+        "pos": "NNG"
+      },
+      {
+        "from": "부문",
+        "to": "sector",
+        "pos": "NNG"
+      },
+      {
+        "from": "해당 부문",
+        "to": "relevant sector",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.8
+  },
+  {
+    "id": "pair_00777",
+    "sentence_a": "지진 시에 건물 엘리베이터는 이용하지 말자.",
+    "sentence_b": "다음 주 비 오는 day를 알려주세요.",
+    "sentence_b_org": "다음 주 비 오는 날을 알려주세요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "날",
+        "to": "day",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00778",
+    "sentence_a": "먼저 ‘코로나 이후 시대의 새로운 지속가능발전 규범과 민관 전략’을 주제로 서니 버기스 세계지속가능발전기업협의회 회장의 기조연설이 영상으로 상영됐다.",
+    "sentence_b": "먼저 국내 중소업체가 자체기술로 개발 중인 vehicle의 flight 장면이 remote으로 중계됐다.",
+    "sentence_b_org": "먼저 국내 중소업체가 자체기술로 개발 중인 기체의 비행 장면이 원격으로 중계됐다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "기체",
+        "to": "vehicle",
+        "pos": "NNG"
+      },
+      {
+        "from": "비행 장면",
+        "to": "flight",
+        "pos": "NNG"
+      },
+      {
+        "from": "원격",
+        "to": "remote",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_00779",
+    "sentence_a": "정부는 승객 감소로 매출이 급감한 버스업계 지원에도 팔을 걷어 붙인다.",
+    "sentence_b": "정부는 또한 승객 감소로 sales가 급감한 bus industry를 지원하기 위해 팔을 걷어붙일 것입니다.",
+    "sentence_b_org": "정부는 또한 승객 감소로 매출이 급감한 버스 산업을 지원하기 위해 팔을 걷어붙일 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "매출",
+        "to": "sales",
+        "pos": "NNG"
+      },
+      {
+        "from": "버스 산업",
+        "to": "bus industry",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00780",
+    "sentence_a": "자상한 기업 7호인 삼성전자는 지난해 10월 소재·부품·장비 중심 스마트공장 고도화를 위한 업무협약을 중기부·중소기업중앙회와 체결한 바 있다.",
+    "sentence_b": "또 domestic company와의 상생협력이나 국내 소재·부품·장비 산업경쟁력을 강화하는 데도 기여할 전망이다.",
+    "sentence_b_org": "또 국내기업과의 상생협력이나 국내 소재·부품·장비 산업경쟁력을 강화하는 데도 기여할 전망이다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "국내기업",
+        "to": "domestic company",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.2
+  },
+  {
+    "id": "pair_00781",
+    "sentence_a": "지난 10일 한국공항공사에서 김현미 국토부 장관과 국내 10개 항공사, 공항공사 CEO 등이 참석한 가운데 항공업계 지원방안을 논의하기 위한 간담회가 열렸다.",
+    "sentence_b": "통합환경관리제도는 인허가 절차는 간소화하되, 업종별 특성과 주변 환경 등을 개별적으로 고려한 맞춤형 기준을 적용하는 기업과 지역주민 모두에게 합리적인 system이다.",
+    "sentence_b_org": "통합환경관리제도는 인허가 절차는 간소화하되, 업종별 특성과 주변 환경 등을 개별적으로 고려한 맞춤형 기준을 적용하는 기업과 지역주민 모두에게 합리적인 제도다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "제도",
+        "to": "system",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_00782",
+    "sentence_a": "사진보다 훨씬 넓고 쾌적한 공간입니다.",
+    "sentence_b": "사진보다 휠씬크고 깔끔한 accommodation 입니다.",
+    "sentence_b_org": "사진보다 휠씬크고 깔끔한 숙소 입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_00783",
+    "sentence_a": "한국 단풍 명소는 어디지?",
+    "sentence_b": "새벽 안개는 tomorrow 몇시에 걷힐 예정인가요?",
+    "sentence_b_org": "새벽 안개는 내일 몇시에 걷힐 예정인가요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "내일",
+        "to": "tomorrow",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00784",
+    "sentence_a": "테라스와 침대에서 에펠탑을 볼 수 있습니다.",
+    "sentence_b": "에펠탑은 terrace와 bed 위에서 볼 수 있습니다.",
+    "sentence_b_org": "에펠탑은 테라스와 침대 위에서 볼 수 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "테라스",
+        "to": "terrace",
+        "pos": "NNG"
+      },
+      {
+        "from": "침대",
+        "to": "bed",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00785",
+    "sentence_a": "사진으로 본것보다 훨씬 넓고 깨끗합니다!",
+    "sentence_b": "제가 본 photo보다 훨씬 넓고 깨끗해요!",
+    "sentence_b_org": "제가 본 사진보다 훨씬 넓고 깨끗해요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "사진",
+        "to": "photo",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00786",
+    "sentence_a": "콜로세움, 진실의 입 등 걸어서 이동이 가능해요.",
+    "sentence_b": "여러분은 Colosseum, 진실의 mouth 등등을 걸어서 갈 수 있습니다.",
+    "sentence_b_org": "여러분은 콜로세움, 진실의 입 등등을 걸어서 갈 수 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "콜로세움",
+        "to": "Colosseum",
+        "pos": "NNP"
+      },
+      {
+        "from": "입",
+        "to": "mouth",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00787",
+    "sentence_a": "집도 매우 넓고 전반적으로 깨끗합니다.",
+    "sentence_b": "그 house는 전체적으로 very 넓고 깨끗합니다.",
+    "sentence_b_org": "그 집은 전체적으로 매우 넓고 깨끗합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "집",
+        "to": "house",
+        "pos": "NNG"
+      },
+      {
+        "from": "매우",
+        "to": "very",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.5
+  },
+  {
+    "id": "pair_00788",
+    "sentence_a": "조금 힘든 점이 있었다면 샤워실 물의 온도를 맞추기가 어려웠다는 건데요.",
+    "sentence_b": "샤워실 temperature에서 water의 temperature를 조절하는 것이 어려웠습니다.",
+    "sentence_b_org": "샤워실 온도에서 물의 온도를 조절하는 것이 어려웠습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "물",
+        "to": "water",
+        "pos": "NNG"
+      },
+      {
+        "from": "온도",
+        "to": "temperature",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_00789",
+    "sentence_a": "이번 대책은 크게 3가지 방향으로 추진된다.",
+    "sentence_b": "실제 arrival은 내일부터 하게 될 것으로 보입니다.",
+    "sentence_b_org": "실제 도착은 내일부터 하게 될 것으로 보입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "도착",
+        "to": "arrival",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00790",
+    "sentence_a": "미국의 가정집을 경험하기에 최고였어요.",
+    "sentence_b": "바르셀로나의 summer을 즐기기에 best의 장소였습니다.",
+    "sentence_b_org": "바르셀로나의 여름을 즐기기에 최고의 장소였습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "여름",
+        "to": "summer",
+        "pos": "NNG"
+      },
+      {
+        "from": "최고",
+        "to": "best",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00791",
+    "sentence_a": "집에 있는 사람들과의 교류를 가질 수 있다는 점에서 흥미로웠습니다.",
+    "sentence_b": "home에서 사람들과 교류할 수 있다는 것이 흥미로웠어요.",
+    "sentence_b_org": "집에서 사람들과 교류할 수 있다는 것이 흥미로웠어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "집",
+        "to": "home",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00792",
+    "sentence_a": "열대야는 몇 도가 기준 입니까?",
+    "sentence_b": "여름에 room temperature에 food 오래두지 말아라.",
+    "sentence_b_org": "여름에 상온에 음식 오래두지 말아라.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "상온",
+        "to": "room temperature",
+        "pos": "NNG"
+      },
+      {
+        "from": "음식",
+        "to": "food",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00793",
+    "sentence_a": "아버지가 되시는 날이 언제야?",
+    "sentence_b": "날짜 중 언제 father가 time이 되시는지요?",
+    "sentence_b_org": "날짜 중 언제 아버지가 시간이 되시는지요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "아버지",
+        "to": "father",
+        "pos": "NNG"
+      },
+      {
+        "from": "시간",
+        "to": "time",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00794",
+    "sentence_a": "토마스 바흐 위원장은 폐회식 종료 후 최윤희 차관 등 우리나라 관계자들을 만찬에 초청했다.",
+    "sentence_b": "MOLIT와 경찰청은 연말연시 음주운전 근절 등 교통법규 준수와 보행자 우선 배려 등 선진적인 교통문화 정착에 국민들의 적극 동참을 당부했다.",
+    "sentence_b_org": "국토부와 경찰청은 연말연시 음주운전 근절 등 교통법규 준수와 보행자 우선 배려 등 선진적인 교통문화 정착에 국민들의 적극 동참을 당부했다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "국토부",
+        "to": "MOLIT",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00795",
+    "sentence_a": "판테온 바로 옆건물로 위치가 아주 좋았어요.",
+    "sentence_b": "판테온 바로 옆에 있는 building은 very 좋은 location에 있었습니다.",
+    "sentence_b_org": "판테온 바로 옆에 있는 건물은 매우 좋은 위치에 있었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "건물",
+        "to": "building",
+        "pos": "NNG"
+      },
+      {
+        "from": "매우",
+        "to": "very",
+        "pos": "MAG"
+      },
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.9
+  },
+  {
+    "id": "pair_00796",
+    "sentence_a": "해외에서 제 네이버 계정에 들어오려 했던 아이피가 궁금합니다.",
+    "sentence_b": "제 KakaoTalk 연동 mail이 학교거인지, 회사거인지 궁금합니다.",
+    "sentence_b_org": "제 카카오톡 연동 메일이 학교거인지, 회사거인지 궁금합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "카카오톡",
+        "to": "KakaoTalk",
+        "pos": "NNP"
+      },
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00797",
+    "sentence_a": "추후 파리에 방문한다면 다시한번 이 곳을 이용할 예정입니다!",
+    "sentence_b": "만약 여러분이 future에 파리를 방문한다면, 우리는 이곳을 다시 사용할 거예요!",
+    "sentence_b_org": "만약 여러분이 미래에 파리를 방문한다면, 우리는 이곳을 다시 사용할 거예요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "미래",
+        "to": "future",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_00798",
+    "sentence_a": "그래서 쓰기전에 설거지 한번씩 더한다음에 썼네요.",
+    "sentence_b": "Metro 패스권 쓰기 좋은 location에 있네요!",
+    "sentence_b_org": "매트로 패스권 쓰기 좋은 위치에 있네요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "매트로",
+        "to": "Metro",
+        "pos": "NNG"
+      },
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00799",
+    "sentence_a": "집의 테라스에서 일출, 일몰, 야경이 모두 좋아요",
+    "sentence_b": "그 house의 terrace는 sunrise, sunset, 야경이 모두 좋습니다.",
+    "sentence_b_org": "그 집의 테라스는 일출, 일몰, 야경이 모두 좋습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "집",
+        "to": "house",
+        "pos": "NNG"
+      },
+      {
+        "from": "테라스",
+        "to": "terrace",
+        "pos": "NNG"
+      },
+      {
+        "from": "일출",
+        "to": "sunrise",
+        "pos": "NNG"
+      },
+      {
+        "from": "일몰",
+        "to": "sunset",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 4,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.7
+  },
+  {
+    "id": "pair_00800",
+    "sentence_a": "정부와 기업이 함께 중국 당국과 긴밀히 협의하여 중국 내 자동차 부품 공장의 재가동을 앞당긴 것이 좋은 사례입니다.",
+    "sentence_b": "정부와 기업들이 중국의 자동차 부품 factory 재가동을 가속화하기 위해 중국 당국과 긴밀히 협력한 것은 좋은 예입니다.",
+    "sentence_b_org": "정부와 기업들이 중국의 자동차 부품 공장 재가동을 가속화하기 위해 중국 당국과 긴밀히 협력한 것은 좋은 예입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "공장",
+        "to": "factory",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00801",
+    "sentence_a": "우리 가족은 이 집을 방문하기 전에 다른 분들의 사용기를 보면서 조금 걱정한 것이 사실입니다.",
+    "sentence_b": "우리 family는이 apartment를 아주 좋아합니다.",
+    "sentence_b_org": "우리 가족은이 아파트를 아주 좋아합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "가족",
+        "to": "family",
+        "pos": "NNG"
+      },
+      {
+        "from": "아파트",
+        "to": "apartment",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.6
+  },
+  {
+    "id": "pair_00802",
+    "sentence_a": "또한 택시 운전사가 택시 운전자격 취득 전 임시로 가맹 택시를 운행할 수 있게 된다.",
+    "sentence_b": "또 아이돌봄서비스를 즉시 이용 할 수 있도록 procedure도 개선된다.",
+    "sentence_b_org": "또 아이돌봄서비스를 즉시 이용 할 수 있도록 절차도 개선된다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "절차",
+        "to": "procedure",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_00803",
+    "sentence_a": "학력, 이력, 수상경력 등 자격 요건의 제한은 없다.",
+    "sentence_b": "학력, 이력, 수상 경력과 같은 qualification에는 제한이 없습니다.",
+    "sentence_b_org": "학력, 이력, 수상 경력과 같은 자격 요건에는 제한이 없습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "자격 요건",
+        "to": "qualification",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00804",
+    "sentence_a": "기업 체감심리를 가리키는 기업경기실사지수 역시 74로 전달보다 10포인트나 상승했다.",
+    "sentence_b": "기업 체감경기를 나타내는 business survey index 역시 74로 전달보다 10포인트 상승했습니다.",
+    "sentence_b_org": "기업 체감경기를 나타내는 기업경기실사지수 역시 74로 전달보다 10포인트 상승했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "기업경기실사지수",
+        "to": "business survey index",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.6
+  },
+  {
+    "id": "pair_00805",
+    "sentence_a": "또한 비대면과 관련된 법·제도도 지속 개선해나간다.",
+    "sentence_b": "비우량등급 회사채·CP 발행동향도 discussion됐다.",
+    "sentence_b_org": "비우량등급 회사채·CP 발행동향도 논의됐다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "논의",
+        "to": "discussion",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00806",
+    "sentence_a": "근데 링 안 위치가 더 좋은 듯 합니다",
+    "sentence_b": "location도 좋아서 비엔나 관광지 왠만한 곳은 30분 이내에 이동 가능합니다.",
+    "sentence_b_org": "위치도 좋아서 비엔나 관광지 왠만한 곳은 30분 이내에 이동 가능합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_00807",
+    "sentence_a": "숙소도 사진 보다 더 좋은 공간이었습니다.",
+    "sentence_b": "그 accommodation은 사진보다 더 좋은 장소였어요.",
+    "sentence_b_org": "그 숙소는 사진보다 더 좋은 장소였어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.4
+  },
+  {
+    "id": "pair_00808",
+    "sentence_a": "언제 교수님 면담하기로 되어 있니?",
+    "sentence_b": "교수님 언제 meet하기로 했나?",
+    "sentence_b_org": "교수님 언제 뵙기로 했나?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "뵙기",
+        "to": "meet",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00809",
+    "sentence_a": "언제 교수님 뵙기로 하셨죠?",
+    "sentence_b": "교수님 면담 time이 언제세요?",
+    "sentence_b_org": "교수님 면담 시간이 언제세요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "시간",
+        "to": "time",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_00810",
+    "sentence_a": "음식은 여름에 남기지 않습니다.",
+    "sentence_b": "food 여름에 남기지 말자고.",
+    "sentence_b_org": "음식 여름에 남기지 말자고.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "음식",
+        "to": "food",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00811",
+    "sentence_a": "실업부조를 도입한 OECD 주요국가로는 독일, 프랑스, 영국, 스페인, 스웨덴, 핀란드 등이 있다.",
+    "sentence_b": "unemployment aid를 도입한 주요 OECD 국가들로는 독일, 프랑스, 영국, 스페인, 스웨덴, 핀란드가 있습니다.",
+    "sentence_b_org": "실업 원조를 도입한 주요 OECD 국가들로는 독일, 프랑스, 영국, 스페인, 스웨덴, 핀란드가 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "실업 원조",
+        "to": "unemployment aid",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.6
+  },
+  {
+    "id": "pair_00812",
+    "sentence_a": "태풍 경로 따라가지 말고 피해서 여행하도록.",
+    "sentence_b": "현재 안개 낀 place가 한계령인지 미시령인지 알려줘.",
+    "sentence_b_org": "현재 안개 낀 곳이 한계령인지 미시령인지 알려줘.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "곳",
+        "to": "place",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00813",
+    "sentence_a": "콘서트 가기로 했던 게 이번주였나요 다음주였나요?",
+    "sentence_b": "이번주와 다음주 중에서 concert 가기로 한게 언제인지 기억나?",
+    "sentence_b_org": "이번주와 다음주 중에서 콘서트 가기로 한게 언제인지 기억나?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "콘서트",
+        "to": "concert",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00814",
+    "sentence_a": "영화 속에서 보던 유럽의 클래식한 멋이 가득한 집이었어요.",
+    "sentence_b": "movie에서 본 유럽풍의 classic함이 가득한 집이었습니다.",
+    "sentence_b_org": "영화에서 본 유럽풍의 클래식함이 가득한 집이었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "영화",
+        "to": "movie",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.9
+  },
+  {
+    "id": "pair_00815",
+    "sentence_a": "사진과 같은 방에 창문 밖으로 보이는 두오모가 정말 이뻤다.",
+    "sentence_b": "window 밖으로 보이는 view가 무척 아름답더군요.",
+    "sentence_b_org": "창문 밖으로 보이는 경치가 무척 아름답더군요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "창문",
+        "to": "window",
+        "pos": "NNG"
+      },
+      {
+        "from": "경치",
+        "to": "view",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.0
+  },
+  {
+    "id": "pair_00816",
+    "sentence_a": "당신의 아버님이 사용하고 계신 이메일 주소를 하나 알 수 있을까요?",
+    "sentence_b": "Naver랑 Nate mail을 사용해서 attachment를 보낼 때 뭐가 더 빨리 전송돼?",
+    "sentence_b_org": "네이버랑 네이트 메일을 사용해서 첨부파일을 보낼 때 뭐가 더 빨리 전송돼?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "네이버",
+        "to": "Naver",
+        "pos": "NNP"
+      },
+      {
+        "from": "네이트",
+        "to": "Nate",
+        "pos": "NNP"
+      },
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      },
+      {
+        "from": "첨부파일",
+        "to": "attachment",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 4,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_00817",
+    "sentence_a": "호스트가 알려준 저녁 식사 장소도 마음에 꼭 들었다.",
+    "sentence_b": "심지어 facility도 상당히 마음에 들었습니다",
+    "sentence_b_org": "심지어 시설도 상당히 마음에 들었습니다",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "시설",
+        "to": "facility",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.9
+  },
+  {
+    "id": "pair_00818",
+    "sentence_a": "가습기말고 에어컨은 너무 기온이 높을때만 틀도록 해",
+    "sentence_b": "제습기말고 AC 사용 시간은 최소한을 할 수 있도록 협조 바랍니다.",
+    "sentence_b_org": "제습기말고 에어컨 사용 시간은 최소한을 할 수 있도록 협조 바랍니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "에어컨",
+        "to": "AC",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.8
+  },
+  {
+    "id": "pair_00819",
+    "sentence_a": "진짜 너무너무 완벽한 숙소 고민중이라면 무조건 여기서 숙박하세요!",
+    "sentence_b": "완벽한 accommodation을 생각하고 있다면, 꼭 여기에 머무르세요!",
+    "sentence_b_org": "완벽한 숙소를 생각하고 있다면, 꼭 여기에 머무르세요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.3
+  },
+  {
+    "id": "pair_00820",
+    "sentence_a": "게다가 아파트에 커피머신이 있어서 훌륭합니다.",
+    "sentence_b": "게다가, apartment에 coffee machine이 있어서 좋아요.",
+    "sentence_b_org": "게다가, 아파트에 커피 머신이 있어서 좋아요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "아파트",
+        "to": "apartment",
+        "pos": "NNG"
+      },
+      {
+        "from": "커피 머신",
+        "to": "coffee machine",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00821",
+    "sentence_a": "잊지 말고 알람 꼭 설정해 두세요.",
+    "sentence_b": "alarm은 잊지 말고 반드시 설정해 놓으셔야 합니다.",
+    "sentence_b_org": "알람은 잊지 말고 반드시 설정해 놓으셔야 합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "알람",
+        "to": "alarm",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00822",
+    "sentence_a": "당구장이나 피시방에서 잠을 자는것 같은 경험을 원하신다면 추천 드려요.",
+    "sentence_b": "이 accommodation에서는 그 기간동안 같은 towel을 사용하라고 합니다.",
+    "sentence_b_org": "이 숙소에서는 그 기간동안 같은 수건을 사용하라고 합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      },
+      {
+        "from": "수건",
+        "to": "towel",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00823",
+    "sentence_a": "다만 화장실중 하나는 샤워하기에 비좁고 복층인 점을 염두하시길 바랍니다.",
+    "sentence_b": "다만 air conditioner가 없다는 점 다시한번 체크하고 가시길 바랍니다!",
+    "sentence_b_org": "다만 에어콘이 없다는 점 다시한번 체크하고 가시길 바랍니다!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "에어콘",
+        "to": "air conditioner",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.4
+  },
+  {
+    "id": "pair_00824",
+    "sentence_a": "마트가 바로앞에 있고, 호스트의 답은 빠릅니다.",
+    "sentence_b": "일단 toilet이 bed 바로 옆에있고 shower도 불편합니다.",
+    "sentence_b_org": "일단 변기가 침대 바로 옆에있고 샤워도 불편합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "변기",
+        "to": "toilet",
+        "pos": "NNG"
+      },
+      {
+        "from": "침대",
+        "to": "bed",
+        "pos": "NNG"
+      },
+      {
+        "from": "샤워",
+        "to": "shower",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00825",
+    "sentence_a": "스페이스파이오니어사업 세부과제 구성현황",
+    "sentence_b": "또 rural tourism 예약 현황, pork 등 livestock product 소비 동향, financial market 동향 등도 함께 점검했다.",
+    "sentence_b_org": "또 농촌관광 예약 현황, 돼지고기 등 축산물 소비 동향, 금융시장 동향 등도 함께 점검했다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "돼지고기",
+        "to": "pork",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00826",
+    "sentence_a": "팔레르모에 오신다면 이 집을 정말로 추천해요!",
+    "sentence_b": "만약 당신이 팔레르모에 온다면, 이 house를 really 추천해요!",
+    "sentence_b_org": "만약 당신이 팔레르모에 온다면, 이 집을 정말 추천해요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "집",
+        "to": "house",
+        "pos": "NNG"
+      },
+      {
+        "from": "정말",
+        "to": "really",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00827",
+    "sentence_a": "집도 깔끔하고 집주인도 매우 친절합니다.",
+    "sentence_b": "house는 깨끗하고 host는 매우 친절합니다.",
+    "sentence_b_org": "집은 깨끗하고 집주인은 매우 친절합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "집",
+        "to": "house",
+        "pos": "NNG"
+      },
+      {
+        "from": "집주인",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.7
+  },
+  {
+    "id": "pair_00828",
+    "sentence_a": "국가공무원노동조합(국공노)과 중소벤처기업부공무원노동조합은 23일 서울 여의도 중소기업중앙회에서 ‘소상공인이 미소짓는 슬기로운 소비생활’ 캠페인 발대식을 열었다.",
+    "sentence_b": "실험동물 흡입독성 test(4종)에서는 propylene glycol(826 mg/kg), vitamin E 아세테이트(3.125 mg/kg) 투여농도에서 호흡기계 독성이 확인되었다.",
+    "sentence_b_org": "실험동물 흡입독성시험(4종)에서는 프로필렌글리콜(826 mg/kg), 비타민E 아세테이트(3.125 mg/kg) 투여농도에서 호흡기계 독성이 확인되었다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "시험",
+        "to": "test",
+        "pos": "NNG"
+      },
+      {
+        "from": "프로필렌",
+        "to": "propylene",
+        "pos": "NNG"
+      },
+      {
+        "from": "글리콜",
+        "to": "glycol",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00829",
+    "sentence_a": "테르미니역 근처로 숙소를 찾고 있는 여자분들께 특히 추천합니다.",
+    "sentence_b": "특히 테르미니 station 근처에서 accommodation을 찾고 있는 여성들에게 추천합니다.",
+    "sentence_b_org": "특히 테르미니 역 근처에서 숙소를 찾고 있는 여성들에게 추천합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "역",
+        "to": "station",
+        "pos": "NNG"
+      },
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00830",
+    "sentence_a": "추워도 과하지 않게 적당히 운동하게.",
+    "sentence_b": "typhoon 중에 역사상 규모가 가장 큰 것은 무엇입니까?",
+    "sentence_b_org": "태풍 중에 역사상 규모가 가장 큰 것은 무엇입니까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "태풍",
+        "to": "typhoon",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00831",
+    "sentence_a": "어제 설정해놓은 알람 시간을 몇 시로 해뒀어?",
+    "sentence_b": "다음주 company dinner이 잡힌 게 언제인지 알려주세요.",
+    "sentence_b_org": "다음주 회식이 잡힌 게 언제인지 알려주세요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "회식",
+        "to": "company dinner",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00832",
+    "sentence_a": "광복절이면 어디 나가기보다는 집에서 휴식을 취해야지.",
+    "sentence_b": "weekend에 강원도 travel을 간다면 Saturday에 가실래요 Sunday에 가실래요?",
+    "sentence_b_org": "주말에 강원도 여행을 간다면 토요일에 가실래요 일요일에 가실래요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "주말",
+        "to": "weekend",
+        "pos": "NNG"
+      },
+      {
+        "from": "여행",
+        "to": "travel",
+        "pos": "NNG"
+      },
+      {
+        "from": "토요일",
+        "to": "Saturday",
+        "pos": "NNG"
+      },
+      {
+        "from": "일요일",
+        "to": "Sunday",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 4,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00833",
+    "sentence_a": "문 대통령은 이날 오후 경기도 평택에 있는 마스크 생산업체 우일씨앤텍을 방문했다.",
+    "sentence_b": "그 날 afternoon, 문 대통령은 경기도 평택의 마스크 생산업체인 우일 C&T를 방문했습니다.",
+    "sentence_b_org": "그 날 오후, 문 대통령은 경기도 평택의 마스크 생산업체인 우일 C&T를 방문했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "오후",
+        "to": "afternoon",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00834",
+    "sentence_a": "내일 일출 시간은 몇시야?",
+    "sentence_b": "drain에는 food를 버리지 않도록 하세요.",
+    "sentence_b_org": "하수구에는 음식을 버리지 않도록 하세요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "하수구",
+        "to": "drain",
+        "pos": "NNG"
+      },
+      {
+        "from": "음식",
+        "to": "food",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00835",
+    "sentence_a": "지구 상에서 규모가 가장 컸던 태풍은 무엇입니까?",
+    "sentence_b": "찬 food 너무 많이 섭취하지마. 덥다고.",
+    "sentence_b_org": "찬 음식 너무 많이 섭취하지마. 덥다고.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "음식",
+        "to": "food",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00836",
+    "sentence_a": "청년고용률(15~29세)도 매년 상승(2017년 42.1%→2018년 42.7%→2019년 43.5%)해 2019년에는 13년 만에 최고치를 기록했다.",
+    "sentence_b": "또 올 한해 approval 건수를 200건 이상으로 확대하는 등 제도 안착에도 속도를 내기로 했다.",
+    "sentence_b_org": "또 올 한해 승인 건수를 200건 이상으로 확대하는 등 제도 안착에도 속도를 내기로 했다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "승인",
+        "to": "approval",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00837",
+    "sentence_a": "약속을 변경하는 사유는 지난 후에 공지하지 마시고 약속 삼십분 전에 공지해주세요.",
+    "sentence_b": "몇 시에 내일 예매한 movie가 상영 시작한대?",
+    "sentence_b_org": "몇 시에 내일 예매한 영화가 상영 시작한대?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "영화",
+        "to": "movie",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_00838",
+    "sentence_a": "아무튼 전체적으로 만족스러웠던 숙소였습니다.",
+    "sentence_b": "Nevertheless, 전체적으로 만족했던 숙소였습니다.",
+    "sentence_b_org": "그래도 전체적으로 만족했던 숙소였습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "그래도",
+        "to": "Nevertheless",
+        "pos": "MAJ"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.4
+  },
+  {
+    "id": "pair_00839",
+    "sentence_a": "하지만 개인실의 단점과 와이파이가 방에서 잘 안되는 단점이 있습니다.",
+    "sentence_b": "다른분이 지적하신대로 bathroom 하나의 drainage가 잘 안되는 점이 좀 아쉬웠습니다.",
+    "sentence_b_org": "다른분이 지적하신대로 욕실하나의 배수가 잘 안되는 점이 좀 아쉬웠습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "욕실",
+        "to": "bathroom",
+        "pos": "NNG"
+      },
+      {
+        "from": "배수",
+        "to": "drainage",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.4
+  },
+  {
+    "id": "pair_00840",
+    "sentence_a": "숙소에서 트램 타는 곳 까지  2분 걸리는 것 같아요.",
+    "sentence_b": "accommodation에서 산마르코광장까지는 2,30분 걸린것같습니다.",
+    "sentence_b_org": "숙소에서 산마르코광장까지는 2,30분 걸린것같습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.5
+  },
+  {
+    "id": "pair_00841",
+    "sentence_a": "금년 서울 지역에 비 온 날 수를 알려주세요.",
+    "sentence_b": "올해 서울에 비 온 day는 며칠이야?",
+    "sentence_b_org": "올해 서울에 비 온 날은 며칠이야?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "날",
+        "to": "day",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00842",
+    "sentence_a": "특히 콘서트, 피아노, 클래식, 노래 등 음악 분야에 대한 언급량 증가율이 높았다.",
+    "sentence_b": "특히, concert, piano, classic, 그리고 song과 같은 music에 대한 언급의 수가 많이 증가했습니다.",
+    "sentence_b_org": "특히, 음악회, 피아노, 클래식, 그리고 노래와 같은 음악에 대한 언급의 수가 많이 증가했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "음악회",
+        "to": "concert",
+        "pos": "NNG"
+      },
+      {
+        "from": "피아노",
+        "to": "piano",
+        "pos": "NNG"
+      },
+      {
+        "from": "클래식",
+        "to": "classic",
+        "pos": "NNG"
+      },
+      {
+        "from": "노래",
+        "to": "song",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 4,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.1
+  },
+  {
+    "id": "pair_00843",
+    "sentence_a": "평일 약속은 낮 말고 저녁으로 잡으시지요.",
+    "sentence_b": "appointment은 평일에는 낮 말고 evening에 잡도록 하십시오.",
+    "sentence_b_org": "약속은 평일에는 낮 말고 저녁에 잡도록 하십시오.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "약속",
+        "to": "appointment",
+        "pos": "NNG"
+      },
+      {
+        "from": "저녁",
+        "to": "evening",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.4
+  },
+  {
+    "id": "pair_00844",
+    "sentence_a": "그러나 3일동안 제공받은 수건은 오직1개 뿐이였어요",
+    "sentence_b": "3일 묶는동안 room cleaning과 towel 갈아주는것은 없었어요",
+    "sentence_b_org": "3일 묶는동안 방청소와 수건 갈아주는것은 없었어요",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방청소",
+        "to": "room cleaning",
+        "pos": "NNG"
+      },
+      {
+        "from": "수건",
+        "to": "towel",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.2
+  },
+  {
+    "id": "pair_00845",
+    "sentence_a": "도보 10분거리에 볼만한 상점이 많아요.",
+    "sentence_b": "집 근처에 walk로 갈 수 있는 거리에도 볼만한 곳들이 있어요.",
+    "sentence_b_org": "집 근처에 도보로 산책할 거리에도 볼만한 곳들이 있어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "도보",
+        "to": "walk",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.7
+  },
+  {
+    "id": "pair_00846",
+    "sentence_a": "다른 방은 그냥 평범한 사이즈 방이였어요!",
+    "sentence_b": "우선 집상태는 그냥 평범한 Airbnb였구요.",
+    "sentence_b_org": "우선 집상태는 그냥 평범한 에어비앤비였구요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "에어비앤비",
+        "to": "Airbnb",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.0
+  },
+  {
+    "id": "pair_00847",
+    "sentence_a": "카카오톡을 회사메일로 연동해서 이용하지마",
+    "sentence_b": "쿠팡에서 온 mail 중에 배송 주문 확인 관련된게 몇개야?",
+    "sentence_b_org": "쿠팡에서 온 메일 중에 배송 주문 확인 관련된게 몇개야?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.4
+  },
+  {
+    "id": "pair_00848",
+    "sentence_a": "네이버 메일 최대 생성 가능 계정 수가 어떻게 되지?",
+    "sentence_b": "최대 몇 개 까지 Naver mail에 가입할 수 있나요?",
+    "sentence_b_org": "최대 몇 개 까지 네이버 메일에 가입할 수 있나요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "네이버",
+        "to": "Naver",
+        "pos": "NNP"
+      },
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00849",
+    "sentence_a": "사진에 나오는 것은 주로 주인방 우리가 쓰는방은 작은 방, 계단 6층, 에어컨 없음, 좀 더움, 좁음, 샤워실 작음, 주인은 친절한 편, 가성비는 괜찮, 여성분 혼자 짐옮기기는 힘들듯, 둘이 지내긴 좁은 느낌",
+    "sentence_b": "또, 사진에 보이는 그대로 room의 크기와 interior가 같으며, 훨씬더 세심한 배려가 돋보이는 소품들과 가구배치입니다.",
+    "sentence_b_org": "또, 사진에 보이는 그대로 방의 크기와 인테리어가 같으며, 훨씬더 세심한 배려가 돋보이는 소품들과 가구배치입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방",
+        "to": "room",
+        "pos": "NNG"
+      },
+      {
+        "from": "인테리어",
+        "to": "interior",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_00850",
+    "sentence_a": "머무는 4일동안 고양이 덕분에 행복했어요!",
+    "sentence_b": "나흘 동안 cat 덕분에 행복했어요!",
+    "sentence_b_org": "나흘 동안 고양이 덕분에 행복했어요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "고양이",
+        "to": "cat",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00851",
+    "sentence_a": "네이트 메일의 파일보내기는 사용하지마",
+    "sentence_b": "파일 보낼 일이 있다면 Nate mail은 사용하지마",
+    "sentence_b_org": "파일 보낼 일이 있다면 네이트 메일은 사용하지마",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "네이트",
+        "to": "Nate",
+        "pos": "NNP"
+      },
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.3
+  },
+  {
+    "id": "pair_00852",
+    "sentence_a": "보건복지부의 ‘적극행정과 코로나19’, 세종특별자치시와 경기도 고양시의 ‘코로나19 대응 드라이브스루 선별진료소 운영’ 사례가 상반기 영예의 대상을 차지했다.",
+    "sentence_b": "보건복지부의 '능동행정 및 COVID-19'와 세종특별자치시와 경기도 고양시의 'COVID-19 대응을 위한 드라이브스루 스크리닝센터 운영'이 상반기에 수상의 영예를 안았습니다.",
+    "sentence_b_org": "보건복지부의 '능동행정 및 코로나19'와 세종특별자치시와 경기도 고양시의 '코로나19 대응을 위한 드라이브스루 스크리닝센터 운영'이 상반기에 수상의 영예를 안았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "코로나19",
+        "to": "COVID-19",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00853",
+    "sentence_a": "자원봉사 다음주에 어느 때에 한대?",
+    "sentence_b": "다음주에 volunteer 언제 하러 가?",
+    "sentence_b_org": "다음주에 자원봉사 언제 하러 가?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "자원봉사",
+        "to": "volunteer",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00854",
+    "sentence_a": "무료주차장을 이용할수 있는 장점이 있습니다.",
+    "sentence_b": "parking lot을 이용할 수 있다는 장점이 있습니다.",
+    "sentence_b_org": "주차장을 이용할 수 있다는 장점이 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "주차장",
+        "to": "parking lot",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.3
+  },
+  {
+    "id": "pair_00855",
+    "sentence_a": "방이 6개고 샤워실 2개 화장실3개입니다.",
+    "sentence_b": "6개의 room, 2개의 shower room, 3개의 bathroom이 있습니다.",
+    "sentence_b_org": "6개의 방, 2개의 샤워실, 3개의 욕실이 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방",
+        "to": "room",
+        "pos": "NNG"
+      },
+      {
+        "from": "샤워실",
+        "to": "shower room",
+        "pos": "NNG"
+      },
+      {
+        "from": "욕실",
+        "to": "bathroom",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00856",
+    "sentence_a": "낮에는 몇 도지? 내륙 중심은.",
+    "sentence_b": "열대야에는 극단이 아닌 미지근한 water에 샤워하기를 권합니다.",
+    "sentence_b_org": "열대야에는 극단이 아닌 미지근한 물에 샤워하기를 권합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "물",
+        "to": "water",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00857",
+    "sentence_a": "심지어 냉장고 안에 물과 콜라까지 다 무료로 마실 수 있었고요!",
+    "sentence_b": "저는 심지어 refrigerator에서 water와 coke를 공짜로 마실 수 있었어요!",
+    "sentence_b_org": "저는 심지어 냉장고에서 물과 콜라를 공짜로 마실 수 있었어요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "냉장고",
+        "to": "refrigerator",
+        "pos": "NNG"
+      },
+      {
+        "from": "물",
+        "to": "water",
+        "pos": "NNG"
+      },
+      {
+        "from": "콜라",
+        "to": "coke",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00858",
+    "sentence_a": "혼자 뉴욕 여행하시는 분이라면 강추합니다!",
+    "sentence_b": "만약 혼자 New York 여행을 한다면, 저는 그것을 강력히 추천합니다!",
+    "sentence_b_org": "만약 혼자 뉴욕 여행을 한다면, 저는 그것을 강력히 추천합니다!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "뉴욕",
+        "to": "New York",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00859",
+    "sentence_a": "침구나 제공된 타월등 모두 깨끗했습니다.",
+    "sentence_b": "comforter와 towel 모두 깨끗했어요.",
+    "sentence_b_org": "이불과 수건 모두 깨끗했어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "이불",
+        "to": "comforter",
+        "pos": "NNG"
+      },
+      {
+        "from": "수건",
+        "to": "towel",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.0
+  },
+  {
+    "id": "pair_00860",
+    "sentence_a": "화장실에 물이 수압이조금 약한것은 아쉬웠습니다",
+    "sentence_b": "bathroom에 하수구 냄새가 올라오는 것은 조금 아쉬웠습니다.",
+    "sentence_b_org": "화장실에 하수구 냄새가 올라오는 것은 조금 아쉬웠습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "화장실",
+        "to": "bathroom",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.3
+  },
+  {
+    "id": "pair_00861",
+    "sentence_a": "뜨거운 물도 두명이서 쓰기엔 불편함 없었어요.",
+    "sentence_b": "8명이서 머물기에 큰 불편함 없는 공간이었고, location이 훌륭합니다.",
+    "sentence_b_org": "8명이서 머물기에 큰 불편함 없는 공간이었고, 로케이션이 훌륭합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "로케이션",
+        "to": "location",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_00862",
+    "sentence_a": "다른 후기처럼 부엌에도 필요한거 다 있고 욕실도 깨끗해요!",
+    "sentence_b": "다른 review들과 마찬가지로, kitchen에는 여러분이 필요한 모든 것이 있고 bathroom은 깨끗해요!",
+    "sentence_b_org": "다른 리뷰들과 마찬가지로, 부엌에는 여러분이 필요한 모든 것이 있고 화장실은 깨끗해요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "리뷰",
+        "to": "review",
+        "pos": "NNG"
+      },
+      {
+        "from": "부엌",
+        "to": "kitchen",
+        "pos": "NNG"
+      },
+      {
+        "from": "화장실",
+        "to": "bathroom",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00863",
+    "sentence_a": "올해 단풍은 어느 도시에서 처음 피어?",
+    "sentence_b": "이번 year에는 어느 city에서 단풍이 처음 피나요?",
+    "sentence_b_org": "이번 년도에는 어느 도시에서 단풍이 처음 피나요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "이번",
+        "to": "this",
+        "pos": "NNG"
+      },
+      {
+        "from": "도시",
+        "to": "city",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00864",
+    "sentence_a": "주방식기통이랑 화장실에서 바퀴벌레를 봤어요",
+    "sentence_b": "다만 bathroom에서 ant를 여러마리 봤어요.",
+    "sentence_b_org": "다만 화장실에서 개미를 여러마리 봤어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "화장실",
+        "to": "bathroom",
+        "pos": "NNG"
+      },
+      {
+        "from": "개미",
+        "to": "ant",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.3
+  },
+  {
+    "id": "pair_00865",
+    "sentence_a": "서울과 부산 중 태풍 진로방향은 어디입니까?",
+    "sentence_b": "typhoon path는 서울과 부산 중 어느 쪽이야?",
+    "sentence_b_org": "태풍 진로방향은 서울과 부산 중 어느 쪽이야?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "태풍 진로방향",
+        "to": "typhoon path",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_00866",
+    "sentence_a": "그리고 호스트의 조카가 관리하는곳이에요",
+    "sentence_b": "host의 조카가 관리합니다.",
+    "sentence_b_org": "호스트의 조카가 관리합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_00867",
+    "sentence_a": "소재부품분야는 올해 3359억 원 투자해 5년 내 핵심품목 100개의 공급 안정화 등을 목표로 지난해 발표한 ‘소재부품장비 RD 종합대책’을 차질 없이 추진한다.",
+    "sentence_b": "정부는 향후 5년간 18만명의 ’digital 핵심 실무인재 양성‘을 목표로 한국판 New Deal의 대표사업으로서 ‘K-digital training’을 추진 중이다.",
+    "sentence_b_org": "정부는 향후 5년간 18만명의 ’디지털 핵심 실무인재 양성‘을 목표로 한국판 뉴딜의 대표사업으로서 ‘K-디지털 트레이닝’을 추진 중이다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "디지털",
+        "to": "digital",
+        "pos": "NNG"
+      },
+      {
+        "from": "뉴딜",
+        "to": "New Deal",
+        "pos": "NNG"
+      },
+      {
+        "from": "디지털 트레이닝",
+        "to": "digital training",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_00868",
+    "sentence_a": "사실상 공사만 없었다면 그곳은 완벽한 숙소입니다.",
+    "sentence_b": "다른분들이 남겼듯이 이곳은 완벽한 accommodation입니다!",
+    "sentence_b_org": "다른분들이 남겼듯이 이곳은 완벽한 숙소입니다!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.8
+  },
+  {
+    "id": "pair_00869",
+    "sentence_a": "네이버 메일과 엔드라이브 연동하면 안돼",
+    "sentence_b": "그쪽 아버님 email address가 필요한데 불러줄 수 있을까요?",
+    "sentence_b_org": "그쪽 아버님 메일 주소가 필요한데 불러줄 수 있을까요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일 주소",
+        "to": "email address",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.3
+  },
+  {
+    "id": "pair_00870",
+    "sentence_a": "몇 월 며칠에 내장산 단풍이 시작하는지 압니까?",
+    "sentence_b": "올해 첫 snow는 예상 date가 어떻게 돼?",
+    "sentence_b_org": "올해 첫눈은 예상 날짜가 어떻게 돼?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "눈",
+        "to": "snow",
+        "pos": "NNG"
+      },
+      {
+        "from": "날짜",
+        "to": "date",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00871",
+    "sentence_a": "화이트 에펠을 집에서 보는 행복을 얻을 수 있어요!",
+    "sentence_b": "포르투갈식 house에서 머무는 feeling을 가질 수 있습니다.",
+    "sentence_b_org": "포르투갈식 집에서 머무는 느낌을 가질 수 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "식 집",
+        "to": "house",
+        "pos": "NNG"
+      },
+      {
+        "from": "느낌",
+        "to": "feeling",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00872",
+    "sentence_a": "숙소 주변에 오픈 타파스바가 많이 있습니다.",
+    "sentence_b": "숙소 주변에는 open 타파스 바가 많이 있습니다.",
+    "sentence_b_org": "숙소 주변에는 오픈 타파스 바가 많이 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "오픈",
+        "to": "open",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.7
+  },
+  {
+    "id": "pair_00873",
+    "sentence_a": "또 하나 중요한건, 숙소 근처에 밤 늦게까지 하는 작은 술집이 많다는 거에요.",
+    "sentence_b": "한국인분들, 이 accommodation은 양평같은 곳이에요",
+    "sentence_b_org": "한국인분들, 이 숙소는 양평같은 곳이에요",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.1
+  },
+  {
+    "id": "pair_00874",
+    "sentence_a": "제 인스타그램 비밀번호를 지메일을 통해 받고 싶은데 어떻게 하나요?",
+    "sentence_b": "보낸 mail함에 오랫동안 mail을 보관하지 마세요.",
+    "sentence_b_org": "보낸 메일함에 오랫동안 메일을 보관하지 마세요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      },
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.6
+  },
+  {
+    "id": "pair_00875",
+    "sentence_a": "다만, 도로와 인접해서 거리의 소음이 들려요.",
+    "sentence_b": "하지만, 길과 가깝기 때문에 street의 noise을 들을 수 있습니다.",
+    "sentence_b_org": "하지만, 길과 가깝기 때문에 거리의 소음을 들을 수 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "거리",
+        "to": "street",
+        "pos": "NNG"
+      },
+      {
+        "from": "소음",
+        "to": "noise",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00876",
+    "sentence_a": "스웨덴은 2045년까지 탄소중립 달성을 목표로 지난 2017년 6월 법제화를 마쳤다.",
+    "sentence_b": "스웨덴은 2045년까지 carbon neutrality를 목표로 2017년 6월 legislation을 완료했습니다.",
+    "sentence_b_org": "스웨덴은 2045년까지 탄소중립을 목표로 2017년 6월 입법을 완료했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "탄소중립",
+        "to": "carbon neutrality",
+        "pos": "NNG"
+      },
+      {
+        "from": "입법",
+        "to": "legislation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00877",
+    "sentence_a": "처음 방문하실 때 묵으시는 것 보다 두번 이상 방문 째에 묵으시는 것을 추천드려욥",
+    "sentence_b": "room size는 생각하는 것보다 작을 가능성이 있어요",
+    "sentence_b_org": "방 넓이는 생각하는 것보다 작을 가능성이 있어요",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방 넓이",
+        "to": "room size",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00878",
+    "sentence_a": "눈 올 때 쉬지말고 집 앞은 치우자.",
+    "sentence_b": "snow가 내릴 때는 쉬지말고 집 앞을 치우시기 바랍니다.",
+    "sentence_b_org": "눈이 내릴 때는 쉬지말고 집 앞을 치우시기 바랍니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "눈",
+        "to": "snow",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00879",
+    "sentence_a": "거래 업체에 지난 일주일동안 내가 보낸 메일 수는?",
+    "sentence_b": "Naver mail이랑 쪽지 중에 뭐가 더 오래 보관되지?",
+    "sentence_b_org": "네이버 메일이랑 쪽지 중에 뭐가 더 오래 보관되지?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "네이버",
+        "to": "Naver",
+        "pos": "NNP"
+      },
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_00880",
+    "sentence_a": "내일 습도가 높아? 낮아?",
+    "sentence_b": "내일 humidity가 높을까? 아니면 낮을까?",
+    "sentence_b_org": "내일 습도가 높을까? 아니면 낮을까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "습도",
+        "to": "humidity",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.4
+  },
+  {
+    "id": "pair_00881",
+    "sentence_a": "여행 마지막 날엔 해변가에서 집까지 걸어왔네요.",
+    "sentence_b": "덕분에 last day 공항까지 무사히 왔네요",
+    "sentence_b_org": "덕분에 마지막날 공항까지 무사히 왔네요",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "마지막날",
+        "to": "last day",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.5
+  },
+  {
+    "id": "pair_00882",
+    "sentence_a": "시험 전부터 후까지 이중, 삼중으로 부정행위를 막기 위한 방어막도 마련됐다.",
+    "sentence_b": "시험 전후에, 이중과 삼중 부정행위를 막기 위한 shield도 있었습니다.",
+    "sentence_b_org": "시험 전후에, 이중과 삼중 부정행위를 막기 위한 방패도 있었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방패",
+        "to": "shield",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00883",
+    "sentence_a": "이 가격에 이 정도면 상당히 만족합니다.",
+    "sentence_b": "이 price에 꽤 만족해요.",
+    "sentence_b_org": "이 가격에 꽤 만족해요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "가격",
+        "to": "price",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00884",
+    "sentence_a": "저번처럼 잊지 말고 친구 생일은 잘 챙겨줬으면 좋겠어.",
+    "sentence_b": "회사 상사와 appointment에 또 늦게 가지 말고 먼저 나가 있으시길 바랍니다.",
+    "sentence_b_org": "회사 상사와 약속에 또 늦게 가지 말고 먼저 나가 있으시길 바랍니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "약속",
+        "to": "appointment",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00885",
+    "sentence_a": "호스트와 함께 사용하는 숙소임을 인지 하시길",
+    "sentence_b": "반드시 profile로 들어가셔서 숙소의 다른 사진들을 참조하시길 바랍니다.",
+    "sentence_b_org": "반드시 프로필로 들어가셔서 숙소의 다른 사진들을 참조하시길 바랍니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "프로필",
+        "to": "profile",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.3
+  },
+  {
+    "id": "pair_00886",
+    "sentence_a": "두 가족들이 함께 보낸 좋은 시간이었다.",
+    "sentence_b": "두 family와 함께 보낸 좋은 시간이었어요.",
+    "sentence_b_org": "두 가족과 함께 보낸 좋은 시간이었어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "가족",
+        "to": "family",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00887",
+    "sentence_a": "우리는 여성과 포용적 성장을 위한 라 세레나 로드맵의 이행을 지지하고 환영한다.",
+    "sentence_b": "우리는 여성과의 포괄적 성장을 위한 La Serena Roadmap의 implementation을 지지하고 환영합니다.",
+    "sentence_b_org": "우리는 여성과의 포괄적 성장을 위한 La Serena Roadmap의 실행을 지지하고 환영합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "실행",
+        "to": "implementation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00888",
+    "sentence_a": "호스트가 정말 정말 친절하고 잘생기심 시설도 너무 좋았음",
+    "sentence_b": "staff분들 really 친절하시고 facility도 깨끗합니다.",
+    "sentence_b_org": "스태프분들 정말 친절하시고 시설도 깨끗합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "스태프",
+        "to": "staff",
+        "pos": "NNG"
+      },
+      {
+        "from": "정말",
+        "to": "really",
+        "pos": "MAG"
+      },
+      {
+        "from": "시설",
+        "to": "facility",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.4
+  },
+  {
+    "id": "pair_00889",
+    "sentence_a": "메일 주소로 사용자 인증하는게 페이스북이야 인스타그램이야?",
+    "sentence_b": "조교님에게 온 mail을 별도로 분류하려는데 어떻게 할까?",
+    "sentence_b_org": "조교님에게 온 메일을 별도로 분류하려는데 어떻게 할까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_00890",
+    "sentence_a": "땡볕에 일할 때는 급하게 하지 말고 휴식을 충분히 취하도록 해요.",
+    "sentence_b": "중부지방엔 언제 rainy season이 그치나요?",
+    "sentence_b_org": "중부지방엔 언제 장마가 그치나요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "장마",
+        "to": "rainy season",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00891",
+    "sentence_a": "올라가는 길이 힘들긴한데 방안에서 보이는 풍경은 멋져요.",
+    "sentence_b": "처음에 key를 받으러 가는 길이 조금 힘들긴 합니다.",
+    "sentence_b_org": "처음에 키를 받으러 가는 길이 조금 힘들긴 합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "키",
+        "to": "key",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.9
+  },
+  {
+    "id": "pair_00892",
+    "sentence_a": "약속 시간이 어떻게 달라졌어?",
+    "sentence_b": "변경된 appointment time이 몇 시지?",
+    "sentence_b_org": "변경된 약속 시간이 몇 시지?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "약속 시간",
+        "to": "appointment time",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.1
+  },
+  {
+    "id": "pair_00893",
+    "sentence_a": "또 안정적인 자녀 양육을 위한 양육비 이행지원을 실시하고, 면접교섭서비스 확대와 비양육 부·모의 자녀양육 책임성을 높이기 위한 제재조치 도입을 추진한다.",
+    "sentence_b": "또한 안정적인 자녀양육을 위한 parenting cost의 시행을 지원하고, 면접교섭서비스 확대와 비육아 부모, 산모 등의 양육에 대한 책임증대를 위한 제재조치 도입을 추진하기로 했습니다.",
+    "sentence_b_org": "또한 안정적인 자녀양육을 위한 육아비용의 시행을 지원하고, 면접교섭서비스 확대와 비육아 부모, 산모 등의 양육에 대한 책임증대를 위한 제재조치 도입을 추진하기로 했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "육아비용",
+        "to": "parenting cost",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00894",
+    "sentence_a": "더불어 욱일기·독도 등 올림픽 헌장에 반하는 행위에도 적극 대응한다.",
+    "sentence_b": "안중근 patriot는 일본의 aggression에 무력으로 맞섰지만,",
+    "sentence_b_org": "안중근 의사는 일본의 침략행위에 무력으로 맞섰지만,",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "의사",
+        "to": "patriot",
+        "pos": "NNG"
+      },
+      {
+        "from": "침략행위",
+        "to": "aggression",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00895",
+    "sentence_a": "무거운 캐리어 때문에 계단이 조금 힘들었지만 창밖에서 보는 뷰와 호스트의 친절함에 너무 감사해요!",
+    "sentence_b": "그리고 terrace에서 보는 view가 너무 좋아요!",
+    "sentence_b_org": "그리고 테라스에서 보는 뷰가 너무 좋아요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "테라스",
+        "to": "terrace",
+        "pos": "NNG"
+      },
+      {
+        "from": "뷰",
+        "to": "view",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.8
+  },
+  {
+    "id": "pair_00896",
+    "sentence_a": "가습기 작동시키는 방법을 설명해줘",
+    "sentence_b": "당신 radio 방송 하루에 삼십분만 듣지말고 적어도 한 hour 이상 꼭 들으세요",
+    "sentence_b_org": "당신 라디오 방송 하루에 삼십분만 듣지말고 적어도 한 시간 이상 꼭 들으세요",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "라디오",
+        "to": "radio",
+        "pos": "NNG"
+      },
+      {
+        "from": "시간",
+        "to": "hour",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00897",
+    "sentence_a": "샤워기에 수압이 낮은것이 조금 아쉬웠다",
+    "sentence_b": "shower의 water pressure이 낮다는 것은 약간 실망스러운 일이었습니다.",
+    "sentence_b_org": "샤워기의 수압이 낮다는 것은 약간 실망스러운 일이었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "샤워기",
+        "to": "shower",
+        "pos": "NNG"
+      },
+      {
+        "from": "수압",
+        "to": "water pressure",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00898",
+    "sentence_a": "좋은 위치 좋은 호스트 귀여운 고양이   그리고 맛있는 음식점 근처에 많고   모든 것이 좋은 숙소",
+    "sentence_b": "좋은 location은 귀여운 cat과 맛있는 restaurant 근처에 있는 많은 좋은 숙박시설입니다.",
+    "sentence_b_org": "좋은 위치는 귀여운 고양이와 맛있는 레스토랑 근처에 있는 많은 좋은 숙박시설입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      },
+      {
+        "from": "고양이",
+        "to": "cat",
+        "pos": "NNG"
+      },
+      {
+        "from": "레스토랑",
+        "to": "restaurant",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_00899",
+    "sentence_a": "최대 얼마동안 네이버 쪽지를 저장할 수 있나요?",
+    "sentence_b": "Naver 쪽지는 생성되고 얼마나 오래 보관이 되나요?",
+    "sentence_b_org": "네이버 쪽지는 생성되고 얼마나 오래 보관이 되나요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "네이버",
+        "to": "Naver",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.3
+  },
+  {
+    "id": "pair_00900",
+    "sentence_a": "수강생이 보낸 메일은 절대 지워서 안됩니다.",
+    "sentence_b": "mail을 보낸 사람이 수강생인건 지우지 마세요",
+    "sentence_b_org": "메일을 보낸 사람이 수강생인건 지우지 마세요",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.1
+  },
+  {
+    "id": "pair_00901",
+    "sentence_a": "집안 조정 밝기 조정하고 싶은데 뭐라고 해야하지?",
+    "sentence_b": "너는 bedroom mood등을 켜고 싶어 fluorescent light를 켜고 싶어?",
+    "sentence_b_org": "너는 침실 무드등을 켜고 싶어 형광등을 켜고 싶어?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "침실 무드",
+        "to": "bedroom mood",
+        "pos": "NNG"
+      },
+      {
+        "from": "형광등",
+        "to": "fluorescent light",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.4
+  },
+  {
+    "id": "pair_00902",
+    "sentence_a": "내일 뮤지컬 가기로 한 거 몇 시더라?",
+    "sentence_b": "이번주랑 다음주 중에서 midterm이 언제였었지?",
+    "sentence_b_org": "이번주랑 다음주 중에서 중간고사가 언제였었지?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "중간고사",
+        "to": "midterm",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00903",
+    "sentence_a": "집과 방, 화장실 모두 사진과 같구요.",
+    "sentence_b": "room이랑 kitchen, bathroom은 사진과 똑같아요.",
+    "sentence_b_org": "방이랑 주방, 화장실은 사진과 똑같아요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방",
+        "to": "room",
+        "pos": "NNG"
+      },
+      {
+        "from": "주방",
+        "to": "kitchen",
+        "pos": "NNG"
+      },
+      {
+        "from": "화장실",
+        "to": "bathroom",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_00904",
+    "sentence_a": "벚꽃 축제 중 서울 여의도에 하는 것은 시간이 언제입니까?",
+    "sentence_b": "summer에 산을 좋아합니까? 아니면 바다를 좋아합니까?",
+    "sentence_b_org": "여름에 산을 좋아합니까? 아니면 바다를 좋아합니까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "여름",
+        "to": "summer",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00905",
+    "sentence_a": "호스트 아주머니께서 영어도 하시고 아주 친절하십니다.",
+    "sentence_b": "host분께서는 communication도 잘되고 친절하십니다.",
+    "sentence_b_org": "호스트분께서는 소통도 잘되고 친절하십니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      },
+      {
+        "from": "소통",
+        "to": "communication",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.0
+  },
+  {
+    "id": "pair_00906",
+    "sentence_a": "올해 중으로 고교학점제 선도지구 24곳을 신규 선정해 지원한다.",
+    "sentence_b": "올해 안에 24개의 새로운 high school 학점 제도 선도 지역이 선정되고 지원될 것입니다.",
+    "sentence_b_org": "올해 안에 24개의 새로운 고등학교 학점 제도 선도 지역이 선정되고 지원될 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "고등학교",
+        "to": "high school",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00907",
+    "sentence_a": "태풍 오면 배 타면 안돼.",
+    "sentence_b": "얇게 입고 나가면 안되지. subzero temperature의 날씨에는.",
+    "sentence_b_org": "얇게 입고 나가면 안되지. 영하의 날씨에는.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "영하",
+        "to": "subzero temperature",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_00908",
+    "sentence_a": "숙소 위치나 청결도, 난방, 호스트와의 연락관계는 좋았어요",
+    "sentence_b": "location, cleanliness, guest를 위한 consideration, host의 친절함 모두 좋았어요",
+    "sentence_b_org": "위치, 청결, 게스트를 위한 배려, 호스트의 친절함 모두 좋았어요",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      },
+      {
+        "from": "청결",
+        "to": "cleanliness",
+        "pos": "NNG"
+      },
+      {
+        "from": "게스트",
+        "to": "guest",
+        "pos": "NNG"
+      },
+      {
+        "from": "배려",
+        "to": "consideration",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 4,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.1
+  },
+  {
+    "id": "pair_00909",
+    "sentence_a": "또 한국보건산업진흥원에 ‘기업 애로사항 해소 지원센터‘를 설치·운영해 국내 치료제·백신 등 개발기업에 대한 1:1 밀착 지원을 제공한다.",
+    "sentence_b": "또한, 한국보건산업진흥원은 '기업 애로사항 해결 support center'를 설치, 운영하여 국내 치료제, vaccine 등 개발기업에 1:1의 긴밀한 support를 제공할 예정입니다.",
+    "sentence_b_org": "또한, 한국보건산업진흥원은 '기업 애로사항 해결 지원센터'를 설치, 운영하여 국내 치료제, 백신 등 개발기업에 1:1의 긴밀한 지원을 제공할 예정입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지원센터",
+        "to": "support center",
+        "pos": "NNG"
+      },
+      {
+        "from": "백신",
+        "to": "vaccine",
+        "pos": "NNG"
+      },
+      {
+        "from": "지원",
+        "to": "support",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.4
+  },
+  {
+    "id": "pair_00910",
+    "sentence_a": "더 더운 곳을 알려주세요. 내일 대구와 부산 중.",
+    "sentence_b": "올해 fall foliage가 시작되는 지역은?",
+    "sentence_b_org": "올해 단풍이 시작되는 지역은?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "단풍",
+        "to": "fall foliage",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00911",
+    "sentence_a": "앞으로는 공공데이터를 기반으로 AI 등 신산업이 육성될 수 있도록 기업이 필요로 하는 데이터·산업 파급효과가 큰 데이터를 집중 개방한다.",
+    "sentence_b": "관련 부처, 각 분야 전문기관, AI company가 함께 주요과제를 선정하고, 대국민 체감도와 경제적 파급효과가 큰 분야를 우선 추진한다.",
+    "sentence_b_org": "관련 부처, 각 분야 전문기관, AI기업이 함께 주요과제를 선정하고, 대국민 체감도와 경제적 파급효과가 큰 분야를 우선 추진한다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "기업",
+        "to": "company",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.9
+  },
+  {
+    "id": "pair_00912",
+    "sentence_a": "레알마드리드 구장까지 다이렉트로 가는 27번 버스도 있습니다.",
+    "sentence_b": "Real Madrid stadium으로 직행하는 27번 bus도 있습니다.",
+    "sentence_b_org": "레알 마드리드 경기장으로 직행하는 27번 버스도 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "레알 마드리드",
+        "to": "Real Madrid",
+        "pos": "NNP"
+      },
+      {
+        "from": "경기장",
+        "to": "stadium",
+        "pos": "NNG"
+      },
+      {
+        "from": "버스",
+        "to": "bus",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.7
+  },
+  {
+    "id": "pair_00913",
+    "sentence_a": "가스렌지와 인덕션 중에서 선생님이 요리하기 편한건 뭔가요?",
+    "sentence_b": "요리하기에 편한게 gas range와 인덕션 중에 뭐라고 생각하세요?",
+    "sentence_b_org": "요리하기에 편한게 가스렌지와 인덕션 중에 뭐라고 생각하세요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "가스렌지",
+        "to": "gas range",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.3
+  },
+  {
+    "id": "pair_00914",
+    "sentence_a": "주인 아저씨와 아주머니가 매우 친절하시다.",
+    "sentence_b": "host 할아버지가 really 친절하시고 세심하세요.",
+    "sentence_b_org": "주인 할아버지가 굉장히 친절하시고 세심하세요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "굉장히",
+        "to": "really",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.3
+  },
+  {
+    "id": "pair_00915",
+    "sentence_a": "숙소를 잡으실때 편한 접근성과 친절한 집주인을 원하신다면 이숙소를 추천합니다.",
+    "sentence_b": "조용한 미국 현지인 house를 원하신다면 추천합니다.",
+    "sentence_b_org": "조용한 미국 현지인 집을 원하신다면 추천합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "집",
+        "to": "house",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.0
+  },
+  {
+    "id": "pair_00916",
+    "sentence_a": "그리고 그 시장이 정말 환상적으로 좋았어요.",
+    "sentence_b": "그리고 market은 환상적이었습니다.",
+    "sentence_b_org": "그리고 시장은 환상적이었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "시장",
+        "to": "market",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00917",
+    "sentence_a": "한번 만났늘 뿐인데 오래도록 기억에 남을거에요.",
+    "sentence_b": "rent car를 빌린다면 저렴한 price에 최상의 house를 누릴수 있을거에요",
+    "sentence_b_org": "랜트카를 빌린다면 저렴한가격에 최상의 집을 누릴수 있을거에요",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "랜트카",
+        "to": "rent car",
+        "pos": "NNG"
+      },
+      {
+        "from": "가격",
+        "to": "price",
+        "pos": "NNG"
+      },
+      {
+        "from": "집",
+        "to": "house",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00918",
+    "sentence_a": "테라스에서 보면 오른쪽 끝에 시청이 보여요!",
+    "sentence_b": "terrace를 보시면, 맨 오른쪽에 city hall이 보이실 거예요!",
+    "sentence_b_org": "테라스를 보시면, 맨 오른쪽에 시청이 보이실 거예요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "테라스",
+        "to": "terrace",
+        "pos": "NNG"
+      },
+      {
+        "from": "시청",
+        "to": "city hall",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_00919",
+    "sentence_a": "최근 대전이 기획하고, 정부가 선정한 ‘마이데이터 기반 교통약자 이동지원 서비스’나  ‘AI기반 지하철 위험·이상행동 감지 시스템’ 등이 바로 그 예다.",
+    "sentence_b": "하지만 일본의 economic retaliation은 한국 기업의 crisis response ability를 높이고, 정부 policy direction을 ‘방어’에서 ‘공세’로 바꾸는 원동력이 됐다는 평가다.",
+    "sentence_b_org": "하지만 일본의 경제 보복은 한국 기업의 위기대응 능력을 높이고, 정부 정책 방향을 ‘방어’에서 ‘공세’로 바꾸는 원동력이 됐다는 평가다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "경제 보복",
+        "to": "economic retaliation",
+        "pos": "NNG"
+      },
+      {
+        "from": "위기대응 능력",
+        "to": "crisis response ability",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00920",
+    "sentence_a": "단체 여행객들 최고의 숙소라 생각합니다.",
+    "sentence_b": "단체 여행객들을 위한 best 숙소라고 생각해요.",
+    "sentence_b_org": "단체 여행객들을 위한 최고의 숙소라고 생각해요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "최고",
+        "to": "best",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.1
+  },
+  {
+    "id": "pair_00921",
+    "sentence_a": "프랑스에서는 1층이 한층 올라간걸 말하더라",
+    "sentence_b": "다만 올라가는 stairs와 1, 2층이 무섭습니다.",
+    "sentence_b_org": "다만 올라가는 계단과 1, 2층이 무섭습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "계단",
+        "to": "stairs",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_00922",
+    "sentence_a": "얼마입니까? 태풍 루사의 피해액이.",
+    "sentence_b": "Typhoon 루사 damage amount를 알려주세요.",
+    "sentence_b_org": "태풍 루사 피해액을 알려주세요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "태풍",
+        "to": "Typhoon",
+        "pos": "NNG"
+      },
+      {
+        "from": "피해액",
+        "to": "damage amount",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00923",
+    "sentence_a": "우버타도 15분 이내 관광지에 갈수 있어요.",
+    "sentence_b": "Uber타는 또한 15분 안에 tourist attraction에 갈 수 있습니다.",
+    "sentence_b_org": "우버타는 또한 15분 안에 관광명소에 갈 수 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "우버타",
+        "to": "Uber",
+        "pos": "NNG"
+      },
+      {
+        "from": "관광명소",
+        "to": "tourist attraction",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00924",
+    "sentence_a": "제외되는 기간이 3개월 이상인 경우에는 제외되는 기간의 최초일(휴업시작일 등)을 평균임금의 산정사유가 발생한 날로 보아 평균임금을 산정(평균임금산정 특례고시 제1조제1항)",
+    "sentence_b": "이에따라 거리두기 system은 1단계(생활방역), 1.5단계(지역유행 시작), 2단계(지역 유형 급속 전파), 2.5단계 (전국적 유행 본격화), 3단계(전국적 대 유행)로 구분된다.",
+    "sentence_b_org": "이에따라 거리두기 체계는 1단계(생활방역), 1.5단계(지역유행 시작), 2단계(지역 유형 급속 전파), 2.5단계 (전국적 유행 본격화), 3단계(전국적 대 유행)로 구분된다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "체계",
+        "to": "system",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00925",
+    "sentence_a": "이 숙소에 묵은것이 내 여행 중 가장큰 행복이었습니다",
+    "sentence_b": "런던 travel 중 가장 큰 행운이었던 거 같아요!",
+    "sentence_b_org": "런던 여행 중 가장 큰 행운이었던 거 같아요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "여행",
+        "to": "travel",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.9
+  },
+  {
+    "id": "pair_00926",
+    "sentence_a": "엔드라이브 연동이 고장나서 네이버 메일에 지드라이브와 연동을 할 수 밖에 없어",
+    "sentence_b": "Naver mail 사용시 NDrive 보다 GDrive가 이점이 많이 때문에 GDrive 연동을 권해",
+    "sentence_b_org": "네이버 메일 사용시 엔드라이브 보다 지드라이브가 이점이 많이 때문에 지드라이브 연동을 권해",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "네이버",
+        "to": "Naver",
+        "pos": "NNP"
+      },
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      },
+      {
+        "from": "엔드라이브",
+        "to": "NDrive",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.2
+  },
+  {
+    "id": "pair_00927",
+    "sentence_a": "동네를 구석구석 돌아보기 참 좋은 곳이에요.",
+    "sentence_b": "도보로 neighborhood 산책하기 너무 좋은 곳이에요.",
+    "sentence_b_org": "도보로 동네 산책하기 너무 좋은 곳이에요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "동네",
+        "to": "neighborhood",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.0
+  },
+  {
+    "id": "pair_00928",
+    "sentence_a": "집안은 어둡지 않게 조명을 유지해줘.",
+    "sentence_b": "네가 한달 동안 microwave를 쓴 time이 어느 정도 되니?",
+    "sentence_b_org": "네가 한달 동안 마이크로오븐을 쓴 시간이 어느 정도 되니?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "마이크로오븐",
+        "to": "microwave",
+        "pos": "NNG"
+      },
+      {
+        "from": "시간",
+        "to": "time",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00929",
+    "sentence_a": "정부는 추경을 포함하여 총 32조 원에 달하는 대규모 지원을 실행할 것입니다.",
+    "sentence_b": "The government는 추가 budget을 포함하여 총 32조 원의 대규모 aid를 제공할 예정입니다.",
+    "sentence_b_org": "정부는 추가 예산을 포함하여 총 32조 원의 대규모 원조를 제공할 예정입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "정부",
+        "to": "government",
+        "pos": "NNG"
+      },
+      {
+        "from": "원조",
+        "to": "aid",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00930",
+    "sentence_a": "지난 7일부터 서비스를 개시한 ‘코로나 19 자가격리자 안전보호 앱’이 20일 기준으로 앱 설치율 45.2%를 기록했다.",
+    "sentence_b": "지난 7일 service를 시작한 '코로나19 자급식 안전보호 app'은 지난 20일 기준 app 설치율 45.2%를 기록했습니다.",
+    "sentence_b_org": "지난 7일 서비스를 시작한 '코로나19 자급식 안전보호 앱'은 지난 20일 기준 앱 설치율 45.2%를 기록했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "서비스",
+        "to": "service",
+        "pos": "NNG"
+      },
+      {
+        "from": "앱",
+        "to": "app",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.5
+  },
+  {
+    "id": "pair_00931",
+    "sentence_a": "일단 집은 사진에서 보이는 것처럼 아주 멋스러워요.",
+    "sentence_b": "우선, 그 house는 photo에서 볼 수 있듯이 very 멋집니다.",
+    "sentence_b_org": "우선, 그 집은 사진에서 볼 수 있듯이 매우 멋집니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "집",
+        "to": "house",
+        "pos": "NNG"
+      },
+      {
+        "from": "사진",
+        "to": "photo",
+        "pos": "NNG"
+      },
+      {
+        "from": "매우",
+        "to": "very",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00932",
+    "sentence_a": "의료진을 어떻게 보호하고, 의료자원을 얼마나 충분히 확보하는 지가 앞으로 싸움의 승패를 가르는 관건이 될 것입니다.",
+    "sentence_b": "의료진을 어떻게 보호하고 얼마나 많은 medical resource를 확보하느냐가 future의 싸움 결과를 결정하는 key가 될 것입니다.",
+    "sentence_b_org": "의료진을 어떻게 보호하고 얼마나 많은 의료 자원을 확보하느냐가 미래의 싸움 결과를 결정하는 열쇠가 될 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "의료 자원",
+        "to": "medical resource",
+        "pos": "NNG"
+      },
+      {
+        "from": "미래",
+        "to": "future",
+        "pos": "NNG"
+      },
+      {
+        "from": "열쇠",
+        "to": "key",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00933",
+    "sentence_a": "야 거실 난방 이십오도로 설정할까, 삼십도로 설정할까?",
+    "sentence_b": "오빠 living room 난방 온도를 25도로 할까, 30도로 할까?",
+    "sentence_b_org": "오빠 거실 난방 온도를 이십 오도로 할까, 삼십도로 할까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "거실",
+        "to": "living room",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.2
+  },
+  {
+    "id": "pair_00934",
+    "sentence_a": "회사 상사와 만날 때에는 시간을 맞춰 가기 보단 먼저 나가라.",
+    "sentence_b": "이번달에 동기 wedding 약속이 더 많은가요 다음달에 더 많은가요?",
+    "sentence_b_org": "이번달에 동기 결혼식 약속이 더 많은가요 다음달에 더 많은가요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "결혼식",
+        "to": "wedding",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00935",
+    "sentence_a": "베네치아 중심부에 이 가격에 이 시설에 넘 만족스러웠어요.",
+    "sentence_b": "개인적으로 이 location에 이 price에 이 시설이면 매우 만족합니다.",
+    "sentence_b_org": "개인적으로 이 위치에 이가격에 이 시설이면 매우 만족합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      },
+      {
+        "from": "가격",
+        "to": "price",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.6
+  },
+  {
+    "id": "pair_00936",
+    "sentence_a": "상사에게 보내는 메일 작성법에 대해 알려줘",
+    "sentence_b": "mail로 Tumblbug advertisement 좀 그만 보냈으면 좋겠는데 어떻게 그만 보내게 할 수 있죠?",
+    "sentence_b_org": "메일로 텀블벅 광고 좀 그만 보냈으면 좋겠는데 어떻게 그만 보내게 할 수 있죠?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      },
+      {
+        "from": "텀블벅",
+        "to": "Tumblbug",
+        "pos": "NNP"
+      },
+      {
+        "from": "광고",
+        "to": "advertisement",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00937",
+    "sentence_a": "공항까지 최소 90분 이상 걸리기 때문에 짧은 일정일 경우 별로입니다",
+    "sentence_b": "airport까지 가는 데 적어도 90분은 걸리니까, 짧은 time에는 좋지 않아요.",
+    "sentence_b_org": "공항까지 가는 데 적어도 90분은 걸리니까, 짧은 시간에는 좋지 않아요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "공항",
+        "to": "airport",
+        "pos": "NNG"
+      },
+      {
+        "from": "시간",
+        "to": "time",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.6
+  },
+  {
+    "id": "pair_00938",
+    "sentence_a": "12월에는 과천 지식타운에서 645가구, 고양 장항 1438가구, 성남 대장 707가구, 위례에서 294가구 등이 분양 예정이다.",
+    "sentence_b": "12월에는 과천 knowledge town에서 645 units, 고양 장항 1438 units, 성남 707 units, 위례 294 units가 팔릴 예정입니다.",
+    "sentence_b_org": "12월에는 과천 지식타운에서 645가구, 고양 장항 1438가구, 성남 707가구, 위례 294가구가 팔릴 예정입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지식타운",
+        "to": "knowledge town",
+        "pos": "NNG"
+      },
+      {
+        "from": "가구",
+        "to": "units",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00939",
+    "sentence_a": "번개칠 때 우산 쓰지 마세요.",
+    "sentence_b": "earthquake 일 때는 building 계단을 사용해요. elevator는 안됩니다.",
+    "sentence_b_org": "지진 일 때는 건물 계단을 사용해요. 엘리베이터는 안됩니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지진",
+        "to": "earthquake",
+        "pos": "NNG"
+      },
+      {
+        "from": "엘리베이터",
+        "to": "elevator",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00940",
+    "sentence_a": "이를 위해 정부는 한러 협력의 핵심인 ‘9개 다리(철도·전기·조선·가스·항만·북극항로·농림·수산·산업단지 등)협력 체계’를 확대·개편한다.",
+    "sentence_b": "이를 위해 정부는 한-러 cooperation의 핵심인 9개의 bridge(철도, 전기, 조선, gas, 항만, 북극항로, 농업, 임업, 어업, 산업단지)를 확대 개편할 예정입니다.",
+    "sentence_b_org": "이를 위해 정부는 한-러 협력의 핵심인 9개의 다리(철도, 전기, 조선, 가스, 항만, 북극항로, 농업, 임업, 어업, 산업단지)를 확대 개편할 예정입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "협력",
+        "to": "cooperation",
+        "pos": "NNG"
+      },
+      {
+        "from": "다리",
+        "to": "bridge",
+        "pos": "NNG"
+      },
+      {
+        "from": "가스",
+        "to": "gas",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00941",
+    "sentence_a": "논문발표 날은 급작스럽게 준비하지 말고 미리미리 준비합시다.",
+    "sentence_b": "appointment date를 weekend로 정할 거면 오전 대신 오후로 했으면 좋겠어.",
+    "sentence_b_org": "약속 날짜를 주말로 정할 거면 오전 대신 오후로 했으면 좋겠어.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "약속 날짜",
+        "to": "appointment date",
+        "pos": "NNG"
+      },
+      {
+        "from": "주말",
+        "to": "weekend",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00942",
+    "sentence_a": "안 읽은 메일함을 어떤 방법으로 읽음 처리할까?",
+    "sentence_b": "어떤 method로 안읽은 메일함을 읽음 처리할까?",
+    "sentence_b_org": "어떤 방법으로 안읽은 메일함을 읽음 처리할까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방법",
+        "to": "method",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.7
+  },
+  {
+    "id": "pair_00943",
+    "sentence_a": "시테섬 노트르담 성당 근처 베스트숙소입니다",
+    "sentence_b": "airport 근처 family가 지내기 좋은 숙소입니다",
+    "sentence_b_org": "공항근처 가족이 지내기 좋은 숙소입니다",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "공항근처",
+        "to": "airport",
+        "pos": "NNG"
+      },
+      {
+        "from": "가족",
+        "to": "family",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_00944",
+    "sentence_a": "드럼이랑 통돌이 중에 뭐가 세척력이 더 좋아?",
+    "sentence_b": "통돌이가 더 잘 세척해 아님 drum이 더 잘해?",
+    "sentence_b_org": "통돌이가 더 잘 세척해 아님 드럼이 더 잘해?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "드럼",
+        "to": "drum",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00945",
+    "sentence_a": "둘이 머물기에 가격도 아주 좋았습니다.",
+    "sentence_b": "그 price는 그들 두 사람이 머물기에 매우 좋았습니다.",
+    "sentence_b_org": "그 가격은 그들 두 사람이 머물기에 매우 좋았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "가격",
+        "to": "price",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00946",
+    "sentence_a": "모든 것이 완벽했으나 숙소에서 가장 가까운 지하철 억이 공사 중이었던 것이 유일한 아쉬운 점입니다.",
+    "sentence_b": "반지하라는 point가 유일한 아쉬운 점이다.",
+    "sentence_b_org": "반지하라는 점이 유일한 아쉬운 점이다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "점",
+        "to": "point",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.8
+  },
+  {
+    "id": "pair_00947",
+    "sentence_a": "모든 기구, 가구, 장식들이 고급지고 멋져요.",
+    "sentence_b": "모든 equipment, furniture, decoration이 고급스럽고 멋집니다.",
+    "sentence_b_org": "모든 장비, 가구, 장식이 고급스럽고 멋집니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "장비",
+        "to": "equipment",
+        "pos": "NNG"
+      },
+      {
+        "from": "가구",
+        "to": "furniture",
+        "pos": "NNG"
+      },
+      {
+        "from": "장식",
+        "to": "decoration",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.7
+  },
+  {
+    "id": "pair_00948",
+    "sentence_a": "주택가에 있어서 밤에 굉장히 조용합니다.",
+    "sentence_b": "아토차역에서 9분 정도 떨어진 residential area에 위치해서 really 조용합니다.",
+    "sentence_b_org": "아토차역에서 9분 정도 떨어진 주택가에 위치해서 굉장히 조용합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "주택가",
+        "to": "residential area",
+        "pos": "NNG"
+      },
+      {
+        "from": "굉장히",
+        "to": "really",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.3
+  },
+  {
+    "id": "pair_00949",
+    "sentence_a": "바닥이 오래되어 삐그덕 거리나 호스트의 친절함, 숙소의 편안함, 위치 모두 만족합니다.",
+    "sentence_b": "air conditioner가 훌륭히 작동되고, balcony의 view도 훌륭합니다.",
+    "sentence_b_org": "에어컨이 훌륭히 작동되고, 발코니의 뷰도 훌륭합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "에어컨",
+        "to": "air conditioner",
+        "pos": "NNG"
+      },
+      {
+        "from": "발코니",
+        "to": "balcony",
+        "pos": "NNG"
+      },
+      {
+        "from": "뷰",
+        "to": "view",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_00950",
+    "sentence_a": "태풍 경로에 여행가지 말아라.",
+    "sentence_b": "태풍 경로인 place에 여행가지마.",
+    "sentence_b_org": "태풍 경로인 곳에 여행가지마.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "곳",
+        "to": "place",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.4
+  },
+  {
+    "id": "pair_00951",
+    "sentence_a": "그러나 욕실의 배수가 형편이 없었습니다.",
+    "sentence_b": "그러나 bathroom의 drainage는 편리하지 않았습니다.",
+    "sentence_b_org": "그러나 욕실의 배수는 편리하지 않았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "욕실",
+        "to": "bathroom",
+        "pos": "NNG"
+      },
+      {
+        "from": "배수",
+        "to": "drainage",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.9
+  },
+  {
+    "id": "pair_00952",
+    "sentence_a": "다만 숙소는 꽤 좁은편이나, 혼자 또는 여자두명이 쓰기에 큰 불편함은 없을것같습니다.",
+    "sentence_b": "혼자서 stay하기에 큰 불편함은 없었습니다.",
+    "sentence_b_org": "혼자서 머물기에 큰 불편함은 없었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "머물기",
+        "to": "stay",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.0
+  },
+  {
+    "id": "pair_00953",
+    "sentence_a": "밤 늦게, 길거리를 돌아다닌 사람보다 경찰을 더 많이 봅니다.",
+    "sentence_b": "view는 사진보다 직접봤을때 더 환상적이였고요.",
+    "sentence_b_org": "뷰는 사진보다 직접봤을때 더 환상적이였고요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "뷰",
+        "to": "view",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00954",
+    "sentence_a": "세비야의 전통적인 느낌이 있는 예쁜 집이었어요.",
+    "sentence_b": "그곳은 전통적인 세비야의 feeling을 가진 예쁜 집이었습니다.",
+    "sentence_b_org": "그곳은 전통적인 세비야의 느낌을 가진 예쁜 집이었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "느낌",
+        "to": "feeling",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.1
+  },
+  {
+    "id": "pair_00955",
+    "sentence_a": "문제가 발생했을 때, 호스트가 신경질적이면 다소 공격적인 태도를 보입니다.",
+    "sentence_b": "문제는 발생할 때 host는 긴장한 경우 다소 공격적입니다.",
+    "sentence_b_org": "문제가 발생할 때 호스트는 긴장한 경우 다소 공격적입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.2
+  },
+  {
+    "id": "pair_00956",
+    "sentence_a": "밤에 약속을 잡는 것은 결례라네.",
+    "sentence_b": "밤에는 appointment를 잡기가 어렵습니다.",
+    "sentence_b_org": "밤에는 약속을 잡기가 어렵습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "약속",
+        "to": "appointment",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.8
+  },
+  {
+    "id": "pair_00957",
+    "sentence_a": "해는 직접 처다보지 마라.",
+    "sentence_b": "the sun을 직접 처다보는 것을 금합니다.",
+    "sentence_b_org": "해를 직접 처다보는 것을 금합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "해",
+        "to": "the sun",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00958",
+    "sentence_a": "저기요 조명이 좀 낭만적이어야하니까 뭐가 필요한지도 좀 알려주세요",
+    "sentence_b": "이 dish를 만드는 방법을 알려줄래?",
+    "sentence_b_org": "이 요리를 만드는 방법을 알려줄래?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "요리",
+        "to": "dish",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.3
+  },
+  {
+    "id": "pair_00959",
+    "sentence_a": "전체적으로 이곳에 묵는 동안 굉장히 좋았습니다!",
+    "sentence_b": "전체적으로 home에 대한 좋은 memory가 남았습니다!",
+    "sentence_b_org": "전체적으로 집에 대한 좋은 기억이 남았습니다!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "집",
+        "to": "home",
+        "pos": "NNG"
+      },
+      {
+        "from": "기억",
+        "to": "memory",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.3
+  },
+  {
+    "id": "pair_00960",
+    "sentence_a": "길바닥에서 자도 입이 안돌아가시는 분이나 가마솥에서 주무신적 있는분들은 괜찮으실듯 하네요",
+    "sentence_b": "Volcano Park까지는 5분정도 걸릴듯 하네요.",
+    "sentence_b_org": "화산공원까지는 5분정도 걸릴듯 하네요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "화산공원",
+        "to": "Volcano Park",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00961",
+    "sentence_a": "침사추이쪽에 숙소를 잡으실 분이라면 침사추이 부근 유명지에 접근성은 좋은편입니다.",
+    "sentence_b": "Tsim Sha Tsui에 숙박하고 싶다면 Tsim Sha Tsui 근처에 있는 유명한 place를 쉽게 찾을 수 있습니다.",
+    "sentence_b_org": "침사추이에 숙박하고 싶다면 침사추이 근처에 있는 유명한 장소를 쉽게 찾을 수 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "침사추이",
+        "to": "Tsim Sha Tsui",
+        "pos": "NNG"
+      },
+      {
+        "from": "장소",
+        "to": "place",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.3
+  },
+  {
+    "id": "pair_00962",
+    "sentence_a": "얼마에 꽃무늬 양산을 살 수 있습니까?",
+    "sentence_b": "열대야 기준 temperature는?",
+    "sentence_b_org": "열대야 기준 온도는?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "온도",
+        "to": "temperature",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00963",
+    "sentence_a": "여러분이 좋아하는 라디오가 케이비에스랑 엠비씨 중에 어떤 것인가요?",
+    "sentence_b": "네가 좋아하는 radio가 KBS랑 MBC 중에 어느 것이니?",
+    "sentence_b_org": "네가 좋아하는 라디오가 케이비에스랑 엠비씨 중에 어느 것이니?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "라디오",
+        "to": "radio",
+        "pos": "NNG"
+      },
+      {
+        "from": "케이비에스",
+        "to": "KBS",
+        "pos": "NNP"
+      },
+      {
+        "from": "엠비씨",
+        "to": "MBC",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_00964",
+    "sentence_a": "집안 곳곳 인테리어 소품이나 청결도가 무척 훌륭한 편이에요.",
+    "sentence_b": "집안 곳곳의 interior 소품들과 청결함이 뛰어납니다.",
+    "sentence_b_org": "집안 곳곳의 인테리어 소품들과 청결함이 뛰어납니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "인테리어",
+        "to": "interior",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_00965",
+    "sentence_a": "현실화 계획으로 감사원에서 지적한 주택-토지간 공시가격 역전현상이 해소되는지?",
+    "sentence_b": "감사원이 지적한 house-land 공시지가 역전현상이 실현계획으로 해결될까요?",
+    "sentence_b_org": "감사원이 지적한 주택-토지 공시지가 역전현상이 실현계획으로 해결될까요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "주택",
+        "to": "house",
+        "pos": "NNG"
+      },
+      {
+        "from": "토지",
+        "to": "land",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.7
+  },
+  {
+    "id": "pair_00966",
+    "sentence_a": "창문으로 보이는 하늘이 넘 예뻤습니다.",
+    "sentence_b": "창문을 통한 sky는 너무 아름다웠습니다.",
+    "sentence_b_org": "창문을 통한 하늘은 너무 아름다웠습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "하늘",
+        "to": "sky",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00967",
+    "sentence_a": "샤워실은 조금 좁았지만 전반적으로 만족합니다.",
+    "sentence_b": "shower room은 좀 좁았지만, 전반적으로 만족해요.",
+    "sentence_b_org": "샤워실은 좀 좁았지만, 전반적으로 만족해요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "샤워실",
+        "to": "shower room",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.8
+  },
+  {
+    "id": "pair_00968",
+    "sentence_a": "연구실 메일 서버 상태를 진단하고 회복시킬 수 있는 서비스를 알려줘",
+    "sentence_b": "너는 mail을 보냈을 때 교수님이 답을 잘해주셔, 조교님이 더 잘해주셔?",
+    "sentence_b_org": "너는 메일을 보냈을 때 교수님이 답을 잘해주셔, 조교님이 더 잘해주셔?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_00969",
+    "sentence_a": "결제 메일은 정크 메일함에 보내지 말아줘",
+    "sentence_b": "내 Naver 접속 시도 IP 중 overseas 걸 알려줘",
+    "sentence_b_org": "내 네이버 접속 시도 아이피 중 해외 걸 알려줘",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "네이버",
+        "to": "Naver",
+        "pos": "NNP"
+      },
+      {
+        "from": "아이피",
+        "to": "IP",
+        "pos": "NNG"
+      },
+      {
+        "from": "해외",
+        "to": "overseas",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.4
+  },
+  {
+    "id": "pair_00970",
+    "sentence_a": "제일 좋았던 건 세탁기와 건조기를 무료로 사용할 수 있었던 점이었습니다.",
+    "sentence_b": "가장 좋은 것은 washing machine과 dryer를 free로 사용할 수 있다는 것입니다.",
+    "sentence_b_org": "가장 좋은 것은 세탁기와 건조기를 무료로 사용할 수 있다는 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "세탁기",
+        "to": "washing machine",
+        "pos": "NNG"
+      },
+      {
+        "from": "건조기",
+        "to": "dryer",
+        "pos": "NNG"
+      },
+      {
+        "from": "무료",
+        "to": "free",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.7
+  },
+  {
+    "id": "pair_00971",
+    "sentence_a": "건물은 정말 깔끔한 현대식이고 굉장히 안전합니다",
+    "sentence_b": "그 building은 really 깔끔하고 modern하고 very 안전합니다.",
+    "sentence_b_org": "그 건물은 정말 깔끔하고 현대적이고 매우 안전합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "건물",
+        "to": "building",
+        "pos": "NNG"
+      },
+      {
+        "from": "정말",
+        "to": "really",
+        "pos": "MAG"
+      },
+      {
+        "from": "매우",
+        "to": "very",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.7
+  },
+  {
+    "id": "pair_00972",
+    "sentence_a": "미뤘다간 큰 변을 당할 테니 여자친구하고 약속은 미루지 마.",
+    "sentence_b": "late 좀 안 하면 안돼?",
+    "sentence_b_org": "지각 좀 안 하면 안돼?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지각",
+        "to": "late",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.3
+  },
+  {
+    "id": "pair_00973",
+    "sentence_a": "5일 법무부에 따르면 외국인 체류관리기관 중에는 서울·인천·수원·부산·제주출입국외국인청 등 총 19곳에 열화상 카메라 21대를 배정한다.",
+    "sentence_b": "5일 Ministry of Justice에 따르면 서울, 인천, 수원, 부산, 제주 Immigration Office 등 총 19개 외국인 체재관리기관에 21대의 thermal camera가 배정됩니다.",
+    "sentence_b_org": "5일 법무부에 따르면 서울, 인천, 수원, 부산, 제주 출입국관리사무소 등 총 19개 외국인 체재관리기관에 21대의 열카메라가 배정됩니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "법무부",
+        "to": "Ministry of Justice",
+        "pos": "NNG"
+      },
+      {
+        "from": "출입국관리사무소",
+        "to": "Immigration Office",
+        "pos": "NNG"
+      },
+      {
+        "from": "열카메라",
+        "to": "thermal camera",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00974",
+    "sentence_a": "그녀의 방은 정말 아름답고 깨끗합니다.",
+    "sentence_b": "And room이 굉장히 넓고 really 깨끗합니다.",
+    "sentence_b_org": "그리고 방이 굉장히 넓고 정말 깨끗합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "그리고",
+        "to": "And",
+        "pos": "MAJ"
+      },
+      {
+        "from": "방",
+        "to": "room",
+        "pos": "NNG"
+      },
+      {
+        "from": "정말",
+        "to": "really",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.2
+  },
+  {
+    "id": "pair_00975",
+    "sentence_a": "언어 소통도 친절함도 모든것이 너무 좋았읍니다.",
+    "sentence_b": "저는 communication과 친절함에 대한 모든 것을 사랑했습니다.",
+    "sentence_b_org": "저는 언어소통과 친절함에 대한 모든 것을 사랑했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "언어소통",
+        "to": "communication",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_00976",
+    "sentence_a": "날씨가 더울 때는 음식은 식탁 위 말고 냉장고에 보관하십시오.",
+    "sentence_b": "날씨가 더우면 food는 refrigerator에 넣자. 밖에 두는건 안돼.",
+    "sentence_b_org": "날씨가 더우면 음식은 냉장고에 넣자. 밖에 두는건 안돼.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "음식",
+        "to": "food",
+        "pos": "NNG"
+      },
+      {
+        "from": "냉장고",
+        "to": "refrigerator",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.3
+  },
+  {
+    "id": "pair_00977",
+    "sentence_a": "숙소 외관과 숙소에서 바라보는 요트장, 산책로 길은 아주 멋졌습니다.",
+    "sentence_b": "숙소 exterior와 요트 view, 산책로가 참 좋았습니다.",
+    "sentence_b_org": "숙소 외관과 요트 전망, 산책로가 참 좋았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소 외관",
+        "to": "exterior",
+        "pos": "NNG"
+      },
+      {
+        "from": "요트 전망",
+        "to": "view",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_00978",
+    "sentence_a": "올바른 블루투스 스피커 설치 방법은?",
+    "sentence_b": "이어폰 말고 headphone으로 음악 듣는게 좋을 거 같애",
+    "sentence_b_org": "이어폰 말고 헤드폰으로 음악 듣는게 좋을 거 같애",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "헤드폰",
+        "to": "headphone",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.4
+  },
+  {
+    "id": "pair_00979",
+    "sentence_a": "티몬 광고 메일은 수신거부 안할래",
+    "sentence_b": "필히 보낸메일함의 mail을 주기적으로 백업하세요. 이를 잊으면 안됩니다.",
+    "sentence_b_org": "필히 보낸메일함의 메일을 주기적으로 백업하세요. 이를 잊으면 안됩니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00980",
+    "sentence_a": "광복절인데 시끄럽게 밖에서 놀지 말고 집에서 쉬시게.",
+    "sentence_b": "몇 시에 어제 설정해둔 alarm이 울리게 맞춰놨어?",
+    "sentence_b_org": "몇 시에 어제 설정해둔 알람이 울리게 맞춰놨어?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "알람",
+        "to": "alarm",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00981",
+    "sentence_a": "역에서 찾아가기 쉽고 정말 도보 10분 거리예요.",
+    "sentence_b": "station에서 쉽게 찾을 수 있고 걸어서 10분 distance에 있습니다.",
+    "sentence_b_org": "역에서 쉽게 찾을 수 있고 걸어서 10분 거리에 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "역",
+        "to": "station",
+        "pos": "NNG"
+      },
+      {
+        "from": "거리",
+        "to": "distance",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_00982",
+    "sentence_a": "욕실과 침실에서 개미와 진드기가 조금 보였습니다.",
+    "sentence_b": "bathroom은 다른 review와 마찬가지로 좁습니다.",
+    "sentence_b_org": "욕실은 다른 후기와 마찬가지로 좁습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "욕실",
+        "to": "bathroom",
+        "pos": "NNG"
+      },
+      {
+        "from": "후기",
+        "to": "review",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.0
+  },
+  {
+    "id": "pair_00983",
+    "sentence_a": "오늘 되시나요, 아니면 내일 되시나요?",
+    "sentence_b": "오늘이랑 tomorrow 중 언제 볼 수 있어?",
+    "sentence_b_org": "오늘이랑 내일 중 언제 볼 수 있어?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "내일",
+        "to": "tomorrow",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.3
+  },
+  {
+    "id": "pair_00984",
+    "sentence_a": "정부가 오는 5월 5일까지 사회적 거리두기를 연장하기로 했다.",
+    "sentence_b": "government는 5월 5일까지 social distancing을 늘리기로 결정했습니다.",
+    "sentence_b_org": "정부는 5월 5일까지 사회적 거리를 늘리기로 결정했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "정부",
+        "to": "government",
+        "pos": "NNG"
+      },
+      {
+        "from": "사회적 거리",
+        "to": "social distancing",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_00985",
+    "sentence_a": "주방 물은 잘안내려가고 네명이 자기에는 조금 불편합니다.",
+    "sentence_b": "kitchen sink 물 안내려가고 washing machine 안됩니다",
+    "sentence_b_org": "주방 세면대 물 안내려가고 세탁기 안됩니다",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "주방 세면대",
+        "to": "kitchen sink",
+        "pos": "NNG"
+      },
+      {
+        "from": "세탁기",
+        "to": "washing machine",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.7
+  },
+  {
+    "id": "pair_00986",
+    "sentence_a": "이외에도 구석구석 호스트가 정말 많이 신경썼다는걸 느낄 수 있었습니다.",
+    "sentence_b": "And 무엇보다도 따뜻한 family를 느낄 수 있었습니다.",
+    "sentence_b_org": "그리고 무엇보다도 따뜻한 가족을 느낄 수 있었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "그리고",
+        "to": "And",
+        "pos": "MAJ"
+      },
+      {
+        "from": "가족",
+        "to": "family",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.3
+  },
+  {
+    "id": "pair_00987",
+    "sentence_a": "전기충전기 9500기, 수소충전소 40기 등 충전 기반시설도 확충해 연내 9만 4000대 이상을 보급, 누적 20만 대를 넘어서겠다는 목표다.",
+    "sentence_b": "아울러 수소충전소 확충을 위한 단계별 밀착 support도 지속할 방침이다.",
+    "sentence_b_org": "아울러 수소충전소 확충을 위한 단계별 밀착 지원도 지속할 방침이다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지원",
+        "to": "support",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_00988",
+    "sentence_a": "플랫폼 사업자 등의 배타조건부 거래, 끼워팔기 등 신규 경쟁사업자의 시장 진입을 막는 정보통신기술(ICT) 산업 내 ‘경쟁제한’ 행위도 올해 중점감시 대상으로 선정됐다.",
+    "sentence_b": "28일 부산, 강릉, 전주, 목포, 안동 등 총 5곳이 방한 city tourism의 선도모델 육성을 위한 ‘관광거점도시’로 선정됐다.",
+    "sentence_b_org": "28일 부산, 강릉, 전주, 목포, 안동 등 총 5곳이 방한 도시관광의 선도모델 육성을 위한 ‘관광거점도시’로 선정됐다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "도시관광",
+        "to": "city tourism",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.4
+  },
+  {
+    "id": "pair_00989",
+    "sentence_a": "다만 체크인시 20분전에 주인이랑 연락하여야 합니다.",
+    "sentence_b": "그러나 check-in하기 20분 전에 owner에게 연락해야 합니다.",
+    "sentence_b_org": "그러나 체크인하기 20분 전에 소유자에게 연락해야 합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "체크인",
+        "to": "check-in",
+        "pos": "NNG"
+      },
+      {
+        "from": "소유자",
+        "to": "owner",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_00990",
+    "sentence_a": "11일부터 국내 증시에서 공매도 과열종목으로 지정되면 2주간(10거래일) 공매도가 금지된다.",
+    "sentence_b": "이번 measure는 다음달 1일부터 시행하며 비수도권에서는 14일까지 2주간, 수도권에서는 7일까지 1주간 각각 적용된다.",
+    "sentence_b_org": "이번 조치는 다음달 1일부터 시행하며 비수도권에서는 14일까지 2주간, 수도권에서는 7일까지 1주간 각각 적용된다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "조치",
+        "to": "measure",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.6
+  },
+  {
+    "id": "pair_00991",
+    "sentence_a": "다만 침대가 조금 불편하니 참고하세요.",
+    "sentence_b": "다만 hairdryer가 없으니 참고하세요!",
+    "sentence_b_org": "다만 헤어드라이기가 없으니 참고하세요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "헤어드라이기",
+        "to": "hairdryer",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.4
+  },
+  {
+    "id": "pair_00992",
+    "sentence_a": "청소 상태와 화장실 상태가 불량하였다.",
+    "sentence_b": "cleaning과 toilet의 condition이 좋지 않았습니다.",
+    "sentence_b_org": "청소와 변기의 상태가 좋지 않았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "청소",
+        "to": "cleaning",
+        "pos": "NNG"
+      },
+      {
+        "from": "변기",
+        "to": "toilet",
+        "pos": "NNG"
+      },
+      {
+        "from": "상태",
+        "to": "condition",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.2
+  },
+  {
+    "id": "pair_00993",
+    "sentence_a": "디스플레이는 26개월 만에 첫 증가를 기록한 반면, 석유제품(22개월 연속 감소)과 석유화학(23개월 연속 감소)은 저유가로 부진을 지속했다.",
+    "sentence_b": "display가 26개월 만에 처음으로 증가세를 기록한 반면, 석유제품(22개월 연속 감소)과 석유화학(23개월 연속 감소)은 저유가로 계속 어려움을 겪고 있습니다.",
+    "sentence_b_org": "디스플레이가 26개월 만에 처음으로 증가세를 기록한 반면, 석유제품(22개월 연속 감소)과 석유화학(23개월 연속 감소)은 저유가로 계속 어려움을 겪고 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "디스플레이",
+        "to": "display",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_00994",
+    "sentence_a": "매우 친절한 호스트 덕분에 여행이 즐거웠습니다",
+    "sentence_b": "무엇보다 친절한 host 덕분에 즐거운 카타니아 trip이 되었습니다.",
+    "sentence_b_org": "무엇보다 친절한 호스트 덕분에 즐거운 카타니아 여행이 되었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      },
+      {
+        "from": "여행",
+        "to": "trip",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.3
+  },
+  {
+    "id": "pair_00995",
+    "sentence_a": "저는 여자 셋이서 2주동안 묵었습니다.",
+    "sentence_b": "저는 3명의 girl과 2주 동안 머물렀습니다.",
+    "sentence_b_org": "저는 3명의 여자와 2주 동안 머물렀습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "여자",
+        "to": "girl",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.2
+  },
+  {
+    "id": "pair_00996",
+    "sentence_a": "이번주에 동기 모임이 있으신가요 다음주에 동기 모임이 있으신가요?",
+    "sentence_b": "schedule을 많이 잡아서 힘들게 하지 말고 하나만 잡으세요.",
+    "sentence_b_org": "일정을 많이 잡아서 힘들게 하지 말고 하나만 잡으세요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "일정",
+        "to": "schedule",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_00997",
+    "sentence_a": "학교 메일에서 거부하는 도메인은 뭐뭐가 있지?",
+    "sentence_b": "최근 온 client email에서 가장 많이 들어간 단어는?",
+    "sentence_b_org": "최근 온 거래처 메일에서 가장 많이 들어간 단어는?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "거래처 메일",
+        "to": "client email",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_00998",
+    "sentence_a": "숙소의 위치와 보안이 굉장히 좋았습니다.",
+    "sentence_b": "숙소의 location과 security가 아주 좋았습니다.",
+    "sentence_b_org": "숙소의 위치와 보안이 아주 좋았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      },
+      {
+        "from": "보안",
+        "to": "security",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.7
+  },
+  {
+    "id": "pair_00999",
+    "sentence_a": "숙소 덕분에 포르투에 대한 좋은 기억이 배가 될거같아요 !",
+    "sentence_b": "덕분에 Porto에서 정말 좋은memory만 가져가요!",
+    "sentence_b_org": "덕분에 포르투에서 정말 좋은기억만 가져가요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "포르투",
+        "to": "Porto",
+        "pos": "NNP"
+      },
+      {
+        "from": "기억",
+        "to": "memory",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.8
+  },
+  {
+    "id": "pair_01000",
+    "sentence_a": "(인터뷰는 18일 오전 이뤄짐. 공군3호기는 이날 밤 김포공항에 도착)",
+    "sentence_b": "(interview는 18일 오전 9시에 진행됩니다. Air Force 3호기가 오늘 밤 Gimpo Airport에 도착합니다.",
+    "sentence_b_org": "(인터뷰는 18일 오전에 진행됩니다. 공군 3호기가 오늘 밤 김포공항에 도착합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "인터뷰",
+        "to": "interview",
+        "pos": "NNG"
+      },
+      {
+        "from": "공군",
+        "to": "Air Force",
+        "pos": "NNG"
+      },
+      {
+        "from": "김포공항",
+        "to": "Gimpo Airport",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.4
+  },
+  {
+    "id": "pair_01001",
+    "sentence_a": "집전체라는 느낌보다는 별채로 되어있는 공간입니다!",
+    "sentence_b": "이 accommodation은 모든것이 갖춰져 있는 accommodation입니다 !",
+    "sentence_b_org": "이 숙소는 모든것이 갖춰져 있는 숙소입니다 !",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.5
+  },
+  {
+    "id": "pair_01002",
+    "sentence_a": "대신, 숙소 주변은 시내보단 조용했어요",
+    "sentence_b": "하스네 station 주변은 주거지라 꽤 조용합니다.",
+    "sentence_b_org": "하스네 역 주변은 주거지라 꽤 조용합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "역",
+        "to": "station",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_01003",
+    "sentence_a": "이번 주 업체 일정 시간이 어떻게 돼?",
+    "sentence_b": "어제 맞춰둔 alarm이 몇 시에 울리는지 알아?",
+    "sentence_b_org": "어제 맞춰둔 알람이 몇 시에 울리는지 알아?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "알람",
+        "to": "alarm",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.4
+  },
+  {
+    "id": "pair_01004",
+    "sentence_a": "중요한 메일을 놓치지 않도록 윈도우를 설치하여 메일을 관리해주세요.",
+    "sentence_b": "Windows를 설치하여 다른 task보다는 mail 관리를 중요하게 해주시기 바랍니다.",
+    "sentence_b_org": "윈도우를 설치하여 다른 작업보다는 메일 관리를 중요하게 해주시기 바랍니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "윈도우",
+        "to": "Windows",
+        "pos": "NNG"
+      },
+      {
+        "from": "작업",
+        "to": "task",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.8
+  },
+  {
+    "id": "pair_01005",
+    "sentence_a": "특히 바로 옆방 소리는 대화를 알아들을 수 있을 정도로 잘 들렸습니다.",
+    "sentence_b": "특히 옆방 sound가 너무 좋아서 conversation을 이해할 수 있었습니다.",
+    "sentence_b_org": "특히 옆방 소리가 너무 좋아서 대화를 이해할 수 있었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "대화",
+        "to": "conversation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.8
+  },
+  {
+    "id": "pair_01006",
+    "sentence_a": "숙소는 중앙역앞 공원옆에 위치하여 도보로 이동이 가능합니다.",
+    "sentence_b": "accommodation은 중앙역 앞 park 옆에 위치해 있어서 걸어가실 수 있습니다.",
+    "sentence_b_org": "숙소는 중앙역 앞 공원 옆에 위치해 있어서 걸어가실 수 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      },
+      {
+        "from": "공원",
+        "to": "park",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.4
+  },
+  {
+    "id": "pair_01007",
+    "sentence_a": "방 사진은 실제와 똑같으나 건물내부는 충격적",
+    "sentence_b": "room의 사진은 똑같지만 building 내부는 충격적입니다.",
+    "sentence_b_org": "방의 사진은 똑같지만 건물 내부는 충격적입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방",
+        "to": "room",
+        "pos": "NNG"
+      },
+      {
+        "from": "건물",
+        "to": "building",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_01008",
+    "sentence_a": "또 헬스장, 당구장, 스크린골프장 등 실내체육시설은 21시 이후 운영이 중단되고, 음식 섭취 금지와 시설 면적 4㎡당 1명으로의 인원 제한 수칙이 유지된다.",
+    "sentence_b": "게임제공업소(오락실)는 food섭취가 금지되고 8㎡당 1명으로 인원이 제한된다.",
+    "sentence_b_org": "게임제공업소(오락실)는 음식섭취가 금지되고 8㎡당 1명으로 인원이 제한된다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "음식섭취",
+        "to": "food",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.6
+  },
+  {
+    "id": "pair_01009",
+    "sentence_a": "뉴스 채널에서 바꾸지마",
+    "sentence_b": "robot vacuum은 어떻게 이용해서 안방 청소를 하면 될까?",
+    "sentence_b_org": "로봇청소기는 어떻게 이용해서 안방 청소를 하면 될까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "로봇청소기",
+        "to": "robot vacuum",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01010",
+    "sentence_a": "나랑 약속한 거 어기면 정말 실망할 거야.",
+    "sentence_b": "예전처럼 지각하는 대신에 father-in-law와의 약속에는 일찍 나가라.",
+    "sentence_b_org": "예전처럼 지각하는 대신에 장인어른과의 약속에는 일찍 나가라.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "장인어른",
+        "to": "father-in-law",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.6
+  },
+  {
+    "id": "pair_01011",
+    "sentence_a": "공간 자체는 사진이랑 올려준 것과 동일합니다.",
+    "sentence_b": "공간 자체는 photo 및 업로드한 space와 동일합니다.",
+    "sentence_b_org": "공간 자체는 사진 및 업로드한 공간과 동일합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "사진",
+        "to": "photo",
+        "pos": "NNG"
+      },
+      {
+        "from": "공간",
+        "to": "space",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_01012",
+    "sentence_a": "전철역, 버스정류장에서 엎어지면 코 닿을 듯",
+    "sentence_b": "subway station이나 bus stop에서 넘어지면 가까워요.",
+    "sentence_b_org": "지하철역이나 버스정류장에서 넘어지면 가까워요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지하철역",
+        "to": "subway station",
+        "pos": "NNG"
+      },
+      {
+        "from": "버스정류장",
+        "to": "bus stop",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.2
+  },
+  {
+    "id": "pair_01013",
+    "sentence_a": "르버스 정류장과도 가까워 공항가기도 편리합니다.",
+    "sentence_b": "subway station과 night bus가 하는 station과도 distance가 가까웠어요",
+    "sentence_b_org": "지하철역과 야간버스가 하는 정류장과도 거리가 가까웠어요",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지하철역",
+        "to": "subway station",
+        "pos": "NNG"
+      },
+      {
+        "from": "야간버스",
+        "to": "night bus",
+        "pos": "NNG"
+      },
+      {
+        "from": "정류장",
+        "to": "station",
+        "pos": "NNG"
+      },
+      {
+        "from": "거리",
+        "to": "distance",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 4,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.4
+  },
+  {
+    "id": "pair_01014",
+    "sentence_a": "북한 도메인의 메일을 보면 제목은 저장하지 않고, 주소를 저장하세요.",
+    "sentence_b": "북한 domain의 mail을 보면 address를 저장하세요. 다른 나라의 domain은 저장하지 마세요.",
+    "sentence_b_org": "북한 도메인의 메일을 보면 주소를 저장하세요. 다른 나라의 도메인은 저장하지 마세요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "도메인",
+        "to": "domain",
+        "pos": "NNG"
+      },
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      },
+      {
+        "from": "주소",
+        "to": "address",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.0
+  },
+  {
+    "id": "pair_01015",
+    "sentence_a": "또 이 구성요소를 중심으로 교육과정의 목표와 성취기준을 기술했다.",
+    "sentence_b": "이에 개정안은 정비책임자에 대한 신규교육 및 3년 주기의 regular education을 의무화했다.",
+    "sentence_b_org": "이에 개정안은 정비책임자에 대한 신규교육 및 3년 주기의 정기교육을 의무화했다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "정기교육",
+        "to": "regular education",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.6
+  },
+  {
+    "id": "pair_01016",
+    "sentence_a": "뭐였지? 작년에 제일 컸던 태풍의 이름이.",
+    "sentence_b": "저번 year에 가장 큰 typhoon은 name이 뭐였죠?",
+    "sentence_b_org": "저번 년도에 가장 큰 태풍은 이름이 뭐였죠?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "저번",
+        "to": "last",
+        "pos": "NNG"
+      },
+      {
+        "from": "태풍",
+        "to": "typhoon",
+        "pos": "NNG"
+      },
+      {
+        "from": "이름",
+        "to": "name",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.4
+  },
+  {
+    "id": "pair_01017",
+    "sentence_a": "이번 달 출장 기간이 어떻게 되시죠?",
+    "sentence_b": "이번 month에 얼마나 출장 다녀오시나요?",
+    "sentence_b_org": "이번 달에 얼마나 출장 다녀오시나요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "달",
+        "to": "month",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.1
+  },
+  {
+    "id": "pair_01018",
+    "sentence_a": "비즈니스 서밋에는 리커창 중국 국무원 총리와 아베 신조 일본 총리도 참석했다.",
+    "sentence_b": "리커창 중국 총리와 아베 신조 일본 총리도 business summit에 참석했습니다.",
+    "sentence_b_org": "리커창 중국 총리와 아베 신조 일본 총리도 비즈니스 서밋에 참석했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "비즈니스 서밋",
+        "to": "business summit",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.5
+  },
+  {
+    "id": "pair_01019",
+    "sentence_a": "혁신형물기업으로 지정된 물기업들은 지정 후 5년간 물기업 육성을 위한 정부의 맞춤형 지원을 받게된다.",
+    "sentence_b": "지정된 festival은 앞으로 2년간 국비 지원과 함께 문화관광축제 명칭 사용, 한국관광공사를 통한 국내외 홍보·marketing 지원 등을 받게 된다.",
+    "sentence_b_org": "지정된 축제는 앞으로 2년간 국비 지원과 함께 문화관광축제 명칭 사용, 한국관광공사를 통한 국내외 홍보·마케팅 지원 등을 받게 된다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "축제",
+        "to": "festival",
+        "pos": "NNG"
+      },
+      {
+        "from": "마케팅",
+        "to": "marketing",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.6
+  },
+  {
+    "id": "pair_01020",
+    "sentence_a": "제4회 베를린 한국독립영화제 상영작은 오는 23일부터 12월 6일까지 k-movie.kulturkorea.org에서 무료로 관람할 수 있다.",
+    "sentence_b": "이렇게 개발된 app은 smartphone과 개인용 PC에서 free로 이용할 수 있다.",
+    "sentence_b_org": "이렇게 개발된 앱은 스마트폰과 개인용 PC에서 무료로 이용할 수 있다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "앱",
+        "to": "app",
+        "pos": "NNG"
+      },
+      {
+        "from": "스마트폰",
+        "to": "smartphone",
+        "pos": "NNG"
+      },
+      {
+        "from": "무료",
+        "to": "free",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01021",
+    "sentence_a": "다만 길눈이 없는 초행자에게는 찾기가 좀 힘들었습니다.",
+    "sentence_b": "하지만, 방향 감각이 없는 beginner들에게는 찾기가 조금 어려웠어요.",
+    "sentence_b_org": "하지만, 방향 감각이 없는 초보자들에게는 찾기가 조금 어려웠어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "하지만",
+        "to": "However",
+        "pos": "MAJ"
+      },
+      {
+        "from": "초보자",
+        "to": "beginner",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.3
+  },
+  {
+    "id": "pair_01022",
+    "sentence_a": "감염병 대응 예산으로는 4400만명분 코로나 백신 확보를 위한 예산 9000억원도 내년 예산에 최종 포함됐다.",
+    "sentence_b": "감염병 대응체계 보강을 위한 budget도 1500억원 증액됐다.",
+    "sentence_b_org": "감염병 대응체계 보강을 위한 예산도 1500억원 증액됐다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "예산",
+        "to": "budget",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.2
+  },
+  {
+    "id": "pair_01023",
+    "sentence_a": "진해 벚꽃 축제 기간은 얼마나 돼?",
+    "sentence_b": "며칠입니까? 진해 cherry blossom festival 기간은.",
+    "sentence_b_org": "며칠입니까? 진해 벚꽃 축제 기간은.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "벚꽃 축제",
+        "to": "cherry blossom festival",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01024",
+    "sentence_a": "너가 생각했을때 넌 광고메일이 더 짜증나는 거 같아, 결제 메일이 더 짜증나는거 같아?",
+    "sentence_b": "당신은 ad랑 payment mail 중에 더 짜증나는게 뭐에요?",
+    "sentence_b_org": "당신은 광고랑 결제 메일 중에 더 짜증나는게 뭐에요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "광고",
+        "to": "ad",
+        "pos": "NNG"
+      },
+      {
+        "from": "결제 메일",
+        "to": "payment mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01025",
+    "sentence_a": "위치, 청결, 편의 모든게 완벽했습니다!",
+    "sentence_b": "location, 청결, 편리함, 모든 것이 완벽했습니다!",
+    "sentence_b_org": "위치, 청결, 편리함, 모든 것이 완벽했습니다!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.5
+  },
+  {
+    "id": "pair_01026",
+    "sentence_a": "전체적으로 상당히 관리가 잘 되는 숙소로 특히 침대가 정말 편했습니다.",
+    "sentence_b": "또한 다른 후기들과 마찬가지로 bed가 매우 편했습니다.",
+    "sentence_b_org": "또한 다른 후기들과 마찬가지로 침대가 매우 편했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "침대",
+        "to": "bed",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.0
+  },
+  {
+    "id": "pair_01027",
+    "sentence_a": "메일함은 비우지 않도록 해",
+    "sentence_b": "병무청 문의 email address 좀",
+    "sentence_b_org": "병무청 문의 메일 주소 좀",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일 주소",
+        "to": "email address",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.3
+  },
+  {
+    "id": "pair_01028",
+    "sentence_a": "바티칸 성당 바로 맞은 편이고 지하철 버스 모두 이용이 편리해요!",
+    "sentence_b": "바티칸 대성당 바로 건너편에 있고 모든 subway bus가 편리해요!",
+    "sentence_b_org": "바티칸 대성당 바로 건너편에 있고 모든 지하철 버스가 편리해요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지하철 버스",
+        "to": "subway bus",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.1
+  },
+  {
+    "id": "pair_01029",
+    "sentence_a": "과속금지입니다. 비 내릴 때는.",
+    "sentence_b": "중부지방 장마는 몇 month 며칠에 그칩니까?",
+    "sentence_b_org": "중부지방 장마는 몇 월 며칠에 그칩니까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "월",
+        "to": "month",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.5
+  },
+  {
+    "id": "pair_01030",
+    "sentence_a": "WHO는 이날 신종 코로나바이러스의 공식 명칭을 ‘COVID-19’로 정했다.",
+    "sentence_b": "이는 new 코로나바이러스의 국내 유입을 더 강력하게 차단하기 위한 조치다.",
+    "sentence_b_org": "이는 신종 코로나바이러스의 국내 유입을 더 강력하게 차단하기 위한 조치다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "신종",
+        "to": "new",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.0
+  },
+  {
+    "id": "pair_01031",
+    "sentence_a": "레포트를 늦게 제출하면 받지 않을 겁니다.",
+    "sentence_b": "그냥 meeting이 아니라 교수님과 잡은 meeting이니 늦어서는 절대 안 돼.",
+    "sentence_b_org": "그냥 미팅이 아니라 교수님과 잡은 미팅이니 늦어서는 절대 안 돼.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "미팅",
+        "to": "meeting",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.1
+  },
+  {
+    "id": "pair_01032",
+    "sentence_a": "교통위치좋고 아침제공서비스및 청결,친절함",
+    "sentence_b": "전반적으로 traffic과 meal이 편리한 location에 있고, host가 친절합니다.",
+    "sentence_b_org": "전반적으로 교통과 식사가 편리한 위치에 있고, 주인이 친절합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "교통",
+        "to": "traffic",
+        "pos": "NNG"
+      },
+      {
+        "from": "식사",
+        "to": "meal",
+        "pos": "NNG"
+      },
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      },
+      {
+        "from": "주인",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 4,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.6
+  },
+  {
+    "id": "pair_01033",
+    "sentence_a": "홍콩섬 중심에 위치하여 위치의 장점이 좋은 숙소입니다.",
+    "sentence_b": "홍콩 island의 center에 위치하고 있으며, 좋은 숙박시설이라는 advantage가 있습니다.",
+    "sentence_b_org": "홍콩섬의 중심부에 위치하고 있으며, 좋은 숙박시설이라는 장점이 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "섬",
+        "to": "island",
+        "pos": "NNG"
+      },
+      {
+        "from": "중심부",
+        "to": "center",
+        "pos": "NNG"
+      },
+      {
+        "from": "장점",
+        "to": "advantage",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_01034",
+    "sentence_a": "비 올 때 계곡엔 텐트치지 말지?",
+    "sentence_b": "비 내릴 때에는 valley에 텐트치면 안됩니다.",
+    "sentence_b_org": "비 내릴 때에는 계곡에 텐트치면 안됩니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "계곡",
+        "to": "valley",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01035",
+    "sentence_a": "침사추이에 위치한 그 어떤 숙소도 부럽지 않을 위치에요.",
+    "sentence_b": "관광명소는 걸어서 이동 가능 한 location이에요",
+    "sentence_b_org": "관광명소를 걸어서 이동 가능 한 위치에요",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_01036",
+    "sentence_a": "하지만 저한테는 정말 멋진 숙소, 매일매일 창 밖의  그림같은 풍경 덕분에 완벽 했어요.",
+    "sentence_b": "저는 이 accommodation이 스페인의 모든 accommodation 중에 가장 좋았어요!",
+    "sentence_b_org": "저는 이 숙소가 스페인의 모든 숙소 중에 가장 좋았어요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.4
+  },
+  {
+    "id": "pair_01037",
+    "sentence_a": "현재 경기·강원의 살처분·수매 양돈농장에 대한 돼지 재입식 절차는 잠정 중단하기로 했다.",
+    "sentence_b": "감염병 확진으로 입원·격리 조치된 patient에 대한 생활지원비와 유급휴가비로는 800억원이 배정했다.",
+    "sentence_b_org": "감염병 확진으로 입원·격리 조치된 환자에 대한 생활지원비와 유급휴가비로는 800억원이 배정했다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "환자",
+        "to": "patient",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01038",
+    "sentence_a": "목욕할 때 더운물로 하지마",
+    "sentence_b": "요리할 때 전자레인지말고 저 gas range로 해야해",
+    "sentence_b_org": "요리할 때 전자레인지말고 저 가스레인지로 해야해",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "가스레인지",
+        "to": "gas range",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01039",
+    "sentence_a": "일반적으로 겨울하고 여름 중에서 약속이 많은 때가 언제인가요?",
+    "sentence_b": "appointment이 많을 때가 겨울이신가요, 아니면 여름이신가요?",
+    "sentence_b_org": "약속이 많을 때가 겨울이신가요, 아니면 여름이신가요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "약속",
+        "to": "appointment",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.9
+  },
+  {
+    "id": "pair_01040",
+    "sentence_a": "그레이트 오션 로드 오신다면 꼭 이 숙소에 머무세요.",
+    "sentence_b": "다음에 대만을 또 오면 꼭 이 accommodation으로 정할거에요.",
+    "sentence_b_org": "다음에 대만을 또 오면 꼭 이 숙소로 정할거에요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.6
+  },
+  {
+    "id": "pair_01041",
+    "sentence_a": "아웃룩을 윈도우에서 쓸 때 용량은 얼마나 되나요?",
+    "sentence_b": "수신거부한 mail이 공지야, 설문이야?",
+    "sentence_b_org": "수신거부한 메일이 공지야, 설문이야?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01042",
+    "sentence_a": "사진보다 약간 집이 작은감이 있긴하지만 둘이 사용하기에 불편할정도는 아닙니다.",
+    "sentence_b": "그 house는 그림보다 조금 작지만, 두 사람이 사용하기에 불편하지 않아요.",
+    "sentence_b_org": "그 집은 그림보다 조금 작지만, 두 사람이 사용하기에 불편하지 않아요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "집",
+        "to": "house",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.0
+  },
+  {
+    "id": "pair_01043",
+    "sentence_a": "집안 습도가 이십 퍼센트가 아니라 오십 퍼센트 미만이 되도록 조절하자",
+    "sentence_b": "집안에서 humidity는 이십 퍼센트가 아니라 오십퍼센트 이상 말고 미만으로 유지해야해",
+    "sentence_b_org": "집안에서 습도는 이십 퍼센트가 아니라 오십퍼센트 이상 말고 미만으로 유지해야해",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "습도",
+        "to": "humidity",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01044",
+    "sentence_a": "약속은 금요일로 하지는 말아라.",
+    "sentence_b": "집에 event가 있어서 그러니 Friday에는 appointment schedule을 잡지 말아주세요.",
+    "sentence_b_org": "집에 일이 있어서 그러니 금요일에는 약속 일정을 잡지 말아주세요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "일",
+        "to": "event",
+        "pos": "NNG"
+      },
+      {
+        "from": "금요일",
+        "to": "Friday",
+        "pos": "NNG"
+      },
+      {
+        "from": "약속 일정",
+        "to": "appointment schedule",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.0
+  },
+  {
+    "id": "pair_01045",
+    "sentence_a": "담에도 묶고싶을 정도로 좋은 동네 좋은 컨디션의 숙소 입니다.",
+    "sentence_b": "나중에 이런 place에서 살고싶을정도로 너무좋은 숙소입니다.",
+    "sentence_b_org": "나중에 이런곳에서 살고싶을정도로 너무좋은 숙소입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "곳",
+        "to": "place",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.6
+  },
+  {
+    "id": "pair_01046",
+    "sentence_a": "먼저 찬게 정크 메일함이야 받은 메일함이야?",
+    "sentence_b": "학교 성적표 수령수단으로 registered mail은 피해",
+    "sentence_b_org": "학교 성적표 수령수단으로 등기는 피해",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "등기",
+        "to": "registered mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01047",
+    "sentence_a": "그리고 무엇보다 호스트가 정말 친절했습니다.",
+    "sentence_b": "그리고 무엇보다도, host는 really 친절했습니다.",
+    "sentence_b_org": "그리고 무엇보다도, 진행자는 정말 친절했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "진행자",
+        "to": "host",
+        "pos": "NNG"
+      },
+      {
+        "from": "정말",
+        "to": "really",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_01048",
+    "sentence_a": "저 김치 냉장고 있잖아요 상태 좀 어떤지 봐줄래요?",
+    "sentence_b": "지금 kimchi refrigerator status가 어떤지 알려면 어떻게 해야하니?",
+    "sentence_b_org": "지금 김치 냉장고 상태가 어떤지 알려면 어떻게 해야하니?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "김치 냉장고 상태",
+        "to": "kimchi refrigerator status",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.0
+  },
+  {
+    "id": "pair_01049",
+    "sentence_a": "그러나 약간의 불편함을 참는다면 아주 좋은 숙소입니다.",
+    "sentence_b": "멋진 space, host의 친절함, 편의시설 등 모자람이 없는 좋은 숙소입니다",
+    "sentence_b_org": "멋진 공간, 호스트의 친절함, 편의시설 등 모자람이 없는 좋은 숙소입니다",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "공간",
+        "to": "space",
+        "pos": "NNG"
+      },
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.5
+  },
+  {
+    "id": "pair_01050",
+    "sentence_a": "세비야에서 비앤비 찾으신다면 딱 맞는 곳일거에요.",
+    "sentence_b": "네스프레소 capsule은 주변에서 파는 곳을 못찾았어요.",
+    "sentence_b_org": "네스프레소캡슐은 주변에서 파는 곳을 못찾았어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "캡슐",
+        "to": "capsule",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01051",
+    "sentence_a": "아울러 관세청은 식품의약품안전처와 함께 마스크 수입통관 절차를 간소화했다.",
+    "sentence_b": "또한 Customs Service와 Ministry of Food and Drug Safety는 import mask의 customs clearance procedure를 간소화했습니다.",
+    "sentence_b_org": "또한 관세청과 식품의약품안전처는 수입 마스크의 통관 절차를 간소화했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "관세청",
+        "to": "Customs Service",
+        "pos": "NNG"
+      },
+      {
+        "from": "수입 마스크",
+        "to": "import mask",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_01052",
+    "sentence_a": "13일부터 공급되는 중소벤처기업진흥공단의 긴급경영안정자금 250억원, 기술보증기금의 보증지원 1050억원 등은 금리와 보증조건이 일반 금융기관보다 좋은 조건으로 구체화됐다.",
+    "sentence_b": "13일부터 공급되는 중소벤처기업진흥공사의 250억원 긴급경영안정기금과 기술보증기금의 1050억원 보증지원금이 일반 금융기관보다 좋은 condition으로 구현되었습니다.",
+    "sentence_b_org": "13일부터 공급되는 중소벤처기업진흥공사의 250억원 긴급경영안정기금과 기술보증기금의 1050억원 보증지원금이 일반 금융기관보다 좋은 조건으로 구현되었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "조건",
+        "to": "condition",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_01053",
+    "sentence_a": "방 크기는 성인 두명이 쓰기에 딱 좋습니다.",
+    "sentence_b": "room size는 성인 두 명이 쓰기에 딱 좋습니다.",
+    "sentence_b_org": "방 크기는 성인 두 명이 쓰기에 딱 좋습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방 크기",
+        "to": "room size",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 5.0
+  },
+  {
+    "id": "pair_01054",
+    "sentence_a": "이번 홍콩여행에서 선택했던 숙소는 정말 훌륭했습니다.",
+    "sentence_b": "이번 홍콩 trip을 위해 선택한 accommodation은 정말 좋았습니다.",
+    "sentence_b_org": "이번 홍콩 여행을 위해 선택한 숙소는 정말 좋았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "여행",
+        "to": "trip",
+        "pos": "NNG"
+      },
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.5
+  },
+  {
+    "id": "pair_01055",
+    "sentence_a": "여행은 언제 가는게 더 좋으십니까, 겨울입니까 여름입니까?",
+    "sentence_b": "travel은 겨울이 더 하기에 좋을까, summer가 더 좋을까?",
+    "sentence_b_org": "여행은 겨울이 더 하기에 좋을까, 여름이 더 좋을까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "여행",
+        "to": "travel",
+        "pos": "NNG"
+      },
+      {
+        "from": "여름",
+        "to": "summer",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_01056",
+    "sentence_a": "네이버랑 네이트 중에 뭐가 더 메일 첨부파일이 더 빨리 가?",
+    "sentence_b": "mail은 네이버 account만 주로 확인하니 다른 account로 보내시면 안되고, 꼭 이쪽으로 보내주시기 바랍니다.",
+    "sentence_b_org": "메일은 네이버계정만 주로 확인하니 다른 계정으로 보내시면 안되고, 꼭 이쪽으로 보내주시기 바랍니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      },
+      {
+        "from": "계정",
+        "to": "account",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_01057",
+    "sentence_a": "덕분에 바로셀로나 곳곳을 하루종일 잘 다녔습니다.",
+    "sentence_b": "당신 덕분에 all day long 바르셀로나 주변을 돌아다녔어요.",
+    "sentence_b_org": "당신 덕분에 하루 종일 바르셀로나 주변을 돌아다녔어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "하루 종일",
+        "to": "all day long",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_01058",
+    "sentence_a": "이제는 방역에서 확실한 안정과 함께, 경제에서 확실한 반등을 이루어야 할 시간입니다.",
+    "sentence_b": "economy도 확실한 rebound으로 나아가겠습니다.",
+    "sentence_b_org": "경제도 확실한 반등으로 나아가겠습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "경제",
+        "to": "economy",
+        "pos": "NNG"
+      },
+      {
+        "from": "반등",
+        "to": "rebound",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.0
+  },
+  {
+    "id": "pair_01059",
+    "sentence_a": "정부는 18일 인천 송도 연세대 국제캠퍼스에서 이같은 내용의 바이오헬스 산업 사업화 촉진 및 기술역량 강화를 위한 전략을 발표했다.",
+    "sentence_b": "방통위는 16일 대전 한국전자통신연구원(ETRI)에서 이 같은 내용을 포함한 ‘2020년도 business plan’을 발표했다.",
+    "sentence_b_org": "방통위는 16일 대전 한국전자통신연구원(ETRI)에서 이 같은 내용을 포함한 ‘2020년도 업무계획’을 발표했다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "업무계획",
+        "to": "business plan",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_01060",
+    "sentence_a": "호스트의 진심어린 친절함이 감동적이였구요.",
+    "sentence_b": "이 단점들을 다 보안 할 수 있었던건 host와의 소통이였습니다.",
+    "sentence_b_org": "이 단점들을 다 보안 할 수 있었던건 호스트와의 소통이였습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.3
+  },
+  {
+    "id": "pair_01061",
+    "sentence_a": "눈길을 끄는 점은 이들이 응원 댓글 400여개에 직접 대구를 다녀온 사진을 함께 올리고 있다는 것.",
+    "sentence_b": "우리가 주목하는 것은 그들이 400개의 응원 comment에 대구를 방문한 그들의 photo를 게시하고 있다는 것입니다.",
+    "sentence_b_org": "우리가 주목하는 것은 그들이 400개의 응원 댓글에 대구를 방문한 그들의 사진을 게시하고 있다는 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "사진",
+        "to": "photo",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_01062",
+    "sentence_a": "정부는 14일 홍남기 부총리 겸 기획재정부 장관 주재로 열린 3차 비상경제 중앙대책본부 회의에서 이같은 내용이 담긴 ’감염병 대응 산업 육성 방안’을 확정했다.",
+    "sentence_b": "정부는 14일 홍남기 Deputy Prime Minister 겸 기획재정부 장관 주재로 열린 제3차 긴급경제중앙대책본부 회의에서 감염병 대응산업 육성계획을 확정했습니다.",
+    "sentence_b_org": "정부는 14일 홍남기 부총리 겸 기획재정부 장관 주재로 열린 제3차 긴급경제중앙대책본부 회의에서 감염병 대응산업 육성계획을 확정했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "부총리",
+        "to": "Deputy Prime Minister",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_01063",
+    "sentence_a": "이 집은 매우 좋은 위치와 예쁘고 청결해요.",
+    "sentence_b": "이 house는 location이 아주 좋고 예쁘고 깨끗합니다.",
+    "sentence_b_org": "이 집은 위치가 매우 좋고 예쁘고 깨끗합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "집",
+        "to": "house",
+        "pos": "NNG"
+      },
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.7
+  },
+  {
+    "id": "pair_01064",
+    "sentence_a": "이러한 소비·유통 환경 변화에 우리경제가 어떻게 대응할 것인가 역시 시급한 문제입니다.",
+    "sentence_b": "이 policy가 어떻게 실행되게 할 것인가?",
+    "sentence_b_org": "이 정책이 어떻게 실행되게 할 것인가?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "정책",
+        "to": "policy",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.1
+  },
+  {
+    "id": "pair_01065",
+    "sentence_a": "주변 상권, 지하철, 버스 등등 이동하기에도 좋습니다.",
+    "sentence_b": "주변 commercial area, subway, bus 등으로 이동하는 것도 좋습니다.",
+    "sentence_b_org": "주변 상업지역, 지하철, 버스 등으로 이동하는 것도 좋습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "주변 상업지역",
+        "to": "commercial area",
+        "pos": "NNG"
+      },
+      {
+        "from": "지하철",
+        "to": "subway",
+        "pos": "NNG"
+      },
+      {
+        "from": "버스",
+        "to": "bus",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.6
+  },
+  {
+    "id": "pair_01066",
+    "sentence_a": "제니베이커리,기화병가,허유산,편의점은 숙소에서 5분 정도 걸리구요.",
+    "sentence_b": "location은 호시우광장에서 불과 5분 정도 걸리구요,",
+    "sentence_b_org": "위치는 호시우광장에서 불과 5분 정도 걸리구요,",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.9
+  },
+  {
+    "id": "pair_01067",
+    "sentence_a": "그리고 호스트도 친절하고 방과 화장실도 깨끗합니다.",
+    "sentence_b": "host도 엄청 친절하고 room도 깨끗해요.",
+    "sentence_b_org": "호스트도 엄청 친절하고 방도 깨끗해요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      },
+      {
+        "from": "방",
+        "to": "room",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.9
+  },
+  {
+    "id": "pair_01068",
+    "sentence_a": "강원영동에 언제 비가 옵니까?",
+    "sentence_b": "궁금합니다. 강원영동 region에 비 오는 day이.",
+    "sentence_b_org": "궁금합니다. 강원영동지역에 비 오는 날이.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지역",
+        "to": "region",
+        "pos": "NNG"
+      },
+      {
+        "from": "날",
+        "to": "day",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01069",
+    "sentence_a": "블루 이코노미는 바다, 섬, 하늘, 바람 등 전남이 가진 파란색 자원과 곳곳에 있는 문화자원, 비교 우위의 산업자원을 활용한 전남의 지역경제 혁신 성장 전략이다.",
+    "sentence_b": "Blue Economy는 바다, 섬, 하늘, 바람과 같은 푸른 resource와 도처에 있는 문화 resource, 그리고 상대적으로 우수한 산업 resource를 활용하여 전라남도의 지역 경제 혁신 성장을 위한 전략입니다.",
+    "sentence_b_org": "청색경제는 바다, 섬, 하늘, 바람과 같은 푸른 자원과 도처에 있는 문화 자원, 그리고 상대적으로 우수한 산업 자원을 활용하여 전라남도의 지역 경제 혁신 성장을 위한 전략입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "청색경제",
+        "to": "Blue Economy",
+        "pos": "NNG"
+      },
+      {
+        "from": "자원",
+        "to": "resource",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_01070",
+    "sentence_a": "테르미니역 근처에 위치한 숙소로 접근성이 좋습니다.",
+    "sentence_b": "그 accommodation은 테르미니 station 근처에 위치해 있고 accessibility가 좋습니다.",
+    "sentence_b_org": "그 숙소는 테르미니 역 근처에 위치해 있고 접근성이 좋습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      },
+      {
+        "from": "역",
+        "to": "station",
+        "pos": "NNG"
+      },
+      {
+        "from": "접근성",
+        "to": "accessibility",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.7
+  },
+  {
+    "id": "pair_01071",
+    "sentence_a": "책 읽을때 조명을 어느정도로 밝게 켜두는게 좋을까?",
+    "sentence_b": "책 읽을때 lighting을 얼마나 밝게 켜두는게 적절하지?",
+    "sentence_b_org": "책 읽을때 조명을 얼마나 밝게 켜두는게 적절하지?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "조명",
+        "to": "lighting",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01072",
+    "sentence_a": "이 전쟁에서 승리를 이끄는 힘은 오직 국민에게 있습니다.",
+    "sentence_b": "이 war에서 victory로 이끄는 유일한 power는 국민입니다.",
+    "sentence_b_org": "이 전쟁에서 승리로 이끄는 유일한 힘은 국민입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "전쟁",
+        "to": "war",
+        "pos": "NNG"
+      },
+      {
+        "from": "승리",
+        "to": "victory",
+        "pos": "NNG"
+      },
+      {
+        "from": "힘",
+        "to": "power",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_01073",
+    "sentence_a": "다시 베니스에 온다면 꼭 머무를 예정입니다.",
+    "sentence_b": "만약 내가 Venice에 다시 온다면, 나는 반드시 머무를 것입니다.",
+    "sentence_b_org": "만약 내가 베니스에 다시 온다면, 나는 반드시 머무를 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "베니스",
+        "to": "Venice",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_01074",
+    "sentence_a": "내일 일출 몇 신지 알려줘.",
+    "sentence_b": "내일은 몇 percent의 probability로 비가 올 예정입니까?",
+    "sentence_b_org": "내일은 몇퍼센트의 확률로 비가 올 예정입니까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "퍼센트",
+        "to": "percent",
+        "pos": "NNG"
+      },
+      {
+        "from": "확률",
+        "to": "probability",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_01075",
+    "sentence_a": "10월 중에는 시속 400km로 달리는 초고속열차 도입에도 착수하기로 했다.",
+    "sentence_b": "정부는 quarantine measures의 책임성도 강화하기로 했다.",
+    "sentence_b_org": "정부는 방역조치의 책임성도 강화하기로 했다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방역조치",
+        "to": "quarantine measures",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01076",
+    "sentence_a": "아이들과 함께 라하이나에서 좋은 시간을 보낼 수 있었습니다.",
+    "sentence_b": "저는 제 아이들과 함께 라히나에서 즐거운 time을 보낼 수 있었습니다.",
+    "sentence_b_org": "저는 제 아이들과 함께 라히나에서 즐거운 시간을 보낼 수 있었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "시간",
+        "to": "time",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01077",
+    "sentence_a": "텝스 스터디 모임이 매주 몇 차례 있죠?",
+    "sentence_b": "다음주 departure date를 알려주세요.",
+    "sentence_b_org": "다음주 출국 날짜를 알려주세요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "출국",
+        "to": "departure",
+        "pos": "NNG"
+      },
+      {
+        "from": "날짜",
+        "to": "date",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01078",
+    "sentence_a": "방은 너무 좋았고 잠이 잘 오는 방입니다.",
+    "sentence_b": "room이 너무 좋아서 sleep을 잘 수 있어요.",
+    "sentence_b_org": "방이 너무 좋아서 잠을 잘 수 있어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방",
+        "to": "room",
+        "pos": "NNG"
+      },
+      {
+        "from": "잠",
+        "to": "sleep",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.6
+  },
+  {
+    "id": "pair_01079",
+    "sentence_a": "다음주 출국 일정이 며칠로 예정돼 있습니까?",
+    "sentence_b": "가족모임 schedule이니까 잊지말고 priority 일순위로 해두렴.",
+    "sentence_b_org": "가족모임 일정이니까 잊지말고 우선순위 일순위로 해두렴.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "일정",
+        "to": "schedule",
+        "pos": "NNG"
+      },
+      {
+        "from": "우선순위",
+        "to": "priority",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.1
+  },
+  {
+    "id": "pair_01080",
+    "sentence_a": "차있는 정도가 안읽은 메일함이 더 커, 스팸 메일함이 더 커?",
+    "sentence_b": "안 읽은 inbox에 mail이 더 많이 와있나, spam mail함에 더 와있나?",
+    "sentence_b_org": "안 읽은 메일함에 메일이 더 많이 와있나, 스팸 메일함에 더 와있나?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일함",
+        "to": "inbox",
+        "pos": "NNG"
+      },
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      },
+      {
+        "from": "스팸",
+        "to": "spam",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.2
+  },
+  {
+    "id": "pair_01081",
+    "sentence_a": "현관문 잠금장치 어떻게 고쳐?",
+    "sentence_b": "front door 장금장치가 고장나면 어떻게 수리해야 돼?",
+    "sentence_b_org": "현관문 장금장치가 고장나면 어떻게 수리해야 돼?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "현관문",
+        "to": "front door",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_01082",
+    "sentence_a": "이 로봇청소기 있잖아요 안방이랑 거실 중에 어디서 작동하고 싶니?",
+    "sentence_b": "너는 robot vacuum cleaner를 안방하고 거실 중 어디에서 작동시키고 싶어?",
+    "sentence_b_org": "너는 로봇 청소기를 안방하고 거실 중 어디에서 작동시키고 싶어?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "로봇 청소기",
+        "to": "robot vacuum cleaner",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_01083",
+    "sentence_a": "미세먼지 지수가 높을 땐 외출하지 마.",
+    "sentence_b": "cloud가 많을까? 적을까?",
+    "sentence_b_org": "구름이 많을까? 적을까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "구름",
+        "to": "cloud",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01084",
+    "sentence_a": "그냥 이 가격에 이 정도의 집에서 묵을 수 있다는게 너무 좋았어요.",
+    "sentence_b": "저는 이 price에 이만큼 머물 수 있는 것이 정말 좋았어요.",
+    "sentence_b_org": "저는 이 가격에 이만큼 머물 수 있는 것이 정말 좋았어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "가격",
+        "to": "price",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_01085",
+    "sentence_a": "전기 스토브 조작법을 설명해줘",
+    "sentence_b": "electric stove 전원 어떻게 켜?",
+    "sentence_b_org": "전기 스토브 전원 어떻게 켜?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "전기 스토브",
+        "to": "electric stove",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_01086",
+    "sentence_a": "일단 호스트 어머님이 마중 나오셨는데 정말 친절하십니다.",
+    "sentence_b": "우선, 당신의 host mom이 당신을 만나러 왔고 당신은 very 친절합니다.",
+    "sentence_b_org": "우선, 당신의 호스트 엄마가 당신을 만나러 왔고 당신은 매우 친절합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트 엄마",
+        "to": "host mom",
+        "pos": "NNG"
+      },
+      {
+        "from": "매우",
+        "to": "very",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.0
+  },
+  {
+    "id": "pair_01087",
+    "sentence_a": "엘리베이터 에스컬레이터 등 모두 너무 편리하고요.",
+    "sentence_b": "location, swimming pool, 설비, 주변 public parking 등 열흘 간 생활하기에 너무 편리했습니다",
+    "sentence_b_org": "위치, 수영장, 설비, 주변 공영주차장 등 열흘 간 생활하기에 너무 편리했습니다",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      },
+      {
+        "from": "수영장",
+        "to": "swimming pool",
+        "pos": "NNG"
+      },
+      {
+        "from": "공영주차장",
+        "to": "public parking",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.3
+  },
+  {
+    "id": "pair_01088",
+    "sentence_a": "건물 외부와 복도는 낡았지만 집 내부 인테리어는 깔끔합니다!",
+    "sentence_b": "집 자체는 좀 낡았지만 really 화장실, 침실 청결상태는 훌륭합니다.",
+    "sentence_b_org": "집 자체는 좀 낡았지만 정말 화장실, 침실 청결상태는 훌륭합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "정말",
+        "to": "really",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.3
+  },
+  {
+    "id": "pair_01089",
+    "sentence_a": "카카오톡 연동을 지원하는 메일은 무엇이 있나요?",
+    "sentence_b": "어떤 mail domain이 KakaoTalk과 연동이 되나요?",
+    "sentence_b_org": "어떤 메일 도메인이 카카오톡과 연동이 되나요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일 도메인",
+        "to": "mail domain",
+        "pos": "NNG"
+      },
+      {
+        "from": "카카오톡",
+        "to": "KakaoTalk",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_01090",
+    "sentence_a": "전 담에 기회가 된다면 여기 꼭 머물거에요",
+    "sentence_b": "런던에 또 가면 꼭 꼭 이 accommodation에 다시 머물거에요",
+    "sentence_b_org": "런던에 또 가면 꼭 꼭 이 숙소에 다시 머물거에요",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.3
+  },
+  {
+    "id": "pair_01091",
+    "sentence_a": "어떻게 하면 블루투스 스피커를 잘 설치 할 수 있어?",
+    "sentence_b": "fan 한 time이 동안 할래 아님 두 time 동안 할 수 있게 조절할래?",
+    "sentence_b_org": "선풍기 한 시간이 동안 할래 아님 두 시간 동안 할 수 있게 조절할래?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "선풍기",
+        "to": "fan",
+        "pos": "NNG"
+      },
+      {
+        "from": "시간",
+        "to": "time",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01092",
+    "sentence_a": "그리고 체크인과 체크아웃이 나름 편리했어요",
+    "sentence_b": "자동현관문을 통한 check-in과 출입이 편리했어요",
+    "sentence_b_org": "자동현관문을 통한 체크인과 출입이 편리했어요",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "체크인",
+        "to": "check-in",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.3
+  },
+  {
+    "id": "pair_01093",
+    "sentence_a": "아침은 과일주스랑 토스트에 잼 정도로 있습니다.",
+    "sentence_b": "parking lot은 24시간에 20유로로 이용가능했습니다.",
+    "sentence_b_org": "주차장은 24시간에 20유로로 이용가능했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "주차장",
+        "to": "parking lot",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01094",
+    "sentence_a": "무거운 캐리어 끌고 다니시는 분은 참고하세요.",
+    "sentence_b": "무거운 carrier를 운반하는 경우, 참조하시기 바랍니다.",
+    "sentence_b_org": "무거운 캐리어를 운반하는 경우, 참조하시기 바랍니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "캐리어",
+        "to": "carrier",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.1
+  },
+  {
+    "id": "pair_01095",
+    "sentence_a": "어떻게 집 습도를 측정하는거야?",
+    "sentence_b": "home humidity 측정방법 좀 알려줘",
+    "sentence_b_org": "집안 습도 측정방법 좀 알려줘",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "집안 습도",
+        "to": "home humidity",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.1
+  },
+  {
+    "id": "pair_01096",
+    "sentence_a": "1월 말 바르셀로나는 거의 한국 만큼 추웠지만, 이 집은 따뜻해요!",
+    "sentence_b": "그리고 washing machine은 고장이 났는지 제대로 작동은 안합니다.",
+    "sentence_b_org": "그리고 세탁기는 고장이 났는지 제대로 작동은 안합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "세탁기",
+        "to": "washing machine",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01097",
+    "sentence_a": "2년전에도 묵었던 숙소입니다 만족했기에 이번에도 묵었습니다",
+    "sentence_b": "여기가 제가 2년 전에 묵었던 accommodation입니다. 저는 만족스러웠고, 그래서 이번에는 stay했습니다.",
+    "sentence_b_org": "여기가 제가 2년 전에 묵었던 숙소입니다. 저는 만족스러웠고, 그래서 이번에는 머물렀습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_01098",
+    "sentence_a": "국가 임상연구 승인과 실시기관 지정, 장기추적조사 등 안전관리체계를 구축하고 치료제 개발·임상연구 수행 등을 위한 RD 투자도 확대한다.",
+    "sentence_b": "국가 clinical research 승인, 시행기관 지정, 장기 추적조사 등 safety management system을 구축하고 therapy 개발 및 clinical research 수행을 위한 RD 투자를 확대합니다.",
+    "sentence_b_org": "국가 임상연구 승인, 시행기관 지정, 장기 추적조사 등 안전관리체계를 구축하고 치료 개발 및 임상연구 수행을 위한 RD 투자를 확대합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "임상연구",
+        "to": "clinical research",
+        "pos": "NNG"
+      },
+      {
+        "from": "안전관리체계",
+        "to": "safety management system",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01099",
+    "sentence_a": "위치 청결 서비스 호스트의 연락 모든게 완벽했습니다.",
+    "sentence_b": "location, cleanliness, service, host의 모든 contact가 완벽했습니다.",
+    "sentence_b_org": "위치 청결 서비스 호스트의 모든 연락처가 완벽했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      },
+      {
+        "from": "청결",
+        "to": "cleanliness",
+        "pos": "NNG"
+      },
+      {
+        "from": "서비스",
+        "to": "service",
+        "pos": "NNG"
+      },
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 4,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01100",
+    "sentence_a": "시간은 저녁 일곱시가 좋아, 여덟시가 좋아?",
+    "sentence_b": "appointment이 칠월달에 몇 개나 돼?",
+    "sentence_b_org": "약속이 칠월달에 몇 개나 돼?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "약속",
+        "to": "appointment",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01101",
+    "sentence_a": "교육부가 코로나19로 인한 대학의 재정부담 등을 종합적으로 고려해 대학 237곳에 1000억원을 지원한다.",
+    "sentence_b": "교육부는 코로나19로 인한 university의 재정 부담을 종합적으로 고려해 237개 university에 1000억 원을 지원할 예정입니다.",
+    "sentence_b_org": "교육부는 코로나19로 인한 대학의 재정 부담을 종합적으로 고려해 237개 대학에 1000억 원을 지원할 예정입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "대학",
+        "to": "university",
+        "pos": "NNG"
+      },
+      {
+        "from": "대학",
+        "to": "university",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01102",
+    "sentence_a": "가족이 함께 쓰기에는 좀 안 맞을 것 같구요.",
+    "sentence_b": "우리 family에겐 맞지 않을 것 같아요.",
+    "sentence_b_org": "우리 가족에겐 맞지 않을 것 같아요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "가족",
+        "to": "family",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01103",
+    "sentence_a": "조명등 밝기는 높게 말고 낮게 조정해서 써주시기 바랍니다.",
+    "sentence_b": "너희들이 좋아하는 classic 곡이 뭔지 알고싶구나",
+    "sentence_b_org": "너희들이 좋아하는 클래식 곡이 뭔지 알고싶구나",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "클래식",
+        "to": "classic",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01104",
+    "sentence_a": "관계 부처는 대규모 국가 프로젝트로서 이른바 ‘한국판 뉴딜’을 추진할 기획단을 신속히 준비해 주기 바랍니다.",
+    "sentence_b": "특히 government는 한국판 New Deal을 신속히 추진하겠습니다.",
+    "sentence_b_org": "특히 정부는 한국판 뉴딜을 신속히 추진하겠습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "정부",
+        "to": "government",
+        "pos": "NNG"
+      },
+      {
+        "from": "뉴딜",
+        "to": "New Deal",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.2
+  },
+  {
+    "id": "pair_01105",
+    "sentence_a": "청구서 보낼 수단으로 메일을 지정해둔게 농협카드야 신한카드야?",
+    "sentence_b": "농협카드와 신한카드 중 bill 수령방법이 mail인 것은?",
+    "sentence_b_org": "농협카드와 신한카드 중 청구서 수령방법이 메일인 것은?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "청구서",
+        "to": "bill",
+        "pos": "NNG"
+      },
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01106",
+    "sentence_a": "둘의 반응이 너무 달라서 미리 설명을 드립니다.",
+    "sentence_b": "5-star hotel을 뛰어 넘는 최고의 option이 당신을 맞이합니다.",
+    "sentence_b_org": "5성급 호텔을 뛰어 넘는 최고의 옵션이 당신을 맞이합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "성급 호텔",
+        "to": "star hotel",
+        "pos": "NNG"
+      },
+      {
+        "from": "옵션",
+        "to": "option",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01107",
+    "sentence_a": "번잡한 와이키키에서 10분 정도 벗어난 카할라에 위치한 독특한 분위기의 주택입니다.",
+    "sentence_b": "이 house는 붐비는 와이키키에서 10분 정도 떨어진 카할라에 위치한 독특한 house입니다.",
+    "sentence_b_org": "이 집은 붐비는 와이키키에서 10분 정도 떨어진 카할라에 위치한 독특한 집입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "집",
+        "to": "house",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_01108",
+    "sentence_a": "이층방에 이어진 테라스가 하나 더 있고요.",
+    "sentence_b": "위층 방에 terrace가 하나 더 연결되어 있어요.",
+    "sentence_b_org": "위층 방에 테라스가 하나 더 연결되어 있어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "테라스",
+        "to": "terrace",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.1
+  },
+  {
+    "id": "pair_01109",
+    "sentence_a": "언제가 한국어 학회 시작일인지 좀 알려주시겠습니까?",
+    "sentence_b": "한국어 conference 시작일이 언제야?",
+    "sentence_b_org": "한국어 학회 시작일이 언제야?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "학회",
+        "to": "conference",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_01110",
+    "sentence_a": "편안한 잠자리 덕분에 긴 여행의 피로를 풀 수 있었습니다.",
+    "sentence_b": "편안한 bed 덕분에 긴 trip의 피로를 풀 수 있었습니다.",
+    "sentence_b_org": "편안한 침대 덕분에 긴 여행의 피로를 풀 수 있었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "침대",
+        "to": "bed",
+        "pos": "NNG"
+      },
+      {
+        "from": "여행",
+        "to": "trip",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.1
+  },
+  {
+    "id": "pair_01111",
+    "sentence_a": "먼저 코로나19로 제작 또는 개봉이 연기된 한국영화에 대해서 제작비용 또는 개봉비용의 일부를 각 21억 원, 총 42억 원, 작품별 최대 1억 원을 지원한다.",
+    "sentence_b": "산업은행이 2조2000억원 상당의 bond 신속인수제도를 시행하고 1조9000억원 상당의 bond 차환발행도 지원한다.",
+    "sentence_b_org": "산업은행이 2조2000억원 상당의 회사채 신속인수제도를 시행하고 1조9000억원 상당의 회사채 차환발행도 지원한다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "회사채",
+        "to": "bond",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.3
+  },
+  {
+    "id": "pair_01112",
+    "sentence_a": "식기도구 등 필요한 것은 전부 있어요!",
+    "sentence_b": "먹을것과 water play items 등 필요한 것이 모두 있었어요.",
+    "sentence_b_org": "먹을것과 물놀이 용품 등 필요한 것이 모두 있었어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "물놀이 용품",
+        "to": "water play items",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.1
+  },
+  {
+    "id": "pair_01113",
+    "sentence_a": "다음 달에 친구 결혼하는데 날짜 언제인지 알아?",
+    "sentence_b": "친구 결혼하는거 next month 언제더라?",
+    "sentence_b_org": "친구 결혼하는거 다음 달 언제더라?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "다음 달",
+        "to": "next month",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_01114",
+    "sentence_a": "겨울철에는 감기 조심하게. 식중독 말고.",
+    "sentence_b": "슬플 때는 rain 속에 달려봐. 참는건 안돼.",
+    "sentence_b_org": "슬플 때는 빗속을 달려봐. 참는건 안돼.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "빗속",
+        "to": "rain",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01115",
+    "sentence_a": "제일 좋은 것은 좋은동네에 위치한 게스트하우스였습니다.",
+    "sentence_b": "무엇보다 제일 좋았던 것은 host couple의 배려였습니다.",
+    "sentence_b_org": "무엇보다 제일 좋았던 것은 주인장 커플의 배려였습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "주인장 커플",
+        "to": "host couple",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.0
+  },
+  {
+    "id": "pair_01116",
+    "sentence_a": "제가 가본 역대급 깔끔한 에어비앤비 였습니다.",
+    "sentence_b": "제가 가본 Airbnb 숙소 중 최고였습니다.",
+    "sentence_b_org": "제가 가본 에어비앤비 숙소 중 최고였습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "에어비앤비",
+        "to": "Airbnb",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.3
+  },
+  {
+    "id": "pair_01117",
+    "sentence_a": "3일을 머무르는 동안 전혀 불편함없이 사용했습니다.",
+    "sentence_b": "3일 동안 머무르는 동안 아무 inconvenience 없이 사용했어요.",
+    "sentence_b_org": "3일 동안 머무르는 동안 아무 불편 없이 사용했어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "불편",
+        "to": "inconvenience",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.7
+  },
+  {
+    "id": "pair_01118",
+    "sentence_a": "생일이 삼월이라고 했던 친구 이름이 무언가?",
+    "sentence_b": "father-in-law와의 약속에는 딱 맞춰 가지말고 일찍 나오는게 좋다.",
+    "sentence_b_org": "장인어른과의 약속에는 딱 맞춰 가지말고 일찍 나오는게 좋다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "장인어른",
+        "to": "father-in-law",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01119",
+    "sentence_a": "모두들 아름다운 피렌체 여행 좋은 숙소에서 하실 수 있길 버래요",
+    "sentence_b": "매우 좋은 time을 바르셀로나에서 보낼 수 있었다.",
+    "sentence_b_org": "매우 좋은 시간을 바르셀로나에서 보낼 수 있었다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "시간",
+        "to": "time",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.8
+  },
+  {
+    "id": "pair_01120",
+    "sentence_a": "청결도, 화장실청소상태,방분위기 모두 훌륭했습니다.",
+    "sentence_b": "check-in, 청소 및 customer service는 모두 훌륭했습니다.",
+    "sentence_b_org": "체크인, 청소 및 고객서비스는 모두 훌륭했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "체크인",
+        "to": "check-in",
+        "pos": "NNG"
+      },
+      {
+        "from": "고객서비스",
+        "to": "customer service",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.3
+  },
+  {
+    "id": "pair_01121",
+    "sentence_a": "빔프로젝터를 효율적으로 사용하는 방법은?",
+    "sentence_b": "빔프로젝터를 사용할 때 가장 효율적인 method가 뭐야?",
+    "sentence_b_org": "빔프로젝터를 사용할 때 가장 효율적인 방법이 뭐야?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방법",
+        "to": "method",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_01122",
+    "sentence_a": "문체부는 이를 연차적으로 확대, 시행해 학교운동부와 스포츠클럽 간의 연계를 강화한다.",
+    "sentence_b": "문화체육관광부는 학교스포츠학과와 sports club의 연계성을 강화하기 위해 매년 이 program을 확대 시행할 예정입니다.",
+    "sentence_b_org": "문화체육관광부는 학교스포츠학과와 스포츠클럽의 연계성을 강화하기 위해 매년 이 프로그램을 확대 시행할 예정입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "스포츠클럽",
+        "to": "sports club",
+        "pos": "NNG"
+      },
+      {
+        "from": "프로그램",
+        "to": "program",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.2
+  },
+  {
+    "id": "pair_01123",
+    "sentence_a": "교수님께 보낸 걸 어떻게 교수님이 읽으셨는지 확인하지?",
+    "sentence_b": "교수님께 보낸 mail을 교수님께서 수신확인하셨는지 알 수 있을까?",
+    "sentence_b_org": "교수님께 보낸 메일을 교수님께서 수신확인하셨는지 알 수 있을까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.4
+  },
+  {
+    "id": "pair_01124",
+    "sentence_a": "우리가 바이오산업에 힘을 쏟아야 할 이유는 분명합니다.",
+    "sentence_b": "우리가 bio industry에 집중해야 하는 reason은 분명합니다.",
+    "sentence_b_org": "우리가 바이오 산업에 집중해야 하는 이유는 분명합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "바이오 산업",
+        "to": "bio industry",
+        "pos": "NNG"
+      },
+      {
+        "from": "이유",
+        "to": "reason",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01125",
+    "sentence_a": "요가 스튜디오 안에 있어서 불편합니다.",
+    "sentence_b": "yoga studio에 있는 것은 불편합니다.",
+    "sentence_b_org": "요가 스튜디오에 있는 것은 불편합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "요가 스튜디오",
+        "to": "yoga studio",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_01126",
+    "sentence_a": "선풍기와 에어컨의 통합 조절은 어떻게 해야되는거야?",
+    "sentence_b": "외부온도 말고 indoor temperature는 summer에 적정 온도로 유지하자",
+    "sentence_b_org": "외부온도 말고 실내온도는 여름에는 적정 온도로 유지하자",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "실내온도",
+        "to": "indoor temperature",
+        "pos": "NNG"
+      },
+      {
+        "from": "여름",
+        "to": "summer",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_01127",
+    "sentence_a": "트위치와 지메일간 연동을 하면 안돼",
+    "sentence_b": "Twitch login 시 Gmail 연동을 이용하지마",
+    "sentence_b_org": "트위치 로그인 시 지메일 연동을 이용하지마",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "트위치",
+        "to": "Twitch",
+        "pos": "NNP"
+      },
+      {
+        "from": "로그인",
+        "to": "login",
+        "pos": "NNG"
+      },
+      {
+        "from": "지메일",
+        "to": "Gmail",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.6
+  },
+  {
+    "id": "pair_01128",
+    "sentence_a": "바이오산업의 경쟁력은 ‘사람과 아이디어’에 의해 결정됩니다.",
+    "sentence_b": "'국민취업지원제도'의 introduction은 그동안 '복지 사각지대'에 있던 노동빈곤층을 위한 safety net을 구축한다는 데 의미가 있다.",
+    "sentence_b_org": "‘국민취업지원제도’의 도입은 그동안 ‘복지 사각지대’에 있던 노동빈곤층을 위한 안전망을 구축한다는 데 의미가 있다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "도입",
+        "to": "introduction",
+        "pos": "NNG"
+      },
+      {
+        "from": "안전망",
+        "to": "safety net",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01129",
+    "sentence_a": "문재인 대통령 등 아세안+3(한·중·일) 정상은 이날 오후 4시부터 개최된 특별 화상 정상회의에서 이 같은 내용 등을 담은 공동성명을 채택했다.",
+    "sentence_b": "정부는 12일 열린 비상경제 중앙대책본부 겸 대외경제장관회의에서 이같은 내용을 담은 ‘소상공인 rental fee 부담완화 방안’을 관계부처 합동으로 확정·발표했다.",
+    "sentence_b_org": "정부는 12일 열린 비상경제 중앙대책본부 겸 대외경제장관회의에서 이같은 내용을 담은 ‘소상공인 임대료 부담완화 방안’을 관계부처 합동으로 확정·발표했다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "임대료",
+        "to": "rental fee",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_01130",
+    "sentence_a": "브랜드 이미지의 삼등분한 알파벳 I는 3개 신산업 분야를 의미하고 파랑·보라색은 미래지향을 뜻한다.",
+    "sentence_b": "은행 loan액의 100%를 전액 보증하는 한편 보증 심사요건을 간소화하고 보증료율을 0.5%p 인하한다.",
+    "sentence_b_org": "은행 대출액의 100%를 전액 보증하는 한편 보증 심사요건을 간소화하고 보증료율을 0.5%p 인하한다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "대출액",
+        "to": "loan",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01131",
+    "sentence_a": "집근처에 슈퍼가 있는것도 아주 유용했다.",
+    "sentence_b": "집 근처에 supermarket이 있는 것도 very 유용했어요.",
+    "sentence_b_org": "집 근처에 슈퍼마켓이 있는 것도 매우 유용했어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "슈퍼마켓",
+        "to": "supermarket",
+        "pos": "NNG"
+      },
+      {
+        "from": "매우",
+        "to": "very",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.6
+  },
+  {
+    "id": "pair_01132",
+    "sentence_a": "주세를 과세하는 방식이 맥주, 탁주 두 주종에 대해 기존 종가세 체계에서 종량세 체계로 전환된다.",
+    "sentence_b": "또 향후 어린이집 재입소를 원하는 경우 입소대기 재신청이 필요하며, 이 case에 입소대기 순번은 재부여된다.",
+    "sentence_b_org": "또 향후 어린이집 재입소를 원하는 경우 입소대기 재신청이 필요하며, 이 경우에 입소대기 순번은 재부여된다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "경우",
+        "to": "case",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01133",
+    "sentence_a": "위치는 완차이역과 코즈웨이역 중간이였어요.",
+    "sentence_b": "location은 Wan Chai station과 Causeway Bay station 사이에 있었습니다.",
+    "sentence_b_org": "위치는 완차이 역과 코즈웨이 역 사이에 있었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      },
+      {
+        "from": "완차이",
+        "to": "Wan Chai",
+        "pos": "NNP"
+      },
+      {
+        "from": "역",
+        "to": "station",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01134",
+    "sentence_a": "그중에서도 9개 중점과제와 69개 주력사업을 선정해 2022년까지 총 5조 3842억 원을 투입할 계획입니다.",
+    "sentence_b": "이 중 9개 major 과제와 69개 major 사업이 선정되고 2022년까지 총 5조 3840억 원이 투입될 예정입니다.",
+    "sentence_b_org": "이 중 9개 주요 과제와 69개 주요 사업이 선정되고 2022년까지 총 5조 3840억 원이 투입될 예정입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "주요",
+        "to": "major",
+        "pos": "NNG"
+      },
+      {
+        "from": "주요",
+        "to": "major",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.6
+  },
+  {
+    "id": "pair_01135",
+    "sentence_a": "2030년 국가 온실가스 감축목표도 2025년 이전에 최대한 빨리 상향하여 제출할 것입니다.",
+    "sentence_b": "2030년에 대한 national 온실가스 감축 목표도 2025년 이전에 가능한 한 빨리 인상될 것입니다.",
+    "sentence_b_org": "2030년에 대한 국가 온실가스 감축 목표도 2025년 이전에 가능한 한 빨리 인상될 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "국가",
+        "to": "national",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.1
+  },
+  {
+    "id": "pair_01136",
+    "sentence_a": "덕분에 여행을 잘 마무리할 수 있었어요!",
+    "sentence_b": "당신 덕분에 trip을 잘 마칠 수 있었어요!",
+    "sentence_b_org": "당신 덕분에 여행을 잘 마칠 수 있었어요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "여행",
+        "to": "trip",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.5
+  },
+  {
+    "id": "pair_01137",
+    "sentence_a": "보호자나 간병인 없이 전문 간호인력이 입원환자를 직접 돌보는 ‘간호·간병 통합서비스’를 제공하는 병상은 지난 10월말을 기준 523개 병원 4만 4612병상으로 늘어났다.",
+    "sentence_b": "장애학생과 비장애학생이 함께 즐길 수 있는 ‘integrated physical education 수업 안내서’가 10년 만에 전면 개정됐다.",
+    "sentence_b_org": "장애학생과 비장애학생이 함께 즐길 수 있는 ‘통합체육 수업 안내서’가 10년 만에 전면 개정됐다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "통합체육",
+        "to": "integrated physical education",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01138",
+    "sentence_a": "공시가격별 세율 인하 효과 사례(분석 전제 : 현실화 계획에 따라 매년 현실화율 제고, 시세 변동은 없음)",
+    "sentence_b": "공시가격별 세율인하 effect의 예(사전분석: 현실화 계획에 따라 매년 현실화율을 올리고 시세는 변동하지 않음)",
+    "sentence_b_org": "공시가격별 세율인하 효과의 예(사전분석: 현실화 계획에 따라 매년 현실화율을 올리고 시세는 변동하지 않음)",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "인하 효과",
+        "to": "effect",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_01139",
+    "sentence_a": "저같은 성격이신분들은 집전체로 빌리는 걸 선택하시는게 좋을것 같아요!",
+    "sentence_b": "하지만 다른거 다 상관없이 location이 중요하신 분들에게는 좋을 것 같아요.",
+    "sentence_b_org": "하지만 다른거 다 상관없이 위치가 중요하신 분들에게는 좋을 것 같아요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.5
+  },
+  {
+    "id": "pair_01140",
+    "sentence_a": "그 정신으로 대한민국 임시정부가 수립되었습니다.",
+    "sentence_b": "이러한 spirit으로 대한민국 provisional government가 수립되었습니다.",
+    "sentence_b_org": "이러한 정신으로 대한민국 임시정부가 수립되었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "정신",
+        "to": "spirit",
+        "pos": "NNG"
+      },
+      {
+        "from": "임시정부",
+        "to": "provisional government",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.6
+  },
+  {
+    "id": "pair_01141",
+    "sentence_a": "그 중에 상위로 기억될만한 숙소였습니다.",
+    "sentence_b": "기억에 남는 accommodation이었어요.",
+    "sentence_b_org": "기억에 남는 숙소였어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_01142",
+    "sentence_a": "내일 출장 시간이 어떻게 되시는지 말씀해 주시겠어요?",
+    "sentence_b": "내일 출장 가는 time이 몇 시야?",
+    "sentence_b_org": "내일 출장 가는 시간이 몇 시야?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "시간",
+        "to": "time",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_01143",
+    "sentence_a": "할머니 생신 잔치에는 축하만 하지 말고 미리 가서 선물을 사보세요.",
+    "sentence_b": "까먹지 말고 할머니 birthday party는 미리 가서 gift를 삽시다.",
+    "sentence_b_org": "까먹지 말고 할머니 생신 잔치는 미리 가서 선물을 삽시다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "할머니 생신 잔치",
+        "to": "birthday party",
+        "pos": "NNG"
+      },
+      {
+        "from": "선물",
+        "to": "gift",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.1
+  },
+  {
+    "id": "pair_01144",
+    "sentence_a": "창밖으로 보이던 비씨 플레이스의 멋진 야경이 참 그리울 것 같습니다",
+    "sentence_b": "멋진 night view와 낮에 멋진 풍경들이 memory에 오래 남을 것 같습니다.",
+    "sentence_b_org": "멋진 야경과 낮에 멋진 풍경들이 기억이 오래 남을 것 같습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "야경",
+        "to": "night view",
+        "pos": "NNG"
+      },
+      {
+        "from": "기억",
+        "to": "memory",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.0
+  },
+  {
+    "id": "pair_01145",
+    "sentence_a": "그리구 문도 바로 들어가는문 옆에 들어가는 입구가 있습니다",
+    "sentence_b": "가게로 들어가는 door 바로 옆에 오른쪽으로 올라가는 entrance가 있어요.",
+    "sentence_b_org": "가게로 들어가는 문 바로 옆에 오른쪽으로 올라가는 입구가 있어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "문",
+        "to": "door",
+        "pos": "NNG"
+      },
+      {
+        "from": "입구",
+        "to": "entrance",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.1
+  },
+  {
+    "id": "pair_01146",
+    "sentence_a": "올해 추석 연휴 기간은 언제로 정해졌나요?",
+    "sentence_b": "추석 this year 언제 쉬는지 아세요?",
+    "sentence_b_org": "추석 올해 언제 쉬는지 아세요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "올해",
+        "to": "this year",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.3
+  },
+  {
+    "id": "pair_01147",
+    "sentence_a": "저녁 말고 아침에 환기를 꼭 할 수 있도록 협조 바랍니다.",
+    "sentence_b": "Excuse me, bedroom mood light이랑 fluorescent light 중에 어떤걸 켜드릴까요?",
+    "sentence_b_org": "저기요 침실 무드등이랑 형광등 중에 어떤걸 켜드릴까요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "저기요",
+        "to": "Excuse me",
+        "pos": "IC"
+      },
+      {
+        "from": "침실 무드",
+        "to": "bedroom mood",
+        "pos": "NNG"
+      },
+      {
+        "from": "형광등",
+        "to": "fluorescent light",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01148",
+    "sentence_a": "국립박물관 5분거리로 위치가 매우 좋습니다.",
+    "sentence_b": "국립박물관에서 5분 distance에 위치해 있습니다.",
+    "sentence_b_org": "국립박물관에서 5분 거리에 위치해 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "거리",
+        "to": "distance",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.4
+  },
+  {
+    "id": "pair_01149",
+    "sentence_a": "다시 오타와에 간다면 반드시 이 집에 또 머물것입니다.",
+    "sentence_b": "오타와에 다시 가게 된다면, 꼭 다시 이 house에 있을 거예요.",
+    "sentence_b_org": "오타와에 다시 가게 된다면, 꼭 다시 이 집에 있을 거예요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "집",
+        "to": "house",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_01150",
+    "sentence_a": "무슨 요일에 친구 만나기로 했니?",
+    "sentence_b": "친구와 만나기로 한 day가 언제인가요?",
+    "sentence_b_org": "친구와 만나기로 한 요일이 언제인가요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "요일",
+        "to": "day",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_01151",
+    "sentence_a": "어른들과 약속을 했으면 미루지 말거라.",
+    "sentence_b": "어른들과 잡은 promise는 미루지 말게.",
+    "sentence_b_org": "어른들과 잡은 약속은 미루지 말게.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "약속",
+        "to": "promise",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_01152",
+    "sentence_a": "환경부와 중소벤처기업부는 3일 ‘그린뉴딜 유망기업 100’ 출범식에서 이같은 내용을 포함한 ‘그린 스타트업·벤처 육성 방안’을 발표했다.",
+    "sentence_b": "환경부와 중소벤처기업부는 3일 Green New Deal 100 출범식에서 이 같은 내용을 담은 녹색창업 및 벤처 육성계획을 발표했습니다.",
+    "sentence_b_org": "환경부와 중소벤처기업부는 3일 그린뉴딜100 출범식에서 이 같은 내용을 담은 녹색창업 및 벤처 육성계획을 발표했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "그린뉴딜",
+        "to": "Green New Deal",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_01153",
+    "sentence_a": "호스트 분의 부모님 부부가 늘 집에 계시는 것 같아요",
+    "sentence_b": "나에게는 그녀의 home에 머무르는 것이 지옥같았다.",
+    "sentence_b_org": "나에게는 그녀의 집에 머무르는 것이 지옥같았다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "집",
+        "to": "home",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.5
+  },
+  {
+    "id": "pair_01154",
+    "sentence_a": "마루바닥이  약간 삐그덕 거려 새벽에 걷기에 좀 소리가 나서 아쉬웠다.",
+    "sentence_b": "아이가 dawn에 울기까지 하면 그 날 잠은 다 잔겁니다.",
+    "sentence_b_org": "아이가 새벽에 울기까지 하면 그 날 잠은 다 잔겁니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "새벽",
+        "to": "dawn",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01155",
+    "sentence_a": "생각했던것 보다 위치도 집도 너무 좋았습니다.",
+    "sentence_b": "location과 house가 생각보다 훨씬 좋았습니다.",
+    "sentence_b_org": "위치와 집이 생각보다 훨씬 좋았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      },
+      {
+        "from": "집",
+        "to": "house",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.5
+  },
+  {
+    "id": "pair_01156",
+    "sentence_a": "여름 태풍 피해 액수는 얼마입니까? 작년 기준으로.",
+    "sentence_b": "지금까지 서울엔 얼마나 rain이 왔어?",
+    "sentence_b_org": "지금까지 서울엔 얼마나 비가 왔어?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "비",
+        "to": "rain",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01157",
+    "sentence_a": "예능이랑 드라마 중에 너가 더 좋아하는 게 뭐야?",
+    "sentence_b": "variety show랑 drama 중에 더 보고싶은거 말해봐",
+    "sentence_b_org": "예능이랑 드라마 중에 더 보고싶은거 말해봐",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "예능",
+        "to": "variety show",
+        "pos": "NNG"
+      },
+      {
+        "from": "드라마",
+        "to": "drama",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_01158",
+    "sentence_a": "내일 낮 자외선 지수 알려줘.",
+    "sentence_b": "경기 inland 예상 강수량은?",
+    "sentence_b_org": "경기내륙 예상 강수량은?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "내륙",
+        "to": "inland",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.1
+  },
+  {
+    "id": "pair_01159",
+    "sentence_a": "위치만족, 가까운곳에 마트가 있고 주요 관굉지 까지 가까운 거리 등 가격대비 훌륭한 숙소임",
+    "sentence_b": "really 위치대비 가격대비 London에서 이런 accommodation 못찾아요,,",
+    "sentence_b_org": "진짜 위치대비 가격대비 런던에서 이런 숙소 못찾아요,,",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "진짜",
+        "to": "really",
+        "pos": "MAG"
+      },
+      {
+        "from": "런던",
+        "to": "London",
+        "pos": "NNP"
+      },
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.1
+  },
+  {
+    "id": "pair_01160",
+    "sentence_a": "파리을 가족과 함께 여행하신다면, 기꺼이 추천합니다.",
+    "sentence_b": "포르투에 long-term trip을 하신다면 very 추천합니다!",
+    "sentence_b_org": "포르투에 장기여행을 하신다면 매우 추천합니다!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "장기여행",
+        "to": "long-term trip",
+        "pos": "NNG"
+      },
+      {
+        "from": "매우",
+        "to": "very",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.8
+  },
+  {
+    "id": "pair_01161",
+    "sentence_a": "숙소 도착하기 바로 전 골목 우측에 한인 식당이 있었던거 같습니다.",
+    "sentence_b": "사진보다 더 좋은 accommodation은 거의 처음이었던 같습니다.",
+    "sentence_b_org": "사진보다 더 좋은 숙소는 거의 처음이었던 같습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.3
+  },
+  {
+    "id": "pair_01162",
+    "sentence_a": "경치도 너무 좋고, 집이 너무 너무 예뻐요.",
+    "sentence_b": "view도 좋고 house도 아름답습니다.",
+    "sentence_b_org": "경치도 좋고 집도 아름답습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "경치",
+        "to": "view",
+        "pos": "NNG"
+      },
+      {
+        "from": "집",
+        "to": "house",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_01163",
+    "sentence_a": "한편, 자세한 행사 내용은 슬기로운 과학생활 온라인 마당(www.슬기로운과학생활.kr)에서 확인할 수 있다.",
+    "sentence_b": "공모에 관한 자세한 사항은 smartcity.go.kr에서 확인할 수 있다.",
+    "sentence_b_org": "공모에 관한 자세한 사항은 스마트시티 종합포털(smartcity.go.kr)에서 확인할 수 있다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "스마트시티 종합포털",
+        "to": "smartcity.go.kr",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_01164",
+    "sentence_a": "둘이 사용하기에는 적당한 숙소로 3명까지도 적당할듯하나 4명까지는 잘 모르겠습니다.",
+    "sentence_b": "두 person이 사용하기에 3명까지 적당할 것 같은데, 4명까지는 모르겠어요.",
+    "sentence_b_org": "두 사람이 사용하기에 3명까지 적당할 것 같은데, 4명까지는 모르겠어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "사람",
+        "to": "person",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01165",
+    "sentence_a": "무서워하는 것이 천둥과 번개 중 어느 것입니까?",
+    "sentence_b": "thunder와 lightning 중 무서워하는 것을 말해줄래?",
+    "sentence_b_org": "천둥과 번개 중 무서워하는 것을 말해줄래?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "천둥",
+        "to": "thunder",
+        "pos": "NNG"
+      },
+      {
+        "from": "번개",
+        "to": "lightning",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_01166",
+    "sentence_a": "또 주택가라 오히려 더 안심할 수 있었고요.",
+    "sentence_b": "그리고 check-out 후 짐을 보관할 수 있었습니다.",
+    "sentence_b_org": "그리고 체크아웃 후 짐을 보관할 수 있었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "체크아웃",
+        "to": "check-out",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01167",
+    "sentence_a": "너 내일 등산 가는 시간이 몇 시야?",
+    "sentence_b": "내일 등산하러 가시는 time이 몇 시에요?",
+    "sentence_b_org": "내일 등산하러 가시는 시각이 몇 시에요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "시각",
+        "to": "time",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_01168",
+    "sentence_a": "올해 35개 기업연구소가 공모 결과 우수 기업연구소로 선정됐다.",
+    "sentence_b": "올해, 35개의 기업 연구 기관들이 contest의 결과로 우수한 기업 연구 기관으로 선정되었습니다.",
+    "sentence_b_org": "올해, 35개의 기업 연구 기관들이 콘테스트의 결과로 우수한 기업 연구 기관으로 선정되었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "콘테스트",
+        "to": "contest",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_01169",
+    "sentence_a": "덕분에 아테네가 좋은 기억으로 남을것이다.",
+    "sentence_b": "당신 덕분에 Athens는 좋은 memory로 남을 거예요.",
+    "sentence_b_org": "당신 덕분에 아테네는 좋은 추억으로 남을 거예요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "아테네",
+        "to": "Athens",
+        "pos": "NNP"
+      },
+      {
+        "from": "추억",
+        "to": "memory",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01170",
+    "sentence_a": "오늘 중에 혹시 일정 아직 안 잡힌 시간 있음 궁금해.",
+    "sentence_b": "학교 다닐 때도 같이 오래 놀았던 대학 후배인데 wedding에 늦는 몰염치한 짓은 하지 맙시다.",
+    "sentence_b_org": "학교 다닐 때도 같이 오래 놀았던 대학 후배인데 결혼식에 늦는 몰염치한 짓은 하지 맙시다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "결혼식",
+        "to": "wedding",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01171",
+    "sentence_a": "주차비 10유로와 관광세금 3유로를 추가로 부담해야 합니다.",
+    "sentence_b": "beach쪽은 일방통행 및 parking이 여유가 없어 walking을 추천합니다.",
+    "sentence_b_org": "비치쪽은 일방통행 및 주차가 여유가 없어 도보를 추천합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "비치",
+        "to": "beach",
+        "pos": "NNG"
+      },
+      {
+        "from": "주차",
+        "to": "parking",
+        "pos": "NNG"
+      },
+      {
+        "from": "도보",
+        "to": "walking",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_01172",
+    "sentence_a": "군은 마스크 등 방호물자 3개월분과 긴급소요 의무 장비도 확보했다.",
+    "sentence_b": "질병관리본부 상담센터 인력도 additional로 확보키로 했다.",
+    "sentence_b_org": "질병관리본부 상담센터 인력도 추가로 확보키로 했다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "추가",
+        "to": "additional",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_01173",
+    "sentence_a": "여기저기 다니기 접근성도 좋아서 적극 추천해요.",
+    "sentence_b": "place 접근성이 좋기 때문에 강력히 추천합니다.",
+    "sentence_b_org": "장소 접근성이 좋기 때문에 강력히 추천합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "장소",
+        "to": "place",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_01174",
+    "sentence_a": "나보나광장, 베드로성당, 산탄젤로 성 등 도보로 다니기 충분했습니다.",
+    "sentence_b": "그것은 나보나 Square, 피터 성당, 그리고 산 안젤로 Castle을 포함하여 걸어 다니기에 충분했습니다.",
+    "sentence_b_org": "그것은 나보나 광장, 피터 성당, 그리고 산 안젤로 성을 포함하여 걸어 다니기에 충분했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "광장",
+        "to": "Square",
+        "pos": "NNG"
+      },
+      {
+        "from": "성",
+        "to": "Castle",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.1
+  },
+  {
+    "id": "pair_01175",
+    "sentence_a": "정말 위치,숙소의 상태 전부 좋습니다!",
+    "sentence_b": "place와 accommodation은 모두 좋습니다!",
+    "sentence_b_org": "장소와 숙소는 모두 좋습니다!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "장소",
+        "to": "place",
+        "pos": "NNG"
+      },
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01176",
+    "sentence_a": "유투브 영상을 지메일로 공유하고 싶은데 어떻게 해?",
+    "sentence_b": "YouTube video Gmail로 공유하려면 어떻게 해야해?",
+    "sentence_b_org": "유투브 영상 지메일로 공유하려면 어떻게 해야해?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "유투브",
+        "to": "YouTube",
+        "pos": "NNP"
+      },
+      {
+        "from": "영상",
+        "to": "video",
+        "pos": "NNG"
+      },
+      {
+        "from": "지메일",
+        "to": "Gmail",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.7
+  },
+  {
+    "id": "pair_01177",
+    "sentence_a": "삼월에 받은 메일들은 지우지 말아줘",
+    "sentence_b": "conference에서 보내는 mail은 trash bin에 들어가있었니 spam mail함에 들어가있었니?",
+    "sentence_b_org": "학회에서 보내는 메일은 휴지통에 들어가있었니 스팸 메일함에 들어가있었니?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "학회",
+        "to": "conference",
+        "pos": "NNG"
+      },
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      },
+      {
+        "from": "휴지통",
+        "to": "trash bin",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_01178",
+    "sentence_a": "짐맡기기는 직원없이 그냥 창고같은곳에  두고 나갑니다.",
+    "sentence_b": "직원 없이 그냥 warehouse 같은 곳에 짐을 놔두고 가요.",
+    "sentence_b_org": "직원 없이 그냥 창고 같은 곳에 짐을 놔두고 가요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "창고",
+        "to": "warehouse",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_01179",
+    "sentence_a": "특히 주방에 냄비, 후라이팬, 헹주등 상태가 넘 안좋습니다.",
+    "sentence_b": "침 구류 카페트 hygiene 상태가 너무 안좋습니다.",
+    "sentence_b_org": "침 구류 카페트 위생상태가 너무 안좋습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위생",
+        "to": "hygiene",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.3
+  },
+  {
+    "id": "pair_01180",
+    "sentence_a": "접경지역의 재해재난과 한반도의 기후변화에 공동으로 대처할 때 우리 겨레의 삶이 보다 안전해질 것입니다.",
+    "sentence_b": "국경 주변의 disaster와 한반도의 climate change에 공동으로 대처하면 우리의 life는 더 안전해질 것입니다.",
+    "sentence_b_org": "국경 주변의 재난과 한반도의 기후 변화에 공동으로 대처하면 우리의 삶은 더 안전해질 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "재난",
+        "to": "disaster",
+        "pos": "NNG"
+      },
+      {
+        "from": "기후 변화",
+        "to": "climate change",
+        "pos": "NNG"
+      },
+      {
+        "from": "삶",
+        "to": "life",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01181",
+    "sentence_a": "근데 시설이랑 뷰랑 그런 게 다 했어요",
+    "sentence_b": "집 근처에 supermarket 과일야채가게 다 가까워요.",
+    "sentence_b_org": "집 근처에 슈퍼마켓 과일야채가게 다가까워요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "슈퍼마켓",
+        "to": "supermarket",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01182",
+    "sentence_a": "거실과 가장 가까운 방에 있는 침대는 삐걱거리는 소리가 많이 들리는 편입니다",
+    "sentence_b": "living room에서 가장 가까운 방의 bed는 삐걱거리는 sound를 많이 듣는 경향이 있습니다.",
+    "sentence_b_org": "거실에서 가장 가까운 방의 침대는 삐걱거리는 소리를 많이 듣는 경향이 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "거실",
+        "to": "living room",
+        "pos": "NNG"
+      },
+      {
+        "from": "침대",
+        "to": "bed",
+        "pos": "NNG"
+      },
+      {
+        "from": "소리",
+        "to": "sound",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.1
+  },
+  {
+    "id": "pair_01183",
+    "sentence_a": "호스트에게 감사하며 이 후기를 작성합니다.",
+    "sentence_b": "host에게 감사하고 이 review를 쓰세요.",
+    "sentence_b_org": "호스트에게 감사하고 이 리뷰를 쓰세요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      },
+      {
+        "from": "리뷰",
+        "to": "review",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_01184",
+    "sentence_a": "또 창문 너머로 바로 카사바트요뒷건물이 보입니다.",
+    "sentence_b": "그리고 당신은 Casabat 뒤에 있는 building을 바로 window를 통해 볼 수 있습니다.",
+    "sentence_b_org": "그리고 당신은 Casabat 뒤에 있는 건물을 바로 창문을 통해 볼 수 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "건물",
+        "to": "building",
+        "pos": "NNG"
+      },
+      {
+        "from": "창문",
+        "to": "window",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.2
+  },
+  {
+    "id": "pair_01185",
+    "sentence_a": "호스트가 매우 친절하고 꼼꼼한 분입니다.",
+    "sentence_b": "MC는 really 친절하고 꼼꼼합니다.",
+    "sentence_b_org": "사회자는 매우 친절하고 꼼꼼합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "사회자",
+        "to": "MC",
+        "pos": "NNG"
+      },
+      {
+        "from": "매우",
+        "to": "really",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_01186",
+    "sentence_a": "먼저 데이터·인공지능(AI)분야에서는 데이터 활용을 높이기 위해 건강 등 민감한 정보에 대한 가이드라인을 8월까지 마련한다.",
+    "sentence_b": "우선 data 및 인공지능(AI) 분야에서는 data 활용도를 높이기 위해 8월까지 건강 등 중요 정보에 대한 guideline을 마련하기로 했습니다.",
+    "sentence_b_org": "우선 데이터 및 인공지능(AI) 분야에서는 데이터 활용도를 높이기 위해 8월까지 건강 등 중요 정보에 대한 가이드라인을 마련하기로 했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "데이터",
+        "to": "data",
+        "pos": "NNG"
+      },
+      {
+        "from": "가이드라인",
+        "to": "guideline",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_01187",
+    "sentence_a": "근데 이불이 피부가 좀 예민하신분들께는 가렵습니다.",
+    "sentence_b": "하지만 sensitive한 skin을 가진 사람들에게는 blanket이 가렵습니다.",
+    "sentence_b_org": "하지만 민감한 피부를 가진 사람들에게는 담요가 가렵습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "피부",
+        "to": "skin",
+        "pos": "NNG"
+      },
+      {
+        "from": "담요",
+        "to": "blanket",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.0
+  },
+  {
+    "id": "pair_01188",
+    "sentence_a": "작은 방에 이층침대 하나와 큰방에 더블침대 하나가 있구요",
+    "sentence_b": "큰방과 중간방에 double bed가 있습니다.",
+    "sentence_b_org": "큰방과 중간방에 더블 침대가 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "더블 침대",
+        "to": "double bed",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.6
+  },
+  {
+    "id": "pair_01189",
+    "sentence_a": "이 중에서 이번에 한컴오피스 2018 및 2020에서 제공되는 ‘안심글꼴파일’은 국가기관·지자체·공공기관이 개발하고 한컴오피스 프로그램 내 반영에 동의한 총 57종이다.",
+    "sentence_b": "이 가운데 국가기관, 지방자치단체, public institution 등이 개발해 한컴오피스 program에 반영하기로 합의한 2018~2020년 총 57건의 '안전한 font file'이 한컴오피스에서 제공될 예정입니다.",
+    "sentence_b_org": "이 가운데 국가기관, 지방자치단체, 공공기관 등이 개발해 한컴오피스 프로그램에 반영하기로 합의한 2018~2020년 총 57건의 '안전한 폰트 파일'이 한컴오피스에서 제공될 예정입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "공공기관",
+        "to": "public institution",
+        "pos": "NNG"
+      },
+      {
+        "from": "프로그램",
+        "to": "program",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.2
+  },
+  {
+    "id": "pair_01190",
+    "sentence_a": "위기대응을 위한 최고의 의사결정 기구인 경제 중대본으로서 문 대통령 주재의 비상경제회의가 출범한 것이다.",
+    "sentence_b": "문 President이 주재하는 emergency economic meeting은 crisis response을 위한 최고의 의사결정 기구인 경제 실세로 출범했습니다.",
+    "sentence_b_org": "문 대통령이 주재하는 긴급 경제 회의는 위기 대응을 위한 최고의 의사결정 기구인 경제 실세로 출범했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "대통령",
+        "to": "President",
+        "pos": "NNG"
+      },
+      {
+        "from": "긴급 경제 회의",
+        "to": "emergency economic meeting",
+        "pos": "NNG"
+      },
+      {
+        "from": "위기 대응",
+        "to": "crisis response",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_01191",
+    "sentence_a": "다만  침대가 삐그덕삐그덕 소리가 엄청나요",
+    "sentence_b": "다만 street에서 인접해서 잘때 소리가 시끄러움",
+    "sentence_b_org": "다만 거리에서 인접해서 잘때  소리가 시끄러움",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "거리",
+        "to": "street",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.2
+  },
+  {
+    "id": "pair_01192",
+    "sentence_a": "아울러 국립대병원 12개소와 지방의료원 15개소를 중심으로 퇴원환자가 지속적인 건강관리를 받을 수 있도록 의료·복지서비스를 연계하는 등 지역보건의료기관 간 협력을 강화한다.",
+    "sentence_b": "또한 일 잘한 사람이 합당한 대우를 받을 수 있도록 특별승진·승급 등 incentive 부여도 활성화한다.",
+    "sentence_b_org": "또한 일 잘한 사람이 합당한 대우를 받을 수 있도록 특별승진·승급 등 인센티브 부여도 활성화한다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "인센티브",
+        "to": "incentive",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01193",
+    "sentence_a": "열대야와 장마 중 뭐가 올까 찾아줘.",
+    "sentence_b": "tropical night이 올까? 아니면 rainy season이 올까?",
+    "sentence_b_org": "열대야가 올까? 아니면 장마가 올까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "열대야",
+        "to": "tropical night",
+        "pos": "NNG"
+      },
+      {
+        "from": "장마",
+        "to": "rainy season",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01194",
+    "sentence_a": "매우 감동스러운 서비스라고 생각합니다.",
+    "sentence_b": "가격 대비 최고의 accommodation이라고 생각합니다!",
+    "sentence_b_org": "가격 대비 최고의 숙소라고 생각합니다!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.6
+  },
+  {
+    "id": "pair_01195",
+    "sentence_a": "세탁과 주방 이용을 마음껏 할 수 있었어요.",
+    "sentence_b": "저는 마음껏 laundry와 kitchen을 사용할 수 있었어요.",
+    "sentence_b_org": "저는 마음껏 빨래와 부엌을 사용할 수 있었어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "빨래",
+        "to": "laundry",
+        "pos": "NNG"
+      },
+      {
+        "from": "부엌",
+        "to": "kitchen",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01196",
+    "sentence_a": "태풍이 발생되는 곳은?",
+    "sentence_b": "언제입니까? 다음 주 rainy day는.",
+    "sentence_b_org": "언제입니까? 다음 주 비 오는 날은.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "비 오는 날",
+        "to": "rainy day",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01197",
+    "sentence_a": "확진자 방문 또는 코로나19로 인한 생산차질·수요감소로 휴업 중인 사업장은 고용유지지원금 요건을 완화해 적극 지원한다.",
+    "sentence_b": "생산 차질과 19일 방문 확진, 코로나 등으로 인한 demand 감소로 폐업한 사업장은 고용지원금 요건을 완화하여 적극 지원할 계획입니다.",
+    "sentence_b_org": "생산 차질과 19일 방문 확진, 코로나 등으로 인한 수요 감소로 폐업한 사업장은 고용지원금 요건을 완화하여 적극 지원할 계획입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "수요",
+        "to": "demand",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.4
+  },
+  {
+    "id": "pair_01198",
+    "sentence_a": "그러나 정치부문 성적은 상대적으로 저조했습니다.",
+    "sentence_b": "그러나 hotel industry 노사가 가장 어려운 time에, 가장 모범적으로 함께 마음을 모았습니다.",
+    "sentence_b_org": "그러나 호텔업계 노사가 가장 어려운 시기에, 가장 모범적으로 함께 마음을 모았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호텔업계",
+        "to": "hotel industry",
+        "pos": "NNG"
+      },
+      {
+        "from": "시기",
+        "to": "time",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.3
+  },
+  {
+    "id": "pair_01199",
+    "sentence_a": "언제입니까? 서울의 최대 강수 시간대는.",
+    "sentence_b": "올해 yellow dust 일수는?",
+    "sentence_b_org": "올해 황사 일수는?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "황사",
+        "to": "yellow dust",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01200",
+    "sentence_a": "먼저 긴급재난지원금을 받을 수 있는 수단을 선택해야 한다.",
+    "sentence_b": "첫째, 정부는 긴급 재난 지원을 받을 method를 선택해야 합니다.",
+    "sentence_b_org": "첫째, 정부는 긴급 재난 지원을 받을 방법을 선택해야 합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방법",
+        "to": "method",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_01201",
+    "sentence_a": "감동감동 거기서 먹었던 슈캣이 너무 맛있었어요.",
+    "sentence_b": "terrace에서 본 밤하늘이 너무 인상깊었어요.",
+    "sentence_b_org": "테라스에서 본 밤하늘이 너무 인상깊었어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "테라스",
+        "to": "terrace",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.1
+  },
+  {
+    "id": "pair_01202",
+    "sentence_a": "수건은 큰 타월 두장에 작은 핸드타월 한 장 있습니다.",
+    "sentence_b": "수건은 인당 1장과 큰 towel 1장 이었습니다.",
+    "sentence_b_org": "수건은 인당 1장과 큰타월1장 이었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "타월",
+        "to": "towel",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.7
+  },
+  {
+    "id": "pair_01203",
+    "sentence_a": "베를린 전역에 한국 독립영화를 소개하는 창구 역할을 꾸준히 해 온 것으로 평가받는 베를린 한국독립영화제(기존 대한독립영화제)가 올해는 온라인으로 관객을 만난다.",
+    "sentence_b": "베를린 전역에 Korean independent film을 소개하는 창구로 여겨졌던 베를린 한국독립영화제가 올해 online으로 관객들을 만날 예정입니다.",
+    "sentence_b_org": "베를린 전역에 한국 독립영화를 소개하는 창구로 여겨졌던 베를린 한국독립영화제가 올해 온라인으로 관객들을 만날 예정입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "독립영화",
+        "to": "independent film",
+        "pos": "NNG"
+      },
+      {
+        "from": "온라인",
+        "to": "online",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_01204",
+    "sentence_a": "안방에 있는 불 끄지 말아줘",
+    "sentence_b": "summer엔 보일러 말고 에어컨 켜지 그래",
+    "sentence_b_org": "여름엔 보일러 말고 에어컨 켜지 그래",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "여름",
+        "to": "summer",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01205",
+    "sentence_a": "2020년 1월말 기준 소금, 후추, 수프 스탁, 쌀, 티백이 있었어요.",
+    "sentence_b": "1,2,3호선 다 이용가능한 subway station이 가까이 있어요.",
+    "sentence_b_org": "1,2,3호선 다 이용가능한 지하철역이 가까이 있어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지하철역",
+        "to": "subway station",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01206",
+    "sentence_a": "할렘하고 업타운 사이에 있고 대로변에 위치한 숙소입니다.",
+    "sentence_b": "이것은 Harlem과 Uptown 사이의 accommodation으로 길가에 위치해 있습니다.",
+    "sentence_b_org": "이것은 할렘과 업타운 사이의 숙소로 길가에 위치해 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "할렘",
+        "to": "Harlem",
+        "pos": "NNP"
+      },
+      {
+        "from": "업타운",
+        "to": "Uptown",
+        "pos": "NNP"
+      },
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.2
+  },
+  {
+    "id": "pair_01207",
+    "sentence_a": "집안 조명 밝게 하는 건 좀 아닌거 같으니 그만해",
+    "sentence_b": "집안 lighting은 밝게 하지마.",
+    "sentence_b_org": "집안 조명은 밝게 하지마.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "조명",
+        "to": "lighting",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_01208",
+    "sentence_a": "제가 말을 잘 못해 대화를 충분히 못 나눈게 아쉬울뿐입니다.",
+    "sentence_b": "제가 말을 잘 못해서 talk을 충분히 하지 못한 것은 유감입니다.",
+    "sentence_b_org": "제가 말을 잘 못해서 말을 충분히 하지 못한 것은 유감입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "말",
+        "to": "talk",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.9
+  },
+  {
+    "id": "pair_01209",
+    "sentence_a": "내일 가기로 했던 뮤지컬이 몇 시에 시작합니까?",
+    "sentence_b": "어느 date가 그 friend가 여행 갈 수 있는 때야?",
+    "sentence_b_org": "어느 날짜가 그 친구가 여행 갈 수 있는 때야?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "날짜",
+        "to": "date",
+        "pos": "NNG"
+      },
+      {
+        "from": "친구",
+        "to": "friend",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01210",
+    "sentence_a": "하지만 집 앞에 바로 마트와 친절한 사람들 덕분에 즐거운 머무름이었다",
+    "sentence_b": "집 interior에는 필요한 것들이 대부분 다 있었습니다.",
+    "sentence_b_org": "집 내부에는 필요한 것들이 대부분 다 있었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "내부",
+        "to": "interior",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.4
+  },
+  {
+    "id": "pair_01211",
+    "sentence_a": "위치, 청결, 체크인 모두 좋았습니다.",
+    "sentence_b": "location, 청결도, check-in 모두 좋았습니다.",
+    "sentence_b_org": "위치, 청결도, 체크인 모두 좋았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      },
+      {
+        "from": "체크인",
+        "to": "check-in",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.8
+  },
+  {
+    "id": "pair_01212",
+    "sentence_a": "나중에 다시 산토리니를 찾는다면 무조건 재방문할 생각입니다.",
+    "sentence_b": "나중에 Santorini를 다시 방문하면 꼭 다시 방문하겠습니다.",
+    "sentence_b_org": "나중에 산토리니를 다시 방문하면 꼭 다시 방문하겠습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "산토리니",
+        "to": "Santorini",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01213",
+    "sentence_a": "추후에 샌프란시스코 공항에서 묵을일이 있다면 무조건 이용할 예정입니다.",
+    "sentence_b": "로마에서 즐거웠던 point를 꼽자면 이 숙소 입니다.",
+    "sentence_b_org": "로마에서 즐거웠던 점을 꼽자면 이 숙소 입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "점",
+        "to": "point",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.3
+  },
+  {
+    "id": "pair_01214",
+    "sentence_a": "수강신청날이 언제인지 알려주실 수 있을까요?",
+    "sentence_b": "수강신청 하는 date가 어느 date인지 아시는지요?",
+    "sentence_b_org": "수강신청 하는 날짜가 어느 날짜인지 아시는지요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "날짜",
+        "to": "date",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_01215",
+    "sentence_a": "하와이 일정이 또 된다면 무조건 여기로 예약할듯합니다.",
+    "sentence_b": "만약 다른 하와이 schedule이 있다면 여기서 예약하겠습니다.",
+    "sentence_b_org": "만약 다른 하와이 스케줄이 있다면 여기서 예약하겠습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "스케줄",
+        "to": "schedule",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_01216",
+    "sentence_a": "파일 말고 메일을 삭제금지 설정해",
+    "sentence_b": "텀블벅 advertisement email을 그만 구독하고 싶은데 어떻게 해야하죠?",
+    "sentence_b_org": "텀블벅 광고 메일을 그만 구독하고 싶은데 어떻게 해야하죠?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "광고 메일",
+        "to": "advertisement email",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_01217",
+    "sentence_a": "지정된 시간이 지나면 면회가 불가능하니 병원 방문에 늦지 마세요.",
+    "sentence_b": "병원 visit time에 늦으시면 다음 환자로 순번이 넘어가니 늦지 마시기 바랍니다.",
+    "sentence_b_org": "병원 방문 시간에 늦으시면 다음 환자로 순번이 넘어가니 늦지 마시기 바랍니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방문 시간",
+        "to": "visit time",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.8
+  },
+  {
+    "id": "pair_01218",
+    "sentence_a": "단지 그것을 예외하면 모든 면에 완벽합니다.",
+    "sentence_b": "그것만 빼면 모든 aspect에서 완벽해요.",
+    "sentence_b_org": "그것만 빼면 모든 면에서 완벽해요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "면",
+        "to": "aspect",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01219",
+    "sentence_a": "네이버 메일을 최대 얼마나 되는 기간동안 받은편지함에 저장할 수 있나요?",
+    "sentence_b": "Naver mail에서 받은 편지함에는 최대 얼마나 오래 저장이 되나요?",
+    "sentence_b_org": "네이버 메일에서 받은 편지함에는 최대 얼마나 오래 저장이 되나요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "네이버",
+        "to": "Naver",
+        "pos": "NNP"
+      },
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_01220",
+    "sentence_a": "유일한 불만은 히터가 천장에 달린 에어컨에서 따뜻한 바람을 트는것인대 겨울에는 상당히 건조합니다",
+    "sentence_b": "청결한 facility는 물론이고 kitchen에 있는 모든것들이 다 이용가능합니다.",
+    "sentence_b_org": "청결한 시설은 물론이고 부엌에 있는 모든것들이 다 이용가능합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "시설",
+        "to": "facility",
+        "pos": "NNG"
+      },
+      {
+        "from": "부엌",
+        "to": "kitchen",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01221",
+    "sentence_a": "매트리스와 베개의 상태도 아주 훌륭하였습니다.",
+    "sentence_b": "mattress와 pillow는 상태가 아주 좋았습니다.",
+    "sentence_b_org": "매트리스와 베개는 상태가 아주 좋았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "매트리스",
+        "to": "mattress",
+        "pos": "NNG"
+      },
+      {
+        "from": "베개",
+        "to": "pillow",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.7
+  },
+  {
+    "id": "pair_01222",
+    "sentence_a": "다음 메일 용량이랑 네이버 메일 용량 중 많이 남은 곳 알려줘",
+    "sentence_b": "저장 space가 더 많이 남아있는게 다음 메일일까 네이버 메일일까?",
+    "sentence_b_org": "저장 공간이 더 많이 남아있는게 다음 메일일까 네이버 메일일까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "저장 공간",
+        "to": "space",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_01223",
+    "sentence_a": "목욕물을 개인별로 세팅하려면 어떻게 해야 돼?",
+    "sentence_b": "뉴스 말고 variety show는 꼭 볼 수 있게 협조 바랍니다.",
+    "sentence_b_org": "뉴스 말고 예능 프로그램은 꼭 볼 수 있게 협조 바랍니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "예능 프로그램",
+        "to": "variety show",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01224",
+    "sentence_a": "검사 시행 초기에는 검사가 지연될 수 있습니다.",
+    "sentence_b": "test는 실행 초기 단계에서 지연될 수 있습니다.",
+    "sentence_b_org": "테스트는 실행 초기 단계에서 지연될 수 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "테스트",
+        "to": "test",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.1
+  },
+  {
+    "id": "pair_01225",
+    "sentence_a": "숙소에서 조금만 나오면 콜로세움이 보입니다.",
+    "sentence_b": "accommodation에서 조금만 가면 콜로세움을 볼 수 있어요.",
+    "sentence_b_org": "숙소에서 조금만 가면 콜로세움을 볼 수 있어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_01226",
+    "sentence_a": "호스트가 굉장히 친절하고 재미있으십니다.",
+    "sentence_b": "host는 very 친절하고 재미있습니다.",
+    "sentence_b_org": "진행자는 매우 친절하고 재미있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "진행자",
+        "to": "host",
+        "pos": "NNG"
+      },
+      {
+        "from": "매우",
+        "to": "very",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.6
+  },
+  {
+    "id": "pair_01227",
+    "sentence_a": "여름엔 잊지 말고 에어컨 냉각수 보충 해주세요.",
+    "sentence_b": "typhoon 강풍에 다치지 않게 구조물 주의합시다.",
+    "sentence_b_org": "태풍 강풍에 다치지 않게 구조물 주의합시다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "태풍",
+        "to": "typhoon",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01228",
+    "sentence_a": "비관리청 항만공사 제도를 지속적으로 개선해 민간투자 활성화를 도모한다.",
+    "sentence_b": "민간투자 촉진을 위해 non-management agency의 항만건설 시스템을 지속적으로 개선해 나갈 것입니다.",
+    "sentence_b_org": "민간투자 촉진을 위해 비관리기관의 항만건설 시스템을 지속적으로 개선해 나갈 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "비관리기관",
+        "to": "non-management agency",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.6
+  },
+  {
+    "id": "pair_01229",
+    "sentence_a": "국가적 위기 속에서 협치가 위기극복의 원동력입니다.",
+    "sentence_b": "crisis를 대하는 공직자들의 마음가짐부터 더욱 가다듬어야 할 때입니다.",
+    "sentence_b_org": "위기를 대하는 공직자들의 마음가짐부터 더욱 가다듬어야 할 때입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위기",
+        "to": "crisis",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.6
+  },
+  {
+    "id": "pair_01230",
+    "sentence_a": "2인 이내의 여행자에게 자신있게 추천합니다.",
+    "sentence_b": "저는 자신 있게 그것을 두 명 미만의 traveler들에게 추천합니다.",
+    "sentence_b_org": "저는 자신 있게 그것을 두 명 미만의 여행자들에게 추천합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "여행자",
+        "to": "traveler",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01231",
+    "sentence_a": "배수나 냉장고를 제외하고는 모두 너무 만족했던 숙소입니다.",
+    "sentence_b": "drain pipe와 refrigerator를 제외하고, 우리는 모두 accommodation에 매우 만족했습니다.",
+    "sentence_b_org": "배수관과 냉장고를 제외하고, 우리는 모두 숙소에 매우 만족했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "배수관",
+        "to": "drain pipe",
+        "pos": "NNG"
+      },
+      {
+        "from": "냉장고",
+        "to": "refrigerator",
+        "pos": "NNG"
+      },
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.6
+  },
+  {
+    "id": "pair_01232",
+    "sentence_a": "미세먼지 지수가 높을 시에는 외출을 자제하고 실내생활을 해주십시오.",
+    "sentence_b": "tropical night 일 땐 과음 하지마세요.",
+    "sentence_b_org": "열대야 일 땐 과음 하지마세요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "열대야",
+        "to": "tropical night",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01233",
+    "sentence_a": "중국에서 지메일을 쓰려면 어떻게 해야해?",
+    "sentence_b": "어떻게 하면 Gmail을 중국에서 이용할 수 있는지 알려주세요.",
+    "sentence_b_org": "어떻게 하면 지메일을 중국에서 이용할 수 있는지 알려주세요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지메일",
+        "to": "Gmail",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01234",
+    "sentence_a": "비가 올지 눈이 올지 알려줄래? 내일 날씨.",
+    "sentence_b": "내일 rain이 올지 snow가 올지 확인해줘.",
+    "sentence_b_org": "내일 비가 올지 눈이 올지 확인해줘.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "비",
+        "to": "rain",
+        "pos": "NNG"
+      },
+      {
+        "from": "눈",
+        "to": "snow",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_01235",
+    "sentence_a": "위치는 두오모에서 걸어서 1분으로 최고입니다.",
+    "sentence_b": "이 location은 두오모에서 걸어서 1분 거리에 있는 것이 가장 좋습니다.",
+    "sentence_b_org": "이 위치는 두오모에서 걸어서 1분 거리에 있는 것이 가장 좋습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_01236",
+    "sentence_a": "한국채널 계속 찾다가 386번부터 415번까지예요",
+    "sentence_b": "check-in부터 마지막 check-out까지 감사했습니다.",
+    "sentence_b_org": "체크인부터 마지막 체크아웃까지 감사했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "체크인",
+        "to": "check-in",
+        "pos": "NNG"
+      },
+      {
+        "from": "체크아웃",
+        "to": "check-out",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01237",
+    "sentence_a": "에어컨 커피포트 세탁기 건조기 는 없으니까 참고하세요",
+    "sentence_b": "chopsticks, 물끓이는 전기포트 없으니 참고하세요.",
+    "sentence_b_org": "젓가락, 물끓이는 전기포트 없으니 참고하세요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "젓가락",
+        "to": "chopsticks",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.7
+  },
+  {
+    "id": "pair_01238",
+    "sentence_a": "비가 올지 맑을지 오늘 날씨를 찾아봐줄래?",
+    "sentence_b": "이번 typhoon 진행 direction은?",
+    "sentence_b_org": "이번 태풍 진행 방향은?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "태풍",
+        "to": "typhoon",
+        "pos": "NNG"
+      },
+      {
+        "from": "방향",
+        "to": "direction",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01239",
+    "sentence_a": "내일 오후 몇 시가 파티 타임이지?",
+    "sentence_b": "내일 afternoon에 열리는 party time이 몇 시인지 말해줘.",
+    "sentence_b_org": "내일 오후에 열리는 파티 시간이 몇 시인지 말해줘.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "파티 시간",
+        "to": "party time",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.1
+  },
+  {
+    "id": "pair_01240",
+    "sentence_a": "국가경쟁력으로 떠오른 K-방역모델의 첫번째 국제표준화 성공 사례가 나왔다.",
+    "sentence_b": "Also, review·approval단계에선 approval review guideline 제공과 priority approval·review대상 품목 선정으로 80일 → 30일 이내단축시키는 등 K-방역모델 국제표준화로 global 방역시장을 선도할 계획이다.",
+    "sentence_b_org": "또한 심사·허가단계에선 허가심사 가이드라인 제공과 우선 허가·심사대상 품목 선정으로 80일 → 30일 이내단축시키는 등 K-방역모델 국제표준화로 세계 방역시장을 선도할 계획이다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "또한",
+        "to": "Also",
+        "pos": "MAJ"
+      },
+      {
+        "from": "심사",
+        "to": "review",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.7
+  },
+  {
+    "id": "pair_01241",
+    "sentence_a": "윗 호실 파티 하는 소리에 새벽까지 잠을 못 잤습니다",
+    "sentence_b": "맨 위 room party에서 dawn까지 잠을 못 잤어요.",
+    "sentence_b_org": "맨 위 방 파티에서 새벽까지 잠을 못 잤어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방 파티",
+        "to": "room party",
+        "pos": "NNG"
+      },
+      {
+        "from": "새벽",
+        "to": "dawn",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_01242",
+    "sentence_a": "안방에서 조명등을 켜놓는 건 삼가주시기 바랍니다.",
+    "sentence_b": "다음달까지 할 생각말고 이번달내로 boiler 점검을 받아야해",
+    "sentence_b_org": "다음달까지 할 생각말고 이번달내로 보일러 점검을 받아야해",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "보일러",
+        "to": "boiler",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01243",
+    "sentence_a": "테르미니역과의 접근성도 매우 좋습니다.",
+    "sentence_b": "host가 아닌 친구라는 본인의 소개도 참 좋더군요!",
+    "sentence_b_org": "호스트가 아닌 친구라는 본인의 소개도 참 좋더군요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_01244",
+    "sentence_a": "화장실 수압이 조금 약한것 외에는 모든것이 좋았습니다.",
+    "sentence_b": "bathroom의 water pressure이 약간 약하다는 것 외에는 모든 것이 좋았습니다.",
+    "sentence_b_org": "욕실의 수압이 약간 약하다는 것 외에는 모든 것이 좋았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "욕실",
+        "to": "bathroom",
+        "pos": "NNG"
+      },
+      {
+        "from": "수압",
+        "to": "water pressure",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_01245",
+    "sentence_a": "8명이 함께한 하와이 빅아일랜드 여행 이 숙소는 정말 완벽했다.",
+    "sentence_b": "8명의 사람들과 함께 Hawaii로의 Big Island trip은 완벽했습니다.",
+    "sentence_b_org": "8명의 사람들과 함께 하와이로의 빅 아일랜드 여행은 완벽했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "하와이",
+        "to": "Hawaii",
+        "pos": "NNP"
+      },
+      {
+        "from": "빅",
+        "to": "Big",
+        "pos": "NNG"
+      },
+      {
+        "from": "여행",
+        "to": "trip",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.6
+  },
+  {
+    "id": "pair_01246",
+    "sentence_a": "다만 집에서 아쉬운부분은 문소리가 크다는것과 욕실이었어요",
+    "sentence_b": "집 바로앞에 McDonald's가 있다는것과 역세권이라는 점이 가장 마음에 들었어요.",
+    "sentence_b_org": "집 바로앞에 맥도날드가 있다는것과 역세권이라는 점이 가장 마음에 들었어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "맥도날드",
+        "to": "McDonald's",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.4
+  },
+  {
+    "id": "pair_01247",
+    "sentence_a": "근처 주차타워에 하루 23유로로 주차를 했습니다.",
+    "sentence_b": "하루에 23유로를 주고 근처 parking tower에 주차했어요.",
+    "sentence_b_org": "하루에 23유로를 주고 근처 주차타워에 주차했어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "주차타워",
+        "to": "parking tower",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.4
+  },
+  {
+    "id": "pair_01248",
+    "sentence_a": "내년부터 우수 기업연구소 지정대상 분야를 지식기반서비스 분야까지 확대해 보다 넓은 분야에 혁신모델을 확산한다.",
+    "sentence_b": "내년부터 우수기업연구기관 지정 대상지역을 knowledge-based service 분야로 확대하고 innovation model을 보다 넓은 영역으로 확산시킬 계획입니다.",
+    "sentence_b_org": "내년부터 우수기업연구기관 지정 대상지역을 지식기반서비스 분야로 확대하고 혁신모델을 보다 넓은 영역으로 확산시킬 계획입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지식기반서비스 분야",
+        "to": "knowledge-based service",
+        "pos": "NNG"
+      },
+      {
+        "from": "혁신모델",
+        "to": "innovation model",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.5
+  },
+  {
+    "id": "pair_01249",
+    "sentence_a": "거실은 생각말고 저기 안방 안에 있는 불 켜줘",
+    "sentence_b": "거실말고 master bedroom에 light 좀 켜주지?",
+    "sentence_b_org": "거실말고 안방에 불 좀 켜주지?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "안방",
+        "to": "master bedroom",
+        "pos": "NNG"
+      },
+      {
+        "from": "불",
+        "to": "light",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_01250",
+    "sentence_a": "약속날짜를 한번 정하면 바꾸지 말고 그대로 진행해라.",
+    "sentence_b": "한번 정한 appointment date는 변경하지 말고 그대로 진행하자.",
+    "sentence_b_org": "한번 정한 약속 날짜는 변경하지 말고 그대로 진행하자.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "약속 날짜",
+        "to": "appointment date",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.5
+  },
+  {
+    "id": "pair_01251",
+    "sentence_a": "집 앞 해변에서 일몰 보는것도 너무 좋았습니다.",
+    "sentence_b": "집 앞 해변에서 sunset을 볼 수 있어서 너무 좋았어요.",
+    "sentence_b_org": "집 앞 해변에서 일몰을 볼 수 있어서 너무 좋았어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "일몰",
+        "to": "sunset",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01252",
+    "sentence_a": "이 숙소의 가장 큰 장점은 엄청 깨끗하다는 것과 모든 편의 시설이 다 갖춰져 있는 것입니다.",
+    "sentence_b": "이 accommodation의 가장 큰 advantage는 very 깨끗하고 모든 amenities를 갖추고 있다는 것입니다.",
+    "sentence_b_org": "이 숙소의 가장 큰 장점은 매우 깨끗하고 모든 편의시설을 갖추고 있다는 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      },
+      {
+        "from": "장점",
+        "to": "advantage",
+        "pos": "NNG"
+      },
+      {
+        "from": "매우",
+        "to": "very",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.6
+  },
+  {
+    "id": "pair_01253",
+    "sentence_a": "지원대상은 시범지역으로 선정된 전국 27개 시·군·구로, 광역시·도 단위 사업 2곳과 시·군·구 단위 사업 14곳이다.",
+    "sentence_b": "지원대상은 지난 15일 special disaster zone으로 선포된 대구광역시와 경상북도 3개 지역(경산시·청도군·봉화군) 및 도내 연접지역 등 총 11개 시·군으로 선정했다.",
+    "sentence_b_org": "지원대상은 지난 15일 특별재난지역으로 선포된 대구광역시와 경상북도 3개 지역(경산시·청도군·봉화군) 및 도내 연접지역 등 총 11개 시·군으로 선정했다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "특별재난지역",
+        "to": "special disaster zone",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.2
+  },
+  {
+    "id": "pair_01254",
+    "sentence_a": "중기부가 이달 17일부터 공적 유통채널인 공영홈쇼핑을 통해 마스크 100만개 등의 판매에 나선다.",
+    "sentence_b": "SME and Startups은 이달 17일부터 공공유통채널인 공영홈쇼핑을 통해 100만 개의 mask 등을 판매합니다.",
+    "sentence_b_org": "중소벤처기업부는 이달 17일부터 공공유통채널인 공영홈쇼핑을 통해 100만 개의 마스크 등을 판매합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "중소벤처기업부",
+        "to": "SME and Startups",
+        "pos": "NNG"
+      },
+      {
+        "from": "마스크",
+        "to": "mask",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01255",
+    "sentence_a": "또 현실화율이 현저히 낮은 부동산의 공시가격 급등에 따른 부담을 고려, 연도별 제고 상한은 평균 제고분의 2배인 6%포인트로 적용하기로 했다.",
+    "sentence_b": "또 부동산 공시가격 급등에 따른 현실화율이 크게 낮아진 burden을 감안해 연평균 상승률의 2배인 6%포인트로 상한선을 적용하기로 했습니다.",
+    "sentence_b_org": "또 부동산 공시가격 급등에 따른 현실화율이 크게 낮아진 부담을 감안해 연평균 상승률의 2배인 6%포인트로 상한선을 적용하기로 했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "부담",
+        "to": "burden",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_01256",
+    "sentence_a": "지난달이랑 이번달이랑 보면 언제 더 가스 많이 썼더라?",
+    "sentence_b": "이번달이랑 지난달 중에 gas usage가 언제 더 많이 나왔니?",
+    "sentence_b_org": "이번달이랑 지난달 중에 가스 사용량이 언제 더 많이 나왔니?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "가스 사용량",
+        "to": "gas usage",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.3
+  },
+  {
+    "id": "pair_01257",
+    "sentence_a": "1인당 1주일에 타올이 1개 지급이라고 합니다!",
+    "sentence_b": "double bed 4개에 single bed 1개 그리고 sofa도 넓은 편이에요!",
+    "sentence_b_org": "더블침대 4개에 싱글침대 1개 그리고 쇼파도 넓은 편이에요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "더블침대",
+        "to": "double bed",
+        "pos": "NNG"
+      },
+      {
+        "from": "싱글침대",
+        "to": "single bed",
+        "pos": "NNG"
+      },
+      {
+        "from": "쇼파",
+        "to": "sofa",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.4
+  },
+  {
+    "id": "pair_01258",
+    "sentence_a": "주요 관광시설 및 지하철역과 슈퍼와도 가깝고 건물 내에 엘리베이터가 있다는 것도 큰 장점입니다.",
+    "sentence_b": "또 다른 큰 advantage는 주요 tourist facilities, subway station, supermarket과 가깝고 building 안에 elevator가 있다는 것입니다.",
+    "sentence_b_org": "또 다른 큰 장점은 주요 관광시설, 지하철역, 슈퍼마켓과 가깝고 건물 안에 엘리베이터가 있다는 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "장점",
+        "to": "advantage",
+        "pos": "NNG"
+      },
+      {
+        "from": "주요 관광시설",
+        "to": "tourist facilities",
+        "pos": "NNG"
+      },
+      {
+        "from": "지하철역",
+        "to": "subway station",
+        "pos": "NNG"
+      },
+      {
+        "from": "슈퍼마켓",
+        "to": "supermarket",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 4,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_01259",
+    "sentence_a": "숙소의 청결과 인테리어와 부대시설은 모두 완벽했습니다.",
+    "sentence_b": "accommodation의 청결도, interior design, 부대시설 모두 완벽했습니다.",
+    "sentence_b_org": "숙박시설의 청결도, 인테리어 디자인, 부대시설 모두 완벽했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙박시설",
+        "to": "accommodation",
+        "pos": "NNG"
+      },
+      {
+        "from": "인테리어 디자인",
+        "to": "interior design",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.5
+  },
+  {
+    "id": "pair_01260",
+    "sentence_a": "만약 평가자 섭외가 어려울 경우 상피제 예외 적용도 검토할 예정이다.",
+    "sentence_b": "그리고 올해안에 당초 목표했던 50여명의 staff을 모두 고용할 예정이다.",
+    "sentence_b_org": "그리고 올해안에 당초 목표했던 50여명의 직원을 모두 고용할 예정이다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "직원",
+        "to": "staff",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01261",
+    "sentence_a": "광고 메일의 토픽 들 중 가장 많은 부분을 차지하고 있던 것은?",
+    "sentence_b": "가장 비중이 높은 ad mail topic은 뭐였어?",
+    "sentence_b_org": "가장 비중이 높은 광고 메일 토픽은 뭐였어?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "광고 메일 토픽",
+        "to": "ad mail topic",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.3
+  },
+  {
+    "id": "pair_01262",
+    "sentence_a": "주변에 괜찮은 카페와 시장 등이 있습니다.",
+    "sentence_b": "주변에는 좋은 cafe와 market이 있습니다.",
+    "sentence_b_org": "주변에는 좋은 카페와 시장이 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "카페",
+        "to": "cafe",
+        "pos": "NNG"
+      },
+      {
+        "from": "시장",
+        "to": "market",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.4
+  },
+  {
+    "id": "pair_01263",
+    "sentence_a": "과학고 또한 2단계 면접평가를 수학, 과학 교과 역량 중심 평가에서 창의성 및 종합적 사고력, 협업적 태도 등을 평가할 수 있도록 면접 문항을 개선한다.",
+    "sentence_b": "과학고등학교는 또한 math와 science 교과 역량 중심의 evaluation에서 창의성, 종합적인 사고, 협력적인 태도를 평가할 수 있도록 interview 문제를 개선할 것입니다.",
+    "sentence_b_org": "과학고등학교는 또한 수학과 과학 교과 역량 중심의 평가에서 창의성, 종합적인 사고, 협력적인 태도를 평가할 수 있도록 면접 문제를 개선할 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "수학",
+        "to": "math",
+        "pos": "NNG"
+      },
+      {
+        "from": "과학",
+        "to": "science",
+        "pos": "NNG"
+      },
+      {
+        "from": "평가",
+        "to": "evaluation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01264",
+    "sentence_a": "근데 대만은 원래 더운 나라니까 어쩔 수 없을 거란 생각도 들긴 합니다.",
+    "sentence_b": "주변에서 tourist는 거의 볼수가 없고 주변 식당들도 로마 현지인 들로 가득합니다.",
+    "sentence_b_org": "주변에서 관광객은 거의 볼수가 없고 주변 식당들도 로마 현지인 들로 가득합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "관광객",
+        "to": "tourist",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01265",
+    "sentence_a": "각종 빵들과 신선한 우유, 몇가지 과일등을 호스트가 제공해 줍니다.",
+    "sentence_b": "그 owner는 다양한 종류의 bread, 신선한 milk, 그리고 fruit를 제공합니다.",
+    "sentence_b_org": "그 주인은 다양한 종류의 빵, 신선한 우유, 그리고 과일을 제공합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "주인",
+        "to": "owner",
+        "pos": "NNG"
+      },
+      {
+        "from": "빵",
+        "to": "bread",
+        "pos": "NNG"
+      },
+      {
+        "from": "우유",
+        "to": "milk",
+        "pos": "NNG"
+      },
+      {
+        "from": "과일",
+        "to": "fruit",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 4,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_01266",
+    "sentence_a": "3박 4일동안 불편한 점 없이 편안했어요.",
+    "sentence_b": "3박4일동안 숙소에서 cockroach 한 마리도 없었어요.",
+    "sentence_b_org": "3박4일동안 숙소에서 바퀴벌레 한 마리도 없었어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "바퀴벌레",
+        "to": "cockroach",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.2
+  },
+  {
+    "id": "pair_01267",
+    "sentence_a": "무서워하는 것이 지진과 해일 중 어느 쪽이야?",
+    "sentence_b": "내일 대구와 부산 중 더 더운 place가 어디야?",
+    "sentence_b_org": "내일 대구와 부산 중 더 더운 곳이 어디야?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "곳",
+        "to": "place",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01268",
+    "sentence_a": "우리나라 벤처투자의 대표적 성공사례로 꼽는 거대 신생 기업(유니콘 기업) ‘크래프톤’도 ‘문화산업 펀드’의 투자를 받았다.",
+    "sentence_b": "한국에서 가장 성공적인 venture investment 사례 중 하나로 여겨지는 새로운 giant company Krafton도 문화산업 fund로부터 investment를 받았습니다.",
+    "sentence_b_org": "한국에서 가장 성공적인 벤처 투자 사례 중 하나로 여겨지는 새로운 거대 기업 크랩튼도 문화산업 기금으로부터 투자를 받았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "거대 기업 크랩튼",
+        "to": "giant company Krafton",
+        "pos": "NNG"
+      },
+      {
+        "from": "투자",
+        "to": "investment",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.4
+  },
+  {
+    "id": "pair_01269",
+    "sentence_a": "갑작스러운 코로나19 확산은 대구와 경북에 큰 상처를 남겼습니다.",
+    "sentence_b": "코로나19 확산에도 5G subscriber 500만명 넘어",
+    "sentence_b_org": "코로나19 확산에도 5G가입자 500만명 넘어",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "가입자",
+        "to": "subscriber",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_01270",
+    "sentence_a": "정부는 신종 코로나바이러스 감염증으로 자가 또는 입원 상태로 격리된 가구에 대해 생활지원비를 지급한다.",
+    "sentence_b": "정부는 새로운 코로나 virus 감염으로 인해 hospitalization이나 자급자족으로부터 격리된 가정에 생활비를 지급합니다.",
+    "sentence_b_org": "정부는 새로운 코로나 바이러스 감염으로 인해 입원이나 자급자족으로부터 격리된 가정에 생활비를 지급합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "바이러스",
+        "to": "virus",
+        "pos": "NNG"
+      },
+      {
+        "from": "입원",
+        "to": "hospitalization",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_01271",
+    "sentence_a": "모던한 디자인에 화장실 정말 마음에 들어요 !",
+    "sentence_b": "그리고 really 청결한 점이 마음에 들어요.",
+    "sentence_b_org": "그리고 정말 청결한 점이 마음에 들어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "정말",
+        "to": "really",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.6
+  },
+  {
+    "id": "pair_01272",
+    "sentence_a": "대용량 파일을 전송할 땐 네이버 내에서 쪽지말고 메일을 사용해야해",
+    "sentence_b": "작은 file 말고 큰 file을 보내야하면 Naver mail을 사용해",
+    "sentence_b_org": "작은 파일 말고 큰 파일을 보내야하면 네이버 메일을 사용해",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "파일",
+        "to": "file",
+        "pos": "NNG"
+      },
+      {
+        "from": "네이버",
+        "to": "Naver",
+        "pos": "NNP"
+      },
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.6
+  },
+  {
+    "id": "pair_01273",
+    "sentence_a": "다른 약속처럼 취소하지 말고 부모님과 한 약속은 지키려 노력합시다.",
+    "sentence_b": "부모님과 한 promise는 되도록 까먹지 말고 지키도록 노력해.",
+    "sentence_b_org": "부모님과 한 약속은 되도록 까먹지 말고 지키도록 노력해.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "약속",
+        "to": "promise",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.6
+  },
+  {
+    "id": "pair_01274",
+    "sentence_a": "조사결과 우선  신성약품·디엘팜에서의 보관 과정은 적정온도(2~8℃)가 유지된 것으로 확인됐다.",
+    "sentence_b": "지급 방식은 지자체가 활용 중인 지역상품권이나 전자화폐 등으로 cash는 배제됐다",
+    "sentence_b_org": "지급 방식은 지자체가 활용 중인 지역상품권이나 전자화폐 등으로 현금은 배제됐다",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "현금",
+        "to": "cash",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01275",
+    "sentence_a": "아, 그리고 고양이 산초도 너무 귀여워요",
+    "sentence_b": "집에서 키우는 cat도 너무 귀여워요.",
+    "sentence_b_org": "집에서 키우는 고양이도 너무 귀여워요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "고양이",
+        "to": "cat",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.9
+  },
+  {
+    "id": "pair_01276",
+    "sentence_a": "또한 숙소내부는 사진보다 훨씬 좋았습니다.",
+    "sentence_b": "또한, 그 accommodation의 interior는 photo보다 훨씬 더 좋았습니다.",
+    "sentence_b_org": "또한, 그 숙소의 내부는 사진보다 훨씬 더 좋았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      },
+      {
+        "from": "내부",
+        "to": "interior",
+        "pos": "NNG"
+      },
+      {
+        "from": "사진",
+        "to": "photo",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 5.0
+  },
+  {
+    "id": "pair_01277",
+    "sentence_a": "저희는 렌트카를 이용했기 때문에 이 점이 더 좋았어요.",
+    "sentence_b": "rent-a-car를 이용했기 때문에 더 좋았습니다.",
+    "sentence_b_org": "렌터카를 이용했기 때문에 더 좋았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "렌터카",
+        "to": "rent-a-car",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01278",
+    "sentence_a": "내일 일곱시에 울리는거 벨소리는 어느 걸로 했어?",
+    "sentence_b": "부모님 결혼기념일 date가 언제야?",
+    "sentence_b_org": "부모님 결혼기념일 날짜가 언제야?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "날짜",
+        "to": "date",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01279",
+    "sentence_a": "바르셀에 또 방문한다면 무조건 이 집에서 머물거에요.",
+    "sentence_b": "만약 내가 다시 Barcelona를 방문한다면, 나는 무슨 일이 있어도 여기에 머무를 것입니다.",
+    "sentence_b_org": "만약 내가 다시 바르셀을 방문한다면, 나는 무슨 일이 있어도 여기에 머무를 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "바르셀",
+        "to": "Barcelona",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_01280",
+    "sentence_a": "온라인 행사에서는 ‘한국문화 함께 잇기’에 참여한 더보이즈, (여자)아이들, 펜타곤, 오마이걸, 온앤오프 등 인기 케이팝 가수들이 출연해 직접 분야별 우승자를 발표한다.",
+    "sentence_b": "현재 Iraq는 한국 외에도 입국 전 14일 이내에 중국, 이탈리아, 이란, 일본, 태국, 싱가포르, 쿠웨이트, 바레인 등 총 9개 국가 방문자 입국 금지를 시행 중이다.",
+    "sentence_b_org": "현재 이라크는 한국 외에도 입국 전 14일 이내에 중국, 이탈리아, 이란, 일본, 태국, 싱가포르, 쿠웨이트, 바레인 등 총 9개 국가 방문자 입국 금지를 시행 중이다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "이라크",
+        "to": "Iraq",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01281",
+    "sentence_a": "도심지부터 아웃도어 여행까지 모든곳을 충족시킬수있습니다.",
+    "sentence_b": "downtown에서 outdoor trip까지, 여러분은 모든 것을 만날 수 있습니다.",
+    "sentence_b_org": "시내에서 야외 여행까지, 여러분은 모든 것을 만날 수 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "시내",
+        "to": "downtown",
+        "pos": "NNG"
+      },
+      {
+        "from": "야외 여행",
+        "to": "outdoor trip",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.7
+  },
+  {
+    "id": "pair_01282",
+    "sentence_a": "와이키키와 매우 가까운 위치와 주차 가능한 점, 그리고 넉넉한 방크기 등이 매우 좋았습니더",
+    "sentence_b": "coin laundry가 매우 가까운 점이 좋았습니다.",
+    "sentence_b_org": "코인세탁소가 매우 가까운 점이 좋았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "코인세탁소",
+        "to": "coin laundry",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.6
+  },
+  {
+    "id": "pair_01283",
+    "sentence_a": "잠금장치도 자동으로 잠기는 문 외에 2개나 더 있어 안전합니다.",
+    "sentence_b": "비번으로 혼자 check-in 할 수 있어 편리합니다.",
+    "sentence_b_org": "비번으로 혼자 체크인 할 수 있어 편리합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "체크인",
+        "to": "check-in",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_01284",
+    "sentence_a": "정부는 우선 글로벌 제약사를 통해 3400만명이 접종할 수 있는 최대 6400만 회분의 백신을 선구매한다.",
+    "sentence_b": "정부는 우선 3,400만 명의 사람들이 global 제약 회사를 통해 얻을 수 있는 6400만 doses의 vaccine을 구입할 것입니다.",
+    "sentence_b_org": "정부는 우선 3,400만 명의 사람들이 세계적인 제약 회사를 통해 얻을 수 있는 6400만 도스의 백신을 구입할 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "백신",
+        "to": "vaccine",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_01285",
+    "sentence_a": "그리고 무엇보다 호스트가 매우 친절하며 빠른 답변으로 궁금한 사항은  바로바로 해결이 가능합니다.",
+    "sentence_b": "host가 very 친절하고 바로바로 answer을 주는 점이 훌륭합니다.",
+    "sentence_b_org": "호스트가 매우 친절하고 바로바로 답변을 주는 점이 훌륭합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      },
+      {
+        "from": "매우",
+        "to": "very",
+        "pos": "MAG"
+      },
+      {
+        "from": "답변",
+        "to": "answer",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.0
+  },
+  {
+    "id": "pair_01286",
+    "sentence_a": "그리고 집이 넓은편이어서 너무 편합니다.",
+    "sentence_b": "그리고 house가 넓기 때문에 매우 편안합니다.",
+    "sentence_b_org": "그리고 집이 넓기 때문에 매우 편안합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "집",
+        "to": "house",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_01287",
+    "sentence_a": "지금까지 이탈리아 여행중에 가장 좋은 숙소였습니다",
+    "sentence_b": "지금까지 가본 hotel보다 더 좋은 숙소였습니다.",
+    "sentence_b_org": "지금까지 가본 호텔보다 더 좋은 숙소였습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호텔",
+        "to": "hotel",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.0
+  },
+  {
+    "id": "pair_01288",
+    "sentence_a": "작은 먹거리는 숙소 들어오게 전에 사는걸 추천해요.",
+    "sentence_b": "저는 당신이 숙소에 들어오기 전에 작은 food를 사는 것을 추천합니다.",
+    "sentence_b_org": "저는 당신이 숙소에 들어오기 전에 작은 음식을 사는 것을 추천합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "음식",
+        "to": "food",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.2
+  },
+  {
+    "id": "pair_01289",
+    "sentence_a": "2015년 메르스 때 30% 인하했던 것 보다 2배 이상으로 확대한 것이다.",
+    "sentence_b": "그 figure는 2015년 MERS의 30퍼센트 감소에서 두 배 이상 증가했습니다.",
+    "sentence_b_org": "그 수치는 2015년 메르스의 30퍼센트 감소에서 두 배 이상 증가했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "수치",
+        "to": "figure",
+        "pos": "NNG"
+      },
+      {
+        "from": "메르스",
+        "to": "MERS",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_01290",
+    "sentence_a": "놀지 말고 집 앞을 치우는게 좋겠어. 눈 올 때.",
+    "sentence_b": "눈 올 때 놀지 말고 house 앞은 치워야지.",
+    "sentence_b_org": "눈 올 때 놀지 말고 집 앞은 치워야지.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "집",
+        "to": "house",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_01291",
+    "sentence_a": "학회 메일은 보통 휴지통과 스팸 메일함 중 어디에 있니?",
+    "sentence_b": "연구실 mail server를 수리할 수 있는 업체를 찾아줘",
+    "sentence_b_org": "연구실 메일 서버를 수리할 수 있는 업체를 찾아줘",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일 서버",
+        "to": "mail server",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.6
+  },
+  {
+    "id": "pair_01292",
+    "sentence_a": "다만, 약국부터 시행하고 우체국과 농협은 중복구매확인시스템이 구축될 때까지 현행처럼 1인 1매만 판매한다.",
+    "sentence_b": "아울러 2025년까지 EV 113만 대, hydrogen car 20만 대를 보급하고, cell phone처럼 상시 충전이 가능한 EV 충전기 1만 5000대(fast), hydrogen station을 450개소 설치한다.",
+    "sentence_b_org": "아울러 2025년까지 전기차 113만 대, 수소차 20만 대를 보급하고, 휴대폰처럼 상시 충전이 가능한 전기차 충전기 1만 5000대(급속), 수소 충전소를 450개소 설치한다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "전기차",
+        "to": "EV",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01293",
+    "sentence_a": "이번주하고 다음주 중에 언제 동기 모임이 있어?",
+    "sentence_b": "언제 natural language processing 학회 논문 접수가 마감되나요?",
+    "sentence_b_org": "언제 자연어처리 학회 논문 접수가 마감되나요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "자연어처리",
+        "to": "natural language processing",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.1
+  },
+  {
+    "id": "pair_01294",
+    "sentence_a": "텐센트, 차이나텔레콤, 칭화통팡 등 중국 정보통신기술(ICT) 기업의 전문가들이 연사로 참여, 최신의 중국 정보통신기술(ICT) 산업 동향을 공유할 예정이다.",
+    "sentence_b": "Tencent, China Telecom, Tsinghua Unigroup 등 중국 ICT기업 전문가들이 speaker로 참여해 중국 ICT industry의 최신 trend를 공유할 예정입니다.",
+    "sentence_b_org": "텐센트, 차이나텔레콤, 칭화통팡 등 중국 ICT기업 전문가들이 연사로 참여해 중국 ICT 산업의 최신 트렌드를 공유할 예정입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "텐센트",
+        "to": "Tencent",
+        "pos": "NNP"
+      },
+      {
+        "from": "차이나텔레콤",
+        "to": "China Telecom",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_01295",
+    "sentence_a": "주방이 아주 괜찮고 깔끔한 방이 인상적입니다.",
+    "sentence_b": "kitchen은 really 좋고, 깔끔한 room이 인상적입니다.",
+    "sentence_b_org": "부엌은 매우 좋고, 깔끔한 방이 인상적입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "부엌",
+        "to": "kitchen",
+        "pos": "NNG"
+      },
+      {
+        "from": "매우",
+        "to": "really",
+        "pos": "MAG"
+      },
+      {
+        "from": "방",
+        "to": "room",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.5
+  },
+  {
+    "id": "pair_01296",
+    "sentence_a": "이어서 국민의례 시에는 김용택 시인이 이번 기념식을 위해 특별히 집필한 ‘바람이 일었던 곳’이라는 묵념사를 문흥식 5·18구속부상자회장이 낭독한다.",
+    "sentence_b": "안심밴드 착용 시에는 public official이 violation details, 처벌 규정 등에 대해 충분히 설명한 후 agreement form을 수령한다.",
+    "sentence_b_org": "안심밴드 착용 시에는 공무원이 위반내용, 처벌 규정 등에 대해 충분히 설명한 후 동의서를 수령한다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "공무원",
+        "to": "public official",
+        "pos": "NNG"
+      },
+      {
+        "from": "위반내용",
+        "to": "violation details",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01297",
+    "sentence_a": "다만 밤에 차소리가 조금 시끄럽습니다.",
+    "sentence_b": "다만 home에 들어가는 입구가 조금은 무서웠습니다.",
+    "sentence_b_org": "다만 집에 들어가는 입구가 조금은 무서웠습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "집",
+        "to": "home",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_01298",
+    "sentence_a": "위치, 청결도, 호스트의 대응 모두 좋았습니다.",
+    "sentence_b": "location, 청결도, host 반응 모두 좋았습니다.",
+    "sentence_b_org": "위치, 청결도, 호스트 반응 모두 좋았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      },
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.7
+  },
+  {
+    "id": "pair_01299",
+    "sentence_a": "이날 회의에서는 비상장 벤처기업의 복수의결권 도입방안 외에도 최근 고용·소비동향 점검 및 중점 대응방향과 대기업-스타트업 상생협력(대-스타 해결사) 플랫폼 운영방안도 논의했다.",
+    "sentence_b": "이날 회의에서는 비상장 벤처기업에 대한 복수투표권 도입과 더불어 최근의 고용 및 소비 동향과 집중 대응 방향, 대기업과 신생기업을 위한 상생협력(빅스타 문제 해결사) platform 운영 방안 등이 논의됐습니다.",
+    "sentence_b_org": "이날 회의에서는 비상장 벤처기업에 대한 복수투표권 도입과 더불어 최근의 고용 및 소비 동향과 집중 대응 방향, 대기업과 신생기업을 위한 상생협력(빅스타 문제 해결사) 플랫폼 운영 방안 등이 논의됐습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "플랫폼",
+        "to": "platform",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.1
+  },
+  {
+    "id": "pair_01300",
+    "sentence_a": "환풍기 작동은 어떻게 해?",
+    "sentence_b": "fan 어떻게 켜?",
+    "sentence_b_org": "환풍기 어떻게 켜?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "환풍기",
+        "to": "fan",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01301",
+    "sentence_a": "최적의 위치, 깨끗한 실내 그리고 도쿄의 물가를 생각하면 정말 합리적인 가격을 가진 멋진 숙소입니다.",
+    "sentence_b": "location보다 합리적인 price에 청결함, 쾌적함을 원하신다면 강력 추천합니다.",
+    "sentence_b_org": "위치보다 합리적인 가격에 청결함, 쾌적함을 원하신다면 강력 추천합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      },
+      {
+        "from": "가격",
+        "to": "price",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.9
+  },
+  {
+    "id": "pair_01302",
+    "sentence_a": "위치가 너무 좋고 1층 편의시설들도 유용합니다.",
+    "sentence_b": "location도 very 좋고 host의 주변 guide도 완벽합니다.",
+    "sentence_b_org": "위치도 매우 좋고 호스트의 주변 가이드도 완벽합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      },
+      {
+        "from": "매우",
+        "to": "very",
+        "pos": "MAG"
+      },
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.2
+  },
+  {
+    "id": "pair_01303",
+    "sentence_a": "건조기 사용하지 말고 맑을 때는 빨래해서 널기를 권해요.",
+    "sentence_b": "weather가 맑을 땐 잊지 말고 빨래해서 너세요.",
+    "sentence_b_org": "날씨가 맑을 땐 잊지 말고 빨래해서 너세요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "날씨",
+        "to": "weather",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.2
+  },
+  {
+    "id": "pair_01304",
+    "sentence_a": "네이버 메일이랑 쪽지 중 보관기간이 더 긴 것은?",
+    "sentence_b": "mail을 따로 저장해두지는 말고 삭제금지 설정해줘",
+    "sentence_b_org": "메일을 따로 저장해두지는 말고 삭제금지 설정해줘",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.6
+  },
+  {
+    "id": "pair_01305",
+    "sentence_a": "주변에 맛집도 많이 있고 현지인들의 삶을 느낄 수 있는 동네입니다.",
+    "sentence_b": "이 area에는 좋은 식당들이 많이 있고 여러분은 지역 주민들의 life를 느낄 수 있습니다.",
+    "sentence_b_org": "이 근처에는 좋은 식당들이 많이 있고 여러분은 지역 주민들의 삶을 느낄 수 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "근처",
+        "to": "area",
+        "pos": "NNG"
+      },
+      {
+        "from": "삶",
+        "to": "life",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.4
+  },
+  {
+    "id": "pair_01306",
+    "sentence_a": "대규모로 일어나고 있는 신천지 집단 감염 사태 이전과 이후는 전혀 다른 상황입니다.",
+    "sentence_b": "현재 발생하고 있는 community 감염우려가 모두 karaoke나 PC방, 학원 등 multi-use facilities와 주점 등 entertainment facilities을 통한 감염입니다.",
+    "sentence_b_org": "현재 발생하고 있는 지역사회 감염우려가 모두 노래방이나 PC방, 학원 등 다중이용시설과 주점 등 유흥시설을 통한 감염입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지역사회",
+        "to": "community",
+        "pos": "NNG"
+      },
+      {
+        "from": "노래방",
+        "to": "karaoke",
+        "pos": "NNG"
+      },
+      {
+        "from": "다중이용시설",
+        "to": "multi-use facilities",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.0
+  },
+  {
+    "id": "pair_01307",
+    "sentence_a": "이는 올해 정부 지방재정 집행액 227조 6000억원의 60% 수준으로, 최근 5년 동안 상반기 최고 집행 목표액이다.",
+    "sentence_b": "이는 올해 government의 지방 재정 227조 6천억 원의 60%로, 지난 5년 동안 올 상반기의 가장 높은 목표입니다.",
+    "sentence_b_org": "이는 올해 정부의 지방 재정 227조 6천억 원의 60%로, 지난 5년 동안 올 상반기의 가장 높은 목표입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "정부",
+        "to": "government",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_01308",
+    "sentence_a": "건설기계 면허(총 19종) 보유자는 3년마다 교육을 받아야 한다.",
+    "sentence_b": "건설기계 license 19종 보유자는 3년마다 education을 받아야 합니다.",
+    "sentence_b_org": "건설기계 면허 19종 보유자는 3년마다 교육을 받아야 합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "교육",
+        "to": "education",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.8
+  },
+  {
+    "id": "pair_01309",
+    "sentence_a": "숙소 청소 상태는 전반적으로 괜찮았습니다.",
+    "sentence_b": "전반적으로, 그 accommodation의 cleaning condition은 좋았습니다.",
+    "sentence_b_org": "전반적으로, 그 숙소의 청소 상태는 좋았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      },
+      {
+        "from": "청소 상태",
+        "to": "cleaning condition",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.4
+  },
+  {
+    "id": "pair_01310",
+    "sentence_a": "첫째, 2025년까지 민간과 함께 4만7천여 명의 바이오산업 인재를 양성하겠습니다.",
+    "sentence_b": "첫째, 2025년까지 민간부문과 함께 47,000명의 bio 산업 인재를 양성할 것입니다.",
+    "sentence_b_org": "첫째, 2025년까지 민간부문과 함께 47,000명의 바이오 산업 인재를 양성할 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "바이오",
+        "to": "bio",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.8
+  },
+  {
+    "id": "pair_01311",
+    "sentence_a": "어제 비온 곳은 제주도입니까? 울릉도 입니까?",
+    "sentence_b": "room temperature에 음식 오래 두는 것을 자제합시다. 여름에는.",
+    "sentence_b_org": "상온에 음식 오래 두는 것을 자제합시다. 여름에는.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "상온",
+        "to": "room temperature",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01312",
+    "sentence_a": "태풍이 올 땐 도심 말고 항구에 있습시다.",
+    "sentence_b": "태풍 올 땐 port에 머뭅시다. downtown은 안돼요.",
+    "sentence_b_org": "태풍 올 땐 항구에 머뭅시다. 도심은 안돼요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "항구",
+        "to": "port",
+        "pos": "NNG"
+      },
+      {
+        "from": "도심",
+        "to": "downtown",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_01313",
+    "sentence_a": "비는 스콜에서 많이 오나요 장마에서 많이 오나요?",
+    "sentence_b": "squall과 장마 둘 중 rain은 어느 것에서 많이 와?",
+    "sentence_b_org": "스콜과 장마 둘 중 비는 어느 것에서 많이 와?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "스콜",
+        "to": "squall",
+        "pos": "NNG"
+      },
+      {
+        "from": "비",
+        "to": "rain",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.1
+  },
+  {
+    "id": "pair_01314",
+    "sentence_a": "어디였지? 어제 제주와 울릉도 중 비온 곳이.",
+    "sentence_b": "내장산 fall foliage가 언제 시작하는지 날짜 알려줘.",
+    "sentence_b_org": "내장산 단풍이 언제 시작하는지 날짜 알려줘.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "단풍",
+        "to": "fall foliage",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01315",
+    "sentence_a": "열대야 일 땐 과음하지 말라고.",
+    "sentence_b": "typhoon이 발생되는 곳은 어디야?",
+    "sentence_b_org": "태풍이 발생되는 곳은 어디야?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "태풍",
+        "to": "typhoon",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01316",
+    "sentence_a": "제가 바르셀로나 혼자 여행하면서 정말 제일 잘한 일이 이곳에서 지낸거예요!",
+    "sentence_b": "프라하 travel중 제일 잘한일은 숙소를 이곳으로 한거였어요.",
+    "sentence_b_org": "프라하 여행중 제일 잘한일은 숙소를 이곳으로 한거였어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "여행",
+        "to": "travel",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.0
+  },
+  {
+    "id": "pair_01317",
+    "sentence_a": "친절한 안내와 훌륭한 위치, 강가의 멋진 숙소였습니다.",
+    "sentence_b": "좋은 guide, 좋은 place, 그리고 강가의 멋진 숙박시설이었습니다.",
+    "sentence_b_org": "좋은 가이드, 좋은 장소, 그리고 강가의 멋진 숙박시설이었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "가이드",
+        "to": "guide",
+        "pos": "NNG"
+      },
+      {
+        "from": "장소",
+        "to": "place",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_01318",
+    "sentence_a": "침대, 침구 모두 불편함이 없었습니다.",
+    "sentence_b": "bed와 bed는 모두 편안했습니다.",
+    "sentence_b_org": "침대와 침대는 모두 편안했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "침대",
+        "to": "bed",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.6
+  },
+  {
+    "id": "pair_01319",
+    "sentence_a": "영하일지 영상일지 알려주세요. 내일 기온.",
+    "sentence_b": "temperature이 영하와 영상 중 무엇인가요? tomorrow은.",
+    "sentence_b_org": "기온이 영하와 영상 중 무엇인가요? 내일은.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "기온",
+        "to": "temperature",
+        "pos": "NNG"
+      },
+      {
+        "from": "내일",
+        "to": "tomorrow",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.4
+  },
+  {
+    "id": "pair_01320",
+    "sentence_a": "저기요, 이거 거실이랑 안방 중에 있잖아요 조명 어디에 불 들어오게 하고 싶으신거에요?",
+    "sentence_b": "네가 불 들어오기 원하는 곳이 master bedroom이야 living room이야?",
+    "sentence_b_org": "네가 불 들어오기 원하는 곳이 안방이야 거실이야?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "안방",
+        "to": "master bedroom",
+        "pos": "NNG"
+      },
+      {
+        "from": "거실",
+        "to": "living room",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.3
+  },
+  {
+    "id": "pair_01321",
+    "sentence_a": "숙소 위치는 찾기 쉽고 일반적인 한국의 반지하 숙소입니다.",
+    "sentence_b": "accommodation의 location은 쉽게 찾을 수 있고 한국의 대표적인 반지하 accommodation입니다.",
+    "sentence_b_org": "숙박시설의 위치는 쉽게 찾을 수 있고 한국의 대표적인 반지하 숙박시설입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙박시설",
+        "to": "accommodation",
+        "pos": "NNG"
+      },
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_01322",
+    "sentence_a": "병원 방문 시간은 늦지 말아 주세요.",
+    "sentence_b": "늦으시면 예약 취소되니까 hospital 방문은 늦지 마십시오.",
+    "sentence_b_org": "늦으시면 예약 취소되니까 병원 방문은 늦지 마십시오.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "병원",
+        "to": "hospital",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.3
+  },
+  {
+    "id": "pair_01323",
+    "sentence_a": "욕실 샤워부스 문이 아귀가 안맞아서 샤워할때 조금 신경쓰라는 정도?",
+    "sentence_b": "다만 shower 할때 water pressure이 너무 약해서 거의 찔찔찔 정도?",
+    "sentence_b_org": "다만 샤워 할때 수압이 너무 약해서 거의 찔찔찔 정도?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "샤워",
+        "to": "shower",
+        "pos": "NNG"
+      },
+      {
+        "from": "수압",
+        "to": "water pressure",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.0
+  },
+  {
+    "id": "pair_01324",
+    "sentence_a": "숙소 위치는 가이드 설명보다는 도보로 몇 분 더 걸리는 거리라고 생각됩니다.",
+    "sentence_b": "숙소의 location은 테르미니역에서 도보로 5분 거리로 매우 편리한 location에 있다.",
+    "sentence_b_org": "숙소의 위치는 테르미니역에서 도보로 5분 거리로 매우 편리한 위치에 있다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      },
+      {
+        "from": "역",
+        "to": "station",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.8
+  },
+  {
+    "id": "pair_01325",
+    "sentence_a": "조리기구와 식기도 있고 모두 깨끗합니다.",
+    "sentence_b": "요리 tools와 식기류가 있고, 모든 것이 깨끗합니다.",
+    "sentence_b_org": "요리 도구와 식기류가 있고, 모든 것이 깨끗합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "도구",
+        "to": "tools",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.4
+  },
+  {
+    "id": "pair_01326",
+    "sentence_a": "4차 산업혁명 기술을 적용한 보다 편리하고 안전한 블록체인 기반 인증서비스를 제공한다.",
+    "sentence_b": "4차 산업혁명 기술을 적용한 보다 편리하고 안전한 blockchain 기반 인증 service를 제공합니다.",
+    "sentence_b_org": "4차 산업혁명 기술을 적용한 보다 편리하고 안전한 블록 체인 기반 인증 서비스를 제공합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "블록 체인",
+        "to": "blockchain",
+        "pos": "NNG"
+      },
+      {
+        "from": "서비스",
+        "to": "service",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.7
+  },
+  {
+    "id": "pair_01327",
+    "sentence_a": "쿠팡의 배송 주문 확인 메일이 얼마나 왔어?",
+    "sentence_b": "file transfer는 되도록이면 Gmail 말고 Naver Mail을 사용해줘",
+    "sentence_b_org": "파일 전송은 되도록이면 지메일 말고 네이버 메일을 사용해줘",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "파일 전송",
+        "to": "file transfer",
+        "pos": "NNG"
+      },
+      {
+        "from": "지메일",
+        "to": "Gmail",
+        "pos": "NNP"
+      },
+      {
+        "from": "네이버 메일",
+        "to": "Naver Mail",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.1
+  },
+  {
+    "id": "pair_01328",
+    "sentence_a": "선정된 성과별로 상용화·사업화의 장애요인을 분석, 후속 RD, 혁신조달 등 공공수요 연계, 제도개선, 투·융자 지원 등 성과에 따라 필요한 맞춤형 후속지원을 추진한다.",
+    "sentence_b": "선별된 실적에 따라 사업화와 상업화의 장애요인을 분석하고, 후속 RD와 혁신조달 등 공공수요 연계, 제도개선, 투자·융자 지원 등 성과에 따른 맞춤형 후속 support를 추진합니다.",
+    "sentence_b_org": "선별된 실적에 따라 사업화와 상업화의 장애요인을 분석하고, 후속 RD와 혁신조달 등 공공수요 연계, 제도개선, 투자·융자 지원 등 성과에 따른 맞춤형 후속지원을 추진합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지원",
+        "to": "support",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_01329",
+    "sentence_a": "너 국악이랑 뉴스 중에 어떤 채널이 좋아?",
+    "sentence_b": "너 국악 channel이 좋아 뉴스 channel이 좋아?",
+    "sentence_b_org": "너 국악 채널이 좋아 뉴스 채널이 좋아?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "채널",
+        "to": "channel",
+        "pos": "NNG"
+      },
+      {
+        "from": "채널",
+        "to": "channel",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_01330",
+    "sentence_a": "위치, 교통, 그리고 주변환경이 매우 좋습니다.",
+    "sentence_b": "location, 교통, 주변 환경이 really 좋습니다.",
+    "sentence_b_org": "위치, 교통, 주변 환경이 매우 좋습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      },
+      {
+        "from": "매우",
+        "to": "really",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 5.0
+  },
+  {
+    "id": "pair_01331",
+    "sentence_a": "기지촌 여성의 사연을 담은 ‘임신한 나무와 도깨비’는 다큐멘터리와 극영화 사이를 거침없이 오가는 과감한 작품이다.",
+    "sentence_b": "임신 나무와 도깨비는 한 시골 village에 사는 한 여성에 관한 이야기인데, documentary와 극적인 movie 사이를 왔다 갔다 하는 대담한 작품입니다.",
+    "sentence_b_org": "임신 나무와 도깨비는 한 시골 마을에 사는 한 여성에 관한 이야기인데, 다큐멘터리와 극적인 영화 사이를 왔다 갔다 하는 대담한 작품입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "다큐멘터리",
+        "to": "documentary",
+        "pos": "NNG"
+      },
+      {
+        "from": "영화",
+        "to": "movie",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.2
+  },
+  {
+    "id": "pair_01332",
+    "sentence_a": "그래도 바로 앞에 대형마트가 있어서 필요한거 금방금방 사고 요리도 가능합니다.",
+    "sentence_b": "But 여러분 바로 앞에 큰 supermarket이 있기 때문에 여러분은 필요한 것을 빨리 사서 요리를 할 수 있습니다.",
+    "sentence_b_org": "하지만 여러분 바로 앞에 큰 슈퍼마켓이 있기 때문에 여러분은 필요한 것을 빨리 사서 요리를 할 수 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "하지만",
+        "to": "But",
+        "pos": "MAJ"
+      },
+      {
+        "from": "슈퍼마켓",
+        "to": "supermarket",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_01333",
+    "sentence_a": "그리고 직접 만든 잼과 마멀레이드는 매우 맛있었습니다.",
+    "sentence_b": "아침으로 제공되는 croissant와 cappuccino는 really 맛있었습니다.",
+    "sentence_b_org": "아침으로 제공되는 크로아상과 카푸치노는 정말 맛있었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "크로아상",
+        "to": "croissant",
+        "pos": "NNG"
+      },
+      {
+        "from": "카푸치노",
+        "to": "cappuccino",
+        "pos": "NNG"
+      },
+      {
+        "from": "정말",
+        "to": "really",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_01334",
+    "sentence_a": "유니버셜과 헐리웃 관광 하기도 좋았습니다",
+    "sentence_b": "그리고 친구들과 함께 stay하기에도 really 좋았습니다",
+    "sentence_b_org": "그리고 친구들과 함께 묵기에도 정말 좋았습니다",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "묵기",
+        "to": "stay",
+        "pos": "NNG"
+      },
+      {
+        "from": "정말",
+        "to": "really",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.4
+  },
+  {
+    "id": "pair_01335",
+    "sentence_a": "머무는 동안 아주 편한 여행이였습니다.",
+    "sentence_b": "제가 머무는 동안 아주 comfortable한 trip이었어요.",
+    "sentence_b_org": "제가 머무는 동안 아주 편안한 여행이었어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "편안한",
+        "to": "comfortable",
+        "pos": "NNG"
+      },
+      {
+        "from": "여행",
+        "to": "trip",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_01336",
+    "sentence_a": "급한 연락이 있다고 바로 찾아오지 마. 앞으론 먼저 전화를 해 줘.",
+    "sentence_b": "mail을 보내지 말고 급한 contact은 바로 전화주세요.",
+    "sentence_b_org": "메일을 보내지 말고 급한 연락은 바로 전화주세요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      },
+      {
+        "from": "연락",
+        "to": "contact",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.7
+  },
+  {
+    "id": "pair_01337",
+    "sentence_a": "이어 현금이 286만 가구(13.2%) 1조3007억원, 선불카드가 75만 가구(3.5%) 4990억원, 지역사랑상품권은 63만 가구(2.9%) 4171억원으로 각각 집계됐다.",
+    "sentence_b": "이어 cash 286만 가구(13.2%), cash 1조337억 원, 선불카드 75만 가구(3.5%), 4990억 원, 지역사랑상품권 63만 가구(2.9%), 4171억 원 순이었습니다.",
+    "sentence_b_org": "이어 현금 286만 가구(13.2%), 현금 1조337억 원, 선불카드 75만 가구(3.5%), 4990억 원, 지역사랑상품권 63만 가구(2.9%), 4171억 원 순이었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "현금",
+        "to": "cash",
+        "pos": "NNG"
+      },
+      {
+        "from": "현금",
+        "to": "cash",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_01338",
+    "sentence_a": "거기는 와이파이도 엘리베이터도 이용할 수 있으니까요",
+    "sentence_b": "당신은 그곳에서 Wi-Fi와 elevator를 사용할 수 있습니다.",
+    "sentence_b_org": "당신은 그곳에서 와이파이와 엘리베이터를 사용할 수 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "와이파이",
+        "to": "Wi-Fi",
+        "pos": "NNG"
+      },
+      {
+        "from": "엘리베이터",
+        "to": "elevator",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_01339",
+    "sentence_a": "포켓 와이파이가 아니라 그냥 무선 공유기 와이파이다.",
+    "sentence_b": "Pocket WiFi가 아니라 wireless router입니다.",
+    "sentence_b_org": "포켓 와이파이가 아니라 무선 라우터입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "포켓 와이파이",
+        "to": "Pocket WiFi",
+        "pos": "NNG"
+      },
+      {
+        "from": "무선",
+        "to": "wireless",
+        "pos": "NNG"
+      },
+      {
+        "from": "라우터",
+        "to": "router",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01340",
+    "sentence_a": "하지만 체크인 방법을 메세지로 받은 후 호스트의 집 안내 등 아쉬운 부분이 있었습니다.",
+    "sentence_b": "도착 전 host로부터 check-in 방법 및 parking에 대한 친절한 설명을 받을 수 있었습니다.",
+    "sentence_b_org": "도착 전 호스트로부터 체크인 방법 및 주차에 대한 친절한 설명을 받을 수 있었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      },
+      {
+        "from": "체크인",
+        "to": "check-in",
+        "pos": "NNG"
+      },
+      {
+        "from": "주차",
+        "to": "parking",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.2
+  },
+  {
+    "id": "pair_01341",
+    "sentence_a": "니 생각엔 어떤 방법이 거실 청소를 할 때에 가장 효과적일 것 같아?",
+    "sentence_b": "너가 생각하기에 거실 청소하는데 가장 효과적인 method는 뭐야?",
+    "sentence_b_org": "너가 생각하기에 거실 청소하는데 가장 효과적인 방법은 뭐야?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방법",
+        "to": "method",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_01342",
+    "sentence_a": "이런 부분 외에도 방 안의 시설도 불편한 점이 많았습니다.",
+    "sentence_b": "room이랑 시설물도 불편한 점 없이 잘 썼습니다.",
+    "sentence_b_org": "방이랑 시설물도 불편한 점 없이 잘 썼습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방",
+        "to": "room",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.7
+  },
+  {
+    "id": "pair_01343",
+    "sentence_a": "한 개인이 다른 개인을 감염시키지 않을 거리. 즉, ‘사회적 거리두기’는 근무 중에도 이어진다.",
+    "sentence_b": "지금 ‘COVID-19’의 엄중한 상황을 헤쳐 가는 힘도",
+    "sentence_b_org": "지금 ‘코로나19’의 엄중한 상황을 헤쳐 가는 힘도",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "코로나19",
+        "to": "COVID-19",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01344",
+    "sentence_a": "아울러 친환경 보일러 교체, 소규모사업장 방지시설 개선 등 기존의 각종 미세먼지 저감사업도 다른 지역에 앞서 지원한다.",
+    "sentence_b": "또한, 다른 region에 앞서 친환경 boiler 교체, 중소기업 방재시설 개선 등 기존의 다양한 미세먼지 저감 사업도 지원될 예정입니다.",
+    "sentence_b_org": "또한, 다른 지역에 앞서 친환경 보일러 교체, 중소기업 방재시설 개선 등 기존의 다양한 미세먼지 저감 사업도 지원될 예정입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지역",
+        "to": "region",
+        "pos": "NNG"
+      },
+      {
+        "from": "보일러",
+        "to": "boiler",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01345",
+    "sentence_a": "메일 중 삼월에 온 메일 수가 궁금해요.",
+    "sentence_b": "March 한달동안 온 mail의 총 개수는?",
+    "sentence_b_org": "삼월 한달동안 온 메일의 총 개수는?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "삼월",
+        "to": "March",
+        "pos": "NNG"
+      },
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_01346",
+    "sentence_a": "앞으로는 약속 일정을 변경할 때 까먹지 말고 미리미리 얘기해라.",
+    "sentence_b": "업체가 이번 week 중에 schedule로 잡았던 date가 며칠인가요?",
+    "sentence_b_org": "업체가 이번 주 중에 일정으로 잡았던 날짜가 며칠인가요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "일정",
+        "to": "schedule",
+        "pos": "NNG"
+      },
+      {
+        "from": "날짜",
+        "to": "date",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.3
+  },
+  {
+    "id": "pair_01347",
+    "sentence_a": "회사 메일은 카카오톡 연동에 사용할 수 없습니다.",
+    "sentence_b": "어제 정확히 경재가 보낸 mail이 언제 도착했어?",
+    "sentence_b_org": "어제 정확히 경재가 보낸 메일이 언제 도착했어?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.5
+  },
+  {
+    "id": "pair_01348",
+    "sentence_a": "로봇 청소기는 절대 사지마",
+    "sentence_b": "robot vacuum은 일단 사지마",
+    "sentence_b_org": "로봇 청소기는 일단 사지마",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "로봇 청소기",
+        "to": "robot vacuum",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.6
+  },
+  {
+    "id": "pair_01349",
+    "sentence_a": "웬만하면 일찍 귀가하시는것을 추천합니다!",
+    "sentence_b": "home에 일찍 가는 것을 추천해요!",
+    "sentence_b_org": "집에 일찍 가는 것을 추천해요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "집",
+        "to": "home",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01350",
+    "sentence_a": "대형 티비가 고장나면 수리 신고는 어떤 방법으로 해야 돼?",
+    "sentence_b": "고장난 large TV의 repair 신고 방법은?",
+    "sentence_b_org": "고장난 대형 티비의 수리 신고 방법은?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "대형 티비",
+        "to": "large TV",
+        "pos": "NNG"
+      },
+      {
+        "from": "수리",
+        "to": "repair",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_01351",
+    "sentence_a": "병무청에 문의하려면 어느 메일 주소에 메일을 보내야할까요?",
+    "sentence_b": "별표가 포함된 email address에서 별표를 삭제해주세요.",
+    "sentence_b_org": "별표가 포함된 메일 주소에서 별표를 삭제해주세요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일 주소",
+        "to": "email address",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.5
+  },
+  {
+    "id": "pair_01352",
+    "sentence_a": "뜨거운물말고 찬물로 세탁하고 더운물로 헹구는게 어때?",
+    "sentence_b": "뜨거운물말고 찬물로 세탁하고 hot water로 헹궈야될 것 같지 않아?",
+    "sentence_b_org": "뜨거운물말고 찬물로 세탁하고 더운물로 헹궈야될 것 같지 않아?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "더운물",
+        "to": "hot water",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.3
+  },
+  {
+    "id": "pair_01353",
+    "sentence_a": "기침이나 재채기 후에는 꼭 손을 씻으세요.",
+    "sentence_b": "coughing이나 sneezing 후에 반드시 손을 씻으세요.",
+    "sentence_b_org": "기침이나 재채기 후에 반드시 손을 씻으세요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "기침",
+        "to": "coughing",
+        "pos": "NNG"
+      },
+      {
+        "from": "재채기",
+        "to": "sneezing",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 5.0
+  },
+  {
+    "id": "pair_01354",
+    "sentence_a": "야간에는 등산하지 말아라.",
+    "sentence_b": "night에는 등산금지야.",
+    "sentence_b_org": "야간에는 등산금지야.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "야간",
+        "to": "night",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01355",
+    "sentence_a": "세탁기, 건조대, 헤어드라이기, 다리미, 청소기조리도구, 간단한 조미료와 간식 등등 까지 모두 완벽한 숙소였습니다.",
+    "sentence_b": "washing machine, 건조대, hair dryer, iron, vacuum cleaner 조리 도구, 간단한 seasoning, snack 모두 완벽한 숙박 시설이었습니다.",
+    "sentence_b_org": "세탁기, 건조대, 헤어 드라이어, 철, 진공 청소기 조리 도구, 간단한 조미료, 스낵 모두 완벽한 숙박 시설이었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "세탁기",
+        "to": "washing machine",
+        "pos": "NNG"
+      },
+      {
+        "from": "헤어 드라이어",
+        "to": "hair dryer",
+        "pos": "NNG"
+      },
+      {
+        "from": "철",
+        "to": "iron",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.4
+  },
+  {
+    "id": "pair_01356",
+    "sentence_a": "부엌도 거의 마음대로 쓸 수 있었어요.",
+    "sentence_b": "kitchen을 거의 내가 원하는 만큼 사용할 수 있었어요.",
+    "sentence_b_org": "부엌을 거의 내가 원하는 만큼 사용할 수 있었어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "부엌",
+        "to": "kitchen",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_01357",
+    "sentence_a": "아울러 ‘가치삽시다 플랫폼’, ‘가치삽시다 TV', '오픈 스튜디오’를 통해 우수제품 발굴·홍보하는 등 소상공인과 자영업자의 온라인 진출 지원도 확대한다.",
+    "sentence_b": "또 중소기업에게 충분한 scale-up 자금이 공급되도록 ‘아기유니콘(기업가치 1000억 미만) 200 육성사업’을 신설하는 등 scale-up 프로그램도 확대한다.",
+    "sentence_b_org": "또 중소기업에게 충분한 스케일업 자금이 공급되도록 ‘아기유니콘(기업가치 1000억 미만) 200 육성사업’을 신설하는 등 스케일업 프로그램도 확대한다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "스케일업",
+        "to": "scale-up",
+        "pos": "NNG"
+      },
+      {
+        "from": "스케일업",
+        "to": "scale-up",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01358",
+    "sentence_a": "시장에서 어떤 거 사오려고 하시나요?",
+    "sentence_b": "market에서 무슨 물건 사 오게?",
+    "sentence_b_org": "시장에서 무슨 물건 사 오게?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "시장",
+        "to": "market",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_01359",
+    "sentence_a": "심지어 양치컵까지 인원수대로 준비해줍니다.",
+    "sentence_b": "toothbrush cup도 person 수에 따라 준비됩니다.",
+    "sentence_b_org": "양치 컵도 사람 수에 따라 준비됩니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "양치 컵",
+        "to": "toothbrush cup",
+        "pos": "NNG"
+      },
+      {
+        "from": "사람",
+        "to": "person",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01360",
+    "sentence_a": "다만 8시 이후에는 모두 문을 닫아요.",
+    "sentence_b": "FYI, mart에 10시 이후에 술 안 팔아요",
+    "sentence_b_org": "참고로 마트에 10시 이후에 술안팔아요",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "참고로",
+        "to": "FYI",
+        "pos": "NNG"
+      },
+      {
+        "from": "마트",
+        "to": "mart",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01361",
+    "sentence_a": "독서할때 조명을 어느정도 밝기로 켜둘까?",
+    "sentence_b": "독서할때 lighting 밝기를 어느정도로 해놓는게 적당해?",
+    "sentence_b_org": "독서할때 조명 밝기를 어느정도로 해놓는게 적당해?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "조명",
+        "to": "lighting",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01362",
+    "sentence_a": "다음에 약속에 올 때에는 지각하는 대신 오분 전에 도착하세요.",
+    "sentence_b": "절대로 늦게 오지 말고 appointment 오분 전에 도착해야해.",
+    "sentence_b_org": "절대로 늦게 오지 말고 약속 오분 전에 도착해야해.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "약속",
+        "to": "appointment",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.4
+  },
+  {
+    "id": "pair_01363",
+    "sentence_a": "제가 묵었던 곳은 아파트먼트 꼭대기 층이었습니다.",
+    "sentence_b": "제가 지금껏 가본 accommodation중에 bed가 이렇게 편했던 곳은 없었던 것 같습니다.",
+    "sentence_b_org": "제가 지금껏 가본 숙소중에 침대가 이렇게 편했던 곳은 없었던 것 같습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      },
+      {
+        "from": "침대",
+        "to": "bed",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.5
+  },
+  {
+    "id": "pair_01364",
+    "sentence_a": "서울보증보험(SGI)의 전세대출보증 규제를 강화하도록 협조요청하는 이유는?",
+    "sentence_b": "서울보증보험은 왜 전세금 regulation을 강화하기 위해 cooperation을 요청하고 있습니까?",
+    "sentence_b_org": "서울보증보험은 왜 전세금 규제를 강화하기 위해 협력을 요청하고 있습니까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "협력",
+        "to": "cooperation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_01365",
+    "sentence_a": "내일 오후 파티 시간이 몇 시지?",
+    "sentence_b": "내일 오후 몇 시에 party가 열립니까?",
+    "sentence_b_org": "내일 오후 몇 시에 파티가 열립니까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "파티",
+        "to": "party",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_01366",
+    "sentence_a": "다른 채널로 돌리지마",
+    "sentence_b": "pressure cooker 밥과 pot 밥 중에 손님이 좋아하시는 밥은 뭔가요?",
+    "sentence_b_org": "압력솥 밥과 냄비 밥 중에 손님이 좋아하시는 밥은 뭔가요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "압력솥",
+        "to": "pressure cooker",
+        "pos": "NNG"
+      },
+      {
+        "from": "냄비",
+        "to": "pot",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01367",
+    "sentence_a": "당신 한달 집 가스레인지 비용이 얼마인가?",
+    "sentence_b": "믹서기 말고 gas range로 요리하자",
+    "sentence_b_org": "믹서기 말고 가스레인지로 요리하자",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "가스레인지",
+        "to": "gas range",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.4
+  },
+  {
+    "id": "pair_01368",
+    "sentence_a": "친절한 호스트와 깨끗한 숙소 맛있는 조식까지 완벽했습니다!",
+    "sentence_b": "깨끗한 bathroom, living room, terrace, room까지 완벽했습니다.",
+    "sentence_b_org": "깨끗한 화장실 거실 테라스 방까지 완벽했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "화장실",
+        "to": "bathroom",
+        "pos": "NNG"
+      },
+      {
+        "from": "거실",
+        "to": "living room",
+        "pos": "NNG"
+      },
+      {
+        "from": "테라스",
+        "to": "terrace",
+        "pos": "NNG"
+      },
+      {
+        "from": "방",
+        "to": "room",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 4,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.8
+  },
+  {
+    "id": "pair_01369",
+    "sentence_a": "참여를 원하는 소공인은 전국 34개 소공인특화지원센터 또는 소상공인시장진흥공단에 신청서를 접수하면 된다.",
+    "sentence_b": "참여를 원하는 SME는 전국 34개 중소기업지원센터 또는 중소기업시장진흥공단으로부터 신청을 받을 수 있습니다.",
+    "sentence_b_org": "참여를 원하는 중소기업인은 전국 34개 중소기업지원센터 또는 중소기업시장진흥공단으로부터 신청을 받을 수 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "중소기업인",
+        "to": "SME",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_01370",
+    "sentence_a": "집에 사람이 많이 거주하는 것 같지만 생각보다 조용해요!",
+    "sentence_b": "check-in하는 방법이,, 보물찾기하는 것 같았어요.",
+    "sentence_b_org": "체크인하는 방법이,, 보물찾기하는 것 같았어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "체크인",
+        "to": "check-in",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01371",
+    "sentence_a": "꽃무늬 양산은 얼마에 살 수 있어?",
+    "sentence_b": "오늘 highest temperature가 삼십도 이상일지 이하일지 알려줘.",
+    "sentence_b_org": "오늘 최고기온이 삼십도 이상일지 이하일지 알려줘.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "최고기온",
+        "to": "highest temperature",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01372",
+    "sentence_a": "뮤지컬 내일 가기로 했던 거 언제 시작해?",
+    "sentence_b": "오늘 alarm 설정된 횟수가 총 몇 번이야?",
+    "sentence_b_org": "오늘 알람 설정된 횟수가 총 몇 번이야?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "알람",
+        "to": "alarm",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_01373",
+    "sentence_a": "앞으로 창고·공장 등에서는 가연성 샌드위치 패널의 사용이 전면 금지되는 등 가연성 건축자재 사용에 대한 규제가 대폭 강화될 전망이다.",
+    "sentence_b": "이에 government는 지난 22일 수도권 등에 대한 거리두기 2단계 격상을 발표했다.",
+    "sentence_b_org": "이에 정부는 지난 22일 수도권 등에 대한거리두기 2단계 격상을 발표했다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "정부",
+        "to": "government",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_01374",
+    "sentence_a": "이날 바이오업계는 바이오 전문인력 공급을 위한 시설 건립, 새로운 시장 창출을 위한 규제완화, 세제 등 인센티브 확대 등을 정부에 건의했다.",
+    "sentence_b": "같은 날, bio industry는 government에게 bio 전문가 공급 시설, 새로운 market 창출을 위한 규제 완화, tax와 같은 incentive 확대 등을 제안했습니다.",
+    "sentence_b_org": "같은 날, 바이오 산업은 정부에게 바이오 전문가 공급 시설, 새로운 시장 창출을 위한 규제 완화, 세금과 같은 인센티브 확대 등을 제안했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "바이오 산업",
+        "to": "bio industry",
+        "pos": "NNG"
+      },
+      {
+        "from": "정부",
+        "to": "government",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_01375",
+    "sentence_a": "열대야 일 때는 저온 말고 미온에 샤워해.",
+    "sentence_b": "더워도 찬 food를 그렇게 많이 먹으면 안된다니까.",
+    "sentence_b_org": "더워도 찬 음식을 그렇게 많이 먹으면 안된다니까.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "음식",
+        "to": "food",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_01376",
+    "sentence_a": "로마 떼르미니 역과 콜로세움 모두에 가까운 거리에 있습니다.",
+    "sentence_b": "일단 떼르미니 station과 아주아주 가깝습니다!",
+    "sentence_b_org": "일단 떼르미니역과 아주아주 가깝습니다!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "역",
+        "to": "station",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.9
+  },
+  {
+    "id": "pair_01377",
+    "sentence_a": "농협카드 청구서는 메일로 보내지마세요.",
+    "sentence_b": "수강생의 question에 답을 할 때 어떻게 할까?",
+    "sentence_b_org": "수강생의 질문에 답을 할 때 어떻게 할까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "질문",
+        "to": "question",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_01378",
+    "sentence_a": "호주의 전형적인 주택가의 분위기와  주택을 느낄 수 있었던 것 같습니다.",
+    "sentence_b": "호주의 전형적인 residential area의 분위기와 living을 느낄 수 있었습니다.",
+    "sentence_b_org": "호주의 전형적인 주택가의 분위기와 주거를 느낄 수 있었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "주택가",
+        "to": "residential area",
+        "pos": "NNG"
+      },
+      {
+        "from": "주거",
+        "to": "living",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.6
+  },
+  {
+    "id": "pair_01379",
+    "sentence_a": "완벽한 위치 높은 청결도 멋진공간 친절함 모든게 좋았습니다",
+    "sentence_b": "완벽한 location, 높은 cleanliness, 멋진 space, 친절함, 모든 것이 좋았습니다.",
+    "sentence_b_org": "완벽한 위치, 높은 청결도, 멋진 공간, 친절함, 모든 것이 좋았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      },
+      {
+        "from": "청결",
+        "to": "cleanliness",
+        "pos": "NNG"
+      },
+      {
+        "from": "공간",
+        "to": "space",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.9
+  },
+  {
+    "id": "pair_01380",
+    "sentence_a": "조명 방식이 눈 보호도 해줘야하니 필요한게 뭔지 잘 알려줘",
+    "sentence_b": "눈 보호되는 lighting으로 하려면 필요한 lighting 방식이 뭘까요?",
+    "sentence_b_org": "눈 보호되는 조명으로 하려면 필요한 조명 방식이 뭘까요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "조명",
+        "to": "lighting",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.2
+  },
+  {
+    "id": "pair_01381",
+    "sentence_a": "연휴 기간 동안 일일 평균 이동량이 지난해보다 19.3% 감소한 것으로 집계되었습니다.",
+    "sentence_b": "vacation season의 하루 평균 이동량은 지난해보다 19.3% 감소했습니다.",
+    "sentence_b_org": "휴가철의 하루 평균 이동량은 지난해보다 19.3% 감소했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "휴가철",
+        "to": "vacation season",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_01382",
+    "sentence_a": "농구를 이번주에 더 많이 했어 다음주에 더 많이 했어?",
+    "sentence_b": "basketball을 더 많이 한 주는 이번주입니까 다음주입니까?",
+    "sentence_b_org": "농구를 더 많이 한 주는 이번주입니까 다음주입니까?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "농구",
+        "to": "basketball",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01383",
+    "sentence_a": "방이 작은 덕분에 난방기를 돌렸을 때 더 빨리 따뜻해지는 것도 장점입니다.",
+    "sentence_b": "부정적인 review에만 화를 내는 듯한 reply를 남기는 것을 보면 알 수 있을 것입니다.",
+    "sentence_b_org": "부정적인 후기에만 화를 내는 듯한 답글을 남기는 것을 보면 알 수 있을 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "후기",
+        "to": "review",
+        "pos": "NNG"
+      },
+      {
+        "from": "답글",
+        "to": "reply",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01384",
+    "sentence_a": "한파에는 밖에 나가지 않도록 합니다.",
+    "sentence_b": "여름와 winter 중 좋아하는 계절은 어느 계절이야?",
+    "sentence_b_org": "여름와 겨울 중 좋아하는 계절은 어느 계절이야?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "겨울",
+        "to": "winter",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.3
+  },
+  {
+    "id": "pair_01385",
+    "sentence_a": "청결이나 기타 편의 사항은 말할것도 없이 완벽했습니다.",
+    "sentence_b": "cleanliness와 다른 편리함은 말할 것도 없고 완벽했습니다.",
+    "sentence_b_org": "청결과 다른 편리함은 말할 것도 없고 완벽했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "청결",
+        "to": "cleanliness",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01386",
+    "sentence_a": "④ 마스크가 없으면 기침이나 재채기할 때 옷소매로 입과 코 가리기⑤ 감염 증상 발생시 해외여행력을 의료진에게 알리기!",
+    "sentence_b": "신종 코로나바이러스 감염증의 community infection이 발생한 region의 travel 및 방문을 최소화해 주시기 바랍니다.",
+    "sentence_b_org": "신종 코로나바이러스 감염증의 지역사회 감염이 발생한 지역의 여행 및 방문을 최소화해 주시기 바랍니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지역사회 감염",
+        "to": "community infection",
+        "pos": "NNG"
+      },
+      {
+        "from": "지역",
+        "to": "region",
+        "pos": "NNG"
+      },
+      {
+        "from": "여행",
+        "to": "travel",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.4
+  },
+  {
+    "id": "pair_01387",
+    "sentence_a": "네이버 메일을 더 많이 사용하는건 삼십대일까요, 사십대일까요?",
+    "sentence_b": "현재 접속중인 Nate mail account 이름을 알려줘",
+    "sentence_b_org": "현재 접속중인 네이트 메일 계정 이름을 알려줘",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "네이트",
+        "to": "Nate",
+        "pos": "NNP"
+      },
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      },
+      {
+        "from": "계정",
+        "to": "account",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.5
+  },
+  {
+    "id": "pair_01388",
+    "sentence_a": "노인·아동 등 의료취약계층의 본인 부담률 인하로 환자 본인이 부담하던 의료비 약 8000억원이 줄어들었다.",
+    "sentence_b": "분야별로는 소상공인 등을 위한 economic recovery 지원에 1300억원, 취약계층 등을 위한 livelihood stabilization 지원에 1700억원, infectious disease damage recovery 지원에 1000억원이다.",
+    "sentence_b_org": "분야별로는 소상공인 등을 위한 경제회복 지원에 1300억원, 취약계층 등을 위한 생활 안정 지원에 1700억원, 감염병 피해수습 지원에 1000억원이다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "경제회복 지원",
+        "to": "economic recovery",
+        "pos": "NNG"
+      },
+      {
+        "from": "생활 안정 지원",
+        "to": "livelihood stabilization",
+        "pos": "NNG"
+      },
+      {
+        "from": "감염병 피해수습 지원",
+        "to": "infectious disease damage recovery",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01389",
+    "sentence_a": "심지어 공항 픽업 서비스까지 제공해주세요",
+    "sentence_b": "bread, yogurt, juice, coffee등으로 조식을 제공해주십니다.",
+    "sentence_b_org": "빵, 요거트, 주스, 커피등으로 조식을 제공해주십니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "빵",
+        "to": "bread",
+        "pos": "NNG"
+      },
+      {
+        "from": "요거트",
+        "to": "yogurt",
+        "pos": "NNG"
+      },
+      {
+        "from": "주스",
+        "to": "juice",
+        "pos": "NNG"
+      },
+      {
+        "from": "커피",
+        "to": "coffee",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 4,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_01390",
+    "sentence_a": "지난 28일 발표한 174개소 보다 40개가 늘어난 수치다.",
+    "sentence_b": "지난 5일 recovery 판정을 받고 퇴원한 ‘2번 patient’가 대표적인 사례다.",
+    "sentence_b_org": "지난 5일 완치 판정을 받고 퇴원한 ‘2번 환자’가 대표적인 사례다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "완치 판정",
+        "to": "recovery",
+        "pos": "NNG"
+      },
+      {
+        "from": "환자",
+        "to": "patient",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01391",
+    "sentence_a": "게스트 체크아웃 날짜 알아보는데 이틀이나 답장 안해요.",
+    "sentence_b": "guest room과 bathroom또한 무척이나 편했고요!",
+    "sentence_b_org": "게스트방과 화장실또한 무척이나 편했고요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "게스트방",
+        "to": "guest room",
+        "pos": "NNG"
+      },
+      {
+        "from": "화장실",
+        "to": "bathroom",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.6
+  },
+  {
+    "id": "pair_01392",
+    "sentence_a": "루프탑도 있고 여러모로 재미있는 집입니다.",
+    "sentence_b": "rooftop이 있고 여러모로 재미있는 집입니다.",
+    "sentence_b_org": "옥상이 있고 여러모로 재미있는 집입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "옥상",
+        "to": "rooftop",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.8
+  },
+  {
+    "id": "pair_01393",
+    "sentence_a": "지금 이 시간에 재밌는게 네가 좋아할만한게 뭐 있을까",
+    "sentence_b": "형광등 remote control 방법은?",
+    "sentence_b_org": "형광등 리모트 콘트롤 방법은?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "리모트 콘트롤",
+        "to": "remote control",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01394",
+    "sentence_a": "수압도, 따뜻한 물도 모두 좋았습니다.",
+    "sentence_b": "water pressure와 따뜻한 물 모두 좋았습니다.",
+    "sentence_b_org": "수압과 따뜻한 물 모두 좋았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "수압",
+        "to": "water pressure",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.8
+  },
+  {
+    "id": "pair_01395",
+    "sentence_a": "앞으로 늦으실 때에는 연락없이 늦지 마시고 미리 사유를 알려주십시오.",
+    "sentence_b": "논문 presentation 일정은 어떻게 되나요?",
+    "sentence_b_org": "논문 발표 일정이 어떻게 되나요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "발표",
+        "to": "presentation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01396",
+    "sentence_a": "숙소금액이 무안할 정도로, 왠만한 호텔보다 더 극진한 대접을 받았습니다.",
+    "sentence_b": "왠만한 hotel보다 really 시설면에서 너무 좋았습니다.",
+    "sentence_b_org": "왠만한 호텔보다 정말 시설면에서 너무 좋았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호텔",
+        "to": "hotel",
+        "pos": "NNG"
+      },
+      {
+        "from": "정말",
+        "to": "really",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.3
+  },
+  {
+    "id": "pair_01397",
+    "sentence_a": "거실에서 보이는 쿠폴라도 너무 예쁘고 쾌적합니다.",
+    "sentence_b": "living room에 보이는 큐폴라는 너무 예쁘고 쾌적해요.",
+    "sentence_b_org": "거실에 보이는 큐폴라는 너무 예쁘고 쾌적해요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "거실",
+        "to": "living room",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.4
+  },
+  {
+    "id": "pair_01398",
+    "sentence_a": "호스트가 정말로다가 정말로다가 착하고 친절합니다.",
+    "sentence_b": "그리고 host가 really 착하고 친절해요.",
+    "sentence_b_org": "그리고 호스트가 정말 착하고 친절해요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      },
+      {
+        "from": "정말",
+        "to": "really",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.4
+  },
+  {
+    "id": "pair_01399",
+    "sentence_a": "방도 넓고, 수납공간, 옷걸이, 개인컵까지 세심한 배려가 돋보여요!",
+    "sentence_b": "host는 열정적이고 세심한 배려가 돋보인다.",
+    "sentence_b_org": "호스트는 열정적이고 세심한 배려가 돋보인다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.6
+  },
+  {
+    "id": "pair_01400",
+    "sentence_a": "다음 메일 저장공간이랑 네이버 메일 저장공간 중 많이 남은 거 알려줘",
+    "sentence_b": "Daum이랑 Naver mail 중 어디가 더 많이 capacity가 남았는지 알려줄래?",
+    "sentence_b_org": "다음이랑 네이버 메일 중 어디가 더 많이 용량이 남았는지 알려줄래?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "다음",
+        "to": "Daum",
+        "pos": "NNP"
+      },
+      {
+        "from": "네이버",
+        "to": "Naver",
+        "pos": "NNP"
+      },
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      },
+      {
+        "from": "용량",
+        "to": "capacity",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 4,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.3
+  },
+  {
+    "id": "pair_01401",
+    "sentence_a": "에어컨한테 음성명령 내리는 방법 좀 알려줘",
+    "sentence_b": "city gas 사용은 삼가주시기 바랍니다.",
+    "sentence_b_org": "도시가스 사용은 삼가주시기 바랍니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "도시가스",
+        "to": "city gas",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01402",
+    "sentence_a": "거실 말고 안방 청소를 로봇청소기 써서하려면 어떻게 하는 지 좀 말해봐",
+    "sentence_b": "robot vacuum이랑 vacuum cleaner 중에 너가 가지고 싶은 cleaner는 뭐야?",
+    "sentence_b_org": "로봇청소기랑 진공청소기 중에 너가 가지고 싶은 청소기는 뭐야?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "로봇청소기",
+        "to": "robot vacuum",
+        "pos": "NNG"
+      },
+      {
+        "from": "진공청소기",
+        "to": "vacuum cleaner",
+        "pos": "NNG"
+      },
+      {
+        "from": "청소기",
+        "to": "cleaner",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.0
+  },
+  {
+    "id": "pair_01403",
+    "sentence_a": "여름엔 동상 말고 냉방병 조심하세요.",
+    "sentence_b": "summer엔 동상 말고 냉방병 조심해.",
+    "sentence_b_org": "여름엔 동상 말고 냉방병 조심해.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "여름",
+        "to": "summer",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.5
+  },
+  {
+    "id": "pair_01404",
+    "sentence_a": "유럽여행 내내 그 어느 곳 보다 좋은 숙소였어요",
+    "sentence_b": "유럽 trip 내내 가 본 것 중에 최고의 숙소였어요.",
+    "sentence_b_org": "유럽 여행 내내 가 본 것 중에 최고의 숙소였어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "여행",
+        "to": "trip",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_01405",
+    "sentence_a": "바로 그곳이 내가 묵던 숙소 근처에 있다.",
+    "sentence_b": "그리고 Starbucks도 바로 근처에 있어요.",
+    "sentence_b_org": "그리고 스타벅스도 바로 근처에 있어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "스타벅스",
+        "to": "Starbucks",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.5
+  },
+  {
+    "id": "pair_01406",
+    "sentence_a": "물론 호스트가 잘 관리 하는 것도 있고요.",
+    "sentence_b": "물론, host가 잘 돌봐주는 것도 있습니다.",
+    "sentence_b_org": "물론, 호스트가 잘 돌봐주는 것도 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.5
+  },
+  {
+    "id": "pair_01407",
+    "sentence_a": "정크 메일함과 받은 메일함 중 뭐가 더 빨리 가득찼지?",
+    "sentence_b": "교수님께 연락드릴 일이 있다면 mail은 사용하지마",
+    "sentence_b_org": "교수님께 연락드릴 일이 있다면 메일은 사용하지마",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_01408",
+    "sentence_a": "기프트카드의 온라인 신청은 누가 할 수 있나요?",
+    "sentence_b": "증권시장 불공정거래 report는 어떻게 할 수 있나?",
+    "sentence_b_org": "증권시장 불공정거래 신고는 어떻게 할 수 있나?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "신고",
+        "to": "report",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.1
+  },
+  {
+    "id": "pair_01409",
+    "sentence_a": "가스통이 가스렌지 밑에 있는게 신기했어요.",
+    "sentence_b": "할부지 덕분에 Santa Monica에 있는 내내 행복했어요.",
+    "sentence_b_org": "할부지 덕분에 산타모니카에 있는 내내 행복했어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "산타모니카",
+        "to": "Santa Monica",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01410",
+    "sentence_a": "외국인도 별로 없고, 현지인들이 많이 쇼핑하는 곳입니다.",
+    "sentence_b": "외국인이 많지 않고, 현지인들이 shopping을 많이 하는 곳입니다.",
+    "sentence_b_org": "외국인이 많지 않고, 현지인들이 쇼핑을 많이 하는 곳입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "쇼핑",
+        "to": "shopping",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.6
+  },
+  {
+    "id": "pair_01411",
+    "sentence_a": "정부는 5일 0시부터 ‘보건용 마스크 및 손 소독제 매점매석 행위 금지 등에 관한 고시’의 시행에 맞춰 대대적인 단속을 추진한다.",
+    "sentence_b": "정부가 원활한 mask 수급을 위해 보건용 mask 및 hand sanitizer 매점매석 행위를 대대적으로 단속한다.",
+    "sentence_b_org": "정부가 원활한 마스크 수급을 위해 보건용 마스크 및 손 소독제 매점매석 행위를 대대적으로 단속한다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "마스크",
+        "to": "mask",
+        "pos": "NNG"
+      },
+      {
+        "from": "손 소독제",
+        "to": "hand sanitizer",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.7
+  },
+  {
+    "id": "pair_01412",
+    "sentence_a": "마당에서 가끔 보이는 귀여운 고양이와도 즐거운 시간을 가질 수 있습니다.",
+    "sentence_b": "한국 drama를 좋아하는 여학생을 만날 수 있습니다!",
+    "sentence_b_org": "한국드라마를 좋아하는 여학생을 만날 수 있습니다!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "드라마",
+        "to": "drama",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01413",
+    "sentence_a": "저에게는 최고의 에어비엔비 경험이었습니다.",
+    "sentence_b": "저에게 Airbnb는 최고의 experience였습니다.",
+    "sentence_b_org": "저에게 에어비앤비는 최고의 경험이었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "에어비앤비",
+        "to": "Airbnb",
+        "pos": "NNP"
+      },
+      {
+        "from": "경험",
+        "to": "experience",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01414",
+    "sentence_a": "호스트 너무 친절하고 연락도 거의 바로바로 오는 편입니다.",
+    "sentence_b": "host가 very 친절하고 연락도 바로바로 됩니다.",
+    "sentence_b_org": "호스트가 매우 친절하고 연락도 바로바로 됩니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      },
+      {
+        "from": "매우",
+        "to": "very",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_01415",
+    "sentence_a": "주의할 점은 엘리베이터 없이 한 층 정도 올라가야한다는 것 정도네요!",
+    "sentence_b": "더운 summer에 7층을 elevator 없이 올라가면 너무 힘듭니다.",
+    "sentence_b_org": "더운 여름에 7층을 엘리베이터 없이 올라가면 너무 힘듭니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "여름",
+        "to": "summer",
+        "pos": "NNG"
+      },
+      {
+        "from": "엘리베이터",
+        "to": "elevator",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.1
+  },
+  {
+    "id": "pair_01416",
+    "sentence_a": "정말 친절하고 다시 볼 수있기를 바라는 마음입니다.",
+    "sentence_b": "나는 very 친절하고 당신을 다시 보기를 hope합니다.",
+    "sentence_b_org": "나는 매우 친절하고 당신을 다시 보기를 희망합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "매우",
+        "to": "very",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_01417",
+    "sentence_a": "또 사과와 배 등 설 명절 16개 성수품의 공급을 최대 4.3배 늘리고 직거래 장터를 확대 개설한다.",
+    "sentence_b": "그것은 또한 설 연휴 동안 16개의 고품질 product의 supply를 최대 4.3배 늘리고 직접적인 market을 확장할 예정입니다.",
+    "sentence_b_org": "그것은 또한 설 연휴 동안 16개의 고품질 제품의 공급을 최대 4.3배 늘리고 직접적인 시장을 확장할 예정입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "제품",
+        "to": "product",
+        "pos": "NNG"
+      },
+      {
+        "from": "공급",
+        "to": "supply",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_01418",
+    "sentence_a": "정부의 보훈 철학이 모든 보훈 현장에 확고히 뿌리내려야 할 것입니다.",
+    "sentence_b": "정부는 경제난 극복 대책에서 과거의 solution에 머물지 않을 것입니다.",
+    "sentence_b_org": "정부는 경제난 극복 대책에서 과거의 해법에 머물지 않을 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "해법",
+        "to": "solution",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.9
+  },
+  {
+    "id": "pair_01419",
+    "sentence_a": "친절한 호스트와 깨끗한 숙소. 5명 가족에게 완벽한 장소입니다",
+    "sentence_b": "5명 이상의 large family나 동행들에게 적합한곳 같습니다.",
+    "sentence_b_org": "5명 이상의 대규모가족이나 동행들에게 적합한곳 같습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "대규모가족",
+        "to": "large family",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.8
+  },
+  {
+    "id": "pair_01420",
+    "sentence_a": "너무 예쁜 집에 2층엔 스파욕조와 일몰까지 볼 수 있었어요.",
+    "sentence_b": "친절한 host와 귀여운 강아지가 있었어요.",
+    "sentence_b_org": "친절한 호스트와 귀여운 강아지가 있었어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01421",
+    "sentence_a": "나는 당신이 리스본에 왔다면 이 숙소에 머물것을 강력히 추천한다.",
+    "sentence_b": "아침 flight를 타는 분들이면 이 accommodation에 머무르는 걸 추천한다.",
+    "sentence_b_org": "아침 비행기를 타는 분들이면 이 숙소에 머무르는 걸 추천한다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.6
+  },
+  {
+    "id": "pair_01422",
+    "sentence_a": "집 습도를 측정하려면 어떻게 해야돼?",
+    "sentence_b": "집 내부 humidity는 어떻게 측정해?",
+    "sentence_b_org": "집 내부 습도는 어떻게 측정해?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "습도",
+        "to": "humidity",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_01423",
+    "sentence_a": "넓은 방과 두 개의 욕실은 가족 단위로 머물기에 참 좋을 것 같아요.",
+    "sentence_b": "큰 room과 두 개의 bathroom이 가족 숙박을 위해 좋을 것입니다.",
+    "sentence_b_org": "큰 방과 두 개의 욕실이 가족 숙박을 위해 좋을 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방",
+        "to": "room",
+        "pos": "NNG"
+      },
+      {
+        "from": "욕실",
+        "to": "bathroom",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_01424",
+    "sentence_a": "저번처럼 레포트를 아슬아슬하게 제출하기 보다는 기한 하루 전에 제출해 두자.",
+    "sentence_b": "언제 mom time이 되시니?",
+    "sentence_b_org": "언제 엄마 시간이 되시니?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "엄마 시간",
+        "to": "mom time",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01425",
+    "sentence_a": "수면시간 줄이지 말고 충분히 자도록 해. 열대야에는.",
+    "sentence_b": "typhoon으로 강풍 불 때는 구조물 주의해. 다치면 안돼.",
+    "sentence_b_org": "태풍으로 강풍 불 때는 구조물 주의해. 다치면 안돼.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "태풍",
+        "to": "typhoon",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.1
+  },
+  {
+    "id": "pair_01426",
+    "sentence_a": "우리는 주차장에 접근 할 수있었습니다.",
+    "sentence_b": "우리는 parking lot에 접근할 수 있습니다.",
+    "sentence_b_org": "우리는 주차장에 접근할 수 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "주차장",
+        "to": "parking lot",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.7
+  },
+  {
+    "id": "pair_01427",
+    "sentence_a": "이에 불편한 공인인증서를 대신해 블록체인과 전자증명(Digital ID)기술을 활용, 블록체인 앱 설치로 공인인증서가 필요 없는 인증서비스가 제공도니다.",
+    "sentence_b": "거동이 불편한 이들을 위해서는 ‘찾아가는 application’ 제도가 가동된다.",
+    "sentence_b_org": "거동이 불편한 이들을 위해서는 ‘찾아가는 신청’ 제도가 가동된다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "신청",
+        "to": "application",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01428",
+    "sentence_a": "이로서 17개 광역지자체별로 특고 및 프리랜서 10만명에게 고용 및 생활안정 지원 목적으로 월 50만원씩 최장 2개월동안 지급할 계획이다.",
+    "sentence_b": "업종별로는 travel industry와 tourism accommodation industry, tourism transportation industry, 공연시설업을 특별고용지원 업종으로 추가 지정할 계획이다.",
+    "sentence_b_org": "업종별로는 여행업과 관광숙박업, 관광운송업, 공연시설업을 특별고용지원 업종으로 추가 지정할 계획이다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "여행업",
+        "to": "travel industry",
+        "pos": "NNG"
+      },
+      {
+        "from": "관광숙박업",
+        "to": "tourism accommodation industry",
+        "pos": "NNG"
+      },
+      {
+        "from": "관광운송업",
+        "to": "tourism transportation industry",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.3
+  },
+  {
+    "id": "pair_01429",
+    "sentence_a": "방 안은 침대, 베개 두개와 쿠션 세개, 의자하나와 쿠션 하나, 큰 타월 작은 타월 한개씩, 샤워가운, 휴지, 헤어 드라이기까지 완벽했습니다.",
+    "sentence_b": "좋은 location과 친절한 host 그리고 넓고 조용한 room과 조식까지 완벽합니다!",
+    "sentence_b_org": "좋은위치와 친절한호스트 그리고 넓고 조용한방과 조식까지 완벽합니다!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      },
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      },
+      {
+        "from": "방",
+        "to": "room",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.0
+  },
+  {
+    "id": "pair_01430",
+    "sentence_a": "일본에서 관리중인 도메인으로 메일을 보내는건 금지되어있습니다.",
+    "sentence_b": "Gmail 계정의 password를 자주 바꾸지 마세요.",
+    "sentence_b_org": "지메일 계정의 비밀번호를 자주 바꾸지 마세요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지메일",
+        "to": "Gmail",
+        "pos": "NNP"
+      },
+      {
+        "from": "비밀번호",
+        "to": "password",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_01431",
+    "sentence_a": "조용한 외곽의 호주인의 생활을 살짝 엿볼수 있었네요",
+    "sentence_b": "그리고 훌륭한 bathtub 덕분에 tiredness를 풀 수 있었어요.",
+    "sentence_b_org": "그리고 훌륭한 욕조덕분에 피곤을 풀 수있었어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "그리고",
+        "to": "And",
+        "pos": "MAJ"
+      },
+      {
+        "from": "욕조덕분",
+        "to": "bathtub",
+        "pos": "NNG"
+      },
+      {
+        "from": "피곤",
+        "to": "tiredness",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_01432",
+    "sentence_a": "정부는 이번 서울실증 외에도 도심항공교통을 위한 체계적인 실증사업, 버티포트(eVTOL 이착륙장) 기준 마련, 종사자 자격 연구 등을 추진 중에 있다.",
+    "sentence_b": "이는 system과 manual에 입각한 체계적인 대응이 제대로 작동했다는 의미로 볼 수 있다.",
+    "sentence_b_org": "이는 시스템과 메뉴얼에 입각한 체계적인 대응이 제대로 작동했다는 의미로 볼 수 있다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "시스템",
+        "to": "system",
+        "pos": "NNG"
+      },
+      {
+        "from": "메뉴얼",
+        "to": "manual",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01433",
+    "sentence_a": "지난 11일부터 서울·세종·과천·대전 등 전국 4곳 정부청사 입구에 있는 스피드게이트의 안면인식시스템 운영이 중단됐다.",
+    "sentence_b": "지난 11일부터 서울, 세종, 과천, 대전 등 전국 4개 관공서 출입구의 speed gate 안면인식 system 운영이 중단됐습니다.",
+    "sentence_b_org": "지난 11일부터 서울, 세종, 과천, 대전 등 전국 4개 관공서 출입구의 스피드게이트 안면인식 시스템 운영이 중단됐습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "스피드게이트",
+        "to": "speed gate",
+        "pos": "NNG"
+      },
+      {
+        "from": "시스템",
+        "to": "system",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_01434",
+    "sentence_a": "포항 경제가 새롭게 도약하는 확실한 계기가 될 것입니다.",
+    "sentence_b": "기업의 어려움에 정부가 발 빠르게 지원하는 reason도 궁극적으로는 고용 안정을 위한 것입니다.",
+    "sentence_b_org": "기업의 어려움에 정부가 발 빠르게 지원하는 이유도 궁극적으로는 고용 안정을 위한 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "이유",
+        "to": "reason",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_01435",
+    "sentence_a": "집 주변에 맛집이나 예쁜 술집이 많아요.",
+    "sentence_b": "우리 집 주위에는 좋은 restaurant과 예쁜 bar가 많이 있습니다.",
+    "sentence_b_org": "우리 집 주위에는 좋은 식당과 예쁜 술집이 많이 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "식당",
+        "to": "restaurant",
+        "pos": "NNG"
+      },
+      {
+        "from": "술집",
+        "to": "bar",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_01436",
+    "sentence_a": "그 안방 안에 있는 조명 어떻게 켜는지 알아요?",
+    "sentence_b": "main bedroom light은 어떻게 켜?",
+    "sentence_b_org": "안방 조명은 어떻게 켜?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "안방 조명",
+        "to": "main bedroom light",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.9
+  },
+  {
+    "id": "pair_01437",
+    "sentence_a": "참고로 대만에서 이정도 인테리어면 꽤 잘한거에요",
+    "sentence_b": "이 price에 이정도 시설이면 꽤 합리적인 choice가 될거에요.",
+    "sentence_b_org": "이 가격에 이정도 시설이면 꽤 합리적인 선택이 될거에요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "가격",
+        "to": "price",
+        "pos": "NNG"
+      },
+      {
+        "from": "선택",
+        "to": "choice",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.8
+  },
+  {
+    "id": "pair_01438",
+    "sentence_a": "오늘 일정은 다음 주 일정을 결정하는 자리이니 잊어버리지 마세요.",
+    "sentence_b": "이번 주 요일 중에 meeting 안 잡은 날 있으면 알려다오.",
+    "sentence_b_org": "이번 주 요일 중에 회의 안 잡은 날 있으면 알려다오.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "회의",
+        "to": "meeting",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01439",
+    "sentence_a": "프라하 여행에 있어 완벽한 위치에 있는 숙소 입니다.",
+    "sentence_b": "프라하 travel을 위한 완벽한 숙박 시설입니다.",
+    "sentence_b_org": "프라하 여행을 위한 완벽한 숙박 시설입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "여행",
+        "to": "travel",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_01440",
+    "sentence_a": "언덕위에 위치한 작은 집이고 소가족이 이용하기에는 좋은 숙소입니다.",
+    "sentence_b": "hill에 위치한 작은 집이며, 작은 family를 위한 좋은 숙박시설입니다.",
+    "sentence_b_org": "언덕에 위치한 작은 집이며, 작은 가족을 위한 좋은 숙박시설입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "언덕",
+        "to": "hill",
+        "pos": "NNG"
+      },
+      {
+        "from": "가족",
+        "to": "family",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.9
+  },
+  {
+    "id": "pair_01441",
+    "sentence_a": "② 확진환자의 증상발생 기간 중 확진환자와 밀접하게 접촉한 후 14일 이내에 발열 또는 호흡기증상(기침, 인후통 등)이 나타난 자",
+    "sentence_b": "fif 확진환자의 symptom중 확진환자와 밀접하게 접촉한 후 14일 이내에 발열 또는 호흡기 symptom(기침, 인후염 등)을 경험하는 person",
+    "sentence_b_org": "fif 확진환자의 증상중 확진환자와 밀접하게 접촉한 후 14일 이내에 발열 또는 호흡기 증상(기침, 인후염 등)을 경험하는 사람",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "증상",
+        "to": "symptom",
+        "pos": "NNG"
+      },
+      {
+        "from": "사람",
+        "to": "person",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_01442",
+    "sentence_a": "집안에 불 어디 켜져있는지 말해줘",
+    "sentence_b": "한 달 동안 microwave 얼마나 썼는지 알려줘",
+    "sentence_b_org": "한 달 동안 전자레인지 얼마나 썼는지 알려줘",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "전자레인지",
+        "to": "microwave",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_01443",
+    "sentence_a": "과일과 토스트, 계란, 씨리얼, 우유, 쥬스 아침식사로 훌륭했어요.",
+    "sentence_b": "fruit, toast, 계란, 시리얼, 우유, 그리고 juice breakfast는 훌륭했습니다.",
+    "sentence_b_org": "과일, 토스트, 계란, 시리얼, 우유, 그리고 주스 아침은 훌륭했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "과일",
+        "to": "fruit",
+        "pos": "NNG"
+      },
+      {
+        "from": "토스트",
+        "to": "toast",
+        "pos": "NNG"
+      },
+      {
+        "from": "주스 아침",
+        "to": "juice breakfast",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.4
+  },
+  {
+    "id": "pair_01444",
+    "sentence_a": "국토부는 고령가구에 대해서는 2025년까지 무장애 설계가 적용된 공공임대 8만호를 공급한다.",
+    "sentence_b": "이들을 위한 맞춤형 주택을 2022년까지 21만호를 내놓고 이후 2025년까지는 14만호를 additional로 공급한다.",
+    "sentence_b_org": "이들을 위한 맞춤형 주택을 2022년까지 21만호를 내놓고 이후 2025년까지는 14만호를 추가로 공급한다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "추가",
+        "to": "additional",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.8
+  },
+  {
+    "id": "pair_01445",
+    "sentence_a": "거실에는 주변 소음이 들리기 때문에 잠은 침실에서 자는것이 좋습니다.",
+    "sentence_b": "living room에서 주변 소음이 들리기 때문에 bedroom에서 자는 것이 좋습니다.",
+    "sentence_b_org": "거실에서 주변 소음이 들리기 때문에 침실에서 자는 것이 좋습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "거실",
+        "to": "living room",
+        "pos": "NNG"
+      },
+      {
+        "from": "침실",
+        "to": "bedroom",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.9
+  },
+  {
+    "id": "pair_01446",
+    "sentence_a": "방은 생각보다 작았지만 1층에 어떤 방은 꽤 큽니다.",
+    "sentence_b": "room은 생각보다 작았는데, 1st floor에 있는 room들은 꽤 크네요.",
+    "sentence_b_org": "방은 생각보다 작았는데, 1층에 있는 방들은 꽤 크네요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방",
+        "to": "room",
+        "pos": "NNG"
+      },
+      {
+        "from": "층",
+        "to": "floor",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_01447",
+    "sentence_a": "들어올때 말고 나갈때는 꼭 방범 모드가 켜져있는지 확인하렴",
+    "sentence_b": "효율 좋다고 했던게 선풍긴지 에어컨이었는지 memory가 안나는데 뭐였죠?",
+    "sentence_b_org": "효율 좋다고 했던게 선풍긴지 에어컨이었는지 기억이 안나는데 뭐였죠?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "기억",
+        "to": "memory",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01448",
+    "sentence_a": "호스트는 친절하고, 방도 화장실도 깨끗합니다.",
+    "sentence_b": "host는 친절하고, room과 bathroom은 깨끗합니다.",
+    "sentence_b_org": "주인은 친절하고, 방과 욕실은 깨끗합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "주인",
+        "to": "host",
+        "pos": "NNG"
+      },
+      {
+        "from": "방",
+        "to": "room",
+        "pos": "NNG"
+      },
+      {
+        "from": "욕실",
+        "to": "bathroom",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_01449",
+    "sentence_a": "파리 현지에서 살아보는 느낌이 낭낭합니다!",
+    "sentence_b": "아 그리고 double bed는 spring이 느껴집니다!",
+    "sentence_b_org": "아 그리고 더블베드는 스프링이 느껴집니다!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "아",
+        "to": "Ah",
+        "pos": "IC"
+      },
+      {
+        "from": "더블베드",
+        "to": "double bed",
+        "pos": "NNG"
+      },
+      {
+        "from": "스프링",
+        "to": "spring",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01450",
+    "sentence_a": "수산업이 가진 공익적 기능을 강화하기 위해 수산자원 보호·친환경 수산물 생산 등 공익적 의무를 이행하는 어업인을 지원하는 수산업·어촌 공익형 직불제를 도입한다.",
+    "sentence_b": "위기 중소기업을 적기에 지원하기 위해 next year에 ‘중소기업 밀집 지역 위기관리 system’을 도입한다.",
+    "sentence_b_org": "위기 중소기업을 적기에 지원하기 위해 내년에 ‘중소기업 밀집 지역 위기관리 시스템’을 도입한다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "내년",
+        "to": "next year",
+        "pos": "NNG"
+      },
+      {
+        "from": "시스템",
+        "to": "system",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_01451",
+    "sentence_a": "우편분야에서는 대한적십자사 등 구호기관 상호 간 또는 구호기관에서 특별재난지역의 이재민에게 발송되는 구호 우편물은 무료로 배송할 수 있다.",
+    "sentence_b": "지방자치단체와 공공기관, 관공서 parking lot은 연휴기간 무료로 이용할 수 있다.",
+    "sentence_b_org": "지방자치단체와 공공기관, 관공서 주차장은 연휴기간 무료로 이용할 수 있다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "주차장",
+        "to": "parking lot",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_01452",
+    "sentence_a": "다만, 설명과 달리 샴푸 등 샤워용품이 전혀 없었어요.",
+    "sentence_b": "충분한 towel과 amenity로 지내는 동안 불편함이 전혀 없었습니다.",
+    "sentence_b_org": "충분한 수건과 욕실용품으로 지내는 동안 불편함이 전혀 없었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "수건",
+        "to": "towel",
+        "pos": "NNG"
+      },
+      {
+        "from": "욕실용품",
+        "to": "amenity",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.7
+  },
+  {
+    "id": "pair_01453",
+    "sentence_a": "엘베도 있고 지하철에서 30초 걸려요.",
+    "sentence_b": "subway station에서 30초 거리인 location도 좋구요.",
+    "sentence_b_org": "지하철 역에서 30초 거리인 위치도 좋구요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지하철 역",
+        "to": "subway station",
+        "pos": "NNG"
+      },
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.0
+  },
+  {
+    "id": "pair_01454",
+    "sentence_a": "숙소 덕분에 세비야 여행은 매우 행복했다.",
+    "sentence_b": "이 accommodation 덕분에 프라하에서의 trip은 더욱 더 행복했다.",
+    "sentence_b_org": "이 숙소 덕분에 프라하에서의 여행은 더욱  더 행복했다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      },
+      {
+        "from": "여행",
+        "to": "trip",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.5
+  },
+  {
+    "id": "pair_01455",
+    "sentence_a": "천둥 번개가 있을 때는 실외 말고 실내에 있기를 권합니다.",
+    "sentence_b": "천둥 번개 칠 때 밖 말고 indoor에 있어.",
+    "sentence_b_org": "천둥 번개 칠 때 밖 말고 실내에 있어.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "실내",
+        "to": "indoor",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_01456",
+    "sentence_a": "이 숙소는 위치, 가격, 시설, 호스트 등  모든면에서 완벽했어요.",
+    "sentence_b": "이 accommodation은 location, price, facility 및 host 등 모든 면에서 완벽했습니다.",
+    "sentence_b_org": "이 숙박 시설은 위치, 가격, 시설 및 호스트 등 모든 면에서 완벽했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙박 시설",
+        "to": "accommodation",
+        "pos": "NNG"
+      },
+      {
+        "from": "위치",
+        "to": "location",
+        "pos": "NNG"
+      },
+      {
+        "from": "가격",
+        "to": "price",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.6
+  },
+  {
+    "id": "pair_01457",
+    "sentence_a": "전신 거울이 따로 없는 게 아쉬웠습니다.",
+    "sentence_b": "full-length mirror가 없다는 것이 안타까웠습니다.",
+    "sentence_b_org": "전신거울이 없다는 것이 안타까웠습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "전신거울",
+        "to": "full-length mirror",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_01458",
+    "sentence_a": "테라스에서 봤던 뷰와 그곳에서 먹었던 식사가 그리울 것 같아요.",
+    "sentence_b": "terrace에서 본 view와 거기서 먹었던 food가 그리울 것 같아요.",
+    "sentence_b_org": "테라스에서 본 풍경과 거기서 먹었던 음식이 그리울 것 같아요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "테라스",
+        "to": "terrace",
+        "pos": "NNG"
+      },
+      {
+        "from": "풍경",
+        "to": "view",
+        "pos": "NNG"
+      },
+      {
+        "from": "음식",
+        "to": "food",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_01459",
+    "sentence_a": "베니스가 아주 작아 거의 모든곳은 도보로 이동 가능합니다.",
+    "sentence_b": "베니스는 너무 작아서 당신은 거의 모든 place를 걸을 수 있습니다.",
+    "sentence_b_org": "베니스는 너무 작아서 당신은 거의 모든 곳을 걸을 수 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "곳",
+        "to": "place",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_01460",
+    "sentence_a": "실내도 좋지만 정원에서의 황홀함을 가득 느끼는 것을 추천합니다!",
+    "sentence_b": "그래도, 약간 음침한 vibe의 포르투에서 편안함을 주는 숙소인것 같아서 추천합니다!",
+    "sentence_b_org": "그래도, 약간 음침한 기운의 포르투에서 편안함을 주는 숙소인것 같아서 추천합니다!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "기운",
+        "to": "vibe",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01461",
+    "sentence_a": "아울러 중장기 미세먼지 과제도 지속 추진해 나간다.",
+    "sentence_b": "또 중장기 fine dust 대책도 지속적으로 추진할 계획입니다.",
+    "sentence_b_org": "또 중장기 미세먼지 대책도 지속적으로 추진할 계획입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "미세먼지",
+        "to": "fine dust",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_01462",
+    "sentence_a": "야 거실 청소를 가장 효과적으로 할 수 있는 방법은 뭐가 있을까?",
+    "sentence_b": "너 생각에 가장 효과적인 living room 청소 방법은?",
+    "sentence_b_org": "너 생각에 가장 효과적인 거실 청소 방법은?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "거실",
+        "to": "living room",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01463",
+    "sentence_a": "양산과 우산 중 당신이 필요한 것을 말해주세요.",
+    "sentence_b": "sun umbrella와 umbrella 중 필요한 것을 골라봐.",
+    "sentence_b_org": "양산과 우산 중 필요한 것을 골라봐.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "양산",
+        "to": "sun umbrella",
+        "pos": "NNG"
+      },
+      {
+        "from": "우산",
+        "to": "umbrella",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.1
+  },
+  {
+    "id": "pair_01464",
+    "sentence_a": "방역당국은 24일부터 마스크 착용이 어려운 클럽 등 유흥시설 5종은 집합을 금지하고 식당은 밤 9시 이후, 카페는 영업시간 전체 포장과 배달만 허용한다.",
+    "sentence_b": "특히 club 등 유흥주점, 콜라텍, 단란주점, 감성주점, 헌팅포차 등 유흥시설 5종은 시설 허가·신고면적 4㎡당 1명으로 이용인원을 제한하는 등 강화된 rule을 추가해 적용한다.",
+    "sentence_b_org": "특히 클럽 등 유흥주점, 콜라텍, 단란주점, 감성주점, 헌팅포차 등 유흥시설 5종은 시설 허가·신고면적 4㎡당 1명으로 이용인원을 제한하는 등 강화된 수칙을 추가해 적용한다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "클럽",
+        "to": "club",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.0
+  },
+  {
+    "id": "pair_01465",
+    "sentence_a": "정부 기관에 전달할 메일은 한메일을 이용하지마",
+    "sentence_b": "정부 기관에 전송할 mail은 한메일 계정을 쓰지마",
+    "sentence_b_org": "정부 기관에 전송할 메일은 한메일 계정을 쓰지마",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.7
+  },
+  {
+    "id": "pair_01466",
+    "sentence_a": "전반적인 청결도는 딱히 흠잡을 것이 없었습니다.",
+    "sentence_b": "전체적인 cleanliness는 특별히 defect가 있는 것은 아니다.",
+    "sentence_b_org": "전체적인 청결상태는 특별히 결함이 있는 것은 아니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "청결상태",
+        "to": "cleanliness",
+        "pos": "NNG"
+      },
+      {
+        "from": "결함",
+        "to": "defect",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.6
+  },
+  {
+    "id": "pair_01467",
+    "sentence_a": "광장 너머 상조르주성 경관도 만족스러웠구요.",
+    "sentence_b": "광장 너머 상조리의 view에 만족했습니다.",
+    "sentence_b_org": "광장 너머 상조리의 풍경에 만족했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "풍경",
+        "to": "view",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.5
+  },
+  {
+    "id": "pair_01468",
+    "sentence_a": "동호회 모이는게 내일 언제로 예정되어 있는지요?",
+    "sentence_b": "내일 club 몇 시에 모이기로 했지?",
+    "sentence_b_org": "내일 동호회 몇 시에 모이기로 했지?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "동호회",
+        "to": "club",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.0
+  },
+  {
+    "id": "pair_01469",
+    "sentence_a": "샌프란시스코에서 첫날을 에어비앤비에서 지냈습니다.",
+    "sentence_b": "저는 San Francisco에서 Airbnb로 첫 하루를 보냈습니다.",
+    "sentence_b_org": "저는 샌 프란시스코에서 에어비앤비로 첫 하루를 보냈습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "샌 프란시스코",
+        "to": "San Francisco",
+        "pos": "NNP"
+      },
+      {
+        "from": "에어비앤비",
+        "to": "Airbnb",
+        "pos": "NNP"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_01470",
+    "sentence_a": "그리고 무엇보다 엘리베이터가 있더군요!",
+    "sentence_b": "And 무엇보다도, elevator가 있었어요!",
+    "sentence_b_org": "그리고 무엇보다도, 엘리베이터가 있었어요!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "그리고",
+        "to": "And",
+        "pos": "MAJ"
+      },
+      {
+        "from": "엘리베이터",
+        "to": "elevator",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.7
+  },
+  {
+    "id": "pair_01471",
+    "sentence_a": "제가 있던 방은 욕실이 많이 좁았어요.",
+    "sentence_b": "내 room의 bathroom은 very 작았습니다.",
+    "sentence_b_org": "내 방의 화장실은 매우 작았습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "방",
+        "to": "room",
+        "pos": "NNG"
+      },
+      {
+        "from": "화장실",
+        "to": "bathroom",
+        "pos": "NNG"
+      },
+      {
+        "from": "매우",
+        "to": "very",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.0
+  },
+  {
+    "id": "pair_01472",
+    "sentence_a": "그리고 제가 갔던 에어비앤비 집들 중에 인테리어가 제일 모던했어요",
+    "sentence_b": "그리고 제가 가본 모든 Airbnb 집들 중에서 interior가 가장 현대적이었습니다.",
+    "sentence_b_org": "그리고 제가 가본 모든 에어비앤비 집들 중에서 인테리어가 가장 현대적이었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "에어비앤비",
+        "to": "Airbnb",
+        "pos": "NNP"
+      },
+      {
+        "from": "인테리어",
+        "to": "interior",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.9
+  },
+  {
+    "id": "pair_01473",
+    "sentence_a": "아울러 데이터 활용에 따른 개인정보 처리자의 책임을 강화했다.",
+    "sentence_b": "또한, data 활용에 따른 개인정보처리 담당자의 책임도 강화하였습니다.",
+    "sentence_b_org": "또한, 데이터 활용에 따른 개인정보처리 담당자의 책임도 강화하였습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "데이터",
+        "to": "data",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_01474",
+    "sentence_a": "실제로 교통사고 사망자 수는 2017년 4185명에서 2018년 3781명, 2019년 2402명으로 계속 감소 추세에 있다.",
+    "sentence_b": "실제로 traffic accident 사망자 수는 2017년 4,185명에서 2018년 3,781명, 2019년 2,402명으로 계속 감소하고 있습니다.",
+    "sentence_b_org": "실제로 교통사고 사망자 수는 2017년 4,185명에서 2018년 3,781명, 2019년 2,402명으로 계속 감소하고 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "교통사고",
+        "to": "traffic accident",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.1
+  },
+  {
+    "id": "pair_01475",
+    "sentence_a": "또한 현지공관과 지속적인 연락체계를 구축해 추가로 필요한 물품 등을 지원한다.",
+    "sentence_b": "또한, 지방 관공서와 지속적인 communication system을 구축하여 필요한 item을 추가로 지원합니다.",
+    "sentence_b_org": "또한, 지방 관공서와 지속적인 커뮤니케이션 시스템을 구축하여 필요한 항목을 추가로 지원합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "커뮤니케이션 시스템",
+        "to": "communication system",
+        "pos": "NNG"
+      },
+      {
+        "from": "항목",
+        "to": "item",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.2
+  },
+  {
+    "id": "pair_01476",
+    "sentence_a": "나폴리 전철역이 마지막 구간은 계단인 곳이 많습니다.",
+    "sentence_b": "다만, stairs가 생각보다 really 많습니다.",
+    "sentence_b_org": "다만, 계단이 생각보다 정말 많습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "계단",
+        "to": "stairs",
+        "pos": "NNG"
+      },
+      {
+        "from": "정말",
+        "to": "really",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 2.0
+  },
+  {
+    "id": "pair_01477",
+    "sentence_a": "한 가지, 욕실 물이 잘 안 내려갔어요.",
+    "sentence_b": "한 가지, bathroom water가 그렇게 잘 내려가지 않았어요.",
+    "sentence_b_org": "한 가지, 화장실 물이 그렇게 잘 내려가지 않았어요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "화장실 물",
+        "to": "bathroom water",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_01478",
+    "sentence_a": "채권시장안정펀드는 은행, 증권사, 보험사 등 금융권이 공동 출자해 우량 회사채에 투자하는 방식으로 기업의 유동성을 지원하는 펀드다.",
+    "sentence_b": "채권시장안정기금은 bank, 증권사, 보험사 등 금융기관이 공동으로 우량 회사채에 투자하여 기업 유동성을 지원하는 fund입니다.",
+    "sentence_b_org": "채권시장안정기금은 은행, 증권사, 보험사 등 금융기관이 공동으로 우량 회사채에 투자하여 기업 유동성을 지원하는 펀드입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "은행",
+        "to": "bank",
+        "pos": "NNG"
+      },
+      {
+        "from": "펀드",
+        "to": "fund",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_01479",
+    "sentence_a": "양말 두켤레에서 나오는 먼지가 어마어마 했습니다",
+    "sentence_b": "두 켤레의 socks에서 많은 먼지가 나왔습니다.",
+    "sentence_b_org": "두 켤레의 양말에서 많은 먼지가 나왔습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "양말",
+        "to": "socks",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.1
+  },
+  {
+    "id": "pair_01480",
+    "sentence_a": "마지막으로 나는 근처에 좋은 빵집들이 매우 그립습니다.",
+    "sentence_b": "마지막으로, 근처에 좋은 bakery가 너무 그리워요.",
+    "sentence_b_org": "마지막으로, 근처에 좋은 빵집이 너무 그리워요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "빵집",
+        "to": "bakery",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_01481",
+    "sentence_a": "정책부서는 인력 재배치를 상시화해 조직·인력운영의 효율성을 높인다.",
+    "sentence_b": "아울러 private museum·art gallery 전문인력 지원(226곳), 작은도서관 순회사서 지원 확대, 국민체육센터 operation 주체를 사회적기업 등으로 다양화하는 등 operation의 효율성을 기한다.",
+    "sentence_b_org": "아울러 사립박물관·미술관 전문인력 지원(226곳), 작은도서관 순회사서 지원 확대, 국민체육센터 운영주체를 사회적기업 등으로 다양화하는 등 운영의 효율성을 기한다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "사립박물관",
+        "to": "private museum",
+        "pos": "NNG"
+      },
+      {
+        "from": "미술관",
+        "to": "art gallery",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.5
+  },
+  {
+    "id": "pair_01482",
+    "sentence_a": "다음 주부터는 출장이니 가족모임 일정 바꾸지 말아 주세요.",
+    "sentence_b": "사람도 많아서 일정 잡기 어려우니까 family gathering 일정은 바꾸지 말아야 해요.",
+    "sentence_b_org": "사람도 많아서 일정 잡기 어려우니까 가족모임 일정은 바꾸지 말아야 해요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "가족모임",
+        "to": "family gathering",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.0
+  },
+  {
+    "id": "pair_01483",
+    "sentence_a": "현재 안개는 한계령과 미시령 중 어디에 끼어있나요?",
+    "sentence_b": "이번 holiday weekend은 weather가 어떤가요?",
+    "sentence_b_org": "이번 연휴 주말은 날씨가 어떤가요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "날씨",
+        "to": "weather",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01484",
+    "sentence_a": "지금 막 체크아웃하고 피렌체 가는 기차구요.",
+    "sentence_b": "apartment는 청결하고 host는 very 친절합니다.",
+    "sentence_b_org": "아파트는 청결하고 호스트는 매우 친절합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "아파트",
+        "to": "apartment",
+        "pos": "NNG"
+      },
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      },
+      {
+        "from": "매우",
+        "to": "very",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01485",
+    "sentence_a": "12월 30일부터는 방역수칙의 심각한 위반이 있을 경우 지방자치단체장이 3개월 이내 시설 운영 중단을 명할 수 있다.",
+    "sentence_b": "12월 30일부터, local government의 장은 심각한 quarantine rule violation이 있을 경우 3개월 이내에 그 facility의 운영 중단을 명령할 수 있습니다.",
+    "sentence_b_org": "12월 30일부터, 지방 자치 단체의 장은 심각한 검역 규칙 위반이 있을 경우 3개월 이내에 그 시설의 운영 중단을 명령할 수 있습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "지방 자치 단체",
+        "to": "local government",
+        "pos": "NNG"
+      },
+      {
+        "from": "검역 규칙 위반",
+        "to": "quarantine rule violation",
+        "pos": "NNG"
+      },
+      {
+        "from": "시설",
+        "to": "facility",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 3,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.3
+  },
+  {
+    "id": "pair_01486",
+    "sentence_a": "하지만 겨울에 난방이 굉장히 잘 되었습니다.",
+    "sentence_b": "그의 친절함에 더 편한 trip이 되었습니다.",
+    "sentence_b_org": "그의 친절함에 더 편한 여행이 되었습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "여행",
+        "to": "trip",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01487",
+    "sentence_a": "오늘 비가 올 것인지 맑을 예정인지 알려주실 수 있으신가요?",
+    "sentence_b": "typhoon은 어디에서 발생되지?",
+    "sentence_b_org": "태풍은 어디에서 발생되지?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "태풍",
+        "to": "typhoon",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.2
+  },
+  {
+    "id": "pair_01488",
+    "sentence_a": "학회 홍보 메일이 너무 많이 와서 중요한 메일을 놓칠 수 있으니 학회 홍보 메일은 지워도 돼.",
+    "sentence_b": "학회 홍보 mail은 삭제해줘. 다른 mail은 그대로 놔둬도 돼.",
+    "sentence_b_org": "학회 홍보메일은 삭제해줘. 다른 메일은 그대로 놔둬도 돼.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "메일",
+        "to": "mail",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.0
+  },
+  {
+    "id": "pair_01489",
+    "sentence_a": "그쪽이 보기엔 세탁할때 찬물이랑 더운물 중에 뭐가 더 때가 잘 빠질것 같아요?",
+    "sentence_b": "야 때가 더 잘 빠지려면 cold water로 세탁해야돼, hot water로 세탁해야돼?",
+    "sentence_b_org": "야 때가 더 잘 빠지려면 찬물로 세탁해야돼, 더운물로 세탁해야돼?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "찬물",
+        "to": "cold water",
+        "pos": "NNG"
+      },
+      {
+        "from": "더운물",
+        "to": "hot water",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.4
+  },
+  {
+    "id": "pair_01490",
+    "sentence_a": "한일관계는 역사·영토 문제에 대한 단호한 대응과 동시에 경제·사회·문화·스포츠 등 실질협력 강화의 투트랙 접근을 복원하는 방향으로 잡았다.",
+    "sentence_b": "MOFA는 올해 쟁점 과제로 미중 전략적 경쟁에 대한 능동적 대응을 꼽았다.",
+    "sentence_b_org": "외교부는 올해 쟁점 과제로 미중 전략적 경쟁에 대한 능동적 대응을 꼽았다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "외교부",
+        "to": "MOFA",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.0
+  },
+  {
+    "id": "pair_01491",
+    "sentence_a": "그리고 남자들은 아마 좀 불편할 거 같아요",
+    "sentence_b": "그리고 저는 남자들이 아마 약간 uncomfortable할 거라고 생각해요.",
+    "sentence_b_org": "그리고 저는 남자들이 아마 약간 불편할 거라고 생각해요.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "불편할",
+        "to": "uncomfortable",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.8
+  },
+  {
+    "id": "pair_01492",
+    "sentence_a": "우리 가족 모두 편안히 사흘을 보냈습니다.",
+    "sentence_b": "저희 family 모두 이 accommodation에 머무르는것에 만족했습니다.",
+    "sentence_b_org": "저희 가족 모두 이 숙소에 머무르는것에 만족했습니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "가족",
+        "to": "family",
+        "pos": "NNG"
+      },
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 1.5
+  },
+  {
+    "id": "pair_01493",
+    "sentence_a": "침대가 엄청 푹신하고 침구도 매우 깔끔해요.",
+    "sentence_b": "bed는 매우 부드럽고, bed는 매우 깔끔합니다.",
+    "sentence_b_org": "침대는 매우 부드럽고, 침대는 매우 깔끔합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "침대",
+        "to": "bed",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  },
+  {
+    "id": "pair_01494",
+    "sentence_a": "호스트분도 친절하시고 메세지응답도 빠르세요!",
+    "sentence_b": "host는 또한 친절하고 message에 빠르게 응답합니다!",
+    "sentence_b_org": "호스트는 또한 친절하고 메시지에 빠르게 응답합니다!",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "호스트",
+        "to": "host",
+        "pos": "NNG"
+      },
+      {
+        "from": "메시지",
+        "to": "message",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.6
+  },
+  {
+    "id": "pair_01495",
+    "sentence_a": "결론부터 말씀드리자면 정말 추천합니다.",
+    "sentence_b": "conclusion부터 말씀드리자면, 저는 그것을 really 추천합니다.",
+    "sentence_b_org": "결론부터 말씀드리자면, 저는 그것을 정말 추천합니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "결론",
+        "to": "conclusion",
+        "pos": "NNG"
+      },
+      {
+        "from": "정말",
+        "to": "really",
+        "pos": "MAG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.9
+  },
+  {
+    "id": "pair_01496",
+    "sentence_a": "열대야 고수부지에서 외출한 인원을 알려주십시오.",
+    "sentence_b": "열대야 riverfront는 외출 인원이 몇 명인가?",
+    "sentence_b_org": "열대야 고수부지는 외출 인원이 몇 명인가?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "고수부지",
+        "to": "riverfront",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 4.2
+  },
+  {
+    "id": "pair_01497",
+    "sentence_a": "국가 메일 코드를 비교했을 때, 일본 것이 더 길어 브라질 것이 더 길어?",
+    "sentence_b": "해외 지역에서 제 Naver account에 access를 시도했던 IP가 어떻게 되나요?",
+    "sentence_b_org": "해외 지역에서 제 네이버 계정에 접속을 시도했던 아이피가 어떻게 되나요?",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "네이버",
+        "to": "Naver",
+        "pos": "NNP"
+      },
+      {
+        "from": "계정",
+        "to": "account",
+        "pos": "NNG"
+      },
+      {
+        "from": "접속",
+        "to": "access",
+        "pos": "NNG"
+      },
+      {
+        "from": "아이피",
+        "to": "IP",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 4,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 0.3
+  },
+  {
+    "id": "pair_01498",
+    "sentence_a": "다시 포르토를 찾는다면 저는 이 숙소를 이용할 것입니다.",
+    "sentence_b": "다시 온다면 또 이 accommodation을 찾을 것입니다.",
+    "sentence_b_org": "다시 온다면 또 이 숙소를 찾을 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "숙소",
+        "to": "accommodation",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 1,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.0
+  },
+  {
+    "id": "pair_01499",
+    "sentence_a": "정부는 더욱 막중한 책임감을 가지겠습니다.",
+    "sentence_b": "government는 더 많은 responsibility를 질 것입니다.",
+    "sentence_b_org": "정부는 더 많은 책임을 질 것입니다.",
+    "sentence_mixed_from": "b",
+    "mixed_list": [
+      {
+        "from": "정부",
+        "to": "government",
+        "pos": "NNG"
+      },
+      {
+        "from": "책임",
+        "to": "responsibility",
+        "pos": "NNG"
+      }
+    ],
+    "mixed_k": 2,
+    "min_k": 1,
+    "max_k": 5,
+    "source": "KLUE-STS",
+    "score_org": 3.7
+  }
+];
