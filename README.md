@@ -2,6 +2,8 @@
 
 Korean-English code-mixing embedding model evaluation leaderboard.
 
+🌐 [View Leaderboard Website](https://watchstep.me/ko-en-cm/)
+
 ## Dataset
 
 Based on KLUE-STS dataset with Korean-English code-mixing at k-levels (k=1 to k=4).
